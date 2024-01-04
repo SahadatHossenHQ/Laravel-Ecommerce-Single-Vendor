@@ -1,0 +1,36 @@
+[26-Aug-2023 12:01:42 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\Admin\Ecommerce\ProductController::rating_delte() in /home/xwngkzzd/public_html/app/Http/Controllers/Admin/Ecommerce/ProductController.php on line 61
+[27-Aug-2023 10:50:01 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Unable to locate a class or view for component [footer-component]. in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php:279
+Stack trace:
+#0 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(211): Illuminate\View\Compilers\ComponentTagCompiler->componentClass('footer-componen...')
+#1 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(144): Illuminate\View\Compilers\ComponentTagCompiler->componentString('footer-componen...', Array)
+#2 [internal function]: Illuminate\View\Compilers\ComponentTagCompiler->Illuminate\View\Compilers\{closure}(Array)
+#3 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(139): preg_replace_callback('/\n            <...', Object(Closure), '<!DOCTYPE html>...')
+#4 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/ in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php on line 279
+[27-Aug-2023 10:50:12 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Unable to locate a class or view for component [footer-component]. in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php:279
+Stack trace:
+#0 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(211): Illuminate\View\Compilers\ComponentTagCompiler->componentClass('footer-componen...')
+#1 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(144): Illuminate\View\Compilers\ComponentTagCompiler->componentString('footer-componen...', Array)
+#2 [internal function]: Illuminate\View\Compilers\ComponentTagCompiler->Illuminate\View\Compilers\{closure}(Array)
+#3 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(139): preg_replace_callback('/\n            <...', Object(Closure), '<!DOCTYPE html>...')
+#4 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/ in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php on line 279
+[27-Aug-2023 10:50:21 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Unable to locate a class or view for component [footer-component]. in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php:279
+Stack trace:
+#0 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(211): Illuminate\View\Compilers\ComponentTagCompiler->componentClass('footer-componen...')
+#1 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(144): Illuminate\View\Compilers\ComponentTagCompiler->componentString('footer-componen...', Array)
+#2 [internal function]: Illuminate\View\Compilers\ComponentTagCompiler->Illuminate\View\Compilers\{closure}(Array)
+#3 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(139): preg_replace_callback('/\n            <...', Object(Closure), '<!DOCTYPE html>...')
+#4 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/ in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php on line 279
+[27-Aug-2023 11:28:29 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Unable to locate a class or view for component [footer-component]. in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php:279
+Stack trace:
+#0 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(211): Illuminate\View\Compilers\ComponentTagCompiler->componentClass('footer-componen...')
+#1 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(144): Illuminate\View\Compilers\ComponentTagCompiler->componentString('footer-componen...', Array)
+#2 [internal function]: Illuminate\View\Compilers\ComponentTagCompiler->Illuminate\View\Compilers\{closure}(Array)
+#3 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(139): preg_replace_callback('/\n            <...', Object(Closure), '<!DOCTYPE html>...')
+#4 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/ in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php on line 279
+[28-Aug-2023 06:17:49 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Unable to locate a class or view for component [footer-component]. in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php:279
+Stack trace:
+#0 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(211): Illuminate\View\Compilers\ComponentTagCompiler->componentClass('footer-componen...')
+#1 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(144): Illuminate\View\Compilers\ComponentTagCompiler->componentString('footer-componen...', Array)
+#2 [internal function]: Illuminate\View\Compilers\ComponentTagCompiler->Illuminate\View\Compilers\{closure}(Array)
+#3 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php(139): preg_replace_callback('/\n            <...', Object(Closure), '<!DOCTYPE html>...')
+#4 /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/ in /home/xwngkzzd/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/ComponentTagCompiler.php on line 279
