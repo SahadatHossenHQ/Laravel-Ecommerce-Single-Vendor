@@ -4,12 +4,12 @@
 
 @section('content')
 <style>
-    form .form2{
+    form .form2 {
         box-shadow: 0px 0px 5px gainsboro;
-padding: 20px;
-border-radius: 5px;
-margin-top: 50px;
-background: white
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 50px;
+        background: white
     }
 </style>
 <?php
@@ -32,36 +32,39 @@ Session::forget('link');
  
 ?>
 <div class="wrapper">
-   <!--  <p style="text-align: center;">
+    <!--  <p style="text-align: center;">
         <a href="{{route('home')}}">
             <img style="width: 120px;padding: 10px 0px;" src="{{asset('uploads/setting/'.setting('auth_logo'))}}" alt="">
         </a>
     </p> -->
-        <form class="col-md-4 offset-md-4" action="{{route('login.get')}}" method="get">
-           
-            <div class="form form2">
-                <h4 style="color:#002f5f;text-align: left;padding:10px 0px;"><b>Sign in </b></h4>
-                <div class="form-group">
-                    <label>Username / Email / Phone<sup style="color: red;">*</sup></label>
-                    <input type="text" name="username" id="username" class="form-control @error('username') is-in-valid @enderror" required />
-                    @error('username')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Password <sup style="color: red;">*</sup></label>
-                    <input type="password" name="password" id="password" class="form-control @error('password') is-in-valid @enderror" required />
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <input  class="form-control" type="submit" value="Login" style="background:#108b3a">
-                
-                <span style="display: block;text-align: center;"><a href="{{route('password.request')}}">Forgot Password?</a></span>
+    <form class="col-md-4 offset-md-4" action="{{route('login.get')}}" method="get">
+
+        <div class="form form2">
+            <h4 style="color:#002f5f;text-align: left;padding:10px 0px;"><b>Sign in </b></h4>
+            <div class="form-group">
+                <label>Username / Email / Phone<sup style="color: red;">*</sup></label>
+                <input type="text" name="username" id="username"
+                    class="form-control @error('username') is-in-valid @enderror" required />
+                @error('username')
+                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                @enderror
             </div>
-        </form>
-        <br>
-        <span style="display: block;text-align: center;">Create a new Account <a href="{{route('register')}}" style="color:blue">Sign Up</a></span>
+            <div class="form-group">
+                <label>Password <sup style="color: red;">*</sup></label>
+                <input type="password" name="password" id="password"
+                    class="form-control @error('password') is-in-valid @enderror" required />
+                @error('password')
+                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                @enderror
+            </div>
+            <input class="form-control" type="submit" value="Login" style="background:#108b3a">
+
+            <span style="display: block;text-align: center;"><a href="{{route('password.request')}}">Forgot Password?</a></span>
+        </div>
+    </form>
+    <br>
+    <span style="display: block;text-align: center;">Create a new Account <a href="{{route('register')}}"
+            style="color:blue">Sign Up</a></span>
 </div>
 
 

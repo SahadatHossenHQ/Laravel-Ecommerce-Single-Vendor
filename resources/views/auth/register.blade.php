@@ -49,8 +49,8 @@ padding: 7px;
     </p> -->
     <br>
     <br>
-    <form class="col-md-4 offset-md-4" action="{{route('register.otp')}}" method="get">
-      
+    <form class="col-md-4 offset-md-4" action="{{route('register.new')}}" method="post">
+      @csrf
         <ul class="cc row">
         <li class="col-6" ><a href="{{route('login')}}">Login</a></li>
         <li class="col-6"  style="background:#07421c;color: white;"><a>Register</a></li>
@@ -79,7 +79,7 @@ padding: 7px;
             </div> -->
             <div class="form-group col-md-12">
                 <label for="email">Email <sup style="color: red;">*</sup></label>
-                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required />
+                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" />
                 @error('email')
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                 @enderror
@@ -92,18 +92,18 @@ padding: 7px;
                 @enderror
             </div>
              <input type="hidden" value="12345" name="otp" id="otp" class="form-control @error('otp') is-invalid @enderror"  required />
-            <!-- <div class="form-group col-md-4">-->
+             <div class="form-group col-md-4">
 
-            <!--    <div type="submit" id="otp-send" style="margin-top: 33px" class="btn btn-primary">Send Otp</div>-->
-            <!--</div>-->
-            <!--<div class="form-group col-md-12">-->
-            <!--    <label for="otp">Otp (Check Your Phone) <sup style="color: red;">*</sup></label>-->
-            <!--    <input type="number" name="otp" id="otp" class="form-control @error('otp') is-invalid @enderror"  required />-->
-            <!--    <p id="sm"></p>-->
-            <!--    @error('otp')-->
-            <!--        <span class="invalid-feedback" role="alert">{{ $message }}</span>-->
-            <!--    @enderror-->
-            <!--</div>-->
+                <div type="submit" id="otp-send" style="margin-top: 33px" class="btn btn-primary">Send Otp</div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="otp">Otp (Check Your Phone) <sup style="color: red;">*</sup></label>
+                <input type="number" name="otp" id="otp" class="form-control @error('otp') is-invalid @enderror"  required />
+                <p id="sm"></p>
+                @error('otp')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                @enderror
+            </div>
             <div class="form-group col-md-12">
                 <label for="password">Password <sup style="color: red;">*</sup></label>
                 <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required />
@@ -133,6 +133,9 @@ padding: 7px;
                 
                 var number = document.getElementById('phone').value;
                 var cr = document.getElementById('cr').value;
+                
+                // console.log(number, cr);
+                
                 $.ajax({
                     type: 'POST',
                     url: 'register/send-otp',
@@ -143,6 +146,7 @@ padding: 7px;
                     dataType: "JSON",
                     success: function (response) {
                         $('#sm').html(response);
+                        console.log(response);
                    }
                 });
             });

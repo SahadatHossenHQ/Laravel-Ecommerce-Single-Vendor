@@ -217,7 +217,7 @@ padding: 0 !important;
     <div class="copy " style="background: #108b3a;padding: 10px;text-align: center;">
         <div class="container">
         <div class="copy-rihgt-1 row">
-            <p class="col-md-12" style="margin: 0 0px;color: white;"> {{setting('copy_right_text')}} - A product of Finva Soft</p>
+            <p class="col-md-12" style="margin: 0 0px;color: white;"> {{setting('copy_right_text')}} </p>
             </div>
         </div>
     </div>

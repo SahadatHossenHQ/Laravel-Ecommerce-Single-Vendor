@@ -33,8 +33,9 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get( '/cancel', [OrderController::class, 'fail'] )->name( 'uddoktapay.cancel' );
-Route::get( 'success2', [OrderController::class, 'success2'] )->name( 'uddoktapay.success' );
+
+Route::get('/cancel', [OrderController::class, 'fail'])->name('uddoktapay.cancel');
+Route::get('success2', [OrderController::class, 'success2'])->name('uddoktapay.success');
 Auth::routes();
 Route::get('login/vendor', [HomeController::class, 'vendorLogin'])->name('login.v2');
 Route::get('/seller', [AccountController::class, 'vendorJoin'])->name('vendorJoin');
@@ -44,8 +45,11 @@ Route::get('admin/', [HomeController::class, 'adminLogin'])->name('adminLogin');
 Route::post('admin/login', [LoginController::class, 'superLogin'])->name('super.login');
 Route::GET('user/login', [LoginController::class, 'login'])->name('login.get');
 Route::post('user/register', [RegisterController::class, 'register'])->name('register.new');
-Route::get('user/otp', [RegisterController::class, 'otp_mail'])->name('register.otp');
+Route::get('user/otp', [RegisterController::class, 'sendotp'])->name('register.otp');
+
+Route::get('/recover-ac/mobile', [AccountController::class, 'pasmRecover'])->name('password.recover.mobile');
 Route::Post('password/reset', [AccountController::class, 'pasm'])->name('password.send');
+
 Route::Post('zt_admin.zishan/login/confirm', [LoginController::class, 'superLoginconfirm'])->name('super.login.confirm');
 
 Route::get('vendors', [VendorController::class, 'showAllVendors'])->name('vendors');
@@ -68,9 +72,9 @@ Route::POst('product/advance-search/', [ProductController::class, 'advanceSearch
 
 Route::get('product/{slug}', [ProductController::class, 'productDetails'])->name('product.details');
 Route::get('campaing/product/{slug}', [ProductController::class, 'productDetails1'])->name('product.cam.details');
-Route::get('/blogs',[ablogController::class,'getAllBlogs'])->name('blogs');
-Route::get('/blog/ceo',[ablogController::class,'getAllCeoBlogs'])->name('blog.ceo');
-Route::get('/blog/show/{blog}',[ablogController::class,'getBlogByID'])->name('blog.show');
+Route::get('/blogs', [ablogController::class, 'getAllBlogs'])->name('blogs');
+Route::get('/blog/ceo', [ablogController::class, 'getAllCeoBlogs'])->name('blog.ceo');
+Route::get('/blog/show/{blog}', [ablogController::class, 'getBlogByID'])->name('blog.show');
 Route::get('Campaign', [campaingController::class, 'allCampaing'])->name('campaing');
 Route::Post('Campaign/comments', [campaingController::class, 'comment'])->name('campaing.comment');
 Route::get('Campaign/product/{slug}', [campaingController::class, 'campaignProduct'])->name('campaing.product');
@@ -82,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::Post('/get/color/price', [ProductController::class, 'getAttrPrice']);
 Route::Post('/get/attr/price', [ProductController::class, 'getAttrPrice']);
-       
+
 
 Route::get('vendor/search/product', [VendorController::class, 'productSearch'])->name('search.product.vendor');
 
@@ -95,25 +99,25 @@ Route::get('destroy/cart/{id}', [CartController::class, 'destroyCart'])->name('d
 
 Route::get('checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 
-Route::get('/render/superCat',[HomeController::class,'superCat']);
-Route::get('/render/subCat',[HomeController::class,'subCat']);
+Route::get('/render/superCat', [HomeController::class, 'superCat']);
+Route::get('/render/subCat', [HomeController::class, 'subCat']);
 
 
 Route::middleware(['account', 'auth'])->group(function () {
-    Route::group(['as' => 'connection.', 'prefix' => 'connection'], function() {
+    Route::group(['as' => 'connection.', 'prefix' => 'connection'], function () {
 
         Route::get('/live-chat', [chatController::class, 'showLiveChatForm'])->name('live.chat');
         Route::get('/live-chat/new-sms/count', [chatController::class, 'countNewMessage'])->name('live.chat.new-sms.count');
         Route::get('/live-chat-list', [chatController::class, 'liveChatList'])->name('live.chat.list');
         Route::post('/live-chat', [chatController::class, 'storeLiveChatForm'])->name('store.chat');
     });
-    
+
     Route::get('account/password', [AccountController::class, 'passChangeUser'])->name('pass-change');
     Route::put('password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
-     Route::get('account/verify', [AccountController::class, 'verify'])->name('email.verify');
-     Route::Post('account/verify/otp', [AccountController::class, 'sendEotp'])->name('account.email.otp');
-       Route::Post('account/verify/confirm', [AccountController::class, 'otpconfirm'])->name('account.email.confirm');
-      Route::get('account/dashboard', [AccountController::class, 'index'])->name('dashboard');
+    Route::get('account/verify', [AccountController::class, 'verify'])->name('email.verify');
+    Route::Post('account/verify/otp', [AccountController::class, 'sendEotp'])->name('account.email.otp');
+    Route::Post('account/verify/confirm', [AccountController::class, 'otpconfirm'])->name('account.email.confirm');
+    Route::get('account/dashboard', [AccountController::class, 'index'])->name('dashboard');
     Route::get('account', [AccountController::class, 'showAccount'])->name('account');
     Route::get('order/track', [HomeController::class, 'track_form'])->name('track');
     Route::post('order/tracking', [HomeController::class, 'tracking'])->name('tracking');
@@ -132,59 +136,58 @@ Route::middleware(['account', 'auth'])->group(function () {
 
     Route::get('download', [OrderController::class, 'download'])->name('download');
     Route::get('download/product/{pro_id}/{id}', [OrderController::class, 'downloadProductFile'])->name('download.product');
-    
+
     Route::get('review/{order_id}', [OrderController::class, 'review'])->name('review');
     Route::post('review/{id}', [OrderController::class, 'storeReview'])->name('review.store');
     Route::get('wishlist/', [wishlistController::class, 'index'])->name('wishlist');
     Route::post('wishlist/add', [wishlistController::class, 'store'])->name('wishlist.add');
     Route::get('wishlist/remove/{item}', [wishlistController::class, 'delete'])->name('wishlist.remove');
     Route::get('ticket/', [ContactController::class, 'ticket'])->name('ticket');
-  
+
     Route::post('ticket/create', [ContactController::class, 'ticketCreate'])->name('ticket.create');
 
-    Route::get('/user-blogs',[ablogController::class,'index3'])->name('user_blog');
-    Route::get('/redem',[AccountController::class,'redem'])->name('redem.index');
-     Route::get('/cashout',[AccountController::class,'cashout'])->name('redem.cashout');
-      Route::Post('/withdraw',[AccountController::class,'withdraw'])->name('redem.withdraw');
-    Route::post('/redem/covert',[AccountController::class,'covert'])->name('redem.convert');
-   Route::get("/myrefer", function(){
-   return View::make("frontend.myrefer");
-})->name('myrefer');
-    Route::post('/create-blog',[ablogController::class,'store2'])->name('create_blog');
+    Route::get('/user-blogs', [ablogController::class, 'index3'])->name('user_blog');
+    Route::get('/redem', [AccountController::class, 'redem'])->name('redem.index');
+    Route::get('/cashout', [AccountController::class, 'cashout'])->name('redem.cashout');
+    Route::Post('/withdraw', [AccountController::class, 'withdraw'])->name('redem.withdraw');
+    Route::post('/redem/covert', [AccountController::class, 'covert'])->name('redem.convert');
+    Route::get("/myrefer", function () {
+        return View::make("frontend.myrefer");
+    })->name('myrefer');
+    Route::post('/create-blog', [ablogController::class, 'store2'])->name('create_blog');
     Route::get('blog/status/{blog}', [ablogController::class, 'status'])->name('blog.status');
-	Route::delete('/blog-delete/{blog}',[ablogController::class,'destory'])->name('blog_delete');
-	Route::get('/blog-edit/{blog}',[ablogController::class,'blog_edit_form2'])->name('blog_edit');
-    Route::post('/blog-update',[ablogController::class,'update_exit_blog'])->name('update_exit_blog');
-    Route::get('/ads',[adsController::class,'index'])->name('ads.index');
-    Route::get('/ads/list',[adsController::class,'list'])->name('ads.list');
-    Route::get('/ads/edit/{ads}',[adsController::class,'edit'])->name('ads.edit');
-    Route::delete('/ads/{ads}',[adsController::class,'delete'])->name('ads.delete');
-    Route::get('/classic/',[adsController::class,'all'])->name('clasified.all');
-   
-    Route::Post('/ads/create',[adsController::class,'store'])->name('product.clasified.create');
-    Route::Post('/ads/update',[adsController::class,'update'])->name('product.clasified.update');
+    Route::delete('/blog-delete/{blog}', [ablogController::class, 'destory'])->name('blog_delete');
+    Route::get('/blog-edit/{blog}', [ablogController::class, 'blog_edit_form2'])->name('blog_edit');
+    Route::post('/blog-update', [ablogController::class, 'update_exit_blog'])->name('update_exit_blog');
+    Route::get('/ads', [adsController::class, 'index'])->name('ads.index');
+    Route::get('/ads/list', [adsController::class, 'list'])->name('ads.list');
+    Route::get('/ads/edit/{ads}', [adsController::class, 'edit'])->name('ads.edit');
+    Route::delete('/ads/{ads}', [adsController::class, 'delete'])->name('ads.delete');
+    Route::get('/classic/', [adsController::class, 'all'])->name('clasified.all');
 
-    Route::get('order/payment/{slug}',[OrderController::class,'payform'])->name('order.pay.form');
-    Route::Post('order/payment/create/{slug}',[OrderController::class,'payCreate'])->name('order.pay.create');
-    
+    Route::Post('/ads/create', [adsController::class, 'store'])->name('product.clasified.create');
+    Route::Post('/ads/update', [adsController::class, 'update'])->name('product.clasified.update');
+
+    Route::get('order/payment/{slug}', [OrderController::class, 'payform'])->name('order.pay.form');
+    Route::Post('order/payment/create/{slug}', [OrderController::class, 'payCreate'])->name('order.pay.create');
 });
- Route::get('/classic/product/{slug}',[adsController::class,'show'])->name('clasified.show');
+Route::get('/classic/product/{slug}', [adsController::class, 'show'])->name('clasified.show');
 Route::get('/{slug}', [pageController::class, 'pageshow'])->name('page');
 Route::middleware(['auth', 'customer'])->group(function () {
-    Route::get('setup/vendor', [VendorController::class, 'showSetupVendorFrom'])->name('setup.vendor.form'); 
-    Route::post('setup/vendor', [VendorController::class, 'setupVendor'])->name('setup.vendor'); 
+    Route::get('setup/vendor', [VendorController::class, 'showSetupVendorFrom'])->name('setup.vendor.form');
+    Route::post('setup/vendor', [VendorController::class, 'setupVendor'])->name('setup.vendor');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::post('product/comment/{slug}', [ProductController::class, 'comment'])->name('comment');
-    Route::post('product/comment/reply/{slug}/{id}', [ProductController::class, 'reply'])->name('reply');
+    // Route::post('product/comment/reply/{slug}/{id}', [ProductController::class, 'reply'])->name('reply');
 });
 Route::get('service/form', [ContactController::class, 'service'])->name('service');
 Route::get('sheba/list', [HomeController::class, 'sheba'])->name('sheba');
 Route::get('contact/form', [ContactController::class, 'index'])->name('contact');
 Route::post('contact/create', [ContactController::class, 'store'])->name('contact.store');
 
-Route::post('subscription',[subscriptionController::class,'store'])->name('subscription');
+Route::post('subscription', [subscriptionController::class, 'store'])->name('subscription');
 
 
 /** Google OAuth routes */
@@ -197,7 +200,7 @@ Route::get('/auth/facebook/callback', [socialController::class, 'handleFacebookC
 
 Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
 Route::post('/send-notification', [App\Http\Controllers\HomeController::class, 'sendNotification'])->name('send.notification');
-Route::post('register/send-otp',[RegisterController::class,'sendotp'])->name('sendotp');
+Route::post('register/send-otp', [RegisterController::class, 'sendotp'])->name('sendotp');
 
 
 Route::post('/success', [OrderController::class, 'success'])->name('success');
@@ -206,7 +209,7 @@ Route::post('/fail', [OrderController::class, 'fail'])->name('fail');
 
 
 
-Route::get('/cache', function() {
+Route::get('/cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
     Artisan::call('view:clear');
