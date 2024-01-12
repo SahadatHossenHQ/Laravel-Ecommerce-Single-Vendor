@@ -902,9 +902,6 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @push('js')
 <script>
     $(document).ready(function () {
-
-
-
         $('.value-plus').on('click', function () {
             var divUpd = $(this).parent().find('.value'),
                 newVal = parseInt(divUpd.val(), 10) + 1;
@@ -1058,7 +1055,6 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
         cssEase: 'ease-in-out',
         touchThreshold: 100,
         responsive: [
-
             {
                 breakpoint: 767,
                 settings: {
@@ -1091,15 +1087,16 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
     });
 </script>
 
+@if (env('FIREBASE_ON') == 1)
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase.js"></script>
 <script>
     var firebaseConfig = {
-        apiKey: "AIzaSyBWkcZFIoW0b-jfstIQG9RpiYrAFVbK8nA",
-        authDomain: "demon-ca45b.firebaseapp.com",
-        projectId: "demon-ca45b",
-        storageBucket: "demon-ca45b.appspot.com",
-        messagingSenderId: "1049200760757",
-        appId: "1:1049200760757:web:0f17e9a2a7ae51a697ebfc"
+        apiKey: env('FIREBASAE_apiKey'),
+        authDomain: env('FIREBASAE_authDomain'),
+        projectId: env('FIREBASAE_projectId'),
+        storageBucket: env('FIREBASAE_storageBucket'),
+        messagingSenderId: env('FIREBASAE_messagingSenderId'),
+        appId: env('FIREBASAE_appId')
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -1149,6 +1146,9 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
         new Notification(noteTitle, noteOptions);
     });
 </script>
+@endif
+
+
 <script type="text/javascript">
     $(window).on('load', function () {
         $('#myModal').modal('show');

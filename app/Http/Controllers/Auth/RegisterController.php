@@ -131,9 +131,9 @@ class RegisterController extends Controller
             
             $rand=rand(99999,999999);
             
-            $url = env('sms_api_url');
-            $api_key = env('sms_api_key');
-            $senderid = env('sms_api_senderid');
+            $url = env('SMS_API_URL');
+            $api_key = env('SMS_API_KEY');
+            $senderid = env('SMS_API_SENDER_ID');
             $number = $request->number;
             $message = "Your Demo OTP Is ".$rand;
 
@@ -151,12 +151,8 @@ class RegisterController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $response = curl_exec($ch);
-            // curl_close($ch);
-            
-            // return $response;
-            
-            // $smsresult = curl_exec($ch);
             $p = explode("|",$response);
+            return response()->json($response);
             
             
             $sendstatus = $p[0];
