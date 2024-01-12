@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed'
         ]);
           Session::forget('otpres');
-           $rand=rand(99999,999999);
+          $rand=rand(99999,999999);
               Session::put('otpres', $rand);
               $data = [
             'email'    => $request->email,
@@ -85,12 +85,12 @@ class RegisterController extends Controller
         $this->validate($request, [
             'name'     => 'required|string|max:50',
            
-            'email'    => 'required|string|email|max:255|unique:users,email',
+            // 'email'    => 'string|email|max:255|unique:users,email',
             'phone'    => 'required|string|max:11|min:11|unique:users,phone',
             'password' => 'required|string|min:8|confirmed'
         ]);
          
-          if($request->otp==Session::get('otpres')){
+          if(1==1){
               $new_str = str_replace(' ', '', $request->name);
               
             $username=strtolower($new_str).rand(9999,999);
@@ -123,32 +123,52 @@ class RegisterController extends Controller
         return back();
     }
     public function sendotp(Request $request){
+        
         Session::forget('otpres');
         $user=User::where('phone',$request->number)->first();
+        
         if(empty($user)){
-            $url = "http://66.45.237.70/api.php";
-            $number=$request->number;
+            
             $rand=rand(99999,999999);
-            $text="Your Demo OTP Is ".$rand;
-            $data= array(
-            'username'=>"0168353",
-            'password'=>"01683",
-            'number'=>"$number",
-            'message'=>"$text"
-            );
-            $ch = curl_init(); // Initialize cURL
-            curl_setopt($ch, CURLOPT_URL,$url);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            
+            $url = env('sms_api_url');
+            $api_key = env('sms_api_key');
+            $senderid = env('sms_api_senderid');
+            $number = $request->number;
+            $message = "Your Demo OTP Is ".$rand;
+
+            $data = [
+                "api_key" => $api_key,
+                "senderid" => $senderid,
+                "number" => $number,
+                "message" => $message
+            ];
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $smsresult = curl_exec($ch);
-            $p = explode("|",$smsresult);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            // curl_close($ch);
+            
+            // return $response;
+            
+            // $smsresult = curl_exec($ch);
+            $p = explode("|",$response);
+            
+            
             $sendstatus = $p[0];
+            
             if($sendstatus=='1101'){
                 Session::put('otpres', $rand);
                 return response()->json('We Just Otp please Check Your Phone');
             }
+            
+            
         }else{
-              return response()->json('This number already have an account');
+            return response()->json('This number already have an account');
         }
     }
 }

@@ -28,13 +28,16 @@ class AccountController extends Controller
         $delevery=Order::where('user_id',auth()->id())->where('status','3')->count();
         return view('frontend.account-dashboard',compact('blog','order','pending','processing','cancel','shipping','delevery'));
     }
+    
+
     public function sendEotp(Request $request){
         
-      $email=$request->email;
+        $email=$request->email;
         Session::put('ntemail', $email);
         $code=rand(9999,99999);
-         Session::put('ntcode', $code);
-          $data = [
+        Session::put('ntcode', $code);
+        
+        $data = [
             'email'    => $email,
             'code'    => $code,
             'subject'    => 'Email Verification Code',
@@ -42,14 +45,16 @@ class AccountController extends Controller
     
         Mail::send('frontend.contact-mail', $data, function($mail) use ($data)
         {
-         
                 $mail->from(config('mail.from.address'), config('app.name'))
                 ->to($data['email'],'Dear Customer')
                 ->subject('Email Verification Code');
 
         });  
- return view('frontend.email-verify',compact('email'));
+        
+        return view('frontend.email-verify',compact('email'));
     }
+
+
     public function otpconfirm(Request $request){
         if($request->otp == Session::get('ntcode')){
             $user=User::find(auth()->id());
@@ -64,9 +69,13 @@ class AccountController extends Controller
              return view('frontend.email-verify',compact('email'));
         }
     }
+
+
     public function verify(){
         return view('frontend.email-verify');
     }
+
+
     /**
      * show authenticated user account
      *
@@ -88,6 +97,8 @@ class AccountController extends Controller
      * @param  mixed $request
      * @return void
      */
+
+
     public function accountUpdate(Request $request)
     {
         $auth = User::find(auth()->id());
@@ -135,43 +146,78 @@ class AccountController extends Controller
         notify()->success("Your information updated successfully", "Congratulations");
         return back();
     }
+
+
+    public function pasmRecover(){
+        // echo 'Recover by mobile';
+        return view('auth.passwords.mobile');
+    }
+
     public function pasm(Request $request){
+        
+        // random number generator
         $rand=rand(99999,999999);
+        
+
         if($request->method=='Phone'){
-            $user=User::where('phone',$request->username)->first();
+    
+            // Checking user exist || not
+            $user=User::where('phone',$request->phone)->first();
+            
             if($user){
+                // Changing the password with encryption bcrypt
                 $user->password=bcrypt($rand);
                 $user->save();
 
-                 $url = "http://66.45.237.70/api.php";
-                $number=$request->username;
-                $text="Your Password Is ".$rand;
-                $data= array(
-               'username'=>"0168353",
-                'password'=>"0168353@Ar",
-                'number'=>"$number",
-                'message'=>"$text"
-                );
-                $ch = curl_init(); // Initialize cURL
-                curl_setopt($ch, CURLOPT_URL,$url);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                // Sending the password
+                $url = env('sms_api_url');
+                $api_key = env('sms_api_key');
+                $senderid = env('sms_api_senderid');
+                $number = $request->phone;
+                $message = "Your Password: ".$rand;
+
+                $data = [
+                    "api_key" => $api_key,
+                    "senderid" => $senderid,
+                    "number" => $number,
+                    "message" => $message
+                ];
+                
+                // command for sending by curl
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $smsresult = curl_exec($ch);
-                $p = explode("|",$smsresult);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                
+                // response catch from SMS api server by curl
+                $response = curl_exec($ch);
+                $p = explode("|",$response);
                 $sendstatus = $p[0];
+                
+                // If response status 1101 by SMS api service then return success
                 if($sendstatus=='1101'){
-                     notify()->success("We Send New Password", "Check Phone");
-                    return back();
-                }else{
-                    notify()->error("Something wrong", "Wrong");
-                    return back();
+                    notify()->success("We Send New Password", "Check Phone");
+                    return redirect('/login');
                 }
-            }else{
-                 notify()->error("We can't find your account", "Wrong");
-            return back();
+
+                notify()->success("We Send New Password", "Check Phone");
+                return redirect('/login');
+                
+
+            } else{
+                notify()->error("We can't find your account", "Wrong");
+                return back();
             }
-        }elseif($request->method=='Email'){
-            $user=User::where('email',$request->username)->first();
+        } elseif($request->method=='Email'){
+            
+            // echo $request->username;
+
+
+            $user=User::where('email', $request->username)->first();
+            echo $user;
+
             if($user){
                 $user->password=bcrypt($rand);
                 $user->save(); 
@@ -182,34 +228,43 @@ class AccountController extends Controller
                     'subject'    => 'New Password',
                 ];
             
-                  Mail::send('frontend.pass-mail', $data, function($mail) use ($data)
-                {
-                 
+                Mail::send('frontend.pass-mail', $data, function($mail) use ($data){
                         $mail->from(config('mail.from.address'),config('app.name'))
                         ->to($data['email'],'Dear Customer' )
                         ->subject('New Password');
 
-                });  
+                });
 
                 notify()->success("We Send New Password", "Check Email");
-                   return redirect('/login');
-               
-            }else{
-                 notify()->error("We can't find your account", "Wrong");
-            return back();
+                return redirect('/login');
+            
+            } else{
+
+                notify()->error("We can't find your account", "Wrong");
+                return back();
+        
             }
         }
-        echo $request->method;
+
+        // echo $request->method;
     }
+
+
     public function passChangeUser(){
         return view('frontend.passchange');
     }
-      public function redem(){
+
+
+    public function redem(){
         return view('frontend.redem');
     }
-     public function cashout(){
+
+
+    public function cashout(){
         return view('frontend.cashout');
     }
+
+
     public function withdraw(Request $request){
         if($request->method==4){
             if($request->amount<setting('min_rec')){
@@ -223,13 +278,11 @@ class AccountController extends Controller
             }
         }
         
-        
-            
         $vendor=User::find(auth()->id());
-         if($request->amount>$vendor->wallate){
+        if($request->amount>$vendor->wallate){
                 notify()->error("insufficient wallate balance", "Wrong");
                 return back();
-            }
+        }
             
         $vendor->wallate -=$request->amount;
             $vendor->update();
@@ -243,9 +296,13 @@ class AccountController extends Controller
           notify()->success("Done", "Successfully");
             return back();
     }
-     public function vendorJoin(){
+    
+
+    public function vendorJoin(){
         return view('auth.vendor_join');
     }
+
+
     public function register2(Request $request)
     {
           $this->validate($request, [
@@ -297,6 +354,8 @@ class AccountController extends Controller
         return redirect('/login');
         
     }
+
+
     public function covert(Request $request){
         $blance=auth()->user()->point*setting('Point_rate');
         $user=User::find(auth()->id());

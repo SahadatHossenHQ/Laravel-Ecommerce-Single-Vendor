@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 use App\Models\Campaign as exp;
 use Illuminate\Console\Command;
 
-
 class Campaign extends Command
 {
     /**
