@@ -16,7 +16,7 @@ yarn-error.log
 **/*.log
 **/*error
 
-# public/uploads
+public/uploads
 
 **/*.mp4
 **/*.mkv
