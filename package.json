@@ -8,8 +8,8 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "clear": "clear && php artisan cache:clear && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan optimize",
-        "serve": "clear && php artisan cache:clear && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan optimize && php artisan serve"
+        "clear": "clear && php artisan cache:clear && php artisan config:cache && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan optimize",
+        "serve": "clear && php artisan cache:clear && php artisan config:cache && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan optimize && php artisan serve"
     },
     "devDependencies": {
         "axios": "^0.21",
