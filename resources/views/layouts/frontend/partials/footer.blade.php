@@ -222,3 +222,10 @@ padding: 0 !important;
         </div>
     </div>
 </footer>
+
+<style>
+        .body{
+        background-color: green !important;
+        background: green !important;
+    }
+</style>

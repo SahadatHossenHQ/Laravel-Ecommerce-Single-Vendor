@@ -1,44 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     @include('layouts.frontend.partials.meta')
     @if(Request::route()->getName()=='home')
-    <title>{{config('app.name')}} </title>
+    <title>{{config('app.name')}}</title>
     @else
     <title>@yield('title') || {{config('app.name')}} </title>
     @endif
-
     @include('layouts.frontend.partials.style')
-    <!--chat code here-->
-
-    <!--chat code here-->
-
-    <!-- Favicon Icon -->
-
-    <meta name="keywords"
-        content="Ecommerce System, Single Vendor Ecommerce, Multivendor Ecommerce, laravel ecommerce system, online shop, daraz online shopping, ecomemrce website, ecomemrce theme, ecomemrce php script, finvasoft, finva soft ltd, software company, ">
-    <meta name="author" content="Lems- a product of Finva Soft Ltd.">
-
+    {{-- <meta name="keywords"content="Ecommerce System, Single Vendor Ecommerce, Multivendor Ecommerce, laravel ecommerce system, online shop, daraz online shopping, ecomemrce website, ecomemrce theme, ecomemrce php script, finvasoft, finva soft ltd, software company, ">
+    <meta name="author" content="Lems- a product of Finva Soft Ltd."> --}}
 </head>
-
-
 <body class="">
     <div id="fb-root"></div>
 
-    <!-- Your Chat Plugin code -->
+    {{-- <!-- Your Chat Plugin code --> --}}
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
+    @if (env('FACEBOOK_SKD_ON') == 1)        
     <script>
         var chatbox = document.getElementById('fb-customer-chat');
         chatbox.setAttribute("page_id", "523283677850901");
         chatbox.setAttribute("attribution", "biz_inbox");
     </script>
-
-    @if (env('FACEBOOK_SKD_ON') == 1)        
-    <!-- Your SDK code -->
+    {{-- <!-- Your SDK code --> --}}
     <script>
         window.fbAsyncInit = function () {
             FB.init({
@@ -62,16 +48,10 @@
         }
     </style>
     @endif
-
-
-    <!--================header  Area start=================-->
+    {{-- <!--================header  Area start=================--> --}}
     @include('layouts.frontend.partials.header')
-    <!--================header  Area end=================-->
-
     @yield('content')
-
     @include('layouts.frontend.partials.footer')
-
     @include('layouts.frontend.partials.script')
 </body>
 
