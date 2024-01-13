@@ -7,6 +7,8 @@
     @else
     <title>@yield('title') || {{config('app.name')}} </title>
     @endif
+    @include('layouts.global')
+
     @include('layouts.frontend.partials.style')
     {{-- <meta name="keywords"content="Ecommerce System, Single Vendor Ecommerce, Multivendor Ecommerce, laravel ecommerce system, online shop, daraz online shopping, ecomemrce website, ecomemrce theme, ecomemrce php script, finvasoft, finva soft ltd, software company, ">
     <meta name="author" content="Lems- a product of Finva Soft Ltd."> --}}
