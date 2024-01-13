@@ -575,10 +575,10 @@ right: -10px;
                                         @endforeach
                                         @if($product->quantity <= '0')
                                         <input type="hidden" name="pr" value="1">
-                                        <!--<input style="width:140px;margin-top: 10px;background: #108b3a;color: white;border-color: #108b3a;" type="submit" value="Pre Order" class="button">-->
-                                        <p style="width:140px;margin-top: 10px;background: #ec1d1d;color: white;border-color: #108b3a;text-align: center;padding: 10px;border-radius: 5px;">Out Of Stock</p>
+                                        <!--<input style="width:140px;margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);" type="submit" value="Pre Order" class="button">-->
+                                        <p style="width:140px;margin-top: 10px;background: #ec1d1d;color: white;border-color: var(--primary_color);text-align: center;padding: 10px;border-radius: 5px;">Out Of Stock</p>
                                         @else
-                                       <input style="width:140px;margin-top: 10px;background: #108b3a;color: white;border-color: #108b3a;" type="submit" value="Buy Now" class="button">
+                                       <input style="width:140px;margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);" type="submit" value="Buy Now" class="button">
                                        @endif
                                     </fieldset>
                                 </form>
@@ -1111,7 +1111,7 @@ border: 2px solid black;
                                     @enderror
                                 </div>
                                 <div class="col-md-4">
-                                    <input style="margin-top: 20px;background: #108b3a;" type="submit" value="Submit" class="button">
+                                    <input style="margin-top: 20px;background: var(--primary_color);" type="submit" value="Submit" class="button">
                                 </div>
                             </div>
                         </form>

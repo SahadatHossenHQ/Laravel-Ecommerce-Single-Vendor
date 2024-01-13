@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background:#096629">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background:var(--optional_color)">
     
     <!-- Brand Logo -->
     <a href="{{routeHelper('dashboard')}}" class="brand-link">

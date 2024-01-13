@@ -37,7 +37,7 @@ background: white
                     @enderror
                 </div>
                 
-                <input  class="form-control" type="submit" value="Sign Up" style="background:#108b3a">
+                <input  class="form-control" type="submit" value="Sign Up" style="background:var(--primary_color)">
                 
             </div>
         </form>

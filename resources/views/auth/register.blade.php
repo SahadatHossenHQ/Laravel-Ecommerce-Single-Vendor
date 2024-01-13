@@ -13,7 +13,7 @@
     ul.cc li {
         display: inline-block;
         text-align: center;
-        background: #108b3a;
+        background: var(--primary_color);
         padding: 7px;
     }
 
@@ -133,7 +133,7 @@
                     required />
 
             </div>
-            <input class="form-control" type="submit" value="Submit" style="background:#108b3a">
+            <input class="form-control" type="submit" value="Submit" style="background:var(--primary_color)">
 
         </div>
 

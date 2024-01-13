@@ -25,9 +25,9 @@
 
                         <td>
                              @if($product->discount_price>0 || $product->price)
-             <h6><strong style="color: #108b3a">Tk.{{$product->price ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
+             <h6><strong style="color: var(--primary_color)">Tk.{{$product->price ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
             @else
-               <h6><strong style="color: #108b3a">Tk.{{$product->regular_price}}</strong></h6>
+               <h6><strong style="color: var(--primary_color)">Tk.{{$product->regular_price}}</strong></h6>
             @endif</td>
                     </tr>
                   

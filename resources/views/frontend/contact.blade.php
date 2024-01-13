@@ -588,7 +588,7 @@
                                 <textarea name="message" id="message" rows="3" class="form-control" placeholder="Please explain your problem here."></textarea>
                                 <small class="form-text text-danger message"></small>
                             </div>
-                            <button style="background: #108b3a;padding: 10px;border-radius: 10px;" type="submit" class="mt-1 btn btn-primary btn-block">Submit</button>
+                            <button style="background: var(--primary_color);padding: 10px;border-radius: 10px;" type="submit" class="mt-1 btn btn-primary btn-block">Submit</button>
                         </div>
                         
                     </form>

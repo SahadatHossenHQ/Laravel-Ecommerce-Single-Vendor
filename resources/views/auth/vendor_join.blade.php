@@ -26,7 +26,7 @@ border-radius: 5px;
             ul.cc li{
             display: inline-block;
 text-align: center;
-background: #108b3a;
+background: var(--primary_color);
 padding: 7px;
         }
         ul.cc li a{

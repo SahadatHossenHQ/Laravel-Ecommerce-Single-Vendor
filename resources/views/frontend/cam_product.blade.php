@@ -113,7 +113,7 @@
             <div class="quick-view">  <a href="{{route('product.cam.details', $product->pid)}}"><i class="icofont icofont-search"></i> Quick View</a></div>
        </div>
         <div class="home-add2">
-             <h6><strong style="color: #108b3a">Tk.{{$product->cprice ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
+             <h6><strong style="color: var(--primary_color)">Tk.{{$product->cprice ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
           
            <div class="cbtn">
                 <button type="submit" class="redirect" style="margin-top: 10px;" data-url="{{route('camp.product.info',$product->pid)}}" id="productInfo1" type="submit" title="Add To Cart"><i class="fal fa-shopping-cart" aria-hidden="true"></i> </button>

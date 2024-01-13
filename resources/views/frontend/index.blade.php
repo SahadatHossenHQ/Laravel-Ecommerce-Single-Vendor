@@ -462,7 +462,7 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
                             </a>
 
                             <h6><strong
-                                    style="color: #108b3a">৳{{$cam_products->price ?? $product->discount_price ?? $product->regular_price}}</strong>
+                                    style="color: var(--primary_color)">৳{{$cam_products->price ?? $product->discount_price ?? $product->regular_price}}</strong>
                                 @if($cam_products->price>0 || $product->discount_price>0)
                                 <del>৳{{$product->regular_price}}</del></h6>
                             @endif
@@ -677,7 +677,7 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
                             <a href="{{route('clasified.show',['slug'=>$unproduct->slug])}}">
                                 <h5>{{$unproduct->title}}</h5>
                             </a>
-                            <h6><strong style="color: #108b3a">৳{{$unproduct->price}}</strong></h6>
+                            <h6><strong style="color: var(--primary_color)">৳{{$unproduct->price}}</strong></h6>
                         </div>
                     </div>
                 </div>

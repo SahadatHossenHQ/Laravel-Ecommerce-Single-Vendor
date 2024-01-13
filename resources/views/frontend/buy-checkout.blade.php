@@ -168,7 +168,7 @@
                         #accordion .card-header h5 div{
                             font-size: 15px;
                             padding: 10px;
-                            background: #108b3a;
+                            background: var(--primary_color);
                             color: white;
                             cursor: pointer;
                         }

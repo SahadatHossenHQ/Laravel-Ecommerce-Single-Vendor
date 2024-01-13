@@ -1,5 +1,6 @@
 <link rel="shortcut icon" type="image/jpg" href="/uploads/setting/{{setting('favicon')}}"/>
 @notifyCss
+@include('layouts.global')
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/style.css">
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/all.css">

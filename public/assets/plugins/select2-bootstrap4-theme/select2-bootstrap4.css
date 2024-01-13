@@ -125,7 +125,7 @@ form.was-validated select:invalid ~ .select2-container--bootstrap4 .select2-sele
 
 select.is-valid ~ .select2-container--bootstrap4 .select2-selection,
 form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-selection {
-  border-color: #28a745; }
+  border-color: var(--secondary_color); }
 
 .select2-container--bootstrap4 .select2-dropdown {
   border-color: #ced4da;

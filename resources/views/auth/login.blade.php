@@ -57,7 +57,7 @@ Session::forget('link');
                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                 @enderror
             </div>
-            <input class="form-control" type="submit" value="Login" style="background:#108b3a">
+            <input class="form-control" type="submit" value="Login" style="background:var(--primary_color)">
 
             <span style="display: block;text-align: center;"><a href="{{route('password.request')}}">Forgot Password?</a></span>
         </div>
