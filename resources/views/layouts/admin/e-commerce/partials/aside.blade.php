@@ -5,7 +5,7 @@
         font-size: 15px;
     }
 </style>
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background:#28a745">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background:#096629">
     <!-- Brand Logo -->
     <a href="{{route('admin.dashboard')}}" class="brand-link">
         <img src="/uploads/setting/{{setting('logo')}}" alt="Logo" class="brand-image"
