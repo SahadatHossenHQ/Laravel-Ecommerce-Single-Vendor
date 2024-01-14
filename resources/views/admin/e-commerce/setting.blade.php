@@ -3,12 +3,14 @@
 @section('title', 'Settings')
 
 @push('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog==" crossorigin="anonymous" />
-    <style>
-        .dropify-wrapper .dropify-message p {
-            font-size: initial;
-        }
-    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
+    integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
+    crossorigin="anonymous" />
+<style>
+    .dropify-wrapper .dropify-message p {
+        font-size: initial;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -46,26 +48,32 @@
                         <form action="{{routeHelper('setting/logo')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                           
+
                             <div class="card-body">
                                 <label for="logo">Logo</label>
-                                <input type="file" name="logo" id="logo"class="form-control @error('logo') is-invalid @enderror" data-default-file="{{'/uploads/setting/'.setting('logo')}}">
+                                <input type="file" name="logo" id="logo"
+                                    class="form-control @error('logo') is-invalid @enderror"
+                                    data-default-file="{{'/uploads/setting/'.setting('logo')}}">
                                 @error('logo')
-                                    <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
+                                <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="card-body">
                                 <label for="auth_logo">Meta Imgaes 1200*627px</label>
-                                <input type="file" name="auth_logo" id="auth_logo"class="form-control @error('auth_logo') is-invalid @enderror" data-default-file="{{'/uploads/setting/'.setting('auth_logo')}}">
+                                <input type="file" name="auth_logo" id="auth_logo"
+                                    class="form-control @error('auth_logo') is-invalid @enderror"
+                                    data-default-file="{{'/uploads/setting/'.setting('auth_logo')}}">
                                 @error('auth_logo')
-                                    <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
+                                <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="card-body">
                                 <label for="favicon">Favicon</label>
-                                <input type="file" name="favicon" id="favicon"class="form-control @error('favicon') is-invalid @enderror" data-default-file="{{'/uploads/setting/'.setting('favicon')}}">
+                                <input type="file" name="favicon" id="favicon"
+                                    class="form-control @error('favicon') is-invalid @enderror"
+                                    data-default-file="{{'/uploads/setting/'.setting('favicon')}}">
                                 @error('favicon')
-                                    <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
+                                <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="card-footer">
@@ -75,7 +83,7 @@
                                 </button>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -89,73 +97,76 @@
                         <form action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
-                             <input type="hidden" name="type" value="1">
+                            <input type="hidden" name="type" value="1">
                             <div class="card-body">
                                 <div class="form-row">
                                     @foreach ($settings as $key => $setting)
-                                        @php
-                                            $name = str_replace('_', ' ', $setting->name);
-                                        @endphp
+                                    @php
+                                    $name = str_replace('_', ' ', $setting->name);
+                                    @endphp
 
 
-                                        @if ($setting->name == 'footer_description')
-                                        <div class="form-group col-md-12 {{$setting->name}}">
-                                            <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
-                                            <textarea name="{{$setting->name}}" id="{{$setting->name}}" rows="4" class="form-control @error($setting->name) is-invalid @enderror">{{$setting->value}}</textarea>
-                                            @error($setting->name)
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                            @enderror
-                                        </div>
-                                        @elseif ($setting->name == 'fb_pixel')
-                                        <div class="form-group col-md-12 {{$setting->name}}">
-                                            <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
-                                            <textarea name="{{$setting->name}}" id="{{$setting->name}}" rows="4" class="form-control @error($setting->name) is-invalid @enderror">{{$setting->value}}</textarea>
-                                            @error($setting->name)
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                            @enderror
-                                        </div>
-                                        @elseif ($setting->name == 'is_point')
-                                            <div class="form-group col-md-12 {{$setting->name}}">
-                                                <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
-                                                <select name="{{$setting->name}}" id="{{$setting->name}}">
-                                                    <option @if($setting->value=='1')selected @endif value="1">Active</option>
-                                                    <option  @if($setting->value=='0')selected @endif value="0">Deactive</option>
-                                                </select>
-                                                @error($setting->name)
-                                                    <small class="form-text text-danger">{{$message}}</small>
-                                                @enderror
-                                            </div>
-                                        @elseif ($setting->name == 'mega_cat')
-                                        @elseif ($setting->name == 'sub_cat')
-                                        @elseif ($setting->name == 'mini_cat')
-                                        @elseif ($setting->name == 'extra_cat')
-                                        @elseif ($setting->name == 'g_bkash')
-                                        @elseif ($setting->name == 'g_nagad')
-                                        @elseif ($setting->name == 'g_rocket')
-                                        @elseif ($setting->name == 'g_bank')
-                                        @elseif ($setting->name == 'g_wallate')
-                                        @elseif ($setting->name == 'g_cod')
-                                        @elseif ($setting->name == 'g_aamar')
-                                        @elseif ($setting->name == 'g_uddok')
-                                        @elseif ($setting->name == 'meta_img')
-                                        @elseif ($setting->name == 'uapi')
-                                        @elseif ($setting->name == 'astore')
-                                        @elseif ($setting->name == 'akey')
-                                        @elseif ($setting->name == 'amode')
-                                        @elseif ($setting->name == 'umode')
-                                         @elseif ($setting->name == 'ubase')
-                                        
-                                        @else 
+                                    @if ($setting->name == 'footer_description')
+                                    <div class="form-group col-md-12 {{$setting->name}}">
+                                        <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
+                                        <textarea name="{{$setting->name}}" id="{{$setting->name}}" rows="4"
+                                            class="form-control @error($setting->name) is-invalid @enderror">{{$setting->value}}</textarea>
+                                        @error($setting->name)
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                    @elseif ($setting->name == 'fb_pixel')
+                                    <div class="form-group col-md-12 {{$setting->name}}">
+                                        <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
+                                        <textarea name="{{$setting->name}}" id="{{$setting->name}}" rows="4"
+                                            class="form-control @error($setting->name) is-invalid @enderror">{{$setting->value}}</textarea>
+                                        @error($setting->name)
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                    @elseif ($setting->name == 'is_point')
+                                    <div class="form-group col-md-12 {{$setting->name}}">
+                                        <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
+                                        <select name="{{$setting->name}}" id="{{$setting->name}}">
+                                            <option @if($setting->value=='1')selected @endif value="1">Active</option>
+                                            <option @if($setting->value=='0')selected @endif value="0">Deactive</option>
+                                        </select>
+                                        @error($setting->name)
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                    @elseif ($setting->name == 'mega_cat')
+                                    @elseif ($setting->name == 'sub_cat')
+                                    @elseif ($setting->name == 'mini_cat')
+                                    @elseif ($setting->name == 'extra_cat')
+                                    @elseif ($setting->name == 'g_bkash')
+                                    @elseif ($setting->name == 'g_nagad')
+                                    @elseif ($setting->name == 'g_rocket')
+                                    @elseif ($setting->name == 'g_bank')
+                                    @elseif ($setting->name == 'g_wallate')
+                                    @elseif ($setting->name == 'g_cod')
+                                    @elseif ($setting->name == 'g_aamar')
+                                    @elseif ($setting->name == 'g_uddok')
+                                    @elseif ($setting->name == 'meta_img')
+                                    @elseif ($setting->name == 'uapi')
+                                    @elseif ($setting->name == 'astore')
+                                    @elseif ($setting->name == 'akey')
+                                    @elseif ($setting->name == 'amode')
+                                    @elseif ($setting->name == 'umode')
+                                    @elseif ($setting->name == 'ubase')
 
-                                        <div class="form-group col-md-6 {{$setting->name}}">
-                                            <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
-                                            <input type="text" name="{{$setting->name}}" value="{{$setting->value}}" class="form-control @error($setting->name) is-invalid @enderror"> 
-                                            @error($setting->name)
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                            @enderror
-                                        </div>
-                                        @endif
-                                        
+                                    @else
+
+                                    <div class="form-group col-md-6 {{$setting->name}}">
+                                        <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
+                                        <input type="text" name="{{$setting->name}}" value="{{$setting->value}}"
+                                            class="form-control @error($setting->name) is-invalid @enderror">
+                                        @error($setting->name)
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                    @endif
+
                                     @endforeach
                                 </div>
                             </div>
@@ -168,15 +179,15 @@
                             </div>
                             <!-- /.card-footer -->
                         </form>
-                       
+
                     </div>
                     <!-- /.card -->
                 </div>
             </div>
         </div>
     </div>
-    
-    
+
+
 
 </section>
 <!-- /.content -->
@@ -184,15 +195,13 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('/assets/plugins/dropify/dropify.min.js') }}"></script>
-    <script>
-        
-        $(document).ready(function() {
-            $('input[type="file"]').dropify();
-            $('.col-md-6.logo').remove();
-            $('.col-md-6.auth_logo').remove();
-            $('.col-md-6.favicon').remove();
-        });
-
-    </script>
+<script src="{{ asset('/assets/plugins/dropify/dropify.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type="file"]').dropify();
+        $('.col-md-6.logo').remove();
+        $('.col-md-6.auth_logo').remove();
+        $('.col-md-6.favicon').remove();
+    });
+</script>
 @endpush
