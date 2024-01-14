@@ -258,6 +258,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('setting', [SettingController::class, 'update'])->name('setting.update');
     Route::put('setting/logo', [SettingController::class, 'updateLogo'])->name('update.logo');
     Route::get('setting/social', [SettingController::class, 'social'])->name('setting.social');
+    Route::get('setting/header', [SettingController::class, 'headerIndex'])->name('setting.header');
     Route::get('setting/getway', [SettingController::class, 'getway'])->name('setting.getway');
     Route::post('setting/getway', [SettingController::class, 'setting_g'])->name('setting_g');
     Route::get('setting/docs', [SettingController::class, 'docs'])->name('setting.docs');

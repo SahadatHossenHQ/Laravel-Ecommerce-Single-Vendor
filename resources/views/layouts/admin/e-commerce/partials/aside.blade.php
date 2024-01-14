@@ -679,6 +679,16 @@
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.header')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Header
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item {{Request::is('admin/setting/social') ? 'menu-is-opening menu-open':''}}">
                             <a href="{{route('admin.setting.social')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>
