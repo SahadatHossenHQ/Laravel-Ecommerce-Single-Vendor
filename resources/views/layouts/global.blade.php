@@ -17,6 +17,5 @@
 <style>
     a,i:hover{text-decoration:none !important;}
     {{ $color_var }}
-    .sidebar>nav>ul>li>a>p,.sidebar>nav>ul>li>a>i,.sidebar .user-panel .info a{color:var(--optional_bg_color_text);}
 </style>
 

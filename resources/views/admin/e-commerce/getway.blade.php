@@ -12,7 +12,7 @@
             display:none !important
         }
         .title{
-            font-size: 25px;background: var(--secondary_color);color: white;border-radius: 5px;padding: 10px;text-align: center;
+            font-size: 25px;background: #28a745;color: white;border-radius: 5px;padding: 10px;text-align: center;
         }
         .getway label{
             font-size: 20px;
