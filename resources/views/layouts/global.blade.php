@@ -1,8 +1,12 @@
 @php
+
+
+
+
     $color_var = ':root{';
     // Start Color Variable
     $color_var .='--primary_color:' . setting('PRIMARY_COLOR') .';';
-    $color_var .='--primary_bg_color_text:' . env("PRIMARY_BG_COLOR_TEXT").';';
+    $color_var .='--primary_bg_color_text:' . setting('PRIMARY_BG_TEXT_COLOR') .';';
     $color_var .='--secondary_color:' . env("SECONDARY_COLOR").';';
     $color_var .='--optional_color:' . env("OPTIONAL_COLOR").';';
     $color_var .='--optional_bg_color_text:' . env("OPTIONAL_BG_COLOR_TEXT").';';

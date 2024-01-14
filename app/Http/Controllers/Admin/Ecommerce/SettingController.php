@@ -107,9 +107,12 @@ class SettingController extends Controller
         }
         elseif ($request->type == 4) {
             
-            echo $request->PRIMARY_COLOR;
             Setting::updateOrCreate(['name' => 'PRIMARY_COLOR'], ['value' => $request->get('PRIMARY_COLOR')]);
-
+            Setting::updateOrCreate(['name' => 'PRIMARY_BG_TEXT_COLOR'], ['value' => $request->get('PRIMARY_BG_TEXT_COLOR')]);
+            
+            
+            
+            // echo $request->get('PRIMARY_BG_TEXT_COLOR');
             notify()->success("Successfully updated", "Success");
             return back();
         }
@@ -260,11 +263,17 @@ class SettingController extends Controller
     public function colorIndex(){
 
         $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
+        $get_PRIMARY_BG_TEXT_COLOR = Setting::where('name', 'PRIMARY_BG_TEXT_COLOR')->first();
 
         $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
+        $PRIMARY_BG_TEXT_COLOR = (!$get_PRIMARY_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_PRIMARY_BG_TEXT_COLOR;
+        
+        return view('admin.e-commerce.setting.colorIndex', compact(
+            'PRIMARY_COLOR', 
+            'PRIMARY_BG_TEXT_COLOR'
+        ));
 
-
-        return view('admin.e-commerce.setting.colorIndex', compact('PRIMARY_COLOR'));
+        // echo $PRIMARY_BG_TEXT_COLOR;
     }
 
     public function headerIndex(){

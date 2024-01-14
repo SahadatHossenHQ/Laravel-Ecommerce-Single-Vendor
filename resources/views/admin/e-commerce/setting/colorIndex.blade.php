@@ -51,6 +51,11 @@
                                             <input type="color" id="PRIMARY_COLOR_CHOSER" value="{{ $PRIMARY_COLOR->value }}">
                                             <input type="text" id="PRIMARY_COLOR" name="PRIMARY_COLOR" value="{{ $PRIMARY_COLOR->value }}">
                                         </li>
+                                        <li>
+                                            <label for="PRIMARY_BG_TEXT_COLOR" class="text-capitalize">Primary Background Text Color: </label>
+                                            <input type="color" id="PRIMARY_BG_TEXT_COLOR_CHOSER" value="{{ $PRIMARY_BG_TEXT_COLOR->value }}">
+                                            <input type="text" id="PRIMARY_BG_TEXT_COLOR" name="PRIMARY_BG_TEXT_COLOR" value="{{ $PRIMARY_BG_TEXT_COLOR->value }}">
+                                        </li>
                                     </ul>
                                 </div>
                                 <hr>
@@ -81,16 +86,18 @@
 @push('js')
 <script>
     $(document).ready(function () {
-        // Listen for input event on color chooser
         $("#PRIMARY_COLOR_CHOSER").on("input", function () {
-            // Update the value of PRIMARY_COLOR with the chosen color
             $("#PRIMARY_COLOR").val($(this).val());
         });
-
-        // Listen for input event on text input
         $("#PRIMARY_COLOR").on("keyup", function () {
-            // Update the value of PRIMARY_COLOR_CHOSER with the text input value
             $("#PRIMARY_COLOR_CHOSER").val($(this).val());
+        });
+
+        $("#PRIMARY_BG_TEXT_COLOR_CHOSER").on("input", function () {
+            $("#PRIMARY_BG_TEXT_COLOR").val($(this).val());
+        });
+        $("#PRIMARY_BG_TEXT_COLOR").on("keyup", function () {
+            $("#PRIMARY_BG_TEXT_COLOR_CHOSER").val($(this).val());
         });
     });
 </script>
