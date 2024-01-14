@@ -109,10 +109,11 @@ class SettingController extends Controller
             
             Setting::updateOrCreate(['name' => 'PRIMARY_COLOR'], ['value' => $request->get('PRIMARY_COLOR')]);
             Setting::updateOrCreate(['name' => 'PRIMARY_BG_TEXT_COLOR'], ['value' => $request->get('PRIMARY_BG_TEXT_COLOR')]);
+            Setting::updateOrCreate(['name' => 'SECONDARY_COLOR'], ['value' => $request->get('SECONDARY_COLOR')]);
+            Setting::updateOrCreate(['name' => 'OPTIONAL_COLOR'], ['value' => $request->get('OPTIONAL_COLOR')]);
+            Setting::updateOrCreate(['name' => 'OPTIONAL_BG_TEXT_COLOR'], ['value' => $request->get('OPTIONAL_BG_TEXT_COLOR')]);
             
             
-            
-            // echo $request->get('PRIMARY_BG_TEXT_COLOR');
             notify()->success("Successfully updated", "Success");
             return back();
         }
@@ -264,13 +265,22 @@ class SettingController extends Controller
 
         $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
         $get_PRIMARY_BG_TEXT_COLOR = Setting::where('name', 'PRIMARY_BG_TEXT_COLOR')->first();
+        $get_SECONDARY_COLOR = Setting::where('name', 'SECONDARY_COLOR')->first();
+        $get_OPTIONAL_COLOR = Setting::where('name', 'OPTIONAL_COLOR')->first();
+        $get_OPTIONAL_BG_TEXT_COLOR = Setting::where('name', 'OPTIONAL_BG_TEXT_COLOR')->first();
 
         $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
         $PRIMARY_BG_TEXT_COLOR = (!$get_PRIMARY_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_PRIMARY_BG_TEXT_COLOR;
+        $SECONDARY_COLOR = (!$get_SECONDARY_COLOR) ? (object)['value' => '#ffffff'] : $get_SECONDARY_COLOR;
+        $OPTIONAL_COLOR = (!$get_OPTIONAL_COLOR) ? (object)['value' => '#ffffff'] : $get_OPTIONAL_COLOR;
+        $OPTIONAL_BG_TEXT_COLOR = (!$get_OPTIONAL_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_OPTIONAL_BG_TEXT_COLOR;
         
         return view('admin.e-commerce.setting.colorIndex', compact(
             'PRIMARY_COLOR', 
-            'PRIMARY_BG_TEXT_COLOR'
+            'PRIMARY_BG_TEXT_COLOR',
+            'SECONDARY_COLOR',
+            'OPTIONAL_COLOR',
+            'OPTIONAL_BG_TEXT_COLOR'
         ));
 
         // echo $PRIMARY_BG_TEXT_COLOR;

@@ -48,13 +48,28 @@
                                     <ul>
                                         <li>
                                             <label for="PRIMARY_COLOR" class="text-capitalize">Primary Color: </label>
-                                            <input type="color" id="PRIMARY_COLOR_CHOSER" value="{{ $PRIMARY_COLOR->value }}">
+                                            <input type="color" id="PRIMARY_COLOR_CHOOSER" value="{{ $PRIMARY_COLOR->value }}">
                                             <input type="text" id="PRIMARY_COLOR" name="PRIMARY_COLOR" value="{{ $PRIMARY_COLOR->value }}">
                                         </li>
                                         <li>
                                             <label for="PRIMARY_BG_TEXT_COLOR" class="text-capitalize">Primary Background Text Color: </label>
-                                            <input type="color" id="PRIMARY_BG_TEXT_COLOR_CHOSER" value="{{ $PRIMARY_BG_TEXT_COLOR->value }}">
+                                            <input type="color" id="PRIMARY_BG_TEXT_COLOR_CHOOSER" value="{{ $PRIMARY_BG_TEXT_COLOR->value }}">
                                             <input type="text" id="PRIMARY_BG_TEXT_COLOR" name="PRIMARY_BG_TEXT_COLOR" value="{{ $PRIMARY_BG_TEXT_COLOR->value }}">
+                                        </li>
+                                        <li>
+                                            <label for="SECONDARY_COLOR" class="text-capitalize">Secnodary Color: </label>
+                                            <input type="color" id="SECONDARY_COLOR_CHOOSER" value="{{ $SECONDARY_COLOR->value }}">
+                                            <input type="text" id="SECONDARY_COLOR" name="SECONDARY_COLOR" value="{{ $SECONDARY_COLOR->value }}">
+                                        </li>
+                                        <li>
+                                            <label for="OPTIONAL_COLOR" class="text-capitalize">Optional Color: </label>
+                                            <input type="color" id="OPTIONAL_COLOR_CHOOSER" value="{{ $OPTIONAL_COLOR->value }}">
+                                            <input type="text" id="OPTIONAL_COLOR" name="OPTIONAL_COLOR" value="{{ $OPTIONAL_COLOR->value }}">
+                                        </li>
+                                        <li>
+                                            <label for="OPTIONAL_BG_TEXT_COLOR" class="text-capitalize">Optional Background Text Color: </label>
+                                            <input type="color" id="OPTIONAL_BG_TEXT_COLOR_CHOOSER" value="{{ $OPTIONAL_BG_TEXT_COLOR->value }}">
+                                            <input type="text" id="OPTIONAL_BG_TEXT_COLOR" name="OPTIONAL_BG_TEXT_COLOR" value="{{ $OPTIONAL_BG_TEXT_COLOR->value }}">
                                         </li>
                                     </ul>
                                 </div>
@@ -86,18 +101,39 @@
 @push('js')
 <script>
     $(document).ready(function () {
-        $("#PRIMARY_COLOR_CHOSER").on("input", function () {
+        $("#PRIMARY_COLOR_CHOOSER").on("input", function () {
             $("#PRIMARY_COLOR").val($(this).val());
         });
         $("#PRIMARY_COLOR").on("keyup", function () {
-            $("#PRIMARY_COLOR_CHOSER").val($(this).val());
+            $("#PRIMARY_COLOR_CHOOSER").val($(this).val());
         });
 
-        $("#PRIMARY_BG_TEXT_COLOR_CHOSER").on("input", function () {
+        $("#PRIMARY_BG_TEXT_COLOR_CHOOSER").on("input", function () {
             $("#PRIMARY_BG_TEXT_COLOR").val($(this).val());
         });
         $("#PRIMARY_BG_TEXT_COLOR").on("keyup", function () {
-            $("#PRIMARY_BG_TEXT_COLOR_CHOSER").val($(this).val());
+            $("#PRIMARY_BG_TEXT_COLOR_CHOOSER").val($(this).val());
+        });
+
+        $("#SECONDARY_COLOR_CHOOSER").on("input", function () {
+            $("#SECONDARY_COLOR").val($(this).val());
+        });
+        $("#SECONDARY_COLOR").on("keyup", function () {
+            $("#SECONDARY_COLOR_CHOOSER").val($(this).val());
+        });
+
+        $("#OPTIONAL_COLOR_CHOOSER").on("input", function () {
+            $("#OPTIONAL_COLOR").val($(this).val());
+        });
+        $("#OPTIONAL_COLOR").on("keyup", function () {
+            $("#OPTIONAL_COLOR_CHOOSER").val($(this).val());
+        });
+
+        $("#OPTIONAL_BG_TEXT_COLOR_CHOOSER").on("input", function () {
+            $("#OPTIONAL_BG_TEXT_COLOR").val($(this).val());
+        });
+        $("#OPTIONAL_BG_TEXT_COLOR").on("keyup", function () {
+            $("#OPTIONAL_BG_TEXT_COLOR_CHOOSER").val($(this).val());
         });
     });
 </script>
