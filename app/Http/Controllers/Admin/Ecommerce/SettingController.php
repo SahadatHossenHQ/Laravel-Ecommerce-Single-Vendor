@@ -271,8 +271,8 @@ class SettingController extends Controller
 
         $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
         $PRIMARY_BG_TEXT_COLOR = (!$get_PRIMARY_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_PRIMARY_BG_TEXT_COLOR;
-        $SECONDARY_COLOR = (!$get_SECONDARY_COLOR) ? (object)['value' => '#ffffff'] : $get_SECONDARY_COLOR;
-        $OPTIONAL_COLOR = (!$get_OPTIONAL_COLOR) ? (object)['value' => '#ffffff'] : $get_OPTIONAL_COLOR;
+        $SECONDARY_COLOR = (!$get_SECONDARY_COLOR) ? (object)['value' => '#000'] : $get_SECONDARY_COLOR;
+        $OPTIONAL_COLOR = (!$get_OPTIONAL_COLOR) ? (object)['value' => '#007bc4'] : $get_OPTIONAL_COLOR;
         $OPTIONAL_BG_TEXT_COLOR = (!$get_OPTIONAL_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_OPTIONAL_BG_TEXT_COLOR;
         
         return view('admin.e-commerce.setting.colorIndex', compact(
