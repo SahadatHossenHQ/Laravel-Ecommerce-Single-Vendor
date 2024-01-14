@@ -1,4 +1,4 @@
-Licences
+Licenses
 ==============================================
 Regular License: Use in a single domain. (you can’t use one of our Regular Licenses on multiple domains)
 License Issued: Finva Soft Limited.
