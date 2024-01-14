@@ -107,7 +107,9 @@ class SettingController extends Controller
         }
         elseif ($request->type == 4) {
             
-            
+            echo $request->PRIMARY_COLOR;
+            Setting::updateOrCreate(['name' => 'PRIMARY_COLOR'], ['value' => $request->get('PRIMARY_COLOR')]);
+
             notify()->success("Successfully updated", "Success");
             return back();
         }
@@ -257,15 +259,12 @@ class SettingController extends Controller
 
     public function colorIndex(){
 
-        $setting = Setting::where('name', 'header_code')->first();
+        $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
 
-        if (!$setting) {
-            $header_code = (object)['value' => ''];
-        } else {
-            $header_code = $setting;
-        }
+        $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
 
-        return view('admin.e-commerce.setting.colorIndex', compact('header_code'));
+
+        return view('admin.e-commerce.setting.colorIndex', compact('PRIMARY_COLOR'));
     }
 
     public function headerIndex(){

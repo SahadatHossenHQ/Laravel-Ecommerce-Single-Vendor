@@ -39,15 +39,19 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{routeHelper('setting')}}" method="POST">
+                        <form id="color_form" action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-                                <input type="hidden" name="type" value="3">
+                                <input type="hidden" name="type" value="4">
                                 <div class="form-group col-md-12">
-                                    <label for="header_code" class="text-capitalize">Custom header code</label>
-                                    {{-- <textarea name="header_code" id="header_code" rows="4"
-                                        class="form-control ">{{ $header_code->value }} </textarea> --}}
+                                    <ul>
+                                        <li>
+                                            <label for="PRIMARY_COLOR" class="text-capitalize">Primary Color: </label>
+                                            <input type="color" id="PRIMARY_COLOR_CHOSER" value="{{ $PRIMARY_COLOR->value }}">
+                                            <input type="text" id="PRIMARY_COLOR" name="PRIMARY_COLOR" value="{{ $PRIMARY_COLOR->value }}">
+                                        </li>
+                                    </ul>
                                 </div>
                                 <hr>
                             </div>
@@ -60,7 +64,6 @@
                             </div>
                             <!-- /.card-footer -->
                         </form>
-
                     </div>
                     <!-- /.card -->
                 </div>
@@ -74,3 +77,34 @@
 <!-- /.content -->
 
 @endsection
+
+@push('js')
+<script>
+    $(document).ready(function () {
+        // Listen for input event on color chooser
+        $("#PRIMARY_COLOR_CHOSER").on("input", function () {
+            // Update the value of PRIMARY_COLOR with the chosen color
+            $("#PRIMARY_COLOR").val($(this).val());
+        });
+
+        // Listen for input event on text input
+        $("#PRIMARY_COLOR").on("keyup", function () {
+            // Update the value of PRIMARY_COLOR_CHOSER with the text input value
+            $("#PRIMARY_COLOR_CHOSER").val($(this).val());
+        });
+    });
+</script>
+@endpush
+
+@push('css')
+<style>
+    form#color_form ul li{
+        list-style-type: none;
+    }
+
+    form#color_form input[type="color"]{
+        cursor: pointer;
+    }
+</style>    
+@endpush
+
