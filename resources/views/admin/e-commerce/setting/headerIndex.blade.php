@@ -50,7 +50,14 @@
                                         class="form-control ">{{ $header_code->value }} </textarea>
                                 </div>
                                 <hr>
+                                <div class="form-group col-md-12">
+                                    <label for="fb_pixel" class="text-capitalize">Facebook Pixel Code</label>
+                                    <textarea name="fb_pixel" id="fb_pixel" rows="4"
+                                        class="form-control ">{{$fb_pixel->value}}</textarea>
+                                </div>
                             </div>
+
+                            
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">

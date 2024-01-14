@@ -15,6 +15,7 @@ class SettingController extends Controller
         $settings = Setting::get();
         return view('admin.e-commerce.setting', compact('settings'));
     }
+    
     public function home()
     {
         $mega_cat = Setting::where('name', 'mega_cat')->first();
@@ -85,23 +86,38 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
             Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
             Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
-
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->fb_pixel]);
+            notify()->success("Setting successfully updated", "Success");
+            return back();
         }
-        if ($request->type == 2) {
+        elseif ($request->type == 2) {
             Setting::updateOrCreate(['name' => 'header_code'], ['value' => $request->get('header_code')]);
+            Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
+            notify()->success("Successfully updated", "Success");
+            return back();
         }
-        if ($request->type == 3) {
+        elseif ($request->type == 3) {
             Setting::updateOrCreate(['name' => 'mega_cat'], ['value' => json_encode($request->get('mega'))]);
             Setting::updateOrCreate(['name' => 'sub_cat'], ['value' => json_encode($request->get('sub'))]);
             Setting::updateOrCreate(['name' => 'mini_cat'], ['value' => json_encode($request->get('mini'))]);
             Setting::updateOrCreate(['name' => 'extra_cat'], ['value' => json_encode($request->get('extra'))]);
-        } else {
-            Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->fb_pixel]);
+            notify()->success("Successfully updated", "Success");
+            return back();
         }
-        notify()->success("Setting successfully updated", "Success");
-        return back();
+        elseif ($request->type == 4) {
+            
+            
+            notify()->success("Successfully updated", "Success");
+            return back();
+        }
+        else{
+            notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
+            return back();
+        }
+
+
+
     }
 
     public function updateLogo(Request $request)
@@ -239,7 +255,7 @@ class SettingController extends Controller
         return back();
     }
 
-    public function headerIndex(){
+    public function colorIndex(){
 
         $setting = Setting::where('name', 'header_code')->first();
 
@@ -249,30 +265,53 @@ class SettingController extends Controller
             $header_code = $setting;
         }
 
-        return view('admin.e-commerce.setting.headerIndex', compact('header_code'));
+        return view('admin.e-commerce.setting.colorIndex', compact('header_code'));
+    }
+
+    public function headerIndex(){
+
+        $get_header_code = Setting::where('name', 'header_code')->first();
+        $get_fb_pixel = Setting::where('name', 'fb_pixel')->first();
+
+        if (!$get_header_code) {
+            $header_code = (object)['value' => ''];
+        } else {
+            $header_code = $get_header_code;
+        }
+
+        if (!$get_fb_pixel) {
+            $fb_pixel = (object)['value' => ''];
+        } else {
+            $fb_pixel = $get_fb_pixel;
+        }
+
+        return view('admin.e-commerce.setting.headerIndex', compact('header_code', 'fb_pixel'));
     }
 
 
-    public function social()
-    {
-        $pixel = Setting::where('name', 'fb_pixel')->first();
+    // public function social()
+    // {
+    //     $pixel = Setting::where('name', 'fb_pixel')->first();
 
-        $fci = Setting::where('name', 'fci')->first();
-        $fcs = Setting::where('name', 'fcs')->first();
+    //     $fci = Setting::where('name', 'fci')->first();
+    //     $fcs = Setting::where('name', 'fcs')->first();
 
-        $gci = Setting::where('name', 'gci')->first();
-        $gcs = Setting::where('name', 'gcs')->first();
+    //     $gci = Setting::where('name', 'gci')->first();
+    //     $gcs = Setting::where('name', 'gcs')->first();
 
-        return view('admin.e-commerce.social', compact('pixel', 'fci', 'fcs', 'gci', 'gcs'));
-    }
+    //     return view('admin.e-commerce.social', compact('pixel', 'fci', 'fcs', 'gci', 'gcs'));
+    // }
+
     public function docs()
     {
         return view('admin.e-commerce.docs');
     }
+
     public function getway()
     {
         return view('admin.e-commerce.getway');
     }
+
     public function setting_g(Request $request)
     {
         Setting::updateOrCreate(['name' => 'g_bkash'], ['value' => json_encode($request->filled('bkash'))]);

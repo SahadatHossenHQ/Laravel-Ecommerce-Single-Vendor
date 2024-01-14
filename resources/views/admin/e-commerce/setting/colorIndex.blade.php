@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 offse">
-                <h1>Setting</h1>
+                <h1>Setting - <small>Color</small></h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -35,7 +35,7 @@
                     <!-- Default box -->
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Setting</h3>
+                            <h3 class="card-title">Setting - Color Change</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -43,11 +43,11 @@
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-                                <input type="hidden" name="type" value="2">
+                                <input type="hidden" name="type" value="3">
                                 <div class="form-group col-md-12">
-                                    <label for="fb_pixel" class="text-capitalize">Facebook Pixel Code</label>
-                                    <textarea name="fb_pixel" id="fb_pixel" rows="4"
-                                        class="form-control ">{{$pixel->value}}</textarea>
+                                    <label for="header_code" class="text-capitalize">Custom header code</label>
+                                    {{-- <textarea name="header_code" id="header_code" rows="4"
+                                        class="form-control ">{{ $header_code->value }} </textarea> --}}
                                 </div>
                                 <hr>
                             </div>
