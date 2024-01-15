@@ -260,6 +260,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('setting/color', [SettingController::class, 'colorIndex'])->name('setting.color');
     Route::get('setting/header', [SettingController::class, 'headerIndex'])->name('setting.header');
+    Route::get('setting/mailsmsapireglog', [SettingController::class, 'mailsmsapireglogIndex'])->name('setting.mailsmsapireglog');
 
     // Route::get('setting/social', [SettingController::class, 'social'])->name('setting.social');
     Route::get('setting/getway', [SettingController::class, 'getway'])->name('setting.getway');
