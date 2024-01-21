@@ -59,7 +59,17 @@ Session::forget('link');
             </div>
             <input class="form-control" type="submit" value="Login" style="background:var(--primary_color)">
 
-            <span style="display: block;text-align: center;"><a href="{{route('password.request')}}">Forgot Password?</a></span>
+
+            @if (setting('recovrAC') == "email")
+                <span style="display: block;text-align: center;"><a href="{{route('password.request')}}">Forgot Password?</a></span>
+            @elseif (setting('recovrAC') == "sms")
+                <span style="display: block;text-align: center;"><a href="{{route('password.recover.mobile')}}">Forgot Password?</a></span>
+            @else
+                <span style="display: block;text-align: center;"><a href="{{route('password.request')}}">Forgot Password?</a></span>
+            @endif
+
+
+
         </div>
     </form>
     <br>

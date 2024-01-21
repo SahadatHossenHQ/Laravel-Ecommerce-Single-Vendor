@@ -150,6 +150,12 @@ class SettingController extends Controller
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 7) {
+            Setting::updateOrCreate(['name' => 'regVerify'], ['value' => $request->get('regVerify')]);
+            Setting::updateOrCreate(['name' => 'recovrAC'], ['value' => $request->get('recovrAC')]);
+            notify()->success("SMS configuration successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -168,6 +174,14 @@ class SettingController extends Controller
 
 
     public function mailsmsapireglogIndex(){
+
+        // Registration Verify with
+        $get_regVerify = Setting::where('name', 'regVerify')->first();
+        $regVerify = (!$get_regVerify) ? (object)['value' => 'email' ] : $get_regVerify;
+
+        // Registration Verify with
+        $get_recovrAC = Setting::where('name', 'recovrAC')->first();
+        $recovrAC = (!$get_recovrAC) ? (object)['value' => 'emailsms' ] : $get_recovrAC;
 
         // Email Configuration
         $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
@@ -195,6 +209,10 @@ class SettingController extends Controller
 
 
         return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
+
+            'regVerify',
+            'recovrAC',
+
             'MAIL_HOST',
             'MAIL_PORT',
             'MAIL_USERNAME',

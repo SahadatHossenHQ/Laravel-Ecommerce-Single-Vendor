@@ -18,6 +18,76 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+{{-- LOGIN / REG - OPTION --}}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">LOGIN REGISTRATION OPTION CHOOSE</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-8 offset-md-2">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Setting - Login Registration Option Choose</h3>
+                        </div>
+                        <form id="email_config" action="{{routeHelper('setting')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <div class="form-group col-md-12">
+                                    <input type="hidden" name="type" value="7">
+                                    <ul>
+                                        <li>
+                                            <label for="regVerify" class="text-capitalize">Registration verify With</label>
+                                            <select name="regVerify" id="regVerify">
+                                                @if ($regVerify->value == 'email')    
+                                                    <option value="email">Only Email</option>
+                                                    <option value="sms">Only SMS</option>
+                                                @else
+                                                    <option value="sms">Only SMS</option>
+                                                    <option value="email">Only Email</option>
+                                                @endif
+                                            </select>
+                                            <small class="text-primary">Selected: {{ Str::upper($regVerify->value) }}</small>
+                                        </li>
+                                        <li>
+                                            <label for="recovrAC" class="text-capitalize">Account recover with</label>
+                                            <select name="recovrAC" id="recovrAC">
+                                                @if ($recovrAC->value == 'email')    
+                                                    <option value="email">Only Email</option>
+                                                    <option value="sms">Only SMS</option>
+                                                    <option value="emailsms">Email & SMS both</option>
+                                                @elseif ($recovrAC->value == 'sms')
+                                                    <option value="sms">Only SMS</option>
+                                                    <option value="email">Only Email</option>
+                                                    <option value="emailsms">Email & SMS both</option>
+                                                @else
+                                                    <option value="emailsms">Email & SMS both</option>
+                                                    <option value="email">Only Email</option>
+                                                    <option value="sms">Only SMS</option>
+                                                @endif
+                                            </select>
+                                            <small class="text-primary">Selected: {{ Str::upper($recovrAC->value) }}</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-arrow-circle-up"></i>
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {{-- Mail config --}}
 <section class="content">
     <div class="card">

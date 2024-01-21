@@ -33,7 +33,9 @@
     <br>
 
     <div class="text-center py-3 text-bold">
-        <a class="btn btn-info" href="{{ url('/password/reset/') }}">Recover by email</a><br>
+        @if (setting('recovrAC') == "emailsms" || setting('recovrAC') == "email")
+            <a class="btn btn-info" href="{{ url('/password/reset/') }}">Recover by email</a><br>
+        @endif
         <a href="{{route('login')}}">Go Back to Sign In</a>
     </div>
 </div>
