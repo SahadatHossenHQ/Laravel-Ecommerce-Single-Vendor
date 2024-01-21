@@ -18,7 +18,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-
+{{-- Mail config --}}
 <section class="content">
     <div class="card">
         <div class="card-header">
@@ -93,20 +93,72 @@
         </div>
     </div>
 </section>
+
+{{-- SMS Config --}}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">SMS Configuration</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-8 offset-md-2">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Setting - SMS configuration</h3>
+                        </div>
+                        <form id="sms_config" action="{{routeHelper('setting')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <div class="form-group col-md-12">
+                                    <input type="hidden" name="type" value="6">
+                                    <ul>
+                                        <li>
+                                            <small style="color:red;">Purchase SMS and configure from: <a href="https://bulksmsbd.com/" target="_blank" rel="noopener noreferrer">www.bulksmsbd.com</a></small>
+                                        </li>
+                                        <li>
+                                            <label for="SMS_API_URL" class="text-capitalize">SMS API URL</label>
+                                            <input type="text" name="SMS_API_URL" id="SMS_API_URL" value="{{ $SMS_API_URL->value }}">
+                                        </li>
+                                        <li>
+                                            <label for="SMS_API_KEY" class="text-capitalize">SMS API KEY</label>
+                                            <input type="text" name="SMS_API_KEY" id="SMS_API_KEY" value="{{ $SMS_API_KEY->value }}">
+                                        </li>
+                                        <li>
+                                            <label for="SMS_API_SENDER_ID" class="text-capitalize">SENDER ID</label>
+                                            <input type="text" name="SMS_API_SENDER_ID" id="SMS_API_SENDER_ID" value="{{ $SMS_API_SENDER_ID->value }}">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-arrow-circle-up"></i>
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
 
 @push('css')
     <style>
-        form#email_config ul li input[type="text"],
-        form#email_config ul li input[type="email"],
-        form#email_config ul li input[type="password"]{
+        form ul li input[type="text"],
+        form ul li input[type="email"],
+        form ul li input[type="password"]{
             border: 1px solid #ccc;
             margin-top: .5rem;
             margin-right: .5rem;
             padding: .4rem;
         }
 
-        form#email_config select{
+        form select{
             margin: .5rem;
         }
     </style>

@@ -143,6 +143,13 @@ class SettingController extends Controller
             notify()->success("E-mail configuration successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 6) {
+            Setting::updateOrCreate(['name' => 'SMS_API_URL'], ['value' => $request->get('SMS_API_URL')]);
+            Setting::updateOrCreate(['name' => 'SMS_API_KEY'], ['value' => $request->get('SMS_API_KEY')]);
+            Setting::updateOrCreate(['name' => 'SMS_API_SENDER_ID'], ['value' => $request->get('SMS_API_SENDER_ID')]);
+            notify()->success("SMS configuration successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -178,6 +185,15 @@ class SettingController extends Controller
         $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
         $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
 
+        // SMS Configuratoin
+        $get_SMS_API_URL = Setting::where('name', 'SMS_API_URL')->first();
+        $SMS_API_URL = (!$get_SMS_API_URL) ? (object)['value' => 'www.asifulmamun.info.bd' ] : $get_SMS_API_URL;
+        $get_SMS_API_KEY = Setting::where('name', 'SMS_API_KEY')->first();
+        $SMS_API_KEY = (!$get_SMS_API_KEY) ? (object)['value' => 'sms api key' ] : $get_SMS_API_KEY;
+        $get_SMS_API_SENDER_ID = Setting::where('name', 'SMS_API_SENDER_ID')->first();
+        $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801721600688' ] : $get_SMS_API_SENDER_ID;
+
+
         return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
             'MAIL_HOST',
             'MAIL_PORT',
@@ -186,6 +202,10 @@ class SettingController extends Controller
             'MAIL_ENCRYPTION',
             'MAIL_FROM_ADDRESS',
             'MAIL_FROM_NAME',
+
+            'SMS_API_URL',
+            'SMS_API_KEY',
+            'SMS_API_SENDER_ID',
         ));
     }
 

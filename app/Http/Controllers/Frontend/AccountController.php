@@ -170,9 +170,9 @@ class AccountController extends Controller
                 $user->save();
 
                 // Sending the password
-                $url = env('sms_api_url');
-                $api_key = env('sms_api_key');
-                $senderid = env('sms_api_senderid');
+                $url = setting('sms_api_url');
+                $api_key = setting('sms_api_key');
+                $senderid = setting('sms_api_senderid');
                 $number = $request->phone;
                 $message = "Your Password: ".$rand;
 

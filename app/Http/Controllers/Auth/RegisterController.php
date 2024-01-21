@@ -131,9 +131,9 @@ class RegisterController extends Controller
             
             $rand=rand(99999,999999);
             
-            $url = env('SMS_API_URL');
-            $api_key = env('SMS_API_KEY');
-            $senderid = env('SMS_API_SENDER_ID');
+            $url = setting('SMS_API_URL');
+            $api_key = setting('SMS_API_KEY');
+            $senderid = setting('SMS_API_SENDER_ID');
             $number = $request->number;
             $message = "Your Demo OTP Is ".$rand;
 
