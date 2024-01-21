@@ -26,6 +26,17 @@ class SettingController extends Controller
         return view('admin.e-commerce.home-setting', compact('mega_cat', 'sub_cat', 'mini_cat', 'extra_cat'));
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public function update(Request $request)
     {
         if ($request->type == 1) {
@@ -125,6 +136,48 @@ class SettingController extends Controller
 
 
     }
+
+
+
+
+
+
+
+
+
+    public function mailsmsapireglogIndex(){
+
+        $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
+        $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
+
+        // mail_config=0;
+        // MAIL_DRIVER="smtp"
+        // MAIL_HOST="smtp.titan.email"
+        // MAIL_PORT="465"
+        // MAIL_USERNAME="noreply@tamjidmart.com"
+        // MAIL_PASSWORD="#Tamjidmart2024"
+        // MAIL_ENCRYPTION="ssl"
+        // MAIL_FROM_ADDRESS="noreply@tamjidmart.com"
+        // MAIL_FROM_NAME="Tamjid Mart"
+
+        $PRIMARY_COLOR = '#000000';
+        
+        
+        return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
+            'PRIMARY_COLOR',
+        ));
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     public function updateLogo(Request $request)
     {
@@ -287,33 +340,6 @@ class SettingController extends Controller
     }
 
 
-
-    public function mailsmsapireglogIndex(){
-
-        // $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
-        // $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
-
-        // mail_config=0;
-        // MAIL_DRIVER="smtp"
-        // MAIL_HOST="smtp.titan.email"
-        // MAIL_PORT="465"
-        // MAIL_USERNAME="noreply@tamjidmart.com"
-        // MAIL_PASSWORD="#Tamjidmart2024"
-        // MAIL_ENCRYPTION="ssl"
-        // MAIL_FROM_ADDRESS="noreply@tamjidmart.com"
-        // MAIL_FROM_NAME="Tamjid Mart"
-
-        $PRIMARY_COLOR = '#000000';
-        
-        
-        return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
-            'PRIMARY_COLOR',
-        ));
-
-    }
-
-
-    
     public function headerIndex(){
 
         $get_header_code = Setting::where('name', 'header_code')->first();
