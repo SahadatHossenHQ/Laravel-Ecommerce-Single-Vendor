@@ -177,6 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // custom mail config data from db
+        App\Providers\MailConfigServiceProvider::class,
+
+
     ],
 
     /*
