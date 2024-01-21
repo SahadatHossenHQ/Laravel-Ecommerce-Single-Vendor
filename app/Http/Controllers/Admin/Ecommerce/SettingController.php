@@ -156,6 +156,13 @@ class SettingController extends Controller
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 8) {
+            Setting::updateOrCreate(['name' => 'SITE_INFO_ADDRESS'], ['value' => $request->get('SITE_INFO_ADDRESS')]);
+            Setting::updateOrCreate(['name' => 'SITE_INFO_PHONE'], ['value' => $request->get('SITE_INFO_PHONE')]);
+            Setting::updateOrCreate(['name' => 'SITE_INFO_SUPPORT_MAIL'], ['value' => $request->get('SITE_INFO_SUPPORT_MAIL')]);
+            notify()->success("SMS configuration successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -168,64 +175,28 @@ class SettingController extends Controller
 
 
 
+    public function site_infoIndex(){
+        $get_SITE_INFO_ADDRESS = Setting::where('name', 'SITE_INFO_ADDRESS')->first();
+        $SITE_INFO_ADDRESS = (!$get_SITE_INFO_ADDRESS) ? (object)['value' => 'Dhaka, Bangladesh' ] : $get_SITE_INFO_ADDRESS;
+
+        $get_SITE_INFO_PHONE = Setting::where('name', 'SITE_INFO_PHONE')->first();
+        $SITE_INFO_PHONE = (!$get_SITE_INFO_PHONE) ? (object)['value' => '+8801721600688' ] : $get_SITE_INFO_PHONE;
+
+        $get_SITE_INFO_SUPPORT_MAIL = Setting::where('name', 'SITE_INFO_SUPPORT_MAIL')->first();
+        $SITE_INFO_SUPPORT_MAIL = (!$get_SITE_INFO_SUPPORT_MAIL) ? (object)['value' => 'hello@asifulmamun.info.bd' ] : $get_SITE_INFO_SUPPORT_MAIL;
 
 
-
-
-
-    public function mailsmsapireglogIndex(){
-
-        // Registration Verify with
-        $get_regVerify = Setting::where('name', 'regVerify')->first();
-        $regVerify = (!$get_regVerify) ? (object)['value' => 'email' ] : $get_regVerify;
-
-        // Registration Verify with
-        $get_recovrAC = Setting::where('name', 'recovrAC')->first();
-        $recovrAC = (!$get_recovrAC) ? (object)['value' => 'emailsms' ] : $get_recovrAC;
-
-        // Email Configuration
-        $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
-        $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
-        $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
-        $MAIL_PORT = (!$get_MAIL_PORT) ? (object)['value' => '465'] : $get_MAIL_PORT;
-        $get_MAIL_USERNAME = Setting::where('name', 'MAIL_USERNAME')->first();
-        $MAIL_USERNAME = (!$get_MAIL_USERNAME) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_USERNAME;
-        $get_MAIL_PASSWORD = Setting::where('name', 'MAIL_PASSWORD')->first();
-        $MAIL_PASSWORD = (!$get_MAIL_PASSWORD) ? (object)['value' => '@Finva2024'] : $get_MAIL_PASSWORD;
-        $get_MAIL_ENCRYPTION = Setting::where('name', 'MAIL_ENCRYPTION')->first();
-        $MAIL_ENCRYPTION = (!$get_MAIL_ENCRYPTION) ? (object)['value' => 'tls'] : $get_MAIL_ENCRYPTION;
-        $get_MAIL_FROM_ADDRESS = Setting::where('name', 'MAIL_FROM_ADDRESS')->first();
-        $MAIL_FROM_ADDRESS = (!$get_MAIL_FROM_ADDRESS) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_FROM_ADDRESS;
-        $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
-        $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
-
-        // SMS Configuratoin
-        $get_SMS_API_URL = Setting::where('name', 'SMS_API_URL')->first();
-        $SMS_API_URL = (!$get_SMS_API_URL) ? (object)['value' => 'www.asifulmamun.info.bd' ] : $get_SMS_API_URL;
-        $get_SMS_API_KEY = Setting::where('name', 'SMS_API_KEY')->first();
-        $SMS_API_KEY = (!$get_SMS_API_KEY) ? (object)['value' => 'sms api key' ] : $get_SMS_API_KEY;
-        $get_SMS_API_SENDER_ID = Setting::where('name', 'SMS_API_SENDER_ID')->first();
-        $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801721600688' ] : $get_SMS_API_SENDER_ID;
-
-
-        return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
-
-            'regVerify',
-            'recovrAC',
-
-            'MAIL_HOST',
-            'MAIL_PORT',
-            'MAIL_USERNAME',
-            'MAIL_PASSWORD',
-            'MAIL_ENCRYPTION',
-            'MAIL_FROM_ADDRESS',
-            'MAIL_FROM_NAME',
-
-            'SMS_API_URL',
-            'SMS_API_KEY',
-            'SMS_API_SENDER_ID',
+        return view('admin.e-commerce.setting.site_infoIndex', compact(
+            'SITE_INFO_ADDRESS',
+            'SITE_INFO_PHONE',
+            'SITE_INFO_SUPPORT_MAIL',
+        
         ));
     }
+
+
+
+
 
 
 
@@ -417,6 +388,62 @@ class SettingController extends Controller
 
         return view('admin.e-commerce.setting.headerIndex', compact('header_code', 'fb_pixel'));
     }
+
+    public function mailsmsapireglogIndex(){
+
+        // Registration Verify with
+        $get_regVerify = Setting::where('name', 'regVerify')->first();
+        $regVerify = (!$get_regVerify) ? (object)['value' => 'email' ] : $get_regVerify;
+
+        // Registration Verify with
+        $get_recovrAC = Setting::where('name', 'recovrAC')->first();
+        $recovrAC = (!$get_recovrAC) ? (object)['value' => 'emailsms' ] : $get_recovrAC;
+
+        // Email Configuration
+        $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
+        $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
+        $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
+        $MAIL_PORT = (!$get_MAIL_PORT) ? (object)['value' => '465'] : $get_MAIL_PORT;
+        $get_MAIL_USERNAME = Setting::where('name', 'MAIL_USERNAME')->first();
+        $MAIL_USERNAME = (!$get_MAIL_USERNAME) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_USERNAME;
+        $get_MAIL_PASSWORD = Setting::where('name', 'MAIL_PASSWORD')->first();
+        $MAIL_PASSWORD = (!$get_MAIL_PASSWORD) ? (object)['value' => '@Finva2024'] : $get_MAIL_PASSWORD;
+        $get_MAIL_ENCRYPTION = Setting::where('name', 'MAIL_ENCRYPTION')->first();
+        $MAIL_ENCRYPTION = (!$get_MAIL_ENCRYPTION) ? (object)['value' => 'tls'] : $get_MAIL_ENCRYPTION;
+        $get_MAIL_FROM_ADDRESS = Setting::where('name', 'MAIL_FROM_ADDRESS')->first();
+        $MAIL_FROM_ADDRESS = (!$get_MAIL_FROM_ADDRESS) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_FROM_ADDRESS;
+        $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
+        $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
+
+        // SMS Configuratoin
+        $get_SMS_API_URL = Setting::where('name', 'SMS_API_URL')->first();
+        $SMS_API_URL = (!$get_SMS_API_URL) ? (object)['value' => 'www.asifulmamun.info.bd' ] : $get_SMS_API_URL;
+        $get_SMS_API_KEY = Setting::where('name', 'SMS_API_KEY')->first();
+        $SMS_API_KEY = (!$get_SMS_API_KEY) ? (object)['value' => 'sms api key' ] : $get_SMS_API_KEY;
+        $get_SMS_API_SENDER_ID = Setting::where('name', 'SMS_API_SENDER_ID')->first();
+        $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801721600688' ] : $get_SMS_API_SENDER_ID;
+
+
+        return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
+
+            'regVerify',
+            'recovrAC',
+
+            'MAIL_HOST',
+            'MAIL_PORT',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+            'MAIL_ENCRYPTION',
+            'MAIL_FROM_ADDRESS',
+            'MAIL_FROM_NAME',
+
+            'SMS_API_URL',
+            'SMS_API_KEY',
+            'SMS_API_SENDER_ID',
+        ));
+    }
+
+
 
 
     // public function social()

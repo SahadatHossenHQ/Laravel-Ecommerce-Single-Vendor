@@ -169,9 +169,9 @@
                     <div class="item-content ic2">
                         <div class="menu-main-container">
                             <ul style="opacity: 0.8;" id="menu-main-18" class="menu">
-                                <li style="line-height: 22px;">{{env('address')}}</li>
-                                <li>Email: {{setting('email')}}</li>
-                                <li>Contact No: {{env('phone')}}</li>
+                                <li style="line-height: 22px;">{{setting('SITE_INFO_ADDRESS')}}</li>
+                                <li>Email: {{setting('SITE_INFO_SUPPORT_MAIL')}}</li>
+                                <li>Contact No: {{setting('SITE_INFO_PHONE')}}</li>
                                 <li><a style="font-weight: 700;border-radius: 5px;padding: 5px 15px;display: inline-block;background: var(--primary_color);color:var(--primary_bg_color_text);font-size: 16px;"
                                         href="{{route('connection.live.chat')}}"
                                         class="{{Request::is('connection') ? 'active':''}}"> Live Chat</a></li>

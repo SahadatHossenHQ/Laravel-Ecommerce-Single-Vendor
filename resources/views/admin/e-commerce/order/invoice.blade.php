@@ -285,9 +285,9 @@ footer {
       <div class="logo"><img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Logo" /></div>
       <div class="titl">
             <div class="col company-details">
-                       <div>Shop Address: {{env('address')}}</div>
-                        <div>Mobile: {{env('phone')}}</div>
-                        <div>Email: {{env('mail')}}</div>
+                       <div>Shop Address: {{setting('SITE_INFO_ADDRESS')}}</div>
+                        <div>Mobile: {{setting('SITE_INFO_PHONE')}}</div>
+                        <div>Email: {{setting('SITE_INFO_SUPPORT_MAIL')}}</div>
                     </div>
           
         </p>

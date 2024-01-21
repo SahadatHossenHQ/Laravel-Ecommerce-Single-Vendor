@@ -19,9 +19,9 @@
                     <h4>Here is your new password: {{$code}}</h4>
                     If you want, you can set a new password by logging into the account.
                 </p>
-                <p style="margin:0px !important">Mobile: {{env('phone')}}</p>
+                <p style="margin:0px !important">Mobile: {{setting('SITE_INFO_PHONE')}}</p>
                 <p style="margin:0px !important">Website: {{env('APP_URL')}}</p>
-                <p style="margin:0px !important">Address: {{env('address')}}</p>
+                <p style="margin:0px !important">Address: {{setting('SITE_INFO_ADDRESS')}}</p>
             </div>
         </div>
     </div>

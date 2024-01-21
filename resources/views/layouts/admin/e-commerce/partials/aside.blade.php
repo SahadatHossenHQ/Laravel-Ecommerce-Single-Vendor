@@ -310,11 +310,8 @@
                                 </li>
                             </ul>
                         </li>
-
-
                     </ul>
                 </li>
-
                 <li class="nav-item {{Request::is('admin/coupon*') ? 'menu-is-opening menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
@@ -745,6 +742,15 @@
                                 </a>
                             </li>
                             <li
+                                class="nav-item {{Request::is('admin/setting/site_info') ? 'menu-is-opening menu-open':''}}">
+                                <a href="{{route('admin.setting.site_info')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-cog"></i>
+                                    <p>
+                                        Site Info
+                                    </p>
+                                </a>
+                            </li>
+                            <li
                                 class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
                                 <a href="{{route('admin.setting.header')}}" class="nav-link">
                                     <i class="nav-icon fas fa-user-cog"></i>
@@ -815,10 +821,6 @@
                             </li>
                         </ul>
                 </li>
-
-
-
-
                 <li class="nav-item {{Request::is('admin/shop') ? 'menu-is-opening menu-open':''}}">
                     <a href="{{routeHelper('shop')}}" class="nav-link">
                         <i class="nav-icon fas fa-store-alt"></i>

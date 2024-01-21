@@ -286,9 +286,9 @@ footer {
       <div class="titl">
             <div class="col company-details">
                        
-                        <div>Shop Address: {{env('address')}}</div>
-                        <div>Mobile: {{env('phone')}}</div>
-                        <div>Email: {{env('mail')}}</div>
+                        <div>Shop Address: {{setting('address')}}</div>
+                        <div>Mobile: {{setting('phone')}}</div>
+                        <div>Email: {{setting('mail')}}</div>
                     </div>
           
         </p>

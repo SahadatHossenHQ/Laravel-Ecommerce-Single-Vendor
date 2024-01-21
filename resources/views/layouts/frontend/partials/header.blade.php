@@ -56,7 +56,7 @@ width: 100% !important;
                <div style="display: flex;">
                     <div class="dvts" style="flex: 1;">
                         <ul>
-                            <li><i class="fal fa-phone-alt" aria-hidden="true"></i> Have a question? Call us<a href="tel:{{env('phone')}}"> {{env('phone')}}</a></li>
+                            <li><i class="fal fa-phone-alt" aria-hidden="true"></i> Have a question? Call us<a href="tel:{{setting('SITE_INFO_PHONE')}}"> {{setting('SITE_INFO_PHONE')}}</a></li>
                             <!-- <li style="margin-left: 10px;"><a href=""><i class="fal fa-envelope" aria-hidden="true"></i> {{setting('email')}}</a></li> -->
                         </ul>
                     </div>

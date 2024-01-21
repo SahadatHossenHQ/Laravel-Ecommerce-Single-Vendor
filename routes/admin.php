@@ -258,6 +258,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('setting', [SettingController::class, 'update'])->name('setting.update');
     Route::put('setting/logo', [SettingController::class, 'updateLogo'])->name('update.logo');
 
+    Route::get('setting/site_info', [SettingController::class, 'site_infoIndex'])->name('setting.site_info');
     Route::get('setting/color', [SettingController::class, 'colorIndex'])->name('setting.color');
     Route::get('setting/header', [SettingController::class, 'headerIndex'])->name('setting.header');
     Route::get('setting/mailsmsapireglog', [SettingController::class, 'mailsmsapireglogIndex'])->name('setting.mailsmsapireglog');
