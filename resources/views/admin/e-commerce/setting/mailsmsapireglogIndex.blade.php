@@ -36,7 +36,7 @@
                             @method('PUT')
                             <div class="card-body">
                                 <div class="form-group col-md-12">
-                                    <input type="hidden" name="type" value="2">
+                                    <input type="hidden" name="type" value="5">
                                     <input type="hidden" name="mail_config" value="0">
                                     <input type="hidden" name="MAIL_DRIVER" value="smtp">
                                     <ul>
@@ -57,11 +57,17 @@
                                             <input type="text" name="MAIL_PASSWORD" id="MAIL_PASSWORD" value="{{ $MAIL_PASSWORD->value }}">
                                         </li>
                                         <li>
-                                            <label for="MAIL_ENCRYPTION" class="text-capitalize">Ebcryption Type</label>
+                                            <label for="MAIL_ENCRYPTION" class="text-capitalize">Encryption Type</label>
                                             <select name="MAIL_ENCRYPTION" id="MAIL_ENCRYPTION">
-                                                <option value="tls">TLS</option>
+                                                @if ($MAIL_ENCRYPTION->value == 'tls')    
+                                                    <option value="tls">TLS</option>
+                                                    <option value="ssl">SSL</option>
+                                                @else
                                                 <option value="ssl">SSL</option>
+                                                <option value="tls">TLS</option>
+                                                @endif
                                             </select>
+                                            <small class="text-primary">Selected: {{ Str::upper($MAIL_ENCRYPTION->value) }}</small>
                                         </li>
                                         <li>
                                             <label for="MAIL_FROM_ADDRESS" class="text-capitalize">Mail From</label>

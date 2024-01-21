@@ -128,6 +128,21 @@ class SettingController extends Controller
             notify()->success("Successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 5) {
+            // Email configuration
+            Setting::updateOrCreate(['name' => 'mail_config'], ['value' => $request->get('mail_config')]);
+            Setting::updateOrCreate(['name' => 'MAIL_DRIVER'], ['value' => $request->get('MAIL_DRIVER')]);
+            Setting::updateOrCreate(['name' => 'MAIL_HOST'], ['value' => $request->get('MAIL_HOST')]);
+            Setting::updateOrCreate(['name' => 'MAIL_PORT'], ['value' => $request->get('MAIL_PORT')]);
+            Setting::updateOrCreate(['name' => 'MAIL_USERNAME'], ['value' => $request->get('MAIL_USERNAME')]);
+            Setting::updateOrCreate(['name' => 'MAIL_PASSWORD'], ['value' => $request->get('MAIL_PASSWORD')]);
+            Setting::updateOrCreate(['name' => 'MAIL_ENCRYPTION'], ['value' => $request->get('MAIL_ENCRYPTION')]);
+            Setting::updateOrCreate(['name' => 'MAIL_FROM_ADDRESS'], ['value' => $request->get('MAIL_FROM_ADDRESS')]);
+            Setting::updateOrCreate(['name' => 'MAIL_FROM_NAME'], ['value' => $request->get('MAIL_FROM_NAME')]);
+
+            notify()->success("E-mail configuration successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -147,38 +162,31 @@ class SettingController extends Controller
 
     public function mailsmsapireglogIndex(){
 
+        // Email Configuration
         $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
         $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
-
         $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
         $MAIL_PORT = (!$get_MAIL_PORT) ? (object)['value' => '465'] : $get_MAIL_PORT;
-
         $get_MAIL_USERNAME = Setting::where('name', 'MAIL_USERNAME')->first();
         $MAIL_USERNAME = (!$get_MAIL_USERNAME) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_USERNAME;
-
         $get_MAIL_PASSWORD = Setting::where('name', 'MAIL_PASSWORD')->first();
         $MAIL_PASSWORD = (!$get_MAIL_PASSWORD) ? (object)['value' => '@Finva2024'] : $get_MAIL_PASSWORD;
-
+        $get_MAIL_ENCRYPTION = Setting::where('name', 'MAIL_ENCRYPTION')->first();
+        $MAIL_ENCRYPTION = (!$get_MAIL_ENCRYPTION) ? (object)['value' => 'tls'] : $get_MAIL_ENCRYPTION;
         $get_MAIL_FROM_ADDRESS = Setting::where('name', 'MAIL_FROM_ADDRESS')->first();
         $MAIL_FROM_ADDRESS = (!$get_MAIL_FROM_ADDRESS) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_FROM_ADDRESS;
-
         $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
         $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
 
-
-        // ="Tamjid Mart"
-
-        
-        
         return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
             'MAIL_HOST',
             'MAIL_PORT',
             'MAIL_USERNAME',
             'MAIL_PASSWORD',
+            'MAIL_ENCRYPTION',
             'MAIL_FROM_ADDRESS',
             'MAIL_FROM_NAME',
         ));
-
     }
 
 
