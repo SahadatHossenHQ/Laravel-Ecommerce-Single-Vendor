@@ -147,24 +147,36 @@ class SettingController extends Controller
 
     public function mailsmsapireglogIndex(){
 
-        $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
-        $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
+        $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
+        $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
 
-        // mail_config=0;
-        // MAIL_DRIVER="smtp"
-        // MAIL_HOST="smtp.titan.email"
-        // MAIL_PORT="465"
-        // MAIL_USERNAME="noreply@tamjidmart.com"
-        // MAIL_PASSWORD="#Tamjidmart2024"
-        // MAIL_ENCRYPTION="ssl"
-        // MAIL_FROM_ADDRESS="noreply@tamjidmart.com"
-        // MAIL_FROM_NAME="Tamjid Mart"
+        $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
+        $MAIL_PORT = (!$get_MAIL_PORT) ? (object)['value' => '465'] : $get_MAIL_PORT;
 
-        $PRIMARY_COLOR = '#000000';
+        $get_MAIL_USERNAME = Setting::where('name', 'MAIL_USERNAME')->first();
+        $MAIL_USERNAME = (!$get_MAIL_USERNAME) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_USERNAME;
+
+        $get_MAIL_PASSWORD = Setting::where('name', 'MAIL_PASSWORD')->first();
+        $MAIL_PASSWORD = (!$get_MAIL_PASSWORD) ? (object)['value' => '@Finva2024'] : $get_MAIL_PASSWORD;
+
+        $get_MAIL_FROM_ADDRESS = Setting::where('name', 'MAIL_FROM_ADDRESS')->first();
+        $MAIL_FROM_ADDRESS = (!$get_MAIL_FROM_ADDRESS) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_FROM_ADDRESS;
+
+        $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
+        $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
+
+
+        // ="Tamjid Mart"
+
         
         
         return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
-            'PRIMARY_COLOR',
+            'MAIL_HOST',
+            'MAIL_PORT',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+            'MAIL_FROM_ADDRESS',
+            'MAIL_FROM_NAME',
         ));
 
     }

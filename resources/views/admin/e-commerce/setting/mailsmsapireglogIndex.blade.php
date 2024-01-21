@@ -42,19 +42,19 @@
                                     <ul>
                                         <li>
                                             <label for="MAIL_HOST" class="text-capitalize">Email Host</label>
-                                            <input type="text" name="MAIL_HOST" id="MAIL_HOST">
+                                            <input type="text" name="MAIL_HOST" id="MAIL_HOST" value="{{ $MAIL_HOST->value }}">
                                         </li>
                                         <li>
                                             <label for="MAIL_PORT" class="text-capitalize">Port</label>
-                                            <input type="text" name="MAIL_PORT" id="MAIL_PORT">
+                                            <input type="text" name="MAIL_PORT" id="MAIL_PORT" value="{{ $MAIL_PORT->value }}">
                                         </li>
                                         <li>
                                             <label for="MAIL_USERNAME" class="text-capitalize">Username</label>
-                                            <input type="text" name="MAIL_USERNAME" id="MAIL_USERNAME">
+                                            <input type="text" name="MAIL_USERNAME" id="MAIL_USERNAME" value="{{ $MAIL_USERNAME->value }}">
                                         </li>
                                         <li>
                                             <label for="MAIL_PASSWORD" class="text-capitalize">Password</label>
-                                            <input type="text" name="MAIL_PASSWORD" id="MAIL_PASSWORD">
+                                            <input type="text" name="MAIL_PASSWORD" id="MAIL_PASSWORD" value="{{ $MAIL_PASSWORD->value }}">
                                         </li>
                                         <li>
                                             <label for="MAIL_ENCRYPTION" class="text-capitalize">Ebcryption Type</label>
@@ -65,11 +65,11 @@
                                         </li>
                                         <li>
                                             <label for="MAIL_FROM_ADDRESS" class="text-capitalize">Mail From</label>
-                                            <input type="email" name="MAIL_FROM_ADDRESS" id="MAIL_FROM_ADDRESS">
+                                            <input type="email" name="MAIL_FROM_ADDRESS" id="MAIL_FROM_ADDRESS" value="{{ $MAIL_FROM_ADDRESS->value }}">
                                         </li>
                                         <li>
                                             <label for="MAIL_FROM_NAME" class="text-capitalize">From Name</label>
-                                            <input type="text" name="MAIL_FROM_NAME" id="MAIL_FROM_NAME">
+                                            <input type="text" name="MAIL_FROM_NAME" id="MAIL_FROM_NAME" value="{{ $MAIL_FROM_NAME->value }}">
                                         </li>
                                     </ul>
                                 </div>
