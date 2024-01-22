@@ -137,7 +137,7 @@ class RegisterController extends Controller
             $api_key = setting('SMS_API_KEY');
             $senderid = setting('SMS_API_SENDER_ID');
             $number = $request->number;
-            $message = "Your Demo OTP Is " . $rand;
+            $message = env('APP_NICKNAME') . " OTP: " . $rand;
 
             $data = [
                 "api_key" => $api_key,
@@ -153,16 +153,15 @@ class RegisterController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $response = curl_exec($ch);
-            $p = explode("|", $response);
-            return response()->json($response);
+            $resArray = json_decode($response, true);
 
-
-            $sendstatus = $p[0];
-
-            if ($sendstatus == '1101') {
+            if($resArray['response_code'] == 202 || $resArray['response_code'] == 200){
                 Session::put('otpres', $rand);
-                return response()->json('We Just Otp please Check Your Phone');
+                return response()->json('We just sent OTP, please check your phone');
+            }else{
+                return response($resArray['error_message']);
             }
+
         } else {
             return response()->json('This number already have an account');
         }
