@@ -153,64 +153,63 @@ class AccountController extends Controller
         return view('auth.passwords.mobile');
     }
 
-    public function pasm(Request $request){
-        
-        // random number generator
-        $rand=rand(99999,999999);
-        
 
+
+    public function pasm(Request $request){
+    
         if($request->method=='Phone'){
     
             // Checking user exist || not
             $user=User::where('phone',$request->phone)->first();
             
             if($user){
+                // random number generator
+                $rand=rand(99999,999999);
+
+                
                 // Changing the password with encryption bcrypt
                 $user->password=bcrypt($rand);
                 $user->save();
 
-                // Sending the password
-                $url = setting('sms_api_url');
-                $api_key = setting('sms_api_key');
-                $senderid = setting('sms_api_senderid');
+                $url = setting('SMS_API_URL');
+                $api_key = setting('SMS_API_KEY');
+                $senderid = setting('SMS_API_SENDER_ID');
                 $number = $request->phone;
-                $message = "Your Password: ".$rand;
-
+                $message = env('APP_NICKNAME') . " OTP: " . $rand;
+    
                 $data = [
                     "api_key" => $api_key,
                     "senderid" => $senderid,
                     "number" => $number,
                     "message" => $message
                 ];
-                
-                // command for sending by curl
+    
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                
-                // response catch from SMS api server by curl
                 $response = curl_exec($ch);
-                $p = explode("|",$response);
-                $sendstatus = $p[0];
-                
-                // If response status 1101 by SMS api service then return success
-                if($sendstatus=='1101'){
+                $resArray = json_decode($response, true);
+    
+                if($resArray['response_code'] == 202 || $resArray['response_code'] == 200){
                     notify()->success("We Send New Password", "Check Phone");
                     return redirect('/login');
+                }else{
+                    notify()->error($resArray['error_message'], "Wrong");
+                    return back();
                 }
-
-                notify()->success("We Send New Password", "Check Phone");
-                return redirect('/login');
                 
 
             } else{
                 notify()->error("We can't find your account", "Wrong");
                 return back();
             }
-        } elseif($request->method=='Email'){
+        }
+        
+        
+        elseif($request->method=='Email'){
             
             // echo $request->username;
 

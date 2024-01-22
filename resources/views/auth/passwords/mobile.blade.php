@@ -12,7 +12,7 @@
     }
 </style>
 <div class="wrapper">
-    <form class="col-md-4 offset-md-4" action="{{route('password.send')}}" method="post">
+    <form class="col-md-4 offset-md-4" action="{{route('password.send')}}" method="POST">
         @csrf
         <div class="form form2">
             <h4 style="color:#002f5f;text-align: left;padding:10px 0px;"><b>Forgot Password </b></h4>
