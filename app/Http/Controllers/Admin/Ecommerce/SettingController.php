@@ -123,6 +123,7 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'SECONDARY_COLOR'], ['value' => $request->get('SECONDARY_COLOR')]);
             Setting::updateOrCreate(['name' => 'OPTIONAL_COLOR'], ['value' => $request->get('OPTIONAL_COLOR')]);
             Setting::updateOrCreate(['name' => 'OPTIONAL_BG_TEXT_COLOR'], ['value' => $request->get('OPTIONAL_BG_TEXT_COLOR')]);
+            Setting::updateOrCreate(['name' => 'MAIN_MENU_BG'], ['value' => $request->get('MAIN_MENU_BG')]);
             
             
             notify()->success("Successfully updated", "Success");
@@ -168,12 +169,7 @@ class SettingController extends Controller
             return back();
         }
 
-
-
     }
-
-
-
 
     public function site_infoIndex(){
         $get_SITE_INFO_ADDRESS = Setting::where('name', 'SITE_INFO_ADDRESS')->first();
@@ -193,20 +189,6 @@ class SettingController extends Controller
         
         ));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function updateLogo(Request $request)
     {
@@ -346,23 +328,32 @@ class SettingController extends Controller
     public function colorIndex(){
 
         $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
-        $get_PRIMARY_BG_TEXT_COLOR = Setting::where('name', 'PRIMARY_BG_TEXT_COLOR')->first();
-        $get_SECONDARY_COLOR = Setting::where('name', 'SECONDARY_COLOR')->first();
-        $get_OPTIONAL_COLOR = Setting::where('name', 'OPTIONAL_COLOR')->first();
-        $get_OPTIONAL_BG_TEXT_COLOR = Setting::where('name', 'OPTIONAL_BG_TEXT_COLOR')->first();
-
         $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
+
+        $get_PRIMARY_BG_TEXT_COLOR = Setting::where('name', 'PRIMARY_BG_TEXT_COLOR')->first();
         $PRIMARY_BG_TEXT_COLOR = (!$get_PRIMARY_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_PRIMARY_BG_TEXT_COLOR;
+
+        $get_SECONDARY_COLOR = Setting::where('name', 'SECONDARY_COLOR')->first();
         $SECONDARY_COLOR = (!$get_SECONDARY_COLOR) ? (object)['value' => '#000'] : $get_SECONDARY_COLOR;
+
+        $get_OPTIONAL_COLOR = Setting::where('name', 'OPTIONAL_COLOR')->first();
         $OPTIONAL_COLOR = (!$get_OPTIONAL_COLOR) ? (object)['value' => '#007bc4'] : $get_OPTIONAL_COLOR;
+
+        $get_OPTIONAL_BG_TEXT_COLOR = Setting::where('name', 'OPTIONAL_BG_TEXT_COLOR')->first();
         $OPTIONAL_BG_TEXT_COLOR = (!$get_OPTIONAL_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_OPTIONAL_BG_TEXT_COLOR;
         
+        $get_MAIN_MENU_BG = Setting::where('name', 'MAIN_MENU_BG')->first();
+        $MAIN_MENU_BG = (!$get_MAIN_MENU_BG) ? (object)['value' => $PRIMARY_COLOR->value] : $get_MAIN_MENU_BG;
+        
+
+
         return view('admin.e-commerce.setting.colorIndex', compact(
             'PRIMARY_COLOR', 
             'PRIMARY_BG_TEXT_COLOR',
             'SECONDARY_COLOR',
             'OPTIONAL_COLOR',
-            'OPTIONAL_BG_TEXT_COLOR'
+            'OPTIONAL_BG_TEXT_COLOR',
+            'MAIN_MENU_BG'
         ));
 
         // echo $PRIMARY_BG_TEXT_COLOR;

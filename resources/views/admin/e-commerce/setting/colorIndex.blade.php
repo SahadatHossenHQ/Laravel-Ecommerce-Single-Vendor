@@ -71,6 +71,12 @@
                                             <input type="color" id="OPTIONAL_BG_TEXT_COLOR_CHOOSER" value="{{ $OPTIONAL_BG_TEXT_COLOR->value }}">
                                             <input type="text" id="OPTIONAL_BG_TEXT_COLOR" name="OPTIONAL_BG_TEXT_COLOR" value="{{ $OPTIONAL_BG_TEXT_COLOR->value }}">
                                         </li>
+
+                                        <li>
+                                            <label for="MAIN_MENU_BG" class="text-capitalize">Main menu Background: </label>
+                                            <input type="color" id="MAIN_MENU_BG_CHOOSER" value="{{ $MAIN_MENU_BG->value }}">
+                                            <input type="text" id="MAIN_MENU_BG" name="MAIN_MENU_BG" value="{{ $MAIN_MENU_BG->value }}">
+                                        </li>
                                     </ul>
                                 </div>
                                 <hr>
@@ -134,6 +140,13 @@
         });
         $("#OPTIONAL_BG_TEXT_COLOR").on("keyup", function () {
             $("#OPTIONAL_BG_TEXT_COLOR_CHOOSER").val($(this).val());
+        });
+
+        $("#MAIN_MENU_BG_CHOOSER").on("input", function () {
+            $("#MAIN_MENU_BG").val($(this).val());
+        });
+        $("#MAIN_MENU_BG").on("keyup", function () {
+            $("#MAIN_MENU_BG_CHOOSER").val($(this).val());
         });
     });
 </script>
