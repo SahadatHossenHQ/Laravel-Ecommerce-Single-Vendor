@@ -169,8 +169,8 @@
 
 
     {{-- Main Menu --}}
-    @include('layouts.frontend.partials.partial-part.header_main_menu_1')
-    {{-- @include('layouts.frontend.partials.partial-part.header_main_menu_2') --}}
+    {{-- @include('layouts.frontend.partials.partial-part.header_main_menu_1') --}}
+    @include('layouts.frontend.partials.partial-part.header_main_menu_2')
 
 </header>
 

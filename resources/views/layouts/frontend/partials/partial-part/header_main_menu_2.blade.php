@@ -87,25 +87,32 @@
     }
 
 
-    /* .menu_style_2 ul li ul li:hover{
-        background: var(--optional_color) !important;
-    } */
+    .menu_style_2 ul li ul{
+        display: none;
+        position: absolute;
+        width: max-content;
+        top: 2.8rem;
+        left: 10px;
+        z-index: 99;
+        padding: 0 0;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1), 0 -3px 0 0 #ef4a23;
+
+        border: 0 !important;
+    }
+
+    .menu_style_2 ul li ul li{
+        all: unset;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     .menu_style_2 ul li ul li:hover a{
         background: var(--optional_color) !important;
         color: var(--optional_bg_color_text) !important;
     }
 
 
-    .menu_style_2 ul li ul{
-        width: max-content;
-        display: none;
-        position: absolute;
-        top: 2.8rem;
-        left: 10px;
-        z-index: 99;
-        padding: 5px 0;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1), 0 -3px 0 0 #ef4a23;
-    }
+
 
 
 </style>
