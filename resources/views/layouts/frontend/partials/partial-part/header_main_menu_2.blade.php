@@ -1,13 +1,13 @@
 <div class="main-menu">
     <div class="container">
 
-        {{-- <div class="back">
+        <div class="back">
             <i class="fas fa-long-arrow-alt-left"></i> back
         </div>
         <div class="collpase-menu-open" style="display: none;">
             <a id="menu" class="active" href="#">MENU</a>
-            <a id="cat" href="#">CATEGORIES</a>
-        </div> --}}
+            {{-- <a id="cat" href="#">CATEGORIES</a> --}}
+        </div>
 
         {{-- <div class="nav-bar"> --}}
             <div class="{{-- nav-menus --}} menu_style_2">
@@ -57,18 +57,7 @@
 </div>
 
 <style>
-
     .menu_style_2 ul{
-        /* overflow: hidden;
-
-        display: flex;
-        flex-direction: row;
-        overflow-x: scroll;
-        justify-content: center;
-        align-items: center; */
-
-
-        /* display: -ms-flexbox; */
         display: flex;
         -ms-flex-direction: column;
         justify-content: center;
@@ -80,31 +69,43 @@
         position: relative;
         left: -10px;
         flex-wrap: wrap;
-        
-
     }
 
     .menu_style_2 ul li{
         position: relative;
-        padding: .4rem;
+        padding: .7rem 0;
     }
 
     .menu_style_2 ul li a{
-        color: var(--primary_bg_color_text) !important;
+        color: var(--MAIN_MENU_ul_li_color) !important;
+        font-weight: 600;
+        padding: 0 18px 0 8px;
     }
-
-
     .menu_style_2 ul li a:hover{
-        color: var(--optional_bg_color_text) !important;
-        background: var(--optional_color) !important;
+        color: var(--optional_color) !important;
+        background: transparent;
     }
+
+
+    /* .menu_style_2 ul li ul li:hover{
+        background: var(--optional_color) !important;
+    } */
+    .menu_style_2 ul li ul li:hover a{
+        background: var(--optional_color) !important;
+        color: var(--optional_bg_color_text) !important;
+    }
+
 
     .menu_style_2 ul li ul{
+        width: max-content;
         display: none;
         position: absolute;
+        top: 2.8rem;
         left: 10px;
         z-index: 99;
         padding: 5px 0;
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1), 0 -3px 0 0 #ef4a23;
     }
+
+
 </style>

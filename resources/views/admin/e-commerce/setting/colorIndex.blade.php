@@ -73,9 +73,15 @@
                                         </li>
 
                                         <li>
-                                            <label for="MAIN_MENU_BG" class="text-capitalize">Main menu Background: </label>
+                                            <label for="MAIN_MENU_BG" class="text-capitalize">Main menu background: </label>
                                             <input type="color" id="MAIN_MENU_BG_CHOOSER" value="{{ $MAIN_MENU_BG->value }}">
                                             <input type="text" id="MAIN_MENU_BG" name="MAIN_MENU_BG" value="{{ $MAIN_MENU_BG->value }}">
+                                        </li>
+
+                                        <li>
+                                            <label for="MAIN_MENU_ul_li_color" class="text-capitalize">Main menu item color: </label>
+                                            <input type="color" id="MAIN_MENU_ul_li_color_CHOOSER" value="{{ $MAIN_MENU_ul_li_color->value }}">
+                                            <input type="text" id="MAIN_MENU_ul_li_color" name="MAIN_MENU_ul_li_color" value="{{ $MAIN_MENU_ul_li_color->value }}">
                                         </li>
                                     </ul>
                                 </div>
@@ -148,6 +154,15 @@
         $("#MAIN_MENU_BG").on("keyup", function () {
             $("#MAIN_MENU_BG_CHOOSER").val($(this).val());
         });
+
+        $("#MAIN_MENU_ul_li_color_CHOOSER").on("input", function () {
+            $("#MAIN_MENU_ul_li_color").val($(this).val());
+        });
+        $("#MAIN_MENU_ul_li_color").on("keyup", function () {
+            $("#MAIN_MENU_ul_li_color_CHOOSER").val($(this).val());
+        });
+
+        
     });
 </script>
 @endpush

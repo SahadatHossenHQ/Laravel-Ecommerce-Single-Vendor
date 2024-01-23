@@ -124,6 +124,9 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'OPTIONAL_COLOR'], ['value' => $request->get('OPTIONAL_COLOR')]);
             Setting::updateOrCreate(['name' => 'OPTIONAL_BG_TEXT_COLOR'], ['value' => $request->get('OPTIONAL_BG_TEXT_COLOR')]);
             Setting::updateOrCreate(['name' => 'MAIN_MENU_BG'], ['value' => $request->get('MAIN_MENU_BG')]);
+            Setting::updateOrCreate(['name' => 'MAIN_MENU_ul_li_color'], ['value' => $request->get('MAIN_MENU_ul_li_color')]);
+
+            
             
             
             notify()->success("Successfully updated", "Success");
@@ -345,6 +348,9 @@ class SettingController extends Controller
         $get_MAIN_MENU_BG = Setting::where('name', 'MAIN_MENU_BG')->first();
         $MAIN_MENU_BG = (!$get_MAIN_MENU_BG) ? (object)['value' => $PRIMARY_COLOR->value] : $get_MAIN_MENU_BG;
         
+        $get_MAIN_MENU_ul_li_color = Setting::where('name', 'MAIN_MENU_ul_li_color')->first();
+        $MAIN_MENU_ul_li_color = (!$get_MAIN_MENU_ul_li_color) ? (object)['value' => $PRIMARY_BG_TEXT_COLOR->value] : $get_MAIN_MENU_ul_li_color;
+        
 
 
         return view('admin.e-commerce.setting.colorIndex', compact(
@@ -353,7 +359,8 @@ class SettingController extends Controller
             'SECONDARY_COLOR',
             'OPTIONAL_COLOR',
             'OPTIONAL_BG_TEXT_COLOR',
-            'MAIN_MENU_BG'
+            'MAIN_MENU_BG',
+            'MAIN_MENU_ul_li_color',
         ));
 
         // echo $PRIMARY_BG_TEXT_COLOR;
