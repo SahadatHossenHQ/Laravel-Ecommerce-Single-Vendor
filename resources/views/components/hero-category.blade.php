@@ -9,9 +9,6 @@
                             @endif
                              @foreach (\App\Models\Category::where('status',true)->orderBy('pos','asc')->get()->take($t) as $category)
                                 <li>
-                                    
-                                  
-                                  
                                     <a href="{{route('category.product',$category->slug)}}"><img src="{{asset('uploads/category/'.$category->cover_photo)}}" alt="">{{$category->name}}</a>
                                     @if ($category->sub_categories->count() > 0)
                                         <ul class="sub-cat">

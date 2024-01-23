@@ -312,7 +312,7 @@ header .main-menu .nav-bar .nav-menus ul li a{
       border-bottom:2px solid white;
       font-size: 14px
 }
-header .main-menu .nav-bar .nav-menus ul li a:hover, 
+header .main-menu .nav-bar .nav-menus ul li a:hover, header .main-menu .nav-bar .nav-menus a:hover, 
 .footer-mobile-menu ul li a:hover,
 header .main-menu .nav-bar .nav-menus ul li a.active {
      color: #007bc4;

@@ -239,7 +239,7 @@ ul{
 .products .product .product-wrapper h5{
 	color: #555;
 }
-header .main-menu .nav-bar .nav-menus ul li a:hover, .footer-mobile-menu ul li a:hover{
+header .main-menu .nav-bar .nav-menus ul li a:hover, header .main-menu .nav-bar .nav-menus ul li ul li a, .footer-mobile-menu ul li a:hover{
 	color: var(--optional_bg_color_text) !important;
 	background: var(--optional_color) !important
 }
