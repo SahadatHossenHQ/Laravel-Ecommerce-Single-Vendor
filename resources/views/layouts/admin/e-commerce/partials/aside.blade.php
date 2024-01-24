@@ -733,6 +733,15 @@
 
                         <ul class="nav nav-treeview">
                             <li
+                                class="nav-item {{Request::is('admin/setting/layout') ? 'menu-is-opening menu-open':''}}">
+                                <a href="{{route('admin.setting.layout')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-cog"></i>
+                                    <p>
+                                        Layout
+                                    </p>
+                                </a>
+                            </li>
+                            <li
                                 class="nav-item {{Request::is('admin/setting/color') ? 'menu-is-opening menu-open':''}}">
                                 <a href="{{route('admin.setting.color')}}" class="nav-link">
                                     <i class="nav-icon fas fa-user-cog"></i>

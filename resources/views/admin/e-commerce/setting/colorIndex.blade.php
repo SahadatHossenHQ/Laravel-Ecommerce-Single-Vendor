@@ -71,13 +71,11 @@
                                             <input type="color" id="OPTIONAL_BG_TEXT_COLOR_CHOOSER" value="{{ $OPTIONAL_BG_TEXT_COLOR->value }}">
                                             <input type="text" id="OPTIONAL_BG_TEXT_COLOR" name="OPTIONAL_BG_TEXT_COLOR" value="{{ $OPTIONAL_BG_TEXT_COLOR->value }}">
                                         </li>
-
                                         <li>
                                             <label for="MAIN_MENU_BG" class="text-capitalize">Main menu background: </label>
                                             <input type="color" id="MAIN_MENU_BG_CHOOSER" value="{{ $MAIN_MENU_BG->value }}">
                                             <input type="text" id="MAIN_MENU_BG" name="MAIN_MENU_BG" value="{{ $MAIN_MENU_BG->value }}">
                                         </li>
-
                                         <li>
                                             <label for="MAIN_MENU_ul_li_color" class="text-capitalize">Main menu item color: </label>
                                             <input type="color" id="MAIN_MENU_ul_li_color_CHOOSER" value="{{ $MAIN_MENU_ul_li_color->value }}">

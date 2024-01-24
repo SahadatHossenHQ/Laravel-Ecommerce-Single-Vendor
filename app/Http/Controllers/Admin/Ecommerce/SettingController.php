@@ -167,6 +167,12 @@ class SettingController extends Controller
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 9) {
+            Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
+            Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT'], ['value' => $request->get('SLIDER_LAYOUT')]);
+            notify()->success("Layout successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -327,6 +333,26 @@ class SettingController extends Controller
         notify()->success("Shop Info successfully updated", "Congratulations");
         return back();
     }
+
+
+    public function layoutIndex(){
+
+        $get_MAIN_MENU_STYLE = Setting::where('name', 'MAIN_MENU_STYLE')->first();
+        $MAIN_MENU_STYLE = (!$get_MAIN_MENU_STYLE) ? (object)['value' => '1'] : $get_MAIN_MENU_STYLE;
+
+        $get_SLIDER_LAYOUT = Setting::where('name', 'SLIDER_LAYOUT')->first();
+        $SLIDER_LAYOUT = (!$get_SLIDER_LAYOUT) ? (object)['value' => '1'] : $get_SLIDER_LAYOUT;
+
+
+        return view('admin.e-commerce.setting.layoutIndex', compact(
+            'MAIN_MENU_STYLE',
+            'SLIDER_LAYOUT',
+        ));
+
+        // echo $PRIMARY_BG_TEXT_COLOR;
+    }
+
+
 
     public function colorIndex(){
 

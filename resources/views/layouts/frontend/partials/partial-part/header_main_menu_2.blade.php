@@ -106,6 +106,11 @@
         margin: 0 !important;
     }
 
+    .menu_style_2 ul li ul li a{
+        background: var(--optional_bg_color_text) !important;
+        color: var(--optional_color) !important;
+    }
+
     .menu_style_2 ul li ul li:hover a{
         background: var(--optional_color) !important;
         color: var(--optional_bg_color_text) !important;

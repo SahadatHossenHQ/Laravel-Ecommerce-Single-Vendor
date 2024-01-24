@@ -169,8 +169,11 @@
 
 
     {{-- Main Menu --}}
-    {{-- @include('layouts.frontend.partials.partial-part.header_main_menu_1') --}}
-    @include('layouts.frontend.partials.partial-part.header_main_menu_2')
+    @if (!empty(setting('MAIN_MENU_STYLE')))
+    @include('layouts.frontend.partials.partial-part.header_main_menu_' . setting('MAIN_MENU_STYLE'))
+    @else
+    @include('layouts.frontend.partials.partial-part.header_main_menu_1')
+    @endif
 
 </header>
 
