@@ -100,10 +100,10 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 </section>
 <br>
 <!--================product  Area start=================-->
-<!-- <div class="malls">
+
+<div class="malls">
     <div class="container">
         <h3 class="title  col-md-12"><span>Sellers</span> <a href="{{route('vendors')}}">view all</a></h3>
-        
         <div class="row autoplay slick-slides ">
             @foreach ($shops as $shop)
             <div class="mall">
@@ -124,7 +124,7 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
             
         </div>
     </div>
-</div> -->
+</div>
 <!--================product  Area End=================-->
 @foreach($campaigns_product as $campain)
 <style>

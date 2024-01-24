@@ -115,9 +115,4 @@
         background: var(--optional_color) !important;
         color: var(--optional_bg_color_text) !important;
     }
-
-
-
-
-
 </style>

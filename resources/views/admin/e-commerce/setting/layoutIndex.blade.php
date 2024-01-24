@@ -39,13 +39,14 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="color_form" action="{{routeHelper('setting')}}" method="POST">
+                        <form id="layoutForm" action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
                                 <input type="hidden" name="type" value="9">
                                 <div class="form-group col-md-12">
                                     <ul>
+                                        <li class="heading"><b>Global Layout</b></li>
                                         <li>
                                             <label for="MAIN_MENU_STYLE" class="text-capitalize">Main Menu Style: </label>
                                             <select name="MAIN_MENU_STYLE" id="MAIN_MENU_STYLE">
@@ -54,6 +55,8 @@
                                                 <option value="2">Style 2</option>
                                             </select><small style="text-danger"><b>Selected</b> Style {{ $MAIN_MENU_STYLE->value }}</small>
                                         </li>
+
+                                        <li class="heading"><b>Home Layout</b></li>
                                         <li>
                                             <label for="SLIDER_LAYOUT" class="text-capitalize">Slider Layout: </label>
                                             <select name="SLIDER_LAYOUT" id="SLIDER_LAYOUT">
@@ -62,7 +65,12 @@
                                                 <option value="2">Style 2 - Full Width</option>
                                             </select><small style="text-danger"><b>Selected</b> Style {{ $SLIDER_LAYOUT->value }}</small>
                                         </li>
-                                        
+                                        <li>
+                                            <label for="SLIDER_LAYOUT" class="text-capitalize">Slider Layout: </label>
+
+                                        </li>
+
+
                                     </ul>
                                 </div>
                                 <hr>
@@ -91,11 +99,22 @@
 
 @push('css')
 <style>
-    form#color_form ul li{
-        list-style-type: none;
+    form#layoutForm ul li.heading{
+        background: var(--MAIN_MENU_BG);
+        color: var(--primary_bg_color_text);
+        padding: 0.5rem;
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-top: 2rem;
+        margin-bottom: 0.7rem;
     }
 
-    form#color_form input[type="color"]{
+    form#layoutForm ul li{
+        list-style-type: none;
+        padding: .5rem .3rem;
+    }
+    form#layoutForm input[type="color"],
+    form#layoutForm select{
         cursor: pointer;
     }
 </style>    
