@@ -9,22 +9,25 @@
 $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 @endphp
 
-<!--================slider  Area start=================-->
+
+
 @if (!empty(setting('SLIDER_LAYOUT')))
+<!--================ slider Area =================-->
 @include('frontend.partial.slider_style_' . setting('SLIDER_LAYOUT'))
 @else
 @include('frontend.partial.slider_style_1')
+<!--================ / slider Area =================-->
 @endif
-<!--================slider  Area End=================-->
 
-<!--================top catehory  Area start=================-->
+
+
+@if (setting('TOP_CAT_STATUS') != 0 || setting('TOP_CAT_STATUS') == "")
+<!--================ top category Area =================-->
 <div class="shop-category oc" style="padding-bottom: 10px;text-align: center;">
     <div class="container">
         <div class="cat-row">
             @foreach ($categories_f as $category)
-
             <a href="{{route('category.product',$category->slug)}}" class="cat-item">
-
                 <div class="">
                     <div class="thumbnail">
                         <img src="{{asset('uploads/category/'.$category->cover_photo)}}" alt="">
@@ -32,7 +35,6 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
                     <h3>{{$category->name}}</h3>
                 </div>
             </a>
-
             @endforeach
             @foreach ($mini_f as $category)
             <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
@@ -71,8 +73,12 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
         text-align: left;
     }
 </style>
+<!--================ / top category  Area start =================-->
+@endif
 
 
+
+@if (setting('HERO_SLIDER_1') != 0 || setting('HERO_SLIDER_1') == "")
 <style>
     .slick-slides {
         display: none;
@@ -93,14 +99,15 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
                     </a>
                 </div>
                 @endforeach
-
             </div>
         </div>
     </div>
 </section>
-<br>
-<!--================product  Area start=================-->
+@endif
 
+@if (setting('SELLER_STATUS') != 0 || setting('SELLER_STATUS') == "")
+<!--================ Seller Area =================-->
+<br>
 <div class="malls">
     <div class="container">
         <h3 class="title  col-md-12"><span>Sellers</span> <a href="{{route('vendors')}}">view all</a></h3>
@@ -125,8 +132,11 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
         </div>
     </div>
 </div>
-<!--================product  Area End=================-->
-@foreach($campaigns_product as $campain)
+<!--================ / Seller Area ===============-->
+@endif
+
+<!--================ Campaign Area ===============-->
+{{-- @foreach($campaigns_product as $campain)
 <style>
     .camppp.products .slick-list {
         padding-bottom: 80px;
@@ -254,144 +264,140 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 
         <div class="row autoplay slick-slides">
             @foreach ($campain->campaing_products->where('status',0)->take(6) as $cam_products)
-            <?php $product=$cam_products->cam_products;?>
+            <?php $product=$cam_products->cam_products; ?>
             <div class="product">
-                <?php 
-           $typeid=$product->slug;
-        ?>
-
-                <div class="product-wrapper" @if(setting('is_point')==1) style="height: 310px;" @endif>
-                    <div class="pin">
-                        <div class="thumbnail">
-                            <a href="{{route('product.cam.details', $cam_products->id)}}">
-                                <img src="{{asset('uploads/product/'.$product->image)}}" alt="Product Image">
-                            </a>
-                        </div>
-                        <div class="details" style="padding-top:0 !important">
-                            <div class="rating1" style="font-size:12px;text-align: left;">
-                                @php
-                                $hw=App\Models\wishlist::where('product_id',
-                                $product->id)->where('user_id',auth()->id())->first();
-                                if($hw){
-                                $color='#54c8ec';
-                                }else{
-                                $color='#a2acb5';
-                                }
-                                if ($product->reviews->count() > 0) {
-                                $average_rating = $product->reviews->sum('rating') / $product->reviews->count();
-                                } else {
-                                $average_rating = 0;
-                                }
-                                @endphp
-                                <div>
-                                    @if ($average_rating == 0)
+            <?php $typeid=$product->slug; ?>
+            <div class="product-wrapper" @if(setting('is_point')==1) style="height: 310px;" @endif>
+                <div class="pin">
+                    <div class="thumbnail">
+                        <a href="{{route('product.cam.details', $cam_products->id)}}">
+                            <img src="{{asset('uploads/product/'.$product->image)}}" alt="Product Image">
+                        </a>
+                    </div>
+                    <div class="details" style="padding-top:0 !important">
+                        <div class="rating1" style="font-size:12px;text-align: left;">
+                            @php
+                            $hw=App\Models\wishlist::where('product_id',
+                            $product->id)->where('user_id',auth()->id())->first();
+                            if($hw){
+                            $color='#54c8ec';
+                            }else{
+                            $color='#a2acb5';
+                            }
+                            if ($product->reviews->count() > 0) {
+                            $average_rating = $product->reviews->sum('rating') / $product->reviews->count();
+                            } else {
+                            $average_rating = 0;
+                            }
+                            @endphp
+                            <div>
+                                @if ($average_rating == 0)
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                @elseif ($average_rating > 0 && $average_rating < 1.5) <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    @elseif ($average_rating > 0 && $average_rating < 1.5) <i class="fas fa-star"></i>
+                                    @elseif ($average_rating >= 1.5 && $average_rating < 2) <i class="fas fa-star">
+                                        </i>
+                                        <i class="fas fa-star-half-alt"></i>
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        @elseif ($average_rating >= 1.5 && $average_rating < 2) <i class="fas fa-star">
+                                        @elseif ($average_rating >= 2 && $average_rating < 2.5) <i class="fas fa-star">
                                             </i>
-                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="fas fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
-                                            @elseif ($average_rating >= 2 && $average_rating < 2.5) <i
+                                            @elseif ($average_rating >= 2.5 && $average_rating < 3) <i
                                                 class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                @elseif ($average_rating >= 2.5 && $average_rating < 3) <i
+                                                @elseif ($average_rating >= 3 && $average_rating < 3.5) <i
                                                     class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star-half-alt"></i>
+                                                    <i class="fas fa-star"></i>
                                                     <i class="far fa-star"></i>
                                                     <i class="far fa-star"></i>
-                                                    @elseif ($average_rating >= 3 && $average_rating < 3.5) <i
+                                                    @elseif ($average_rating >= 3.5 && $average_rating < 4) <i
                                                         class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
                                                         <i class="far fa-star"></i>
-                                                        <i class="far fa-star"></i>
-                                                        @elseif ($average_rating >= 3.5 && $average_rating < 4) <i
+                                                        @elseif ($average_rating >= 4 && $average_rating < 4.5) <i
                                                             class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
+                                                            <i class="fas fa-star"></i>
                                                             <i class="far fa-star"></i>
-                                                            @elseif ($average_rating >= 4 && $average_rating < 4.5) <i
+                                                            @elseif ($average_rating >= 4.5 && $average_rating < 5) <i
                                                                 class="fas fa-star"></i>
                                                                 <i class="fas fa-star"></i>
                                                                 <i class="fas fa-star"></i>
                                                                 <i class="fas fa-star"></i>
-                                                                <i class="far fa-star"></i>
-                                                                @elseif ($average_rating >= 4.5 && $average_rating < 5)
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star-half-alt"></i>
-                                                                    @elseif ($average_rating >= 5)
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    @endif
-                                                                    <!-- <span style="color: #333;display: inline-block;">({{$average_rating}})</span> -->
-                                </div>
+                                                                <i class="fas fa-star-half-alt"></i>
+                                                                @elseif ($average_rating >= 5)
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                @endif
+                                                                <!-- <span style="color: #333;display: inline-block;">({{$average_rating}})</span> -->
                             </div>
-                            <a href="{{route('product.cam.details', $cam_products->id)}}">
-                                <h5>{{$product->title}}</h5>
-                            </a>
-
-                            <h6><strong
-                                    style="color: var(--primary_color)">৳{{$cam_products->price ?? $product->discount_price ?? $product->regular_price}}</strong>
-                                @if($cam_products->price>0 || $product->discount_price>0)
-                                <del>৳{{$product->regular_price}}</del></h6>
-                            @endif
-
                         </div>
-                        <div class="quick-view"> <a href="{{route('product.cam.details', $cam_products->id)}}"><i
-                                    class="icofont icofont-search"></i> Quick View</a></div>
+                        <a href="{{route('product.cam.details', $cam_products->id)}}">
+                            <h5>{{$product->title}}</h5>
+                        </a>
+
+                        <h6><strong
+                                style="color: var(--primary_color)">৳{{$cam_products->price ?? $product->discount_price ?? $product->regular_price}}</strong>
+                            @if($cam_products->price>0 || $product->discount_price>0)
+                            <del>৳{{$product->regular_price}}</del></h6>
+                        @endif
+
                     </div>
-                    @php
-                    $hw=App\Models\wishlist::where('product_id', $product->id)->where('user_id',auth()->id())->first();
-                    if($hw){
-                    $color='#54c8ec';
-                    }else{
-                    $color='#a2acb5';
-                    }
-                    @endphp
-                    <div class="home-add2 d-block" style="display:block !important">
+                    <div class="quick-view"> <a href="{{route('product.cam.details', $cam_products->id)}}"><i
+                                class="icofont icofont-search"></i> Quick View</a></div>
+                </div>
+                @php
+                $hw=App\Models\wishlist::where('product_id', $product->id)->where('user_id',auth()->id())->first();
+                if($hw){
+                $color='#54c8ec';
+                }else{
+                $color='#a2acb5';
+                }
+                @endphp
+                <div class="home-add2 d-block" style="display:block !important">
 
 
-                        <div class="cbtn d-block">
-                            @if($product->quantity <= '0' ) <a href="{{route('product.details', $product->slug)}}"
-                                class="redirect"
-                                style="margin-top: 10px;background: red;color: white;border-color: red;">Pre Order </a>
-                                @else
-                                <button type="submit" class="redirect" style="margin-top: 10px;"
-                                    data-url="{{route('camp.product.info', $cam_products->id)}}" id="productInfo1"
-                                    type="submit" title="Add To Cart"><i class="fal fa-shopping-cart"
-                                        aria-hidden="true"></i> </button>
-                                @endif
-                                <form action="{{route('wishlist.add')}}" method="post"
-                                    id="submit_payment_form{{$typeid}}">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{$product->slug}}">
-                                    <button style="margin-top: 5px;background:{{$color}}" class="redirect" type="submit"
-                                        title="Wishlist"><i class="fal fa-heart" aria-hidden="true"></i> </button>
-                                </form>
-                        </div>
+                    <div class="cbtn d-block">
+                        @if($product->quantity <= '0' ) <a href="{{route('product.details', $product->slug)}}"
+                            class="redirect" style="margin-top: 10px;background: red;color: white;border-color: red;">
+                            Pre Order </a>
+                            @else
+                            <button type="submit" class="redirect" style="margin-top: 10px;"
+                                data-url="{{route('camp.product.info', $cam_products->id)}}" id="productInfo1"
+                                type="submit" title="Add To Cart"><i class="fal fa-shopping-cart"
+                                    aria-hidden="true"></i> </button>
+                            @endif
+                            <form action="{{route('wishlist.add')}}" method="post" id="submit_payment_form{{$typeid}}">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{$product->slug}}">
+                                <button style="margin-top: 5px;background:{{$color}}" class="redirect" type="submit"
+                                    title="Wishlist"><i class="fal fa-heart" aria-hidden="true"></i> </button>
+                            </form>
                     </div>
                 </div>
+            </div>
             </div>
             @push('js')
             <script>
@@ -466,43 +472,49 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
         </div>
     </div>
 </div>
-@endforeach
-<!--================product  Area start=================-->
+@endforeach --}}
+<!--================ / Campaign Area ===============-->
+
+@if (setting('LATEST_PRODUCT_STATUS') != 0 || setting('LATEST_PRODUCT_STATUS') == "")
+<!--================ Latest product Area =================-->
 <div class="products">
     <div class="container">
         <h3 class="title"><span>Latest Products</span> <a href="{{route('product')}}">View All</a></h3>
-
         <div class="row  ">
             @forelse ($products as $product)
             <x-product-grid-view :product="$product" classes="product col-lg-2 col-md-3 col-sm-4 col-4" />
             @empty
             <x-product-empty-component />
             @endforelse
-
         </div>
     </div>
 </div>
+<!--================ / Latest product Area =================-->
+@endif
+
+@if (setting('FEATURE_PRODUCT_STATUS') != 0 || setting('FEATURE_PRODUCT_STATUS') == "")
+<!--================ Feature product Area =================-->
 <div class="products">
     <div class="container">
         <h3 class="title"><span>Featured Products</span> <a href="{{route('product')}}">View All</a></h3>
-
         <div class="row autoplay slick-slides">
             @forelse ($randomProducts as $randomProduct)
             <x-product-grid-view :product="$randomProduct" classes="" />
             @empty
             <x-product-empty-component />
             @endforelse
-
         </div>
     </div>
 </div>
+<!--================ / Feature product Area =================-->
+@endif
 
-<!--================product  Area End=================-->
+
+@if (setting('HERO_SLIDER_2') != 0 || setting('HERO_SLIDER_2') == "")
 <style>
     .clss.products .slick-list {
         padding-bottom: 20px !important;
     }
-
     .hc img {
         margin-bottom: 22px;
         padding: 0 !important;
@@ -542,14 +554,16 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
                     </div>
                     @endforeach
                 </div>
-
-
             </div>
         </div>
     </div>
 </section>
-<br>
+@endif
+
+
+@if (setting('CLASSIFIED_SELL_STATUS') != 0 || setting('CLASSIFIED_SELL_STATUS') == "")
 @if($unproducts->count()>0)
+<br>
 <div class="products clss">
     <div class="container">
         <h3 class="title"><span>Classified Sell</span> <a href="{{route('clasified.all')}}">View All</a></h3>
@@ -573,15 +587,16 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
                 </div>
             </div>
             @endforeach
-
         </div>
     </div>
 </div>
 @endif
+@endif
 
+
+@if (setting('MEGA_CAT_PRODUCT_STATUS') != 0 || setting('MEGA_CAT_PRODUCT_STATUS') == "")
 @if(!empty(setting('mega_cat')))
 @foreach(json_decode(setting('mega_cat')) as $c)
-
 @php
 $cat =DB::table('categories')->where('id',$c)->first();
 $productIds = DB::table('category_product')->where('category_id', $c)->get()->pluck('product_id');
@@ -589,31 +604,31 @@ $products = \App\Models\Product::whereIn('id', $productIds)->take(6)->where('sta
 @endphp
 @if($cat)
 @if($products->count()>0)
-<div class="products">
-    <div class="container">
-        <h3 class="title"><span>{{$cat->name}} </span><a href="{{route('category.product',$cat->slug)}}">View All</a>
-        </h3>
-        <div class="row autoplay slick-slides">
-            @forelse ($products as $product)
-            <x-product-grid-view :product="$product" classes="" />
-            @empty
-            <x-product-empty-component />
-            @endforelse
+    <div class="products">
+        <div class="container">
+            <h3 class="title"><span>{{$cat->name}} </span><a href="{{route('category.product',$cat->slug)}}">View All</a>
+            </h3>
+            <div class="row autoplay slick-slides">
+                @forelse ($products as $product)
+                <x-product-grid-view :product="$product" classes="" />
+                @empty
+                <x-product-empty-component />
+                @endforelse
 
+            </div>
         </div>
     </div>
-</div>
 @endif
 @endif
 @endforeach
 @endif
+@endif
 
+@if (setting('SUB_CAT_PRODUCT_STATUS') != 0 || setting('SUB_CAT_PRODUCT_STATUS') == "")
 @if(!empty(setting('sub_cat')))
 @foreach(json_decode(setting('sub_cat')) as $c)
-
 @php
 $cat =DB::table('sub_categories')->where('id',$c)->first();
-
 $productIds = DB::table('product_sub_category')->where('sub_category_id', $c)->get()->pluck('product_id');
 $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->take(6)->get();
 @endphp
@@ -637,7 +652,10 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @endif
 @endforeach
 @endif
+@endif
 
+
+@if (setting('MINI_CAT_PRODUCT_STATUS') != 0 || setting('MINI_CAT_PRODUCT_STATUS') == "")
 @if(!empty(setting('mini_cat')))
 @foreach(json_decode(setting('mini_cat')) as $c)
 @php
@@ -665,6 +683,9 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @endif
 @endforeach
 @endif
+@endif
+
+@if (setting('EXTRA_CAT_PRODUCT_STATUS') != 0 || setting('EXTRA_CAT_PRODUCT_STATUS') == "")
 @if(!empty(setting('extra_cat')))
 @foreach(json_decode(setting('extra_cat')) as $c)
 @php
@@ -692,6 +713,10 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @endif
 @endforeach
 @endif
+@endif
+
+
+@if (setting('BRAND_STATUS') != 0 || setting('BRAND_STATUS') == "")
 <!--================product  Area start=================-->
 <div class="shop-category shop-brand" style="padding-bottom: 20px;text-align: center;">
     <div class="container">
@@ -712,13 +737,15 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
     </div>
 </div>
 <!--================product  Area End=================-->
+@endif
+
+@if (setting('CATEGORY_SMALL_SUMMERY') != 0 || setting('CATEGORY_SMALL_SUMMERY') == "")
 <div class="category-thumbanial" style="padding-bottom: 40px;">
     <div class="container box-sh">
         <div class="row" style="text-align: center;">
             @foreach ($collections as $key => $collection)
             <div class="category-item  col-md-3 col-sm-3 col-6">
                 <div class="item-in">
-
                     <div class="thumbnail">
                         <a href="{{route('collection.product', $collection->slug)}}">
                             <img src="{{asset('uploads/collection/'.$collection->cover_photo)}}" alt="Collection Image">
@@ -754,7 +781,9 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
         margin: 0 !important;
     }
 </style>
+@endif
 
+@if (setting('NEWS_LETTER_STATUS') != 0 || setting('NEWS_LETTER_STATUS') == "")
 <div class="bef-footer">
     <div class="container" style="padding: 20px 0px; ">
         <div class="items">
@@ -782,11 +811,13 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
         </div>
     </div>
 </div>
-<!--================top category  Area End=================-->
+@endif
 
 <x-add-cart-modal />
 @include('components.cart-modal-attri')
+
 @endsection
+
 
 
 @push('js')
@@ -1038,11 +1069,9 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 </script>
 @endif
 
-
 <script type="text/javascript">
     $(window).on('load', function () {
         $('#myModal').modal('show');
     });
 </script>
-
 @endpush

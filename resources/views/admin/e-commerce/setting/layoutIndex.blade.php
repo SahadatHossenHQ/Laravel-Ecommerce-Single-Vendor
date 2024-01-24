@@ -56,7 +56,7 @@
                                             </select><small style="text-danger"><b>Selected</b> Style {{ $MAIN_MENU_STYLE->value }}</small>
                                         </li>
 
-                                        <li class="heading"><b>Home Layout</b></li>
+                                        <li class="heading"><b>Components Layout</b></li>
                                         <li>
                                             <label for="SLIDER_LAYOUT" class="text-capitalize">Slider Layout: </label>
                                             <select name="SLIDER_LAYOUT" id="SLIDER_LAYOUT">
@@ -65,12 +65,75 @@
                                                 <option value="2">Style 2 - Full Width</option>
                                             </select><small style="text-danger"><b>Selected</b> Style {{ $SLIDER_LAYOUT->value }}</small>
                                         </li>
-                                        <li>
-                                            <label for="SLIDER_LAYOUT" class="text-capitalize">Slider Layout: </label>
 
+                                        <li>
+                                            <label for="HERO_SLIDER_1" class="text-capitalize">Hero Slider 1: </label>
+                                            <select name="HERO_SLIDER_1" id="HERO_SLIDER_1">
+                                                <option value="{{ $HERO_SLIDER_1->value }}">{{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select><small style="text-danger"><b>Selected</b> Top Category {{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </li>
+
+                                        <li>
+                                            <label for="HERO_SLIDER_2" class="text-capitalize">Hero Slider 1: </label>
+                                            <select name="HERO_SLIDER_2" id="HERO_SLIDER_2">
+                                                <option value="{{ $HERO_SLIDER_2->value }}">{{ ($HERO_SLIDER_2->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select><small style="text-danger"><b>Selected</b> Top Category {{ ($HERO_SLIDER_2->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </li>
+
+                                        
+                                        <li class="heading"><b>Home Layout</b></li>
+                                        <li>
+                                            <label for="TOP_CAT_STATUS" class="text-capitalize">Top Category Status</label>
+                                            <select name="TOP_CAT_STATUS" id="TOP_CAT_STATUS">
+                                                <option value="{{ $TOP_CAT_STATUS->value }}">{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select><small style="text-danger"><b>Selected</b> Top Category {{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </li>
+
+                                        <li>
+                                            <label for="SELLER_STATUS" class="text-capitalize">Seller Status</label>
+                                            <select name="SELLER_STATUS" id="SELLER_STATUS">
+                                                <option value="{{ $SELLER_STATUS->value }}">{{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select><small style="text-danger"><b>Selected</b> Seller {{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
                                         </li>
 
 
+                                        <li>
+                                            <label for="LATEST_PRODUCT_STATUS" class="text-capitalize">Latest Products Status</label>
+                                            <select name="LATEST_PRODUCT_STATUS" id="LATEST_PRODUCT_STATUS">
+                                                <option value="{{ $LATEST_PRODUCT_STATUS->value }}">{{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select><small style="text-danger"><b>Selected</b> Latest Product {{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </li>
+
+
+                                        <li>
+                                            <label for="FEATURE_PRODUCT_STATUS" class="text-capitalize">Feature Products Status</label>
+                                            <select name="FEATURE_PRODUCT_STATUS" id="FEATURE_PRODUCT_STATUS">
+                                                <option value="{{ $FEATURE_PRODUCT_STATUS->value }}">{{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select><small style="text-danger"><b>Selected</b> Feature Product {{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </li>
+                                        
+                                        
+
+
+                                        {{-- CLASSIFIED_SELL_STATUS
+                                        SUB_CAT_PRODUCT_STATUS
+                                        MINI_CAT_PRODUCT_STATUS
+                                        EXTRA_CAT_PRODUCT_STATUS
+                                        BRAND_STATUS
+                                        CATEGORY_SMALL_SUMMERY
+                                        NEWS_LETTER_STATUS --}}
                                     </ul>
                                 </div>
                                 <hr>
