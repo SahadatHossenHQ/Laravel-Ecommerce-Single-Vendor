@@ -742,6 +742,15 @@
                                 </a>
                             </li>
                             <li
+                                class="nav-item {{Request::is('admin/setting/shop_settings') ? 'menu-is-opening menu-open':''}}">
+                                <a href="{{route('admin.setting.shop_settings')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-cog"></i>
+                                    <p>
+                                        Shop Settings/Configure
+                                    </p>
+                                </a>
+                            </li>
+                            <li
                                 class="nav-item {{Request::is('admin/setting/color') ? 'menu-is-opening menu-open':''}}">
                                 <a href="{{route('admin.setting.color')}}" class="nav-link">
                                     <i class="nav-icon fas fa-user-cog"></i>

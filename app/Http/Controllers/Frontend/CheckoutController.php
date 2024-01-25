@@ -27,11 +27,26 @@ class CheckoutController extends Controller
                 return back();
             } 
             else {
+                
                 notify()->warning("Your are not authorized this action.", "Wrong");
                 return back();
             }
+
         }
-        else {
+        elseif(setting('GUEST_CHECKOUT') == 1 || setting('GUEST_CHECKOUT') == ""){
+            
+            if (Cart::count() > 0) {
+
+                return view('frontend.checkout_guest');
+            } else{
+
+                notify()->warning("You cart is empty.", "Empty");
+                return back();
+            }
+            
+        }
+        elseif(setting('GUEST_CHECKOUT') == 0){
+            
             return redirect()->route('login');
         }
     }

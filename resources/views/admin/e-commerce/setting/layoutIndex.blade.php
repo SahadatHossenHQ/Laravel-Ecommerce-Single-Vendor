@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 offse">
-                <h1>Setting - <small>Color</small></h1>
+                <h1>Setting - <small>Layout</small></h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -63,7 +63,7 @@
                                                 <option value="{{ $SLIDER_LAYOUT_STATUS->value }}">{{ ($SLIDER_LAYOUT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
-                                            </select><small style="text-danger"><b>Selected</b> Feature Product {{ ($SLIDER_LAYOUT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                            </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($SLIDER_LAYOUT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
                                         </li>
                                         <li>
                                             <label for="SLIDER_LAYOUT" class="text-capitalize">Slider Layout: </label>

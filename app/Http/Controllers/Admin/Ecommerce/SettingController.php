@@ -196,6 +196,12 @@ class SettingController extends Controller
             notify()->success("Layout successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 10) {
+            Setting::updateOrCreate(['name' => 'GUEST_CHECKOUT'], ['value' => $request->get('GUEST_CHECKOUT')]);
+            
+            notify()->success("Shop settings successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -358,6 +364,16 @@ class SettingController extends Controller
     }
 
 
+    public function shopSettingsIndex(){
+        $get_GUEST_CHECKOUT = Setting::where('name', 'GUEST_CHECKOUT')->first();
+        $GUEST_CHECKOUT = (!$get_GUEST_CHECKOUT) ? (object)['value' => '1'] : $get_GUEST_CHECKOUT;
+
+
+        return view('admin.e-commerce.setting.shopSettingsIndex', compact(
+            'GUEST_CHECKOUT',
+        ));
+    }
+
     public function layoutIndex(){
 
         // GLOBAL
@@ -450,7 +466,7 @@ class SettingController extends Controller
         $SECONDARY_COLOR = (!$get_SECONDARY_COLOR) ? (object)['value' => '#000'] : $get_SECONDARY_COLOR;
 
         $get_OPTIONAL_COLOR = Setting::where('name', 'OPTIONAL_COLOR')->first();
-        $OPTIONAL_COLOR = (!$get_OPTIONAL_COLOR) ? (object)['value' => '#007bc4'] : $get_OPTIONAL_COLOR;
+        $OPTIONAL_COLOR = (!$get_OPTIONAL_COLOR) ? (object)['value' => '#00aa3a'] : $get_OPTIONAL_COLOR;
 
         $get_OPTIONAL_BG_TEXT_COLOR = Setting::where('name', 'OPTIONAL_BG_TEXT_COLOR')->first();
         $OPTIONAL_BG_TEXT_COLOR = (!$get_OPTIONAL_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_OPTIONAL_BG_TEXT_COLOR;
