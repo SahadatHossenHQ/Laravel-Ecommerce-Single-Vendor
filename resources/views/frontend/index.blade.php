@@ -10,13 +10,14 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 @endphp
 
 
-
+@if (setting('SLIDER_LAYOUT_STATUS') != 0 || setting('SLIDER_LAYOUT_STATUS') == "")
 @if (!empty(setting('SLIDER_LAYOUT')))
 <!--================ slider Area =================-->
 @include('frontend.partial.slider_style_' . setting('SLIDER_LAYOUT'))
 @else
 @include('frontend.partial.slider_style_1')
 <!--================ / slider Area =================-->
+@endif
 @endif
 
 
@@ -592,7 +593,6 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 </div>
 @endif
 @endif
-
 
 @if (setting('MEGA_CAT_PRODUCT_STATUS') != 0 || setting('MEGA_CAT_PRODUCT_STATUS') == "")
 @if(!empty(setting('mega_cat')))

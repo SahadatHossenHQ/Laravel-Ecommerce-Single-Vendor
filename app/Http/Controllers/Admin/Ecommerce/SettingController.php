@@ -169,20 +169,30 @@ class SettingController extends Controller
         }
         elseif ($request->type == 9) {
             // GLOBAL
-            Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
+                Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
 
             // COMPONENTS
-            Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT'], ['value' => $request->get('SLIDER_LAYOUT')]);
-            Setting::updateOrCreate(['name' => 'HERO_SLIDER_1'], ['value' => $request->get('HERO_SLIDER_1')]);
-            Setting::updateOrCreate(['name' => 'HERO_SLIDER_2'], ['value' => $request->get('HERO_SLIDER_2')]);
-            
+                Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT_STATUS'], ['value' => $request->get('SLIDER_LAYOUT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT'], ['value' => $request->get('SLIDER_LAYOUT')]);
+                Setting::updateOrCreate(['name' => 'HERO_SLIDER_1'], ['value' => $request->get('HERO_SLIDER_1')]);
+                Setting::updateOrCreate(['name' => 'HERO_SLIDER_2'], ['value' => $request->get('HERO_SLIDER_2')]);
+                
 
             // HOME PAGE
-            Setting::updateOrCreate(['name' => 'TOP_CAT_STATUS'], ['value' => $request->get('TOP_CAT_STATUS')]);
-            Setting::updateOrCreate(['name' => 'SELLER_STATUS'], ['value' => $request->get('SELLER_STATUS')]);
-            Setting::updateOrCreate(['name' => 'LATEST_PRODUCT_STATUS'], ['value' => $request->get('LATEST_PRODUCT_STATUS')]);
-            Setting::updateOrCreate(['name' => 'FEATURE_PRODUCT_STATUS'], ['value' => $request->get('FEATURE_PRODUCT_STATUS')]);
-            
+                Setting::updateOrCreate(['name' => 'TOP_CAT_STATUS'], ['value' => $request->get('TOP_CAT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'SELLER_STATUS'], ['value' => $request->get('SELLER_STATUS')]);
+                Setting::updateOrCreate(['name' => 'LATEST_PRODUCT_STATUS'], ['value' => $request->get('LATEST_PRODUCT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'FEATURE_PRODUCT_STATUS'], ['value' => $request->get('FEATURE_PRODUCT_STATUS')]);
+                
+                Setting::updateOrCreate(['name' => 'CLASSIFIED_SELL_STATUS'], ['value' => $request->get('CLASSIFIED_SELL_STATUS')]);
+                Setting::updateOrCreate(['name' => 'MEGA_CAT_PRODUCT_STATUS'], ['value' => $request->get('MEGA_CAT_PRODUCT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'SUB_CAT_PRODUCT_STATUS'], ['value' => $request->get('SUB_CAT_PRODUCT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'MINI_CAT_PRODUCT_STATUS'], ['value' => $request->get('MINI_CAT_PRODUCT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'EXTRA_CAT_PRODUCT_STATUS'], ['value' => $request->get('EXTRA_CAT_PRODUCT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'BRAND_STATUS'], ['value' => $request->get('BRAND_STATUS')]);
+                Setting::updateOrCreate(['name' => 'CATEGORY_SMALL_SUMMERY'], ['value' => $request->get('CATEGORY_SMALL_SUMMERY')]);
+                Setting::updateOrCreate(['name' => 'NEWS_LETTER_STATUS'], ['value' => $request->get('NEWS_LETTER_STATUS')]);
+                
             notify()->success("Layout successfully updated", "Success");
             return back();
         }
@@ -351,37 +361,62 @@ class SettingController extends Controller
     public function layoutIndex(){
 
         // GLOBAL
-        $get_MAIN_MENU_STYLE = Setting::where('name', 'MAIN_MENU_STYLE')->first();
-        $MAIN_MENU_STYLE = (!$get_MAIN_MENU_STYLE) ? (object)['value' => '1'] : $get_MAIN_MENU_STYLE;
-
+            $get_MAIN_MENU_STYLE = Setting::where('name', 'MAIN_MENU_STYLE')->first();
+            $MAIN_MENU_STYLE = (!$get_MAIN_MENU_STYLE) ? (object)['value' => '1'] : $get_MAIN_MENU_STYLE;
 
         // COMPONENTS
-        $get_SLIDER_LAYOUT = Setting::where('name', 'SLIDER_LAYOUT')->first();
-        $SLIDER_LAYOUT = (!$get_SLIDER_LAYOUT) ? (object)['value' => '1'] : $get_SLIDER_LAYOUT;
+            $get_SLIDER_LAYOUT_STATUS = Setting::where('name', 'SLIDER_LAYOUT_STATUS')->first();
+            $SLIDER_LAYOUT_STATUS = (!$get_SLIDER_LAYOUT_STATUS) ? (object)['value' => '1'] : $get_SLIDER_LAYOUT_STATUS;
+        
+            $get_SLIDER_LAYOUT = Setting::where('name', 'SLIDER_LAYOUT')->first();
+            $SLIDER_LAYOUT = (!$get_SLIDER_LAYOUT) ? (object)['value' => '1'] : $get_SLIDER_LAYOUT;
 
-        $get_HERO_SLIDER_1 = Setting::where('name', 'HERO_SLIDER_1')->first();
-        $HERO_SLIDER_1 = (!$get_HERO_SLIDER_1) ? (object)['value' => '1'] : $get_HERO_SLIDER_1;
+            $get_HERO_SLIDER_1 = Setting::where('name', 'HERO_SLIDER_1')->first();
+            $HERO_SLIDER_1 = (!$get_HERO_SLIDER_1) ? (object)['value' => '1'] : $get_HERO_SLIDER_1;
 
-        $get_HERO_SLIDER_2 = Setting::where('name', 'HERO_SLIDER_2')->first();
-        $HERO_SLIDER_2 = (!$get_HERO_SLIDER_2) ? (object)['value' => '1'] : $get_HERO_SLIDER_2;
-
+            $get_HERO_SLIDER_2 = Setting::where('name', 'HERO_SLIDER_2')->first();
+            $HERO_SLIDER_2 = (!$get_HERO_SLIDER_2) ? (object)['value' => '1'] : $get_HERO_SLIDER_2;
 
         // HOME PAGE
-        $get_TOP_CAT_STATUS = Setting::where('name', 'TOP_CAT_STATUS')->first();
-        $TOP_CAT_STATUS = (!$get_TOP_CAT_STATUS) ? (object)['value' => '1'] : $get_TOP_CAT_STATUS;
+            $get_TOP_CAT_STATUS = Setting::where('name', 'TOP_CAT_STATUS')->first();
+            $TOP_CAT_STATUS = (!$get_TOP_CAT_STATUS) ? (object)['value' => '1'] : $get_TOP_CAT_STATUS;
 
-        $get_SELLER_STATUS = Setting::where('name', 'SELLER_STATUS')->first();
-        $SELLER_STATUS = (!$get_SELLER_STATUS) ? (object)['value' => '1'] : $get_SELLER_STATUS;
+            $get_SELLER_STATUS = Setting::where('name', 'SELLER_STATUS')->first();
+            $SELLER_STATUS = (!$get_SELLER_STATUS) ? (object)['value' => '1'] : $get_SELLER_STATUS;
 
-        $get_LATEST_PRODUCT_STATUS = Setting::where('name', 'LATEST_PRODUCT_STATUS')->first();
-        $LATEST_PRODUCT_STATUS = (!$get_LATEST_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_LATEST_PRODUCT_STATUS;
+            $get_LATEST_PRODUCT_STATUS = Setting::where('name', 'LATEST_PRODUCT_STATUS')->first();
+            $LATEST_PRODUCT_STATUS = (!$get_LATEST_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_LATEST_PRODUCT_STATUS;
 
-        $get_FEATURE_PRODUCT_STATUS = Setting::where('name', 'FEATURE_PRODUCT_STATUS')->first();
-        $FEATURE_PRODUCT_STATUS = (!$get_FEATURE_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_FEATURE_PRODUCT_STATUS;
+            $get_FEATURE_PRODUCT_STATUS = Setting::where('name', 'FEATURE_PRODUCT_STATUS')->first();
+            $FEATURE_PRODUCT_STATUS = (!$get_FEATURE_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_FEATURE_PRODUCT_STATUS;
 
+            $get_CLASSIFIED_SELL_STATUS = Setting::where('name', 'CLASSIFIED_SELL_STATUS')->first();
+            $CLASSIFIED_SELL_STATUS = (!$get_CLASSIFIED_SELL_STATUS) ? (object)['value' => '1'] : $get_CLASSIFIED_SELL_STATUS;
+
+            $get_MEGA_CAT_PRODUCT_STATUS = Setting::where('name', 'MEGA_CAT_PRODUCT_STATUS')->first();
+            $MEGA_CAT_PRODUCT_STATUS = (!$get_MEGA_CAT_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_MEGA_CAT_PRODUCT_STATUS;
+
+            $get_SUB_CAT_PRODUCT_STATUS = Setting::where('name', 'SUB_CAT_PRODUCT_STATUS')->first();
+            $SUB_CAT_PRODUCT_STATUS = (!$get_SUB_CAT_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_SUB_CAT_PRODUCT_STATUS;
+
+            $get_MINI_CAT_PRODUCT_STATUS = Setting::where('name', 'MINI_CAT_PRODUCT_STATUS')->first();
+            $MINI_CAT_PRODUCT_STATUS = (!$get_MINI_CAT_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_MINI_CAT_PRODUCT_STATUS;
+
+            $get_EXTRA_CAT_PRODUCT_STATUS = Setting::where('name', 'EXTRA_CAT_PRODUCT_STATUS')->first();
+            $EXTRA_CAT_PRODUCT_STATUS = (!$get_EXTRA_CAT_PRODUCT_STATUS) ? (object)['value' => '1'] : $get_EXTRA_CAT_PRODUCT_STATUS;
+
+            $get_BRAND_STATUS = Setting::where('name', 'BRAND_STATUS')->first();
+            $BRAND_STATUS = (!$get_BRAND_STATUS) ? (object)['value' => '1'] : $get_BRAND_STATUS;
+
+            $get_CATEGORY_SMALL_SUMMERY = Setting::where('name', 'CATEGORY_SMALL_SUMMERY')->first();
+            $CATEGORY_SMALL_SUMMERY = (!$get_CATEGORY_SMALL_SUMMERY) ? (object)['value' => '1'] : $get_CATEGORY_SMALL_SUMMERY;
+
+            $get_NEWS_LETTER_STATUS = Setting::where('name', 'NEWS_LETTER_STATUS')->first();
+            $NEWS_LETTER_STATUS = (!$get_NEWS_LETTER_STATUS) ? (object)['value' => '1'] : $get_NEWS_LETTER_STATUS;
 
 
         return view('admin.e-commerce.setting.layoutIndex', compact(
+            'SLIDER_LAYOUT_STATUS',
             'MAIN_MENU_STYLE',
             'SLIDER_LAYOUT',
             'TOP_CAT_STATUS',
@@ -390,9 +425,15 @@ class SettingController extends Controller
             'FEATURE_PRODUCT_STATUS',
             'HERO_SLIDER_1',
             'HERO_SLIDER_2',
+            'CLASSIFIED_SELL_STATUS',
+            'MEGA_CAT_PRODUCT_STATUS',
+            'SUB_CAT_PRODUCT_STATUS',
+            'MINI_CAT_PRODUCT_STATUS',
+            'EXTRA_CAT_PRODUCT_STATUS',
+            'BRAND_STATUS',
+            'CATEGORY_SMALL_SUMMERY',
+            'NEWS_LETTER_STATUS',
         ));
-
-        // echo $PRIMARY_BG_TEXT_COLOR;
     }
 
 
