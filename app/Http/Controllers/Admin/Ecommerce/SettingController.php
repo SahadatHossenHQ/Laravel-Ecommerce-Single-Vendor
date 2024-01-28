@@ -524,6 +524,8 @@ class SettingController extends Controller
         $recovrAC = (!$get_recovrAC) ? (object)['value' => 'emailsms' ] : $get_recovrAC;
 
         // Email Configuration
+        $get_mail_config = Setting::where('name', 'mail_config')->first();
+        $mail_config = (!$get_mail_config) ? (object)['value' => 0] : $get_mail_config;
         $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
         $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
         $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
@@ -552,7 +554,8 @@ class SettingController extends Controller
 
             'regVerify',
             'recovrAC',
-
+            
+            'mail_config',
             'MAIL_HOST',
             'MAIL_PORT',
             'MAIL_USERNAME',

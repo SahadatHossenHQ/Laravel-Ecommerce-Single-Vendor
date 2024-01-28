@@ -42,7 +42,7 @@
                                         <li>
                                             <label for="regVerify" class="text-capitalize">Registration verify With</label>
                                             <select name="regVerify" id="regVerify">
-                                                @if ($regVerify->value == 'email')    
+                                                @if ($regVerify->value == 'email') 
                                                     <option value="email">Only Email</option>
                                                     <option value="sms">Only SMS</option>
                                                 @else
@@ -107,9 +107,22 @@
                             <div class="card-body">
                                 <div class="form-group col-md-12">
                                     <input type="hidden" name="type" value="5">
-                                    <input type="hidden" name="mail_config" value="0">
+                                    {{-- <input type="hidden" name="mail_config" value="0"> --}}
                                     <input type="hidden" name="MAIL_DRIVER" value="smtp">
                                     <ul>
+                                        <li>
+                                            <label for="mail_config" class="text-capitalize">Mail Configuration</label>
+                                            <select name="mail_config" id="mail_config">
+                                                @if ($mail_config->value == 1)    
+                                                    <option value="1">ON</option>
+                                                    <option value="0">OFF</option>
+                                                @else
+                                                <option value="0">OFF</option>
+                                                <option value="1">ON</option>
+                                                @endif
+                                            </select>
+                                            {{-- <small class="text-primary">Selected: {{ Str::upper($mail_config->value) }}</small> --}}
+                                        </li>
                                         <li>
                                             <label for="MAIL_HOST" class="text-capitalize">Email Host</label>
                                             <input type="text" name="MAIL_HOST" id="MAIL_HOST" value="{{ $MAIL_HOST->value }}">

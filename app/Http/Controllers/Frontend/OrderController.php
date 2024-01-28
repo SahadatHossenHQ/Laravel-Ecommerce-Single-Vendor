@@ -92,7 +92,7 @@ class OrderController extends Controller
             $wl = $cart_subtotal + $shipping_charge;
         }
 
-        if ($request->payment_method == 'wallate') {
+        /* if ($request->payment_method == 'wallate') {
             if ($wl > auth()->user()->wallate) {
                 notify()->warning("don't have enough balance in wallate", "Warning");
                 return redirect()->back();
@@ -101,9 +101,9 @@ class OrderController extends Controller
                 $user->wallate = $user->wallate - $wl;
                 $user->update();
             }
-        }
+        } */
 
-        if ($request->partial_paid > 0) {
+        /* if ($request->partial_paid > 0) {
             if ($request->partial_paid > auth()->user()->wallate) {
                 notify()->warning("don't have enough balance in wallate", "Warning");
                 return redirect()->back();
@@ -112,12 +112,12 @@ class OrderController extends Controller
                 $user->wallate = $user->wallate - $request->partial_paid;
                 $user->update();
             }
-        }
+        } */
 
 
         $order = Order::create([
-            'user_id'         => auth()->id(),
-            'refer_id'     => auth()->user()->refer,
+            // 'user_id'         => auth()->id(),
+            // 'refer_id'     => auth()->user()->refer,
             'first_name'      => $request->first_name,
             'last_name'       => $request->last_name,
             'company_name'    => $request->company,
@@ -125,13 +125,13 @@ class OrderController extends Controller
             'address'         => $request->address,
             'town'            => $request->city,
             'district'        => $request->district,
-            'thana'        => $request->thana,
+            'thana'           => $request->thana,
             'post_code'       => $request->postcode,
             'phone'           => $request->phone,
             'email'           => $request->email,
             'shipping_method' => $request->shipping_method,
             'shipping_charge' => $shipping_charge,
-            'single_charge' => $single_charge,
+            'single_charge'   => $single_charge,
             'payment_method'  => $request->payment_method,
             'mobile_number'   => $request->mobile_number,
             'transaction_id'  => $request->transaction_id,
@@ -143,9 +143,9 @@ class OrderController extends Controller
             'coupon_code'     => $coupon_code ?? '',
             'subtotal'        => $subtotal ?? $cart_subtotal,
             'discount'        => $discount ?? 0,
-            'is_pre'        => $request->pr ?? 0,
+            'is_pre'          => $request->pr ?? 0,
             'total'           => $total ?? $cart_subtotal + $shipping_charge,
-            'cart_type'     => 1,
+            'cart_type'       => 1,
         ]);
 
         $chars    = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -349,7 +349,7 @@ class OrderController extends Controller
                 return Redirect::to($url);
             }
         } else {
-            if (env('mail_config') == 1) {
+            if (setting('mail_config') == 1) {
                 Mail::send('frontend.invoice-mail', $data, function ($mail) use ($data) {
                     $mail->from(config('mail.from.address'),  config('app.name'))
                         ->to($data['email'], $data['name'])
@@ -681,7 +681,7 @@ class OrderController extends Controller
                  return Redirect::to($url);
             }
         }else{
-            if(env('mail_config')==1){
+            if(setting('mail_config')==1){
              Mail::send('frontend.invoice-mail', $data, function($mail) use ($data)
         {
             $mail->from(config('mail.from.address'),  config('app.name'))
