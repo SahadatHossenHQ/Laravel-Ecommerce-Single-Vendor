@@ -40,7 +40,7 @@
 
 <div id="checkout">
     <div class="container">
-        <form action="{{route('order.store')}}" method="POST">
+        <form action="{{route('order.store_guest')}}" method="POST">
             @csrf
             <div class="row mt-3">
                 <div class="col-md-8 offset-md-2 alert-message">
@@ -117,13 +117,13 @@
                         </div>
                         
                        
-                        <!-- <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="postcode">Postcode / ZIP(optional)</label>
                             <input  name="postcode" id="postcode" class="form-control @error('postcode') is-invalid @enderror" type="text"  />
                             @error('email')
                                 <small class="form-text text-danger">{{$message}}</small>
                             @enderror
-                        </div> -->
+                        </div> --}}
                       
                         <div class="form-group col-md-6">
                             <label for="phone">Phone <sup style="color: red;">*</sup></label>
@@ -133,8 +133,8 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email">Email Address <sup style="color: red;">*</sup></label>
-                            <input value="{{-- {{auth()->user()->email}} --}}" required name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
+                            <label for="email">Email Address (optional)</label>
+                            <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
                             @error('email')
                                 <small class="form-text text-danger">{{$message}}</small>
                             @enderror
