@@ -128,7 +128,6 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::get('apply/coupon/buy-now/{code}/{id}/{qty}/{dynamic}', [CartController::class, 'applyCouponBuyNow'])->name('apply.coupon.buy');
     Route::get('order', [OrderController::class, 'order'])->name('order');
     Route::post('order', [OrderController::class, 'orderStore'])->name('order.store');
-    Route::post('order_guest', [OrderController::class, 'orderStore_guest'])->name('order.store_guest');
     Route::post('order/buy-now', [OrderController::class, 'orderBuyNowStore'])->name('order.buy.store');
     Route::get('order/invoice/{id}', [OrderController::class, 'orderInvoice'])->name('order.invoice');
     Route::get('order/cacnel/{id}', [OrderController::class, 'cancel'])->name('order.cacnel');
@@ -189,6 +188,10 @@ Route::get('contact/form', [ContactController::class, 'index'])->name('contact')
 Route::post('contact/create', [ContactController::class, 'store'])->name('contact.store');
 
 Route::post('subscription', [subscriptionController::class, 'store'])->name('subscription');
+
+// Guest Order
+Route::post('order_guest', [OrderController::class, 'orderStore_guest'])->name('order.store_guest');
+
 
 
 /** Google OAuth routes */

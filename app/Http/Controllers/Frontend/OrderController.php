@@ -158,101 +158,101 @@ class OrderController extends Controller
 
 
         $total_refer = 0;
-        $usids = [];
-        foreach (Cart::content() as $item) {
-            $pp = Product::find($item->id);
-            if (!in_array("$pp->user_id", $usids)) {
-                $usids[] = $pp->user_id;
-            }
+        // $usids = [];
+        // foreach (Cart::content() as $item) {
+        //     $pp = Product::find($item->id);
+        //     if (!in_array("$pp->user_id", $usids)) {
+        //         $usids[] = $pp->user_id;
+        //     }
 
-            $total_refer += (($item->price / 100) * $item->qty);
-            if ($item->qty >= 6 && $pp->whole_price > 0) {
-                $price = $pp->whole_price;
-            } else {
-                $price = $item->price;
-            }
-            $vendor = User::find($pp->user_id);
-            $vp = $price * $item->qty;
-            if ($vendor->role_id == 1) {
-                $gt = $vp;
-            } else {
-                if ($vendor->shop_info->commission == NULL) {
-                    $commission  = (setting('shop_commission') / 100) * $vp;
-                    $gt = $vp - $commission;
-                } else {
-                    $commission  = ($vendor->shop_info->commission / 100) * $vp;
-                    $gt = $vp - $commission;
-                }
-            }
-            $order->orderDetails()->create([
-                'product_id'  => $item->id,
-                'seller_id'     => $pp->user_id,
-                'title'       => $item->name,
-                'color'       => $item->options->color,
-                'size'        => json_encode($item->options->attributes),
-                'qty'         => $item->qty,
-                'price'       => $price,
-                'total_price' => $price * $item->qty,
-                'g_total' => $gt
-            ]);
+        //     $total_refer += (($item->price / 100) * $item->qty);
+        //     if ($item->qty >= 6 && $pp->whole_price > 0) {
+        //         $price = $pp->whole_price;
+        //     } else {
+        //         $price = $item->price;
+        //     }
+        //     $vendor = User::find($pp->user_id);
+        //     $vp = $price * $item->qty;
+        //     if ($vendor->role_id == 1) {
+        //         $gt = $vp;
+        //     } else {
+        //         if ($vendor->shop_info->commission == NULL) {
+        //             $commission  = (setting('shop_commission') / 100) * $vp;
+        //             $gt = $vp - $commission;
+        //         } else {
+        //             $commission  = ($vendor->shop_info->commission / 100) * $vp;
+        //             $gt = $vp - $commission;
+        //         }
+        //     }
+        //     $order->orderDetails()->create([
+        //         'product_id'  => $item->id,
+        //         'seller_id'     => $pp->user_id,
+        //         'title'       => $item->name,
+        //         'color'       => $item->options->color,
+        //         'size'        => json_encode($item->options->attributes),
+        //         'qty'         => $item->qty,
+        //         'price'       => $price,
+        //         'total_price' => $price * $item->qty,
+        //         'g_total' => $gt
+        //     ]);
 
-            $product = Product::find($item->id);
-            // $userPoint = User::find(auth()->id());
-            // $pointp = $product->point * $item->qty;
-            // if (setting('is_point') == 1) {
-            //     $point = $pointp;
-            // } else {
-            //     $point = 0;
-            // }
-            // $userPoint->pen_point += $point;
+        //     $product = Product::find($item->id);
+        //     // $userPoint = User::find(auth()->id());
+        //     // $pointp = $product->point * $item->qty;
+        //     // if (setting('is_point') == 1) {
+        //     //     $point = $pointp;
+        //     // } else {
+        //     //     $point = 0;
+        //     // }
+        //     // $userPoint->pen_point += $point;
 
-            // $userPoint->update();
-            // $order->point += $point;
-            $order->save();
-            echo 'Order Saved';
-            // if ($product) {
-            //     $vendor = User::find($product->user_id);
-            //     if ($vendor->role_id == 1) {
-            //         $account = VendorAccount::where('vendor_id', 1)->first();
-            //         $account->pending_amount += $vp;
-            //         $account->save();
-            //     } else {
+        //     // $userPoint->update();
+        //     // $order->point += $point;
+        //     $order->save();
+        //     echo 'Order Saved';
+        //     // if ($product) {
+        //     //     $vendor = User::find($product->user_id);
+        //     //     if ($vendor->role_id == 1) {
+        //     //         $account = VendorAccount::where('vendor_id', 1)->first();
+        //     //         $account->pending_amount += $vp;
+        //     //         $account->save();
+        //     //     } else {
 
-            //         $grand_total = $price * $item->qty;
+        //     //         $grand_total = $price * $item->qty;
 
-            //         if ($vendor->shop_info->commission == NULL) {
-            //             $commission  = (setting('shop_commission') / 100) * $grand_total;
-            //             $amount = $grand_total - $commission;
-            //         } else {
-            //             $commission  = ($vendor->shop_info->commission / 100) * $grand_total;
-            //             $amount = $grand_total - $commission;
-            //         }
-            //         $adminAccount = VendorAccount::where('vendor_id', 1)->first();
-            //         $adminAccount->update([
-            //             'pending_amount' => $adminAccount->pending_amount + $commission
-            //         ]);
+        //     //         if ($vendor->shop_info->commission == NULL) {
+        //     //             $commission  = (setting('shop_commission') / 100) * $grand_total;
+        //     //             $amount = $grand_total - $commission;
+        //     //         } else {
+        //     //             $commission  = ($vendor->shop_info->commission / 100) * $grand_total;
+        //     //             $amount = $grand_total - $commission;
+        //     //         }
+        //     //         $adminAccount = VendorAccount::where('vendor_id', 1)->first();
+        //     //         $adminAccount->update([
+        //     //             'pending_amount' => $adminAccount->pending_amount + $commission
+        //     //         ]);
 
-            //         $vendor->vendorAccount()->update([
-            //             'pending_amount' => $vendor->vendorAccount->pending_amount + $amount
-            //         ]);
+        //     //         $vendor->vendorAccount()->update([
+        //     //             'pending_amount' => $vendor->vendorAccount->pending_amount + $amount
+        //     //         ]);
 
-            //         $check = Commission::where('user_id', $product->user_id)->where('order_id', $order->id)->first();
-            //         if (!$check) {
-            //             Commission::create([
-            //                 'user_id'  => $product->user_id,
-            //                 'order_id' => $order->id,
-            //                 'amount'   => $commission,
-            //                 'status' => '0',
-            //             ]);
-            //         } else {
-            //             $check->amount = $check->amount + $commission;
-            //             $check->update();
-            //         }
-            //     }
-            //     $product->quantity = $product->quantity - $item->qty;
-            //     $product->save();
-            // }
-        }
+        //     //         $check = Commission::where('user_id', $product->user_id)->where('order_id', $order->id)->first();
+        //     //         if (!$check) {
+        //     //             Commission::create([
+        //     //                 'user_id'  => $product->user_id,
+        //     //                 'order_id' => $order->id,
+        //     //                 'amount'   => $commission,
+        //     //                 'status' => '0',
+        //     //             ]);
+        //     //         } else {
+        //     //             $check->amount = $check->amount + $commission;
+        //     //             $check->update();
+        //     //         }
+        //     //     }
+        //     //     $product->quantity = $product->quantity - $item->qty;
+        //     //     $product->save();
+        //     // }
+        // }
 
         // foreach ($usids as $seller) {
         //     $total = DB::table('order_details')->where('seller_id', $seller)->where('order_id', $order->id)->sum('total_price');
@@ -368,7 +368,9 @@ class OrderController extends Controller
             // notify()->success("Your order successfully done", "Congratulations");
             // return redirect()->route('order');
 
-            echo 'Order Success';
+            echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
+
+            
         }
     }
 

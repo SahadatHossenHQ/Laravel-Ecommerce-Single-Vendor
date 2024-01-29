@@ -28,7 +28,8 @@ class CreateOrdersTable extends Migration
             $table->string('thana');
             $table->string('post_code');
             $table->string('phone');
-            $table->string('email');
+            // $table->string('email');
+            $table->string('email')->nullable();
             $table->string('shipping_method');
             $table->string('payment_method');
             $table->string('mobile_number')->nullable();

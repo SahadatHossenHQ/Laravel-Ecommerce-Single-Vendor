@@ -103,9 +103,9 @@
                             <label for="district">Thana <sup style="color: red;">*</sup></label>
                             <select name="thana"  class="form-control @error('district') is-invalid @enderror"  id="polic_sta">
                                 <option disabled >Select Thana</option>
-                                 @isset($order->thana)
-                                 <option selected value="{{$order->thana}}">{{$order->thana}}</option>
-                                 @endisset
+                                @isset($order->thana)
+                                <option selected value="{{$order->thana}}">{{$order->thana}}</option>
+                                @endisset
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -116,7 +116,6 @@
                             @enderror
                         </div>
                         
-                       
                         {{-- <div class="form-group">
                             <label for="postcode">Postcode / ZIP(optional)</label>
                             <input  name="postcode" id="postcode" class="form-control @error('postcode') is-invalid @enderror" type="text"  />

@@ -46,5 +46,13 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
+
+        // Drop foreign key constraint first
+        // Schema::table('download_users', function (Blueprint $table) {
+        //     $table->dropForeign(['product_id']);
+        // });
+
+        // // Now drop the table
+        // Schema::dropIfExists('products');
     }
 }
