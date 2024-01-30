@@ -50,7 +50,7 @@
                                         <li>
                                             <label for="MAIN_MENU_STYLE" class="text-capitalize">Main Menu Style: </label>
                                             <select name="MAIN_MENU_STYLE" id="MAIN_MENU_STYLE">
-                                                <option value="{{ $MAIN_MENU_STYLE->value }}">Style {{ $MAIN_MENU_STYLE->value }}</option>
+                                                <option class="text-white bg-success" value="{{ $MAIN_MENU_STYLE->value }}">Style {{ $MAIN_MENU_STYLE->value }}</option>
                                                 <option value="1">Style 1</option>
                                                 <option value="2">Style 2</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $MAIN_MENU_STYLE->value }}</small>
@@ -60,7 +60,7 @@
                                         <li>
                                             <label for="SLIDER_LAYOUT_STATUS" class="text-capitalize">Feature Products Status</label>
                                             <select name="SLIDER_LAYOUT_STATUS" id="SLIDER_LAYOUT_STATUS">
-                                                <option value="{{ $SLIDER_LAYOUT_STATUS->value }}">{{ ($SLIDER_LAYOUT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $SLIDER_LAYOUT_STATUS->value }}">{{ ($SLIDER_LAYOUT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($SLIDER_LAYOUT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -68,7 +68,7 @@
                                         <li>
                                             <label for="SLIDER_LAYOUT" class="text-capitalize">Slider Layout: </label>
                                             <select name="SLIDER_LAYOUT" id="SLIDER_LAYOUT">
-                                                <option value="{{ $SLIDER_LAYOUT->value }}">Style {{ $SLIDER_LAYOUT->value }}</option>
+                                                <option class="text-white bg-success" value="{{ $SLIDER_LAYOUT->value }}">Style {{ $SLIDER_LAYOUT->value }}</option>
                                                 <option value="1">Style 1 - Container</option>
                                                 <option value="2">Style 2 - Full Width</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $SLIDER_LAYOUT->value }}</small>
@@ -76,7 +76,7 @@
                                         <li>
                                             <label for="HERO_SLIDER_1" class="text-capitalize">Hero Slider 1: </label>
                                             <select name="HERO_SLIDER_1" id="HERO_SLIDER_1">
-                                                <option value="{{ $HERO_SLIDER_1->value }}">{{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $HERO_SLIDER_1->value }}">{{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</small>
@@ -84,7 +84,7 @@
                                         <li>
                                             <label for="HERO_SLIDER_2" class="text-capitalize">Hero Slider 1: </label>
                                             <select name="HERO_SLIDER_2" id="HERO_SLIDER_2">
-                                                <option value="{{ $HERO_SLIDER_2->value }}">{{ ($HERO_SLIDER_2->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $HERO_SLIDER_2->value }}">{{ ($HERO_SLIDER_2->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($HERO_SLIDER_2->value == 1 ? "On"  : "Off" ) }}</small>
@@ -94,7 +94,7 @@
                                         <li>
                                             <label for="TOP_CAT_STATUS" class="text-capitalize">Top Category Status</label>
                                             <select name="TOP_CAT_STATUS" id="TOP_CAT_STATUS">
-                                                <option value="{{ $TOP_CAT_STATUS->value }}">{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $TOP_CAT_STATUS->value }}">{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -102,7 +102,7 @@
                                         <li>
                                             <label for="SELLER_STATUS" class="text-capitalize">Seller Status</label>
                                             <select name="SELLER_STATUS" id="SELLER_STATUS">
-                                                <option value="{{ $SELLER_STATUS->value }}">{{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $SELLER_STATUS->value }}">{{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -110,7 +110,7 @@
                                         <li>
                                             <label for="LATEST_PRODUCT_STATUS" class="text-capitalize">Latest Products Status</label>
                                             <select name="LATEST_PRODUCT_STATUS" id="LATEST_PRODUCT_STATUS">
-                                                <option value="{{ $LATEST_PRODUCT_STATUS->value }}">{{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $LATEST_PRODUCT_STATUS->value }}">{{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -118,7 +118,7 @@
                                         <li>
                                             <label for="FEATURE_PRODUCT_STATUS" class="text-capitalize">Feature Products Status</label>
                                             <select name="FEATURE_PRODUCT_STATUS" id="FEATURE_PRODUCT_STATUS">
-                                                <option value="{{ $FEATURE_PRODUCT_STATUS->value }}">{{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $FEATURE_PRODUCT_STATUS->value }}">{{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -126,7 +126,7 @@
                                         <li>
                                             <label for="CLASSIFIED_SELL_STATUS" class="text-capitalize">Classified Sell Status</label>
                                             <select name="CLASSIFIED_SELL_STATUS" id="CLASSIFIED_SELL_STATUS">
-                                                <option value="{{ $CLASSIFIED_SELL_STATUS->value }}">{{ ($CLASSIFIED_SELL_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $CLASSIFIED_SELL_STATUS->value }}">{{ ($CLASSIFIED_SELL_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($CLASSIFIED_SELL_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -134,7 +134,7 @@
                                         <li>
                                             <label for="MEGA_CAT_PRODUCT_STATUS" class="text-capitalize">MEGA Cateogory Status</label>
                                             <select name="MEGA_CAT_PRODUCT_STATUS" id="MEGA_CAT_PRODUCT_STATUS">
-                                                <option value="{{ $MEGA_CAT_PRODUCT_STATUS->value }}">{{ ($MEGA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $MEGA_CAT_PRODUCT_STATUS->value }}">{{ ($MEGA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($MEGA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -142,7 +142,7 @@
                                         <li>
                                             <label for="SUB_CAT_PRODUCT_STATUS" class="text-capitalize">Sub Cateogory Status</label>
                                             <select name="SUB_CAT_PRODUCT_STATUS" id="SUB_CAT_PRODUCT_STATUS">
-                                                <option value="{{ $SUB_CAT_PRODUCT_STATUS->value }}">{{ ($SUB_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $SUB_CAT_PRODUCT_STATUS->value }}">{{ ($SUB_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($SUB_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -150,7 +150,7 @@
                                         <li>
                                             <label for="MINI_CAT_PRODUCT_STATUS" class="text-capitalize">Mini Category Status</label>
                                             <select name="MINI_CAT_PRODUCT_STATUS" id="MINI_CAT_PRODUCT_STATUS">
-                                                <option value="{{ $MINI_CAT_PRODUCT_STATUS->value }}">{{ ($MINI_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $MINI_CAT_PRODUCT_STATUS->value }}">{{ ($MINI_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($MINI_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -158,7 +158,7 @@
                                         <li>
                                             <label for="EXTRA_CAT_PRODUCT_STATUS" class="text-capitalize">Extra Category Status</label>
                                             <select name="EXTRA_CAT_PRODUCT_STATUS" id="EXTRA_CAT_PRODUCT_STATUS">
-                                                <option value="{{ $EXTRA_CAT_PRODUCT_STATUS->value }}">{{ ($EXTRA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $EXTRA_CAT_PRODUCT_STATUS->value }}">{{ ($EXTRA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($EXTRA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -166,7 +166,7 @@
                                         <li>
                                             <label for="BRAND_STATUS" class="text-capitalize">Brand Status</label>
                                             <select name="BRAND_STATUS" id="BRAND_STATUS">
-                                                <option value="{{ $BRAND_STATUS->value }}">{{ ($BRAND_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $BRAND_STATUS->value }}">{{ ($BRAND_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($BRAND_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
@@ -174,7 +174,7 @@
                                         <li>
                                             <label for="CATEGORY_SMALL_SUMMERY" class="text-capitalize">Cateogry Small Summery Status</label>
                                             <select name="CATEGORY_SMALL_SUMMERY" id="CATEGORY_SMALL_SUMMERY">
-                                                <option value="{{ $CATEGORY_SMALL_SUMMERY->value }}">{{ ($CATEGORY_SMALL_SUMMERY->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $CATEGORY_SMALL_SUMMERY->value }}">{{ ($CATEGORY_SMALL_SUMMERY->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($CATEGORY_SMALL_SUMMERY->value == 1 ? "On"  : "Off" ) }}</small>
@@ -182,7 +182,7 @@
                                         <li>
                                             <label for="NEWS_LETTER_STATUS" class="text-capitalize">News Letter Status</label>
                                             <select name="NEWS_LETTER_STATUS" id="NEWS_LETTER_STATUS">
-                                                <option value="{{ $NEWS_LETTER_STATUS->value }}">{{ ($NEWS_LETTER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
+                                                <option class="text-white bg-success" value="{{ $NEWS_LETTER_STATUS->value }}">{{ ($NEWS_LETTER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($NEWS_LETTER_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
