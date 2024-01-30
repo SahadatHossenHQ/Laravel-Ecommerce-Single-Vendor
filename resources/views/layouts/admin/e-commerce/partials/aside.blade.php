@@ -99,6 +99,16 @@
                 </li>
                 @endif
                 @if(auth()->user()->desig ==1 || auth()->user()->desig ==2)
+
+                <li class="nav-item ">
+                    <a href="{{ route('admin.notice_index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p>
+                            Custom Notice
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{Request::is('admin/category*') ? 'menu-is-opening menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>

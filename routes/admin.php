@@ -258,6 +258,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('setting', [SettingController::class, 'update'])->name('setting.update');
     Route::put('setting/logo', [SettingController::class, 'updateLogo'])->name('update.logo');
 
+    Route::get('notice', [SettingController::class, 'noticeIndex'])->name('notice_index');
+
+
     Route::get('setting/site_info', [SettingController::class, 'site_infoIndex'])->name('setting.site_info');
     Route::get('setting/layout', [SettingController::class, 'layoutIndex'])->name('setting.layout');
     Route::get('setting/shop_settings', [SettingController::class, 'shopSettingsIndex'])->name('setting.shop_settings');

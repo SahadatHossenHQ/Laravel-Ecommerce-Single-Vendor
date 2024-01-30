@@ -202,12 +202,35 @@ class SettingController extends Controller
             notify()->success("Shop settings successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 11) {
+            Setting::updateOrCreate(['name' => 'NOTICE_STATUS'], ['value' => $request->get('NOTICE_STATUS')]);
+            Setting::updateOrCreate(['name' => 'CUSTOM_NOTICE'], ['value' => $request->get('CUSTOM_NOTICE')]);
+            
+            notify()->success("Notice successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
         }
 
     }
+
+
+    public function noticeIndex(){
+        $get_NOTICE_STATUS = Setting::where('name', 'NOTICE_STATUS')->first();
+        $NOTICE_STATUS = (!$get_NOTICE_STATUS) ? (object)['value' => 0 ] : $get_NOTICE_STATUS;
+
+        $get_CUSTOM_NOTICE = Setting::where('name', 'CUSTOM_NOTICE')->first();
+        $CUSTOM_NOTICE = (!$get_CUSTOM_NOTICE) ? (object)['value' => 'Today running best offer' ] : $get_CUSTOM_NOTICE;
+
+    
+        return view('admin.e-commerce.noticeIndex', compact(
+            'NOTICE_STATUS',
+            'CUSTOM_NOTICE',
+        ));
+    }
+
 
     public function site_infoIndex(){
         $get_SITE_INFO_ADDRESS = Setting::where('name', 'SITE_INFO_ADDRESS')->first();

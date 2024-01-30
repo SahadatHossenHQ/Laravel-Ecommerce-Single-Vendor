@@ -22,6 +22,31 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 
 
 
+@if (setting('NOTICE_STATUS') != 0 || setting('NOTICE_STATUS') == "")
+<!--================ CUSTOM NOTICE =================-->
+<br>
+<section class="container">
+<div class="row">
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            New Updates
+        </div>
+        <div class="card-body">
+            @php
+            echo setting('CUSTOM_NOTICE');
+            @endphp
+        </div>
+    </div> 
+</div>
+</div>
+</section>
+<br>
+<!--================ / CUSTOM NOTICE =================-->
+@endif
+
+
+
 @if (setting('TOP_CAT_STATUS') != 0 || setting('TOP_CAT_STATUS') == "")
 <!--================ top category Area =================-->
 <div class="shop-category oc" style="padding-bottom: 10px;text-align: center;">
