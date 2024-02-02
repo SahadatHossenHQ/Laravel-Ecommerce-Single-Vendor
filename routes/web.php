@@ -164,7 +164,7 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::get('/ads/edit/{ads}', [adsController::class, 'edit'])->name('ads.edit');
     Route::delete('/ads/{ads}', [adsController::class, 'delete'])->name('ads.delete');
     Route::get('/classic/', [adsController::class, 'all'])->name('clasified.all');
-
+    
     Route::Post('/ads/create', [adsController::class, 'store'])->name('product.clasified.create');
     Route::Post('/ads/update', [adsController::class, 'update'])->name('product.clasified.update');
 
