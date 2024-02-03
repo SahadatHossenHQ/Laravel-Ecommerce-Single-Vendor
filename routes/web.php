@@ -39,6 +39,7 @@ Route::get('success2', [OrderController::class, 'success2'])->name('uddoktapay.s
 Auth::routes();
 Route::get('login/vendor', [HomeController::class, 'vendorLogin'])->name('login.v2');
 Route::get('/seller', [AccountController::class, 'vendorJoin'])->name('vendorJoin');
+// Route::Post('register', [AccountController::class, 'register'])->name('register');
 Route::Post('register2', [AccountController::class, 'register2'])->name('register2');
 Route::get('/', HomeController::class)->name('home');
 Route::get('admin/', [HomeController::class, 'adminLogin'])->name('adminLogin');

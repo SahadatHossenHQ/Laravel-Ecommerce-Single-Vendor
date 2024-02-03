@@ -52,7 +52,7 @@
             @enderror
         </div>
         <div class="form-group col-md-12">
-            <label for="password">Password <sup style="color: red;">*</sup></label>
+            <label for="password">Password <sup style="color: red;">*</sup>&nbsp;&nbsp;<i id="show_pass" class="fal fa-eye"></i></label>
             <input type="password" name="password" id="password"
                 class="form-control @error('password') is-invalid @enderror" required />
             @error('password')
@@ -62,13 +62,38 @@
         <div class="form-group col-md-12">
             <label for="confirm-password">Confirm Password <sup style="color: red;">*</sup></label>
             <input type="password" name="password_confirmation" id="confirm-password" class="form-control" required />
-
         </div>
         <input class="form-control" type="submit" value="Submit" style="background:var(--primary_color)">
-
 </div>
-
 </form>
+@push('js')
+<script>
+    $(document).ready(function () {
+        var showPassIcon = $('#show_pass');
+        var passwordInput = $('#password');
+        var confirmPasswordInput = $('#confirm-password');
+
+        showPassIcon.on('click', function () {
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                confirmPasswordInput.attr('type', 'text');
+                showPassIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                passwordInput.attr('type', 'password');
+                confirmPasswordInput.attr('type', 'password');
+                showPassIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
+    });
+</script>
+@endpush
+@push('css')
+    <style>
+        #show_pass{
+            cursor: pointer;
+        }
+    </style>
+@endpush
 <br>
 <span style="display: block;text-align: center;">Already have an Account? <a href="{{route('login')}}">Sign
         In</a></span>
