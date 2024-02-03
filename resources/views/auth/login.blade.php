@@ -50,7 +50,7 @@ Session::forget('link');
                 @enderror
             </div>
             <div class="form-group">
-                <label>Password <sup style="color: red;">*</sup></label>
+                <label>Password <sup style="color: red;">*</sup>&nbsp;&nbsp;<i id="show_pass" class="fal fa-eye"></i></label>
                 <input type="password" name="password" id="password"
                     class="form-control @error('password') is-in-valid @enderror" required />
                 @error('password')
@@ -77,5 +77,32 @@ Session::forget('link');
             style="color:blue">Sign Up</a></span>
 </div>
 
+@push('js')
+<script>
+    $(document).ready(function () {
+        var showPassIcon = $('#show_pass');
+        var passwordInput = $('#password');
+        var confirmPasswordInput = $('#confirm-password');
 
+        showPassIcon.on('click', function () {
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                confirmPasswordInput.attr('type', 'text');
+                showPassIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                passwordInput.attr('type', 'password');
+                confirmPasswordInput.attr('type', 'password');
+                showPassIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
+    });
+</script>
+@endpush
+@push('css')
+    <style>
+        #show_pass{
+            cursor: pointer;
+        }
+    </style>
+@endpush
 @endsection
