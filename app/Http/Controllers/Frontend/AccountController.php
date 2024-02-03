@@ -215,9 +215,10 @@ class AccountController extends Controller
 
 
             $user=User::where('email', $request->username)->first();
-            echo $user;
+            // echo $user;
 
             if($user){
+                $rand=rand(99999,999999);
                 $user->password=bcrypt($rand);
                 $user->save(); 
                 $email=$request->username;                 
