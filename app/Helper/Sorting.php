@@ -9,7 +9,7 @@ class Sorting {
     public $oldToNew  = 'Old To New';
     public $highToLow = 'High To Low';
     public $lowToHigh = 'Low To High';
-      public $dhighToLow = 'dHigh To Low';
+    public $dhighToLow = 'dHigh To Low';
     public $dlowToHigh = 'dLow To High';
     public function getList()
     {
@@ -19,7 +19,7 @@ class Sorting {
 
     public function getValue($value)
     {
-         if ($value == $this->best) {
+        if ($value == $this->best) {
             return $this->best;
         }elseif ($value == $this->oldToNew) {
             return $this->oldToNew;

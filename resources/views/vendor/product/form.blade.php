@@ -139,7 +139,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <di class="form-row">
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="buying_price">Buying Price:</label>
                         <input type="number" name="buying_price" id="buying_price" placeholder="Enter product buying price" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}" required>
@@ -147,24 +147,24 @@
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
                     </div>
-                        <div class="form-group col-md-6">
-                            <label for="regular_price">Regular Price:</label>
-                            <input type="number" name="regular_price" id="regular_price" placeholder="Enter product regular price" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price ?? old('regular_price') }}" required>
-                            @error('regular_price')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="regular_price">Regular Price:</label>
+                        <input type="number" name="regular_price" id="regular_price" placeholder="Enter product regular price" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price ?? old('regular_price') }}" required>
+                        @error('regular_price')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
                         <div class="form-group col-md-6">
                             <label for="dis_type">Select Type:</label>
                             <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror" required>
                                 <option value="1" @isset($product) {{$product->dis_type == '1' ? 'selected':''}} @endisset>Flat</option>
-                                 <option value="2" @isset($product) {{$product->dis_type == '2' ? 'selected':''}} @endisset>Parcent %</option>
+                                <option value="2" @isset($product) {{$product->dis_type == '2' ? 'selected':''}} @endisset>Parcent %</option>
                             </select>
                             @error('dis_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                         <div class="form-group col-md-6">
+                        <div class="form-group col-md-6">
                             <label for="regular_price">Whole Sell Price:</label>
                             <input type="number" name="whole_price" id="whole_price" placeholder="Enter product whole sell price" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}" required>
                             @error('whole_price')
@@ -185,8 +185,6 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
-
-                       
 
                         <div class="form-group col-md-6">
                             <label for="quantity">Quantity:</label>
@@ -262,7 +260,7 @@
                             @enderror
                         </div>
 
-                       <div class="form-group col-md-6">
+                    <div class="form-group col-md-6">
                                 <label for="tag">Select Tag:</label>
                                 <select name="tags[]" id="tag" multiple data-placeholder="Select Tag" class="form-control select2 @error('tags') is-invalid @enderror" >
                                     <option value="">Select Tag</option>

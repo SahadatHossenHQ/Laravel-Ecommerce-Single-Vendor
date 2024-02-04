@@ -123,7 +123,7 @@
             <form class="col-sm-8" action="{{ isset($product) ? routeHelper('product/'.$product->id) : routeHelper('product') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @isset($product)
-                                 <input type="hidden" value="{{$product->id}}" id="id">
+                    <input type="hidden" value="{{$product->id}}" id="id">
                     @method('PUT')
                 @endisset
                 <input type="hidden" value="{{$type??''}}" name="ptypen">
@@ -144,13 +144,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                         <label for="full_description">Select Vendor:</label>
-                         <select class="form-control" name="vendor">
-                             <option value="">Select Vendor Optional</option>
-                             @foreach(App\Models\ShopInfo::get(['name','user_id']) as $vend)
-                              <option @isset($product->user_id)@if($product->user_id==$vend->user_id)selected @endif @endisset value="{{$vend->user_id}}">{{$vend->name}}</option>
-                              @endforeach
-                         </select>
+                        <label for="full_description">Select Vendor:</label>
+                        <select class="form-control" name="vendor">
+                            <option value="">Select Vendor Optional</option>
+                            @foreach(App\Models\ShopInfo::get(['name','user_id']) as $vend)
+                            <option @isset($product->user_id)@if($product->user_id==$vend->user_id)selected @endif
+                                @endisset value="{{$vend->user_id}}">{{$vend->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -161,7 +162,7 @@
                         @enderror
                     </div>
 
-                    <di class="form-row">
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="buying_price">Buying Price:</label>
                             <input step="0.01" type="number" name="buying_price" id="buying_price" placeholder="Enter product buying price" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}" required>
@@ -490,15 +491,15 @@
                             @error('images')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
-                          <style type="text/css">
-                              .d{
-                                display: flex;
-align-items: center;
-padding: 10px;
-margin: 10px 0px;
-border-radius: 5px;
-                              }
-                          </style>
+                            <style type="text/css">
+                                .d {
+                                    display: flex;
+                                    align-items: center;
+                                    padding: 10px;
+                                    margin: 10px 0px;
+                                    border-radius: 5px;
+                                }
+                            </style>
                             @isset($product)
                                 @foreach($product->images as $image)
                                   <div class="d" @foreach ($colors as $color)
@@ -517,7 +518,7 @@ border-radius: 5px;
                         </div>
                      
                         
-                    </di>
+                    </div>
 
                     <div class="form-row">
                         <div class="form-group col-sm-2">
@@ -624,7 +625,7 @@ border-radius: 5px;
                                         {{-- <button type="submit" class="btn btn-primary">Add</button> --}}
                                     </div>
                                 </div>
-                              <!-- /.modal-content -->
+                                <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
                         </div>
@@ -694,7 +695,7 @@ border-radius: 5px;
                                     {{-- <button type="submit" class="btn btn-primary">Add</button> --}}
                                 </div>
                             </div>
-                          <!-- /.modal-content -->
+                            <!-- /.modal-content -->
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
@@ -722,7 +723,6 @@ border-radius: 5px;
     </div>
     <!-- /.card -->
     
-   
 
 
     
@@ -1066,7 +1066,7 @@ border-radius: 5px;
                 
                 var options = document.getElementById('category').selectedOptions;
                 var values = Array.from(options).map(({ value }) => value);
-                 var product_id = $('#id').val();
+                var product_id = $('#id').val();
                 $.ajax({
                     type: 'POST',
                     url: '/admin/get/attributes',
@@ -1084,7 +1084,7 @@ border-radius: 5px;
         </script>
         @else
         <script>
-                  $(document).on('change', '#category', function() {
+                $(document).on('change', '#category', function() {
                 
                 var options = document.getElementById('category').selectedOptions;
                 var values = Array.from(options).map(({ value }) => value);

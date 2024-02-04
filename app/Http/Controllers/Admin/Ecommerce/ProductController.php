@@ -199,7 +199,7 @@ public function upload($book){
         $categories = DB::table('categories')->latest('id')->get(['id', 'name']);
         $colors     = DB::table('colors')->latest('id')->get(['id', 'name','slug','code']);
         $attributes = Attribute::all();
-          $campaigns = Campaign::where('status',1)->get();
+        $campaigns = Campaign::where('status',1)->get();
         $sizes      = DB::table('sizes')->latest('id')->get(['id', 'name']);
         $tags       = DB::table('tags')->latest('id')->get(['id', 'name']);
         $brands     = DB::table('brands')->latest('id')->get(['id', 'name']);
@@ -505,12 +505,12 @@ public function upload($book){
      */
     public function show(Product $product)
     {
-          $colors_product = DB::table('color_product')
+        $colors_product = DB::table('color_product')
                     ->select('*')
                     ->join('colors', 'colors.id', '=', 'color_product.color_id')
                     ->where('color_product.product_id', $product->id)
                     ->get();
-           $attributes = Attribute::all();
+        $attributes = Attribute::all();
         return view('admin.e-commerce.product.show', compact('product','colors_product','attributes'));
     }
 
@@ -526,7 +526,7 @@ public function upload($book){
         $colors     = DB::table('colors')->latest('id')->get();
         $sizes      = DB::table('sizes')->latest('id')->get(['id', 'name']);
         $tags       = DB::table('tags')->latest('id')->get(['id', 'name']);
-          $campaigns = Campaign::where('status',1)->get();
+        $campaigns = Campaign::where('status',1)->get();
 
         $attributes = Attribute::all();
         $colors_product = DB::table('color_product')
@@ -550,7 +550,7 @@ public function upload($book){
             'campaigns'
         ));
 
-          $categories = DB::table('categories')->latest('id')->get(['id', 'name']);
+        $categories = DB::table('categories')->latest('id')->get(['id', 'name']);
         $colors     = DB::table('colors')->latest('id')->get(['id', 'name','slug']);
         $attributes = Attribute::all();
         $sizes      = DB::table('sizes')->latest('id')->get(['id', 'name']);
@@ -563,7 +563,7 @@ public function upload($book){
         notify()->success("successfully deleted", "Delete");
         return back();
     }
-     public function nattrDelete($cc){
+    public function nattrDelete($cc){
         DB::table('attribute_product')->where('id',$cc)->delete();
         notify()->success("successfully deleted", "Delete");
         return back();
@@ -596,12 +596,12 @@ public function upload($book){
             'full_description'  => 'required|string',
             'regular_price'     => 'required|numeric',
             'discount_price'    => 'nullable|numeric',
-            'whole_price'    => 'nullable|numeric',
-            'point'    => 'required',
+            'whole_price'       => 'nullable|numeric',
+            'point'             => 'required',
             'quantity'          => 'required|integer',
             'categories'        => 'required|array',
             'categories.*'      => 'required|integer',
-              'extra_categories.'  => 'integer',
+            'extra_categories.' => 'integer',
             'brand'             => 'integer',
             'sizes'             => 'array',
             'sizes.*'           => 'integer',
@@ -641,7 +641,7 @@ public function upload($book){
         }else{
             $videoName=$product->video;
         }
-         $video_thumb = $request->file('video_thumb');
+        $video_thumb = $request->file('video_thumb');
         if ($video_thumb) {
             $currentDate = Carbon::now()->toDateString();
             $videoTName = $currentDate.'-'.uniqid().'.'.$video_thumb->getClientOriginalExtension();
@@ -674,7 +674,6 @@ public function upload($book){
         else {
             $imageName = $product->image;
         }
-
         if ($request->filled('download_able')) {
             $download_limit  = $request->download_limit;
             $download_expire = $request->download_expire;
@@ -687,32 +686,32 @@ public function upload($book){
         }else{
             $discount_price=$request->discount_price;
         }
-         if($request->discount_price>0){
+        if($request->discount_price>0){
             $point=setting('Default_Point')*$discount_price;
         }else{
-             $point=setting('Default_Point')*$request->regular_price;
+            $point=setting('Default_Point')*$request->regular_price;
         }
-         if($discount_price<0){
+        if($discount_price<0){
             $discount_price='Null';
         }
         if($request->yvideo){
-              $url=$request->yvideo;
+            $url=$request->yvideo;
             $provider=parse_url($request->yvideo);
-        $domian=$provider['host'];
-        $www=ltrim($domian,'www.');
-        $base=trim($www,'.com');
-       if($base=='youtu.be'|| $base=='youtube'){
-            $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
-            $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
-            if (preg_match($longUrlRegex, $url, $matches)) {
-                $youtube_id = $matches[count($matches) - 1];
+            $domian=$provider['host'];
+            $www=ltrim($domian,'www.');
+            $base=trim($www,'.com');
+            if($base=='youtu.be'|| $base=='youtube'){
+                $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
+                $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
+                if (preg_match($longUrlRegex, $url, $matches)) {
+                    $youtube_id = $matches[count($matches) - 1];
+                }
+            
+                if (preg_match($shortUrlRegex, $url, $matches)) {
+                    $youtube_id = $matches[count($matches) - 1];
+                }
+                $linky= 'https://www.youtube.com/embed/' . $youtube_id.'?rel=0&enablejsapi=1' ;
             }
-        
-            if (preg_match($shortUrlRegex, $url, $matches)) {
-                $youtube_id = $matches[count($matches) - 1];
-            }
-            $linky= 'https://www.youtube.com/embed/' . $youtube_id.'?rel=0&enablejsapi=1' ;
-        }
         }
         $product->update([
             'user_id'           => $request->vendor ?? 1,
@@ -722,17 +721,17 @@ public function upload($book){
             'author_id'             => $request->author_id,
             'book_file'             => $bookName ?? Null,
             'isbn' => $request->isbn,
-             'edition' => $request->edition,
-             'pages' => $request->pages,
-             'country' => $request->country,
-             'video'=>$videoName?? Null,
-              'video_thumb'=>$videoTName?? Null,
-             'language' => $request->language,
-               'yvideo' => $linky??$request->yvideo,
+            'edition' => $request->edition,
+            'pages' => $request->pages,
+            'country' => $request->country,
+            'video'=>$videoName?? Null,
+            'video_thumb'=>$videoTName?? Null,
+            'language' => $request->language,
+            'yvideo' => $linky??$request->yvideo,
             'full_description'  => $request->full_description,
             'buying_price'     => $request->buying_price,
             'regular_price'     => $request->regular_price,
-             'whole_price'     => $request->whole_price,
+            'whole_price'     => $request->whole_price,
             'discount_price'    => $discount_price,
             'dis_type'    => $request->dis_type,
             'quantity'          => $request->quantity,
@@ -751,7 +750,7 @@ public function upload($book){
 
         $images = $request->file('images');
         if($images){
-         foreach ($images as $key=>$gallery) {
+        foreach ($images as $key=>$gallery) {
             $currentDate      = Carbon::now()->toDateString();
             $galleryImageName = $currentDate.'-'.uniqid().'.'.$gallery->getClientOriginalExtension();
             
@@ -766,45 +765,47 @@ public function upload($book){
                 'color_attri' => $request->imagesc[$key],
             ]);
         }}
+        
         $product->categories()->sync($request->categories);
             
-          if(!empty( $request->get('sub_categories'))){
+        if(!empty( $request->get('sub_categories'))){
             $product->sub_categories()->sync($request->sub_categories);
         }
-      if(!empty( $request->get('mini_categories'))){
+        if(!empty( $request->get('mini_categories'))){
             $product->mini_categories()->sync($request->mini_categories);
         }
-      if(!empty( $request->get('extra_categories'))){
+        if(!empty( $request->get('extra_categories'))){
             $product->extra_categories()->sync($request->extra_categories);
         }
+        
         $product->tags()->sync($request->tags);
         $product->sizes()->sync($request->sizes);
-       $i=0;
-       if(!empty( $request->get('colors'))){
+        $i=0;
+
+        if(!empty( $request->get('colors'))){
         foreach($request->colors as $colors){
             $hasc=DB::table('color_product')->where('color_id',$colors)->where('product_id',$product->id)->first();
-              if($hasc){
+            if($hasc){
                     DB::table('color_product')
                     ->where('id',$hasc->id)
                     ->Update([
-                       'color_id'=>$colors,
-                       'product_id'=>$product->id,
-                       'qnty'=>$request->color_quantits[$i],
-                       'price'=>$request->color_prices[$i],
+                        'color_id'=>$colors,
+                        'product_id'=>$product->id,
+                        'qnty'=>$request->color_quantits[$i],
+                        'price'=>$request->color_prices[$i],
                     ]);
-              }else{
+            }else{
                     DB::table('color_product')->Insert([
                         'color_id'=>$colors,
                         'product_id'=>$product->id,
                         'qnty'=>$request->color_quantits[$i],
                         'price'=>$request->color_prices[$i],
                     ]);
-              }
-        
+            }
             $i++;
         }}
-         $a=0;
-         if(!empty( $request->get('attributes'))){
+        $a=0;
+        if(!empty( $request->get('attributes'))){
         foreach($request->get('attributes') as $attribute){
             $has=DB::table('attribute_product')->where('attribute_value_id',$attribute)->where('product_id',$product->id)->first();
             if($has){
@@ -878,8 +879,9 @@ public function upload($book){
             }
         }
 
-        notify()->success("Product successfully update", "Update");
-        return redirect()->to(routeHelper('product'));
+        // notify()->success("Product successfully update", "Update");
+        // return redirect()->to(routeHelper('product'));
+        
     }
 
     /**
@@ -963,7 +965,7 @@ public function upload($book){
     // update product status
     public function status($id)
     {
-         $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
         if($product->is_aproved==0){
             $product->update([
                 'status' => true,
@@ -1005,11 +1007,11 @@ public function upload($book){
         return view('admin.e-commerce.product.unapprove', compact('products'));
     }
       // get disable product
-      public function disableProduct()
-      {
-          $products = Product::with('brand')->where('status', false)->latest('id')->get();
-          return view('admin.e-commerce.product.disable', compact('products'));
-      }
+    public function disableProduct()
+    {
+        $products = Product::with('brand')->where('status', false)->latest('id')->get();
+        return view('admin.e-commerce.product.disable', compact('products'));
+    }
 
     // get sub category by category
     public function subCategory(Request $request)
@@ -1140,7 +1142,7 @@ public function upload($book){
         return back();
     }
     public function imex(){
-       return view('admin.e-commerce.product.bluk');
+    return view('admin.e-commerce.product.bluk');
     }
     public function export(){
         return Excel::download(new ProductsExport,'product.xlsx');
@@ -1155,7 +1157,7 @@ public function upload($book){
 
     }
     public function gallery(){
-     $images=ProductImage::all()   ;
-       return view('admin.e-commerce.product.gallery',compact('images'));
+    $images=ProductImage::all()   ;
+        return view('admin.e-commerce.product.gallery',compact('images'));
     }
 }

@@ -64,7 +64,7 @@ class ProductController extends Controller
             'full_description'  => 'required|string',
             'buying_price'     => 'required|numeric',
             'regular_price'     => 'required|numeric',
-               'whole_price'     => 'nullable|numeric',
+            'whole_price'     => 'nullable|numeric',
             'discount_price'    => 'nullable|numeric',
             'dis_type'    => 'required',
             'point'    => 'nullable',
