@@ -714,6 +714,7 @@ public function upload($book){
             }
         }
         $product->update([
+            'sku'               => $request->sku,
             'user_id'           => $request->vendor ?? 1,
             'brand_id'          => $request->brand,
             'title'             => $request->title,
@@ -879,8 +880,8 @@ public function upload($book){
             }
         }
 
-        // notify()->success("Product successfully update", "Update");
-        // return redirect()->to(routeHelper('product'));
+        notify()->success("Product successfully update", "Update");
+        return redirect()->to(routeHelper('product'));
         
     }
 

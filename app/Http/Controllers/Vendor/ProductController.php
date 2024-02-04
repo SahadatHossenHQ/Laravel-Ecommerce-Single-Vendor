@@ -339,6 +339,7 @@ class ProductController extends Controller
     {
         $product = Product::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
        $this->validate($request, [
+            'sku'               => $request->sku,
             'title'             => 'required|string|max:255',
             'short_description' => 'required|string',
             'full_description'  => 'required|string',

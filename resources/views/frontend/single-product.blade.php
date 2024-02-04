@@ -335,18 +335,19 @@ right: -10px;
                     </div>
                     
                 </div>
+                @if($product->sku)<p>Product Code (SKU): <b><i>{{$product->sku}}</i></b></p>@endif
                 <p>
                     Seller:  
-                     <a style="font-size: 17px"  href="{{ route('vendor', $product->user->shop_info->slug)}}">{{$product->user->shop_info->name}}</a>
+                    <a style="font-size: 17px"  href="{{ route('vendor', $product->user->shop_info->slug)}}">{{$product->user->shop_info->name}}</a>
                 </p>
-                <!-- <p>-->
-                <!--    Point : {{$product->point}}-->
-                <!--</p>-->
+                {{-- <p>
+                    Point : {{$product->point}}
+                </p> --}}
                 <p> Brand: <a style="font-size:14px" href="{{route('brand.product',['slug'=>$product->brand->slug])}}">{{$product->brand->name}}</a></p>
                 @if($product->book==1)
-                 <p> {{$product->book==1 ? 'by':'brand'}} <a style="font-size:14px" href="{{route('author.product',['slug'=>$product->author_id])}}">{{$product->author->name}}</a></p>
-                 @endif
-                <p >
+                <p> {{$product->book==1 ? 'by':'brand'}} <a style="font-size:14px" href="{{route('author.product',['slug'=>$product->author_id])}}">{{$product->author->name}}</a></p>
+                @endif
+                <p>
                     <?php if(isset($campaigns_product)){$product->discount_price=$campaigns_product->price;}?>
                     @if($product->discount_price>0)
                     <span><del>TK.{{$product->regular_price}}</del></span>
