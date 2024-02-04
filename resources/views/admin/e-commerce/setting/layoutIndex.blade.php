@@ -89,6 +89,14 @@
                                                 <option value="0">Off</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($HERO_SLIDER_2->value == 1 ? "On"  : "Off" ) }}</small>
                                         </li>
+                                        <li>
+                                            <label for="FLOAT_LIVE_CHAT" class="text-capitalize">Float Live Chat: </label>
+                                            <select name="FLOAT_LIVE_CHAT" id="FLOAT_LIVE_CHAT">
+                                                <option class="text-white bg-success" value="{{ $FLOAT_LIVE_CHAT->value }}">{{ ($FLOAT_LIVE_CHAT->value == 1 ? "Live Chat"  : "WhatsApp" ) }}</option>
+                                                <option value="1">Live Chat</option>
+                                                <option value="0">WhatsApp</option>
+                                            </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($FLOAT_LIVE_CHAT->value == 1 ? "Live Chat"  : "WhatsApp" ) }}</small>
+                                        </li>
 
                                         <li class="heading"><b>Home Layout</b></li>
                                         <li>

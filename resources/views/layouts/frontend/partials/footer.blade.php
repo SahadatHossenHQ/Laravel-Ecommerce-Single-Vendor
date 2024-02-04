@@ -22,11 +22,23 @@
         padding: 0 !important;
     }
 </style>
-@if(!empty(setting('whatsapp')))
-<li class="fixed_what"><a href="https://wa.me/88{{setting('whatsapp')}}"
-        style="color:var(--primary_bg_color_text);background:var(--primary_color);border-radius: 50%;width: 45px;display: block;height: 45px;text-align: center;line-height: 45px;font-size: 25px;position: fixed;right: 10px;bottom: 80px;z-index: 999999;box-shadow: 0px 0px 10px gainsboro;"><i
-            class="icofont icofont-social-whatsapp"></i></a></li>
+
+@if (setting('FLOAT_LIVE_CHAT') != 1 || setting('FLOAT_LIVE_CHAT') == "")
+    @if(!empty(setting('whatsapp')))
+    <li class="fixed_what"><a href="https://wa.me/88{{setting('whatsapp')}}"
+            style="color:var(--primary_bg_color_text);background:var(--primary_color);border-radius: 50%;width: 45px;display: block;height: 45px;text-align: center;line-height: 45px;font-size: 25px;position: fixed;right: 10px;bottom: 80px;z-index: 999999;box-shadow: 0px 0px 10px gainsboro;"><i
+                class="icofont icofont-social-whatsapp"></i></a></li>
+    @endif
+@else
+<li class="fixed_what"><a href="{{ url('/connection/live-chat') }}"
+    style="color:var(--primary_bg_color_text);background:var(--primary_color);border-radius: 50%;width: 45px;display: block;height: 45px;text-align: center;line-height: 45px;font-size: 25px;position: fixed;right: 10px;bottom: 80px;z-index: 999999;box-shadow: 0px 0px 10px gainsboro;"><i
+        class="fal fa-headset"></i></a></li>
 @endif
+
+ttt @php
+echo setting('FLOAT_LIVE_CHAT');
+@endphp
+
 <li class="fixed-cart d-none"><a href="{{route('cart')}}"><span style="padding-top: 7px;display:block"><i
                 class="fas fa-shopping-bag" aria-hidden="true"></i></span> x {{Cart::count()}} </a></li>
 <div class="footer-menu">

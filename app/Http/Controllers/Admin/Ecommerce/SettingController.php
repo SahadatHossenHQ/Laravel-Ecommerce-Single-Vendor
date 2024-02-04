@@ -176,8 +176,9 @@ class SettingController extends Controller
                 Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT'], ['value' => $request->get('SLIDER_LAYOUT')]);
                 Setting::updateOrCreate(['name' => 'HERO_SLIDER_1'], ['value' => $request->get('HERO_SLIDER_1')]);
                 Setting::updateOrCreate(['name' => 'HERO_SLIDER_2'], ['value' => $request->get('HERO_SLIDER_2')]);
+                Setting::updateOrCreate(['name' => 'FLOAT_LIVE_CHAT'], ['value' => $request->get('FLOAT_LIVE_CHAT')]);
                 
-
+                
             // HOME PAGE
                 Setting::updateOrCreate(['name' => 'TOP_CAT_STATUS'], ['value' => $request->get('TOP_CAT_STATUS')]);
                 Setting::updateOrCreate(['name' => 'SELLER_STATUS'], ['value' => $request->get('SELLER_STATUS')]);
@@ -416,6 +417,10 @@ class SettingController extends Controller
             $get_HERO_SLIDER_2 = Setting::where('name', 'HERO_SLIDER_2')->first();
             $HERO_SLIDER_2 = (!$get_HERO_SLIDER_2) ? (object)['value' => '1'] : $get_HERO_SLIDER_2;
 
+            $get_FLOAT_LIVE_CHAT = Setting::where('name', 'FLOAT_LIVE_CHAT')->first();
+            $FLOAT_LIVE_CHAT = (!$get_FLOAT_LIVE_CHAT) ? (object)['value' => '0'] : $get_FLOAT_LIVE_CHAT;
+
+
         // HOME PAGE
             $get_TOP_CAT_STATUS = Setting::where('name', 'TOP_CAT_STATUS')->first();
             $TOP_CAT_STATUS = (!$get_TOP_CAT_STATUS) ? (object)['value' => '1'] : $get_TOP_CAT_STATUS;
@@ -464,6 +469,7 @@ class SettingController extends Controller
             'FEATURE_PRODUCT_STATUS',
             'HERO_SLIDER_1',
             'HERO_SLIDER_2',
+            'FLOAT_LIVE_CHAT',
             'CLASSIFIED_SELL_STATUS',
             'MEGA_CAT_PRODUCT_STATUS',
             'SUB_CAT_PRODUCT_STATUS',
