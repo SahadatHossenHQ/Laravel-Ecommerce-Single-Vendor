@@ -35,9 +35,6 @@
         class="fal fa-headset"></i></a></li>
 @endif
 
-ttt @php
-echo setting('FLOAT_LIVE_CHAT');
-@endphp
 
 <li class="fixed-cart d-none"><a href="{{route('cart')}}"><span style="padding-top: 7px;display:block"><i
                 class="fas fa-shopping-bag" aria-hidden="true"></i></span> x {{Cart::count()}} </a></li>
