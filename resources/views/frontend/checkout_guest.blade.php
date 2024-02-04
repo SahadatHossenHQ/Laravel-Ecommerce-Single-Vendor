@@ -154,7 +154,7 @@
                 
                 <div class="widget3 col-md-5">
                 <div class="row">
-                        <!-- <div class="widget3 col-md-12">
+                        {{-- <div class="widget3 col-md-12">
                             <h4 class="form-title"><span>2</span>Shipping Method </h4>
                             <div class="card">
                                 <div class="form-group ofl">
@@ -168,7 +168,7 @@
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div> --}}
                            <style>
                             #accordion .card{
                             padding:0 !important;
