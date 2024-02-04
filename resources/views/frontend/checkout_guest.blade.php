@@ -132,8 +132,8 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email">Email Address (optional)</label>
-                            <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
+                            <label for="email">Email Address <sup style="color: red;">*</sup></label>
+                            <input required name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
                             @error('email')
                                 <small class="form-text text-danger">{{$message}}</small>
                             @enderror
