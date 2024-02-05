@@ -48,11 +48,21 @@
                                     <ul>
                                         <li class="heading"><b>Global Layout</b></li>
                                         <li>
+                                            <label for="TOP_HEADER_STYLE" class="text-capitalize">Top Header Style: </label>
+                                            <select name="TOP_HEADER_STYLE" id="TOP_HEADER_STYLE">
+                                                <option class="text-white bg-success" value="{{ $TOP_HEADER_STYLE->value }}">Style {{ $TOP_HEADER_STYLE->value }}</option>
+                                                <option value="1">Style 1</option>
+                                                {{-- <option value="2">Style 2</option> --}}
+                                                <option value="3">Style 3</option>
+                                            </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $TOP_HEADER_STYLE->value }}</small>
+                                        </li>
+                                        <li>
                                             <label for="MAIN_MENU_STYLE" class="text-capitalize">Main Menu Style: </label>
                                             <select name="MAIN_MENU_STYLE" id="MAIN_MENU_STYLE">
                                                 <option class="text-white bg-success" value="{{ $MAIN_MENU_STYLE->value }}">Style {{ $MAIN_MENU_STYLE->value }}</option>
                                                 <option value="1">Style 1</option>
                                                 <option value="2">Style 2</option>
+                                                <option value="3">Style 3</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $MAIN_MENU_STYLE->value }}</small>
                                         </li>
 

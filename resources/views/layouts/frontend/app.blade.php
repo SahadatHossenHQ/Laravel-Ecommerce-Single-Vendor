@@ -54,7 +54,14 @@
     </style>
     @endif
     {{-- <!--================header  Area start=================--> --}}
-    @include('layouts.frontend.partials.header')
+    
+    {{-- Top Header Style --}}
+    @if (!empty(setting('TOP_HEADER_STYLE')))
+    @include('layouts.frontend.partials.header_' . setting('TOP_HEADER_STYLE'))
+    @else
+    @include('layouts.frontend.partials.header_1')
+    @endif
+
     @yield('content')
     @include('layouts.frontend.partials.footer')
     @include('layouts.frontend.partials.script')

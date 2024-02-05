@@ -22,79 +22,86 @@
         display: none !important;
     }
 </style>
-
 @if(Request::is('/'))
 @else
 <style>
-    .products .product .thumbnail{
-        height:190px !important;
+    .products .product .thumbnail {
+        height: 190px !important;
     }
-    #list-view   .product .thumbnail img{
-        width:200px;
+
+    #list-view .product .thumbnail img {
+        width: 200px;
     }
-    @media(max-width:767px){
-        #list-view   .product .thumbnail img{
-            width:inherit;
+
+    @media(max-width:767px) {
+        #list-view .product .thumbnail img {
+            width: inherit;
         }
-        #list-view   .product h4{
+
+        #list-view .product h4 {
             font-size: 17px;
             font-weight: 1;
             margin-top: 10px;
         }
-         #list-view   .product .details {
-           margin-left:15px;
+
+        #list-view .product .details {
+            margin-left: 15px;
         }
-          #list-view   .product .details .dis-label {
-           display:none;
+
+        #list-view .product .details .dis-label {
+            display: none;
         }
     }
 </style>
 @endif
 
 
-<!-- <header class="{{Request::is('/') ? 'home':'not-home'}}"> -->
-<header class="not-home">
-    <div class="upper-header" style="">
-        <div class="container">
-            <div style="display: flex;">
-                <div class="dvts" style="flex: 1;">
-                    <ul>
-                        <li><i class="fal fa-phone-alt" aria-hidden="true"></i> Have a question? Call us<a href="tel:{{setting('SITE_INFO_PHONE')}}"> {{setting('SITE_INFO_PHONE')}}</a></li>
-                        {{-- <li style="margin-left: 10px;"><a href=""><i class="fal fa-envelope" aria-hidden="true"></i> {{setting('email')}}</a></li> --}}
-                    </ul>
-                </div>
-                <div class="dvts">
-                    <ul>
-                        @if (auth()->check() && auth()->user()->role_id != 1)
-                        <li><a href="{{route('dashboard')}}" class="{{Request::is('dashboard') ? 'active':''}}">My
-                                Account</a></li>
-                        @endif
-                        @auth
-                        @if(auth()->user()->role_id == 2)
-                        <span
-                            style="margin:-2px 5px;height: 15px;display: inline-block;width: 1px;background: black;"></span>
-                        <li><a class="vendor-button" href="{{routeHelper('dashboard')}}"> Dashboard</a></li>
-                        @endif
-                        @endauth
-                        @if(auth()->user())
-                        @else
-                        <li><a href="{{route('login')}}">Sign In</a></li>
-                        <span
-                            style="margin:-2px 5px;height: 15px;display: inline-block;width: 1px;background: black;"></span>
-                        <li><a href="{{route('register')}}">Sign Up</a></li>
-                        <li><a style="border: 1px solid black;padding: 3px 10px;border-radius: 10px;"
-                                href="{{route('vendorJoin')}}">Seller</a></li>
-                        @endif
-                        <li>
-                            <div id="google_translate_element" onclick="foo();"> </div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Drop Shipping</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Become a seller</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Seller Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Help & Support</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fab fa-youtube"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sign Up</a>
                         </li>
                     </ul>
                 </div>
-            </div>
+            </nav>
         </div>
     </div>
+</div>
+
+
+<header class="not-home">
     <div class="top-header header_area" style="background:#f3f3f3">
         <div class="container containe">
+            
+            {{-- Mobile menu --}}
             <div class="mobile-menu-openar">
                 <div class="bars">
                     <span></span>
@@ -102,6 +109,9 @@
                     <span></span>
                 </div>
             </div>
+            {{-- / Mobile menu --}}
+
+
             <div class="logo-area">
                 <a href="{{route('home')}}">
                     <img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Application Logo">
@@ -127,6 +137,40 @@
                 </ul>
             </div>
             <div class="wrap" style="width: 30px;"></div>
+
+            {{-- Header Cat --}}
+            <div class="header-category-wrap">
+                <div id="top_categories_wrapper" class="header-category-nav" style="position:relative;padding: 0 10px 0 0 !important">
+                    <button id="top_categories_btn" style="outline:none;">
+                        <span><i class="icofont icofont-navigation-menu"></i></span>
+                        Categories
+                    </button>
+                    <section id="top_categories" class="hero-area" {{-- style="display:none;" --}}>
+                        <div class="container">
+                            <div class="row" id="superCat">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <style>
+                #top_categories{
+                    display: none;
+                    position:absolute;
+                    top:40px;
+                }
+            </style>
+            @push('js')
+            <script>
+                $(document).ready(function () {
+                    $("#top_categories_btn").click(function () {
+                        $("#top_categories").slideToggle();
+                    });
+                });
+            </script>
+            @endpush
+            {{-- / Header Cat --}}
+
             <div class="search-box" id="search-box-open">
                 <form action="{{route('product.search')}}" method="GET">
                     <div class="input-group">

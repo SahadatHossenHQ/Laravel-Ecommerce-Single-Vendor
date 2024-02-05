@@ -169,6 +169,7 @@ class SettingController extends Controller
         }
         elseif ($request->type == 9) {
             // GLOBAL
+                Setting::updateOrCreate(['name' => 'TOP_HEADER_STYLE'], ['value' => $request->get('TOP_HEADER_STYLE')]);
                 Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
 
             // COMPONENTS
@@ -401,6 +402,9 @@ class SettingController extends Controller
     public function layoutIndex(){
 
         // GLOBAL
+            $get_TOP_HEADER_STYLE = Setting::where('name', 'TOP_HEADER_STYLE')->first();
+            $TOP_HEADER_STYLE = (!$get_TOP_HEADER_STYLE) ? (object)['value' => '1'] : $get_TOP_HEADER_STYLE;
+
             $get_MAIN_MENU_STYLE = Setting::where('name', 'MAIN_MENU_STYLE')->first();
             $MAIN_MENU_STYLE = (!$get_MAIN_MENU_STYLE) ? (object)['value' => '1'] : $get_MAIN_MENU_STYLE;
 
@@ -461,6 +465,7 @@ class SettingController extends Controller
 
         return view('admin.e-commerce.setting.layoutIndex', compact(
             'SLIDER_LAYOUT_STATUS',
+            'TOP_HEADER_STYLE',
             'MAIN_MENU_STYLE',
             'SLIDER_LAYOUT',
             'TOP_CAT_STATUS',
