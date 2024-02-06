@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
     @include('layouts.frontend.partials.meta')
     @if(Request::route()->getName()=='home')
