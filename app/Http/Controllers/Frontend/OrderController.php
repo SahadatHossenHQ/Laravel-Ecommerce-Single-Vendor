@@ -1465,6 +1465,7 @@ class OrderController extends Controller
         if (empty($request->invoice_id)) {
             die('Invalid Request');
         }
+
         $data = UddoktaPay::verify_payment($request->invoice_id);
         if (isset($data['status']) && $data['status'] == 'COMPLETED') {
             // do action with $data

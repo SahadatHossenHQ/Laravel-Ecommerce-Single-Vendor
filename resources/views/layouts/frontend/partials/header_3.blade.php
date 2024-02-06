@@ -56,7 +56,7 @@
 @endif
 
 
-<div class="container-fluid">
+<div id="style_top_head_nav" class="container-fluid" style="background:var(--optional_color);">
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -74,12 +74,41 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Help & Support</a>
                         </li>
+                        @if (!empty(setting('facebook')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="nav-link" href="{{ setting('facebook') }}"><i class="fab fa-facebook-f"></i></a>
                         </li>
+                        @endif
+                        @if (!empty(setting('instagram')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fab fa-youtube"></i></a>
+                            <a class="nav-link" href="https://instagram.com/{{ setting('instagram') }}"><i class="fab fa-instagram"></i></a>
                         </li>
+                        @endif
+                        @if (!empty(setting('twitter')))                            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ setting('twitter') }}"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        @endif
+                        @if (!empty(setting('linkedin')))                            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ setting('linkedin') }}"><i class="fab fa-linkedin"></i></a>
+                        </li>
+                        @endif
+                        @if (!empty(setting('youtube')))                            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ setting('youtube') }}"><i class="fab fa-youtube"></i></a>
+                        </li>
+                        @endif
+                        @if (!empty(setting('whatsapp')))                            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
+                        </li>
+                        @endif
+                        @if (!empty(setting('messanger')))                            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
+                        </li>
+                        @endif
                         @if (auth()->check() && auth()->user()->role_id != 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('dashboard')}}" class="{{Request::is('dashboard') ? 'active':''}}">My Account</a>
@@ -108,7 +137,15 @@
         </div>
     </div>
 </div>
-
+<style>
+    #style_top_head_nav li .nav-link{
+        color: var(--optional_bg_color_text);
+    }
+    #style_top_head_nav li:hover .nav-link,
+    #style_top_head_nav li:hover .nav-link i{
+        color: var(--secondary_color);
+    }
+</style>
 
 <style>
     /* Custom Styles */
