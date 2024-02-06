@@ -25,8 +25,11 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="align-items: center;">
             <div class="image">
                 <a href="{{routeHelper('dashboard')}}" class="d-block">
-                    <img src="{{Auth::user()->avatar != 'default.png' ? '/uploads/admin/'.Auth::user()->avatar:'/default/user.jpg'}}"
+                    {{-- <img src="{{Auth::user()->avatar != 'default.png' ? '/uploads/admin/'.Auth::user()->avatar:'/default/user.jpg'}}" --}}
+                    <img src="/uploads/setting/{{setting('logo')}}"
                         class="img-circle elevation-2" alt="User Image" style="width:50px;height:50px">
+
+                        
                 </a>
             </div>
             <div class="info">
