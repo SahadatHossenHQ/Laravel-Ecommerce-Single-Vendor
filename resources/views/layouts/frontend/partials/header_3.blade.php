@@ -65,12 +65,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Drop Shipping</a>
                         </li>
+                        @if (!auth()->check() || (auth()->user()->role_id != 1 && auth()->user()->role_id != 2))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('vendorJoin')}}">Become a seller</a>
+                            <a class="nav-link" href="{{ route('vendorJoin') }}">Become a seller</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('login')}}">Seller Login</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="#">Help & Support</a>
                         </li>
@@ -115,7 +117,7 @@
                         </li>
                         @endif
                         @auth
-                        @if(auth()->user()->role_id == 2)
+                        @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                         <li class="nav-item"><a class="nav-link" href="{{routeHelper('dashboard')}}">Dashboard</a></li>
                         @endif
                         @endauth
