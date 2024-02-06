@@ -10,6 +10,20 @@
         </div>
 
         {{-- <div class="nav-bar"> --}}
+            {{-- <div class="header-category-wrap">
+                <div class="header-category-nav">
+                    <span><i class="icofont icofont-navigation-menu"></i></span>
+                    Categories
+                    <span class="arrow"></span>
+                    <section class="hero-area" style="display: {{Request::is('/') ? 'block':''}}">
+                        <div class="container">
+                            <div class="row" id="superCat">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div id="subCat"></div>
+            </div> --}}
             <div class="{{-- nav-menus --}} menu_style_2">
                 <ul>
                     {{-- <li><a href="{{route('home')}}" class="{{Request::is('/') ? 'active':''}}">Home</a></li>

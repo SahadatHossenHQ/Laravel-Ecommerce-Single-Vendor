@@ -496,8 +496,9 @@ z-index: -9;
              var bkash = "{!! setting('bkash') !!}";
         	var nogod = "{!! setting('nagad') !!}"
         	var rocket = "{!! setting('rocket') !!}"
-        		var bank = "{!! setting('bank_name') !!}"
+        	var bank = "{!! setting('bank_name') !!}"
         	var branch = "{!! setting('branch_name') !!}"
+        	var routing = "{!! setting('routing') !!}"
         	var holder = "{!! setting('holder_name') !!}"
         	var account = "{!! setting('bank_account') !!}"
         	var appended = $('#appended');
@@ -508,7 +509,7 @@ z-index: -9;
         	}else if(method=='Rocket'){
         		appended.html(rocket+' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
         	}else if(method == 'Bank'){
-        	       	appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> '+'Bank Name: '+bank+'<br>Branch: '+branch+'<br>holder: '+holder+'<br>Account: '+account);
+        	       	appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> '+'Bank Name: '+bank+'<br>Branch: '+branch+'<br>holder: '+holder+'<br>Account: '+account+'<br>Routing: '+routing);
         	}else if(method == 'Cash on Delivery'){
                    
                     appended.html('পণ্য হাতে পেয়ে টাকা দিন। ');

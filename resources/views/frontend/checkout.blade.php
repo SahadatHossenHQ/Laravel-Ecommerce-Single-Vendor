@@ -510,7 +510,7 @@ z-index: -9;
         	}else if(method=='Rocket'){
         		appended.html(rocket+' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
         	}else if(method == 'Bank'){
-        	       	appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> '+'Bank Name: '+bank+'<br>Branch: '+branch+'<br>holder: '+holder+'<br>Account: '+account);
+                appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> '+'Bank Name: '+bank+'<br>Branch: '+branch+'<br>holder: '+holder+'<br>Account: '+account+'<br>Routing: '+routing);
         	}else if(method == 'Cash on Delivery'){
                    
                     appended.html('পণ্য হাতে পেয়ে টাকা দিন। ');
