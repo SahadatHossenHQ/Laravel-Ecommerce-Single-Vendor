@@ -273,7 +273,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-basis: 50%;
+        flex-basis: 45%;
         padding-left: 1%;
         padding-right: 1%;
     }
