@@ -58,9 +58,9 @@
                 <nav class="top_style_3_nav navbar navbar-expand-lg">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Drop Shipping</a>
-                            </li>
+                            @php
+                                echo setting('STYLE_3_TOP_MENU');
+                            @endphp
                             @if (!auth()->check() || (auth()->user()->role_id != 1 && auth()->user()->role_id != 2))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('vendorJoin') }}">Become a seller</a>

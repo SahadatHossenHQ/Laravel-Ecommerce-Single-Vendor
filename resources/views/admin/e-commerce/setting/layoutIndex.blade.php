@@ -55,6 +55,18 @@
                                                 {{-- <option value="2">Style 2</option> --}}
                                                 <option value="3">Style 3</option>
                                             </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $TOP_HEADER_STYLE->value }}</small>
+
+                                            @if ($TOP_HEADER_STYLE->value == 3)
+                                            <br>
+                                            <label for="STYLE_3_TOP_MENU" class="text-capitalize">Style 3 top menu add: </label>
+                                            <br>
+                                            <textarea style="border:1.5px dotted rgb(9, 102, 41);padding:5px;order-radius:2%;outline:none;" name="STYLE_3_TOP_MENU" id="STYLE_3_TOP_MENU" cols="30" rows="3">{{ $STYLE_3_TOP_MENU->value }}</textarea>
+                                            <br>
+                                            <small>
+                                                <b><i>Copy the menu code and paste in above box and customized as per your rquiements (Multi-menu add multi li and a tag):</i></b>
+                                                <script src="https://gist.github.com/finvasoft/c380eaf18b41491d650c28f152ce79a4.js"></script>
+                                            </small>
+                                            @endif
                                         </li>
                                         <li>
                                             <label for="MAIN_MENU_STYLE" class="text-capitalize">Main Menu Style: </label>
@@ -234,8 +246,8 @@
 @push('css')
 <style>
     form#layoutForm ul li.heading{
-        background: var(--MAIN_MENU_BG);
-        color: var(--primary_bg_color_text);
+        background: #096629;
+        color: #c2c7d0;
         padding: 0.5rem;
         font-size: 18px;
         text-transform: uppercase;
