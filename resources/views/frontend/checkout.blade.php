@@ -498,10 +498,11 @@ z-index: -9;
              var bkash = "{!! setting('bkash') !!}";
         	var nogod = "{!! setting('nagad') !!}"
         	var rocket = "{!! setting('rocket') !!}"
-        		var bank = "{!! setting('bank_name') !!}"
+        	var bank = "{!! setting('bank_name') !!}"
         	var branch = "{!! setting('branch_name') !!}"
         	var holder = "{!! setting('holder_name') !!}"
         	var account = "{!! setting('bank_account') !!}"
+        	var routing = "{!! setting('routing') !!}"
         	var appended = $('#appended');
         	if(method=='Bkash'){
         		appended.html(bkash+' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
