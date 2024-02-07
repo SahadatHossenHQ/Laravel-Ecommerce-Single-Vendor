@@ -323,12 +323,13 @@
     /* Media Query */
     @media (max-width: 767px){
         .header-category-wrap,
-        #search-box-open input {
+        #search-box-open input,
+        #LOGO_NAME {
             display: none;
         }
 
-        #LOGO_NAME{
-            color: var(--primary_color);
+        .custom-header{
+            flex-basis: unset;
         }
     }
     
