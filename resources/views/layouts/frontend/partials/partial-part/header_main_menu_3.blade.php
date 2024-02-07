@@ -10,7 +10,7 @@
         
         <div class="nav-bar">
             <div class="header-category-wrap">
-                {{-- <div class="header-category-nav">
+                <div class="header-category-nav">
                     <span><i class="icofont icofont-navigation-menu"></i></span>
                     Categories
                     <span class="arrow"></span>
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </section>
-                </div> --}}
+                </div>
                 <div id="subCat"></div>
             </div>
             <div class="nav-menus">

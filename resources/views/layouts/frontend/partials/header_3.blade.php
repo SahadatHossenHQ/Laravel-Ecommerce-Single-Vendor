@@ -155,7 +155,7 @@
                     <img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Application Logo">
                 </a>
             </div>
-            <div class="APP_NAME" style="padding-left:1.2rem;">
+            <div class="APP_NAME" style="padding-left:1.2rem;padding-right:1.2rem;">
                 <a id="LOGO_NAME" href="{{route('home')}}">{{ env('APP_NAME') }}</a>
             </div>
             <div class="mobi-comp top-menu" style="display: none;">
@@ -185,7 +185,7 @@
                         </button>
                         <section id="top_categories" class="hero-area" {{-- style="display:none;" --}}>
                             <div class="container">
-                                <div class="row" id="superCat">
+                                <div class="row" id="superCatStyle3">
                                 </div>
                             </div>
                         </section>
@@ -381,5 +381,24 @@
 
         })
     }
+
+
+
+
+    $.ajax({
+        url: site_url + "/render/superCat",
+        type: "get",
+        datatype: "html",
+        beforeSend: function () {
+            $('.ajax-loading').show();
+        },
+        success: function (response) {
+            var result = $.parseJSON(response);
+            $('.ajax-loading').hide();
+            $("#superCatStyle3").append(result);
+            subCat();
+        },
+
+    })
 </script>
 @endpush
