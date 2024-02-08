@@ -61,6 +61,9 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 
 @if (setting('TOP_CAT_STATUS') != 0 || setting('TOP_CAT_STATUS') == "")
 <!--================ top category Area =================-->
+@if (setting('TOP_CAT'))
+<div class="container mt-3"><h3 class="title  col-md-12"><span>{{ setting('TOP_CAT') }}</span> <a href="#"></a></h3></div>
+@endif
 <div class="shop-category oc" style="padding-bottom: 10px;text-align: center;">
     <div class="container">
         <div class="cat-row">
@@ -126,6 +129,9 @@ echo setting('BELOW_SLIDER_HTML_CODE');
         display: block;
     }
 </style>
+@if (setting('HERO_SLIDER_1_TEXT'))
+<div class="container mt-3"><h3 class="title  col-md-12"><span>{{ setting('HERO_SLIDER_1_TEXT') }}</span> <a href="#"></a></h3></div>
+@endif
 <section class="hero-2 mr-40 m-hide">
     <div class="container">
         <div class="wp">

@@ -147,7 +147,10 @@
                                                 <option class="text-white bg-success" value="{{ $HERO_SLIDER_1->value }}">{{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
-                                            </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($HERO_SLIDER_1->value == 1 ? "On"  : "Off" ) }}</small>
+                                            </select>
+                                            <br>
+                                            <label for="HERO_SLIDER_1_TEXT" class="text-capitalize">Hero Slider Title</label>
+                                            <input class="border" type="text" name="HERO_SLIDER_1_TEXT" value="{{ setting('HERO_SLIDER_1_TEXT') ?? '' }}">
                                         </li>
                                         <li>
                                             <label for="HERO_SLIDER_2" class="text-capitalize">Hero Slider 1: </label>
@@ -173,7 +176,10 @@
                                                 <option class="text-white bg-success" value="{{ $TOP_CAT_STATUS->value }}">{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
-                                            </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                            </select>
+                                            <br>
+                                            <label for="TOP_CAT" class="text-capitalize">Top Category Title</label>
+                                            <input class="border" type="text" name="TOP_CAT" value="{{ setting('TOP_CAT') ?? '' }}">
                                         </li>
                                         <li>
                                             <label for="SELLER_STATUS" class="text-capitalize">Seller Status</label>

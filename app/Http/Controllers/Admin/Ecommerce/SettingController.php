@@ -180,12 +180,15 @@ class SettingController extends Controller
                 Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT_STATUS'], ['value' => $request->get('SLIDER_LAYOUT_STATUS')]);
                 Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT'], ['value' => $request->get('SLIDER_LAYOUT')]);
                 Setting::updateOrCreate(['name' => 'HERO_SLIDER_1'], ['value' => $request->get('HERO_SLIDER_1')]);
+                Setting::updateOrCreate(['name' => 'HERO_SLIDER_1_TEXT'], ['value' => $request->get('HERO_SLIDER_1_TEXT')]);
                 Setting::updateOrCreate(['name' => 'HERO_SLIDER_2'], ['value' => $request->get('HERO_SLIDER_2')]);
                 Setting::updateOrCreate(['name' => 'FLOAT_LIVE_CHAT'], ['value' => $request->get('FLOAT_LIVE_CHAT')]);
                 
                 
             // HOME PAGE
                 Setting::updateOrCreate(['name' => 'TOP_CAT_STATUS'], ['value' => $request->get('TOP_CAT_STATUS')]);
+                Setting::updateOrCreate(['name' => 'TOP_CAT'], ['value' => $request->get('TOP_CAT')]);
+                
                 Setting::updateOrCreate(['name' => 'SELLER_STATUS'], ['value' => $request->get('SELLER_STATUS')]);
                 Setting::updateOrCreate(['name' => 'LATEST_PRODUCT_STATUS'], ['value' => $request->get('LATEST_PRODUCT_STATUS')]);
                 Setting::updateOrCreate(['name' => 'FEATURE_PRODUCT_STATUS'], ['value' => $request->get('FEATURE_PRODUCT_STATUS')]);
