@@ -174,40 +174,7 @@
         </div>
     </section>
     
-    {{-- <section id="style3_top_head_bar">
-        <div class="container">
-            <div class="row">
-                <nav class="top_style_3_nav navbar navbar-expand-lg">
-                    <div class="collapse navbar-collapse">
-                        <div class="col-12 col-md-4 col-lg-4 col-xl-4">
-                            <ul class="navbar-nav">
-                            @php
-                                echo setting('STYLE_3_TOP_MENU');
-                            @endphp
-                            @if (!auth()->check() || (auth()->user()->role_id != 1 && auth()->user()->role_id != 2))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('vendorJoin') }}">Become a seller</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('login')}}">Seller Login</a>
-                            </li>
-                            @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('contact')}}">Help & Support</a>
-                            </li>
-                            </ul>
-                        </div>
-                        <div class="col-4">
-                            2 of 3
-                        </div>
-                        <div class="col-4">
-                            3 of 3
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </section> --}}
+
 
     <div class="top-header header_area" style="background:var(--primary_color);color:var(--primary_bg_color_text)">
         <div class="container-fluid containe">
@@ -264,6 +231,12 @@
                     </div>
                 </div>
                 <style>
+                    @media (max-width: 767px) {
+                        /* double sub cat hide last cat */
+                        header.not-home .main-menu .nav-bar .header-category-menu:nth-child(2){
+                            display: none !important;
+                        }
+                    }
                     #top_categories_btn{
                         outline: none;
                         display: flex;
@@ -327,7 +300,7 @@
 
 <style>
     /* Top header in top menu style 3 */
-
+    
     #style3_top_head_bar{
         background: {{ setting('STYLE_3_TOP_MENU_BG_COLOR') ?? 'var(--primary_color)' }};
     }
@@ -410,6 +383,9 @@
 
     /* Media Query */
     @media (max-width: 767px){
+        #style3_top_head_bar{
+            display: none;
+        }
         .header-category-wrap,
         #search-box-open input,
         #LOGO_NAME {
@@ -420,7 +396,6 @@
             flex-basis: unset;
         }
     }
-    
 </style>
 
 
