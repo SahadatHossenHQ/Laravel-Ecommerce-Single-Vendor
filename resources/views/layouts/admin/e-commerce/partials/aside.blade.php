@@ -838,7 +838,7 @@
                             <a href="{{route('admin.setting.header')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>
                                 <p>
-                                    Header - Backend
+                                    Header/Footer - Backend
                                 </p>
                             </a>
                         </li>
