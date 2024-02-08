@@ -107,7 +107,7 @@
                     <a href="{{ route('admin.notice_index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
-                            Custom Notice
+                            Custom Notice/Below Banner
                         </p>
                     </a>
                 </li>

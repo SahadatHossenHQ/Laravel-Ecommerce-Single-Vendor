@@ -39,30 +39,54 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
+                        <small class="p-4 bg-light text-primary">
+                            <a target="_blank" class="bg-warning p-2" href="https://getbootstrap.com/docs/4.5/components/alerts/">Help for HTML snippet from Bootstrap V5.4.3</a>
+                        </small>
                         <form action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-                                <input type="hidden" name="type" value="11">
-                                <div class="form-group col-md-12">
-                                    <label for="NOTICE_STATUS" class="text-capitalize">NOTICE STATUS</label>
-                                    <select name="NOTICE_STATUS" id="NOTIC_STATUS">
-                                        @if ($NOTICE_STATUS->value == 1)
-                                        <option value="1">ON</option>
-                                        <option value="0">OFF</option>
-                                        @else
-                                        <option value="0">OFF</option>
-                                        <option value="1">ON</option>
-                                        @endif
-                                    </select>
+                                <div class="border border-info py-2 mt-2">
+                                    <div class="form-group col-md-12">
+                                        <label for="BELOW_SLIDER_HTML_CODE_STATUS" class="text-capitalize">Below Slider Custom HTML Code Status</label>
+                                        <select name="BELOW_SLIDER_HTML_CODE_STATUS" id="BELOW_SLIDER_HTML_CODE_STATUS">
+                                            @if ($BELOW_SLIDER_HTML_CODE_STATUS->value == 1)
+                                            <option value="1">ON</option>
+                                            <option value="0">OFF</option>
+                                            @else
+                                            <option value="0">OFF</option>
+                                            <option value="1">ON</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="BELOW_SLIDER_HTML_CODE" class="text-capitalize">Custom Html Code</label>
+                                        <textarea name="BELOW_SLIDER_HTML_CODE" id="BELOW_SLIDER_HTML_CODE" rows="4"
+                                            class="form-control ">{{ $BELOW_SLIDER_HTML_CODE->value }}</textarea>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label for="CUSTOM_NOTICE" class="text-capitalize">CUSTOM NOTICE</label>
-                                    <textarea name="CUSTOM_NOTICE" id="CUSTOM_NOTICE" rows="4"
-                                        class="form-control ">{{ $CUSTOM_NOTICE->value }} </textarea>
+                                <div class="border border-info py-2 mt-2">
+                                    <input type="hidden" name="type" value="11">
+                                    <div class="form-group col-md-12">
+                                        <label for="NOTICE_STATUS" class="text-capitalize">NOTICE STATUS</label>
+                                        <select name="NOTICE_STATUS" id="NOTICE_STATUS">
+                                            @if ($NOTICE_STATUS->value == 1)
+                                            <option value="1">ON</option>
+                                            <option value="0">OFF</option>
+                                            @else
+                                            <option value="0">OFF</option>
+                                            <option value="1">ON</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="CUSTOM_NOTICE" class="text-capitalize">CUSTOM NOTICE</label>
+                                        <small class="bg-warning p-1">It's under container of bootstrap</small>
+                                        <textarea name="CUSTOM_NOTICE" id="CUSTOM_NOTICE" rows="4"
+                                            class="form-control ">{{ $CUSTOM_NOTICE->value }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-
                             
                             <!-- /.card-body -->
                             <div class="card-footer">

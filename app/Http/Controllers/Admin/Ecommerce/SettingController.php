@@ -211,6 +211,10 @@ class SettingController extends Controller
         elseif ($request->type == 11) {
             Setting::updateOrCreate(['name' => 'NOTICE_STATUS'], ['value' => $request->get('NOTICE_STATUS')]);
             Setting::updateOrCreate(['name' => 'CUSTOM_NOTICE'], ['value' => $request->get('CUSTOM_NOTICE')]);
+
+            Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE_STATUS'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE_STATUS')]);
+            Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE')]);
+            
             
             notify()->success("Notice successfully updated", "Success");
             return back();
@@ -230,10 +234,21 @@ class SettingController extends Controller
         $get_CUSTOM_NOTICE = Setting::where('name', 'CUSTOM_NOTICE')->first();
         $CUSTOM_NOTICE = (!$get_CUSTOM_NOTICE) ? (object)['value' => 'Today running best offer' ] : $get_CUSTOM_NOTICE;
 
+        $get_BELOW_SLIDER_HTML_CODE_STATUS = Setting::where('name', 'BELOW_SLIDER_HTML_CODE_STATUS')->first();
+        $BELOW_SLIDER_HTML_CODE_STATUS = (!$get_BELOW_SLIDER_HTML_CODE_STATUS) ? (object)['value' => 0] : $get_BELOW_SLIDER_HTML_CODE_STATUS;
+
+        $get_BELOW_SLIDER_HTML_CODE = Setting::where('name', 'BELOW_SLIDER_HTML_CODE')->first();
+        $BELOW_SLIDER_HTML_CODE = (!$get_BELOW_SLIDER_HTML_CODE) ? (object)['value' => '<b>Hello</b>' ] : $get_BELOW_SLIDER_HTML_CODE;
+
+
+
+        
     
         return view('admin.e-commerce.noticeIndex', compact(
             'NOTICE_STATUS',
             'CUSTOM_NOTICE',
+            'BELOW_SLIDER_HTML_CODE_STATUS',
+            'BELOW_SLIDER_HTML_CODE'
         ));
     }
 

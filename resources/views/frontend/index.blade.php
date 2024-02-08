@@ -21,6 +21,14 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 @endif
 
 
+@if (setting('BELOW_SLIDER_HTML_CODE_STATUS') != 0 || setting('BELOW_SLIDER_HTML_CODE_STATUS') == "")
+<!--================ CUSTOM HTML BELOW SLIDER =================-->
+@php
+echo setting('BELOW_SLIDER_HTML_CODE');
+@endphp
+<!--================ / CUSTOM HTML BELOW SLIDER =================-->
+@endif
+
 
 @if (setting('NOTICE_STATUS') != 0 || setting('NOTICE_STATUS') == "")
 <!--================ CUSTOM NOTICE =================-->
@@ -44,6 +52,10 @@ $pop=App\Models\Slider::where('is_pop','1')->orderBy('id','desc')->first() ;
 <br>
 <!--================ / CUSTOM NOTICE =================-->
 @endif
+
+
+
+
 
 
 
