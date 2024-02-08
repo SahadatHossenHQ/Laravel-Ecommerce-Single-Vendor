@@ -84,6 +84,11 @@
                                                     <input type="color" id="STYLE_3_TOP_MENU_LINK_HOVER_COLOR_CHOOSER" value="{{ $STYLE_3_TOP_MENU_LINK_HOVER_COLOR->value }}">
                                                     <input type="text" id="STYLE_3_TOP_MENU_LINK_HOVER_COLOR" name="STYLE_3_TOP_MENU_LINK_HOVER_COLOR" value="{{ $STYLE_3_TOP_MENU_LINK_HOVER_COLOR->value }}">
                                                 </li>
+                                                <li>
+                                                    <label for="STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT" class="text-capitalize">Style 3 Search Input Width: </label>
+                                                    <input type="text" class="border" id="STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT" name="STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT" value="{{ setting('STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT') ?? '' }}">
+                                                </li>
+                                                
                                                 @push('js')
                                                 <script>
                                                     $(document).ready(function () {

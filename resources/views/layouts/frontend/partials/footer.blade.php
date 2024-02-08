@@ -245,8 +245,10 @@
                                         alt=""></a></li>
                         </ul>
                     </div>
-
                 </li>
+                @php
+                    echo setting('FOOTER_COL_4_HTML');
+                @endphp
             </div>
         </div>
 

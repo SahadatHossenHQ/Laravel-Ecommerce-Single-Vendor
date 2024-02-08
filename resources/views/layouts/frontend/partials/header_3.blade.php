@@ -334,7 +334,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-basis: 45%;
+        flex-basis: {{ setting('STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT') ?? '45%'}};
         padding-left: 1%;
         padding-right: 1%;
     }

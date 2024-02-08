@@ -55,6 +55,15 @@
                                     <textarea name="fb_pixel" id="fb_pixel" rows="4"
                                         class="form-control ">{{$fb_pixel->value}}</textarea>
                                 </div>
+                                <hr>
+                                <div class="form-group col-md-12">
+                                    <label for="FOOTER_COL_4_HTML" class="text-capitalize">Footer Column 4</label>
+                                    <textarea name="FOOTER_COL_4_HTML" id="FOOTER_COL_4_HTML" rows="4"
+                                        class="form-control ">{{ setting('FOOTER_COL_4_HTML') ?? '<b>Payment Support: Bkash, Roacket, Nagad</b>' }}</textarea>
+                                </div>
+                                <small class="p-4 bg-light text-primary">
+                                    <a target="_blank" class="bg-warning p-2" href="https://getbootstrap.com/docs/4.5/components/alerts/">Help for HTML snippet from Bootstrap V5.4.3</a>
+                                </small>
                             </div>
 
                             

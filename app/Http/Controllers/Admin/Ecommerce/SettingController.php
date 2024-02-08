@@ -105,6 +105,8 @@ class SettingController extends Controller
         elseif ($request->type == 2) {
             Setting::updateOrCreate(['name' => 'header_code'], ['value' => $request->get('header_code')]);
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
+            Setting::updateOrCreate(['name' => 'FOOTER_COL_4_HTML'], ['value' => $request->get('FOOTER_COL_4_HTML')]);
+            
             notify()->success("Successfully updated", "Success");
             return back();
         }
@@ -174,6 +176,7 @@ class SettingController extends Controller
                 Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_BG_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_BG_COLOR')]);
                 Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_LINK_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_LINK_COLOR')]);
                 Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_LINK_HOVER_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_LINK_HOVER_COLOR')]);
+                Setting::updateOrCreate(['name' => 'STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT'], ['value' => $request->get('STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT')]);
                 Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
 
             // COMPONENTS
