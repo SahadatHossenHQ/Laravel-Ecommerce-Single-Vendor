@@ -51,92 +51,96 @@
 @endif
 
 
+
+
 <header class="not-home" style="background:var(--primary_color);color:var(--primary_bg_color_text)">
-    {{-- <div id="style_top_head_nav" class="container-fluid" style="background:var(--primary_color);"> --}}
-        <div class="row">
-            <div class="col-12">
-                <nav class="top_style_3_nav navbar navbar-expand-lg">
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            @php
-                                echo setting('STYLE_3_TOP_MENU');
-                            @endphp
-                            @if (!auth()->check() || (auth()->user()->role_id != 1 && auth()->user()->role_id != 2))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('vendorJoin') }}">Become a seller</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('login')}}">Seller Login</a>
-                            </li>
-                            @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('contact')}}">Help & Support</a>
-                            </li>
-                            @if (!empty(setting('facebook')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ setting('facebook') }}"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            @endif
-                            @if (!empty(setting('instagram')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://instagram.com/{{ setting('instagram') }}"><i class="fab fa-instagram"></i></a>
-                            </li>
-                            @endif
-                            @if (!empty(setting('twitter')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ setting('twitter') }}"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            @endif
-                            @if (!empty(setting('linkedin')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ setting('linkedin') }}"><i class="fab fa-linkedin"></i></a>
-                            </li>
-                            @endif
-                            @if (!empty(setting('youtube')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ setting('youtube') }}"><i class="fab fa-youtube"></i></a>
-                            </li>
-                            @endif
-                            @if (!empty(setting('whatsapp')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
-                            </li>
-                            @endif
-                            @if (!empty(setting('messanger')))                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
-                            </li>
-                            @endif
-                            @if (auth()->check() && auth()->user()->role_id != 1)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('dashboard')}}" class="{{Request::is('dashboard') ? 'active':''}}">My Account</a>
-                            </li>
-                            @endif
-                            @auth
-                            @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
-                            <li class="nav-item"><a class="nav-link" href="{{routeHelper('dashboard')}}">Dashboard</a></li>
-                            @endif
-                            @endauth
-                            @guest
-                            <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{route('register')}}">Sign up</a></li>
-                            @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">Log Out</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </nav>
+
+    <section id="style3_top_head_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="top_style_3_nav navbar navbar-expand-lg">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                @php
+                                    echo setting('STYLE_3_TOP_MENU');
+                                @endphp
+                                @if (!auth()->check() || (auth()->user()->role_id != 1 && auth()->user()->role_id != 2))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('vendorJoin') }}">Become a seller</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('login')}}">Seller Login</a>
+                                </li>
+                                @endif
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('contact')}}">Help & Support</a>
+                                </li>
+                                @if (!empty(setting('facebook')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ setting('facebook') }}"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                @endif
+                                @if (!empty(setting('instagram')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://instagram.com/{{ setting('instagram') }}"><i class="fab fa-instagram"></i></a>
+                                </li>
+                                @endif
+                                @if (!empty(setting('twitter')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ setting('twitter') }}"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                @endif
+                                @if (!empty(setting('linkedin')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ setting('linkedin') }}"><i class="fab fa-linkedin"></i></a>
+                                </li>
+                                @endif
+                                @if (!empty(setting('youtube')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ setting('youtube') }}"><i class="fab fa-youtube"></i></a>
+                                </li>
+                                @endif
+                                @if (!empty(setting('whatsapp')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
+                                </li>
+                                @endif
+                                @if (!empty(setting('messanger')))                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
+                                </li>
+                                @endif
+                                @if (auth()->check() && auth()->user()->role_id != 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('dashboard')}}" class="{{Request::is('dashboard') ? 'active':''}}">My Account</a>
+                                </li>
+                                @endif
+                                @auth
+                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                <li class="nav-item"><a class="nav-link" href="{{routeHelper('dashboard')}}">Dashboard</a></li>
+                                @endif
+                                @endauth
+                                @guest
+                                <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('register')}}">Sign up</a></li>
+                                @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Log Out</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                                @endguest
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </div>
-    {{-- </div> --}}
-
-
+    </section>
+    
     <div class="top-header header_area" style="background:var(--primary_color);color:var(--primary_bg_color_text)">
         <div class="container-fluid containe">
             
@@ -255,12 +259,24 @@
 
 <style>
     /* Top header in top menu style 3 */
-    .top_style_3_nav li .nav-link,
+
+    #style3_top_head_bar{
+        background: {{ setting('STYLE_3_TOP_MENU_BG_COLOR') ?? 'var(--primary_color)' }};
+    }
+
+    .top_style_3_nav li .nav-link{
+        color: {{ setting('STYLE_3_TOP_MENU_LINK_COLOR') ?? 'var(--primary_bg_color_text)' }};
+    }
+    .top_style_3_nav li:hover .nav-link,
+    .top_style_3_nav li:hover .nav-link i{
+        color: {{ setting('STYLE_3_TOP_MENU_LINK_HOVER_COLOR') ?? 'var(--secondary_color)' }};
+
+    }
+
     #LOGO_NAME{
         color: var(--primary_bg_color_text);
     }
-    .top_style_3_nav li:hover .nav-link,
-    .top_style_3_nav li:hover .nav-link i,
+
     #LOGO_NAME:hover{
         color: var(--secondary_color);
     }

@@ -171,6 +171,9 @@ class SettingController extends Controller
             // GLOBAL
                 Setting::updateOrCreate(['name' => 'TOP_HEADER_STYLE'], ['value' => $request->get('TOP_HEADER_STYLE')]);
                 Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU'], ['value' => $request->get('STYLE_3_TOP_MENU')]);
+                Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_BG_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_BG_COLOR')]);
+                Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_LINK_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_LINK_COLOR')]);
+                Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_LINK_HOVER_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_LINK_HOVER_COLOR')]);
                 Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
 
             // COMPONENTS
@@ -409,6 +412,19 @@ class SettingController extends Controller
             $get_STYLE_3_TOP_MENU = Setting::where('name', 'STYLE_3_TOP_MENU')->first();
             $STYLE_3_TOP_MENU = (!$get_STYLE_3_TOP_MENU) ? (object)['value' => ''] : $get_STYLE_3_TOP_MENU;
 
+            $get_STYLE_3_TOP_MENU_BG_COLOR = Setting::where('name', 'STYLE_3_TOP_MENU_BG_COLOR')->first();
+            $STYLE_3_TOP_MENU_BG_COLOR = (!$get_STYLE_3_TOP_MENU_BG_COLOR) ? (object)['value' => ''] : $get_STYLE_3_TOP_MENU_BG_COLOR;
+
+            $get_STYLE_3_TOP_MENU_LINK_COLOR = Setting::where('name', 'STYLE_3_TOP_MENU_LINK_COLOR')->first();
+            $STYLE_3_TOP_MENU_LINK_COLOR = (!$get_STYLE_3_TOP_MENU_LINK_COLOR) ? (object)['value' => ''] : $get_STYLE_3_TOP_MENU_LINK_COLOR;
+
+            $get_STYLE_3_TOP_MENU_LINK_HOVER_COLOR = Setting::where('name', 'STYLE_3_TOP_MENU_LINK_HOVER_COLOR')->first();
+            $STYLE_3_TOP_MENU_LINK_HOVER_COLOR = (!$get_STYLE_3_TOP_MENU_LINK_HOVER_COLOR) ? (object)['value' => ''] : $get_STYLE_3_TOP_MENU_LINK_HOVER_COLOR;
+
+
+            
+            
+            
             $get_MAIN_MENU_STYLE = Setting::where('name', 'MAIN_MENU_STYLE')->first();
             $MAIN_MENU_STYLE = (!$get_MAIN_MENU_STYLE) ? (object)['value' => '1'] : $get_MAIN_MENU_STYLE;
 
@@ -471,6 +487,9 @@ class SettingController extends Controller
             'SLIDER_LAYOUT_STATUS',
             'TOP_HEADER_STYLE',
             'STYLE_3_TOP_MENU',
+            'STYLE_3_TOP_MENU_BG_COLOR',
+            'STYLE_3_TOP_MENU_LINK_COLOR',
+            'STYLE_3_TOP_MENU_LINK_HOVER_COLOR',
             'MAIN_MENU_STYLE',
             'SLIDER_LAYOUT',
             'TOP_CAT_STATUS',

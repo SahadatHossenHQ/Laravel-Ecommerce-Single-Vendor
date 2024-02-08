@@ -47,27 +47,73 @@
                                 <div class="form-group col-md-12">
                                     <ul>
                                         <li class="heading"><b>Global Layout</b></li>
-                                        <li>
-                                            <label for="TOP_HEADER_STYLE" class="text-capitalize">Top Header Style: </label>
-                                            <select name="TOP_HEADER_STYLE" id="TOP_HEADER_STYLE">
-                                                <option class="text-white bg-success" value="{{ $TOP_HEADER_STYLE->value }}">Style {{ $TOP_HEADER_STYLE->value }}</option>
-                                                <option value="1">Style 1</option>
-                                                {{-- <option value="2">Style 2</option> --}}
-                                                <option value="3">Style 3</option>
-                                            </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $TOP_HEADER_STYLE->value }}</small>
+                                        <div class="{{ $TOP_HEADER_STYLE->value == 3 ? 'border border-info' : '' }}">
+                                            <li>
+                                                <label for="TOP_HEADER_STYLE" class="text-capitalize">Top Header Style: </label>
+                                                <select name="TOP_HEADER_STYLE" id="TOP_HEADER_STYLE">
+                                                    <option class="text-white bg-success" value="{{ $TOP_HEADER_STYLE->value }}">Style {{ $TOP_HEADER_STYLE->value }}</option>
+                                                    <option value="1">Style 1</option>
+                                                    {{-- <option value="2">Style 2</option> --}}
+                                                    <option value="3">Style 3</option>
+                                                </select><small style="text-danger"><b>Selected</b>&nbsp;{{ $TOP_HEADER_STYLE->value }}</small>
+                                            </li>
+                                            
+                                            <div class="px-3 bg-light" style="display:{{ $TOP_HEADER_STYLE->value == 3 ? 'block' : 'none' }};">
+                                                <li>
+                                                    <label for="STYLE_3_TOP_MENU" class="text-capitalize">Style 3 top menu add: </label>
+                                                    <br>
+                                                    <textarea style="border:1.5px dotted rgb(9, 102, 41);padding:5px;order-radius:2%;outline:none;" name="STYLE_3_TOP_MENU" id="STYLE_3_TOP_MENU" cols="30" rows="3">{{ $STYLE_3_TOP_MENU->value }}</textarea>
+                                                    <br>
+                                                    <small>
+                                                        <b><i>Copy the menu code and paste in above box and customized as per your rquiements (Multi-menu add multi li and a tag):</i></b>
+                                                        <script src="https://gist.github.com/finvasoft/c380eaf18b41491d650c28f152ce79a4.js"></script>
+                                                    </small>
+                                                </li>
+                                                <li>
+                                                    <label for="STYLE_3_TOP_MENU_BG_COLOR" class="text-capitalize">Style 3 Top Menu Background Color: </label>
+                                                    <input type="color" id="STYLE_3_TOP_MENU_BG_COLOR_CHOOSER" value="{{ $STYLE_3_TOP_MENU_BG_COLOR->value }}">
+                                                    <input type="text" id="STYLE_3_TOP_MENU_BG_COLOR" name="STYLE_3_TOP_MENU_BG_COLOR" value="{{ $STYLE_3_TOP_MENU_BG_COLOR->value }}">
+                                                </li>
+                                                <li>
+                                                    <label for="STYLE_3_TOP_MENU_LINK_COLOR" class="text-capitalize">Style 3 Top Menu Link Color: </label>
+                                                    <input type="color" id="STYLE_3_TOP_MENU_LINK_COLOR_CHOOSER" value="{{ $STYLE_3_TOP_MENU_LINK_COLOR->value }}">
+                                                    <input type="text" id="STYLE_3_TOP_MENU_LINK_COLOR" name="STYLE_3_TOP_MENU_LINK_COLOR" value="{{ $STYLE_3_TOP_MENU_LINK_COLOR->value }}">
+                                                </li>
+                                                <li>
+                                                    <label for="STYLE_3_TOP_MENU_LINK_HOVER_COLOR" class="text-capitalize">Style 3 Top Menu Link Hover Color: </label>
+                                                    <input type="color" id="STYLE_3_TOP_MENU_LINK_HOVER_COLOR_CHOOSER" value="{{ $STYLE_3_TOP_MENU_LINK_HOVER_COLOR->value }}">
+                                                    <input type="text" id="STYLE_3_TOP_MENU_LINK_HOVER_COLOR" name="STYLE_3_TOP_MENU_LINK_HOVER_COLOR" value="{{ $STYLE_3_TOP_MENU_LINK_HOVER_COLOR->value }}">
+                                                </li>
+                                                @push('js')
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $("#STYLE_3_TOP_MENU_BG_COLOR_CHOOSER").on("input", function () {
+                                                            $("#STYLE_3_TOP_MENU_BG_COLOR").val($(this).val());
+                                                        });
+                                                        $("#STYLE_3_TOP_MENU_BG_COLOR").on("keyup", function () {
+                                                            $("#STYLE_3_TOP_MENU_BG_COLOR_CHOOSER").val($(this).val());
+                                                        });
 
-                                            @if ($TOP_HEADER_STYLE->value == 3)
-                                            <br>
-                                            <label for="STYLE_3_TOP_MENU" class="text-capitalize">Style 3 top menu add: </label>
-                                            <br>
-                                            <textarea style="border:1.5px dotted rgb(9, 102, 41);padding:5px;order-radius:2%;outline:none;" name="STYLE_3_TOP_MENU" id="STYLE_3_TOP_MENU" cols="30" rows="3">{{ $STYLE_3_TOP_MENU->value }}</textarea>
-                                            <br>
-                                            <small>
-                                                <b><i>Copy the menu code and paste in above box and customized as per your rquiements (Multi-menu add multi li and a tag):</i></b>
-                                                <script src="https://gist.github.com/finvasoft/c380eaf18b41491d650c28f152ce79a4.js"></script>
-                                            </small>
-                                            @endif
-                                        </li>
+
+                                                        $("#STYLE_3_TOP_MENU_LINK_COLOR_CHOOSER").on("input", function () {
+                                                            $("#STYLE_3_TOP_MENU_LINK_COLOR").val($(this).val());
+                                                        });
+                                                        $("#STYLE_3_TOP_MENU_LINK_COLOR").on("keyup", function () {
+                                                            $("#STYLE_3_TOP_MENU_LINK_COLOR_CHOOSER").val($(this).val());
+                                                        });
+
+
+                                                        $("#STYLE_3_TOP_MENU_LINK_HOVER_COLOR_CHOOSER").on("input", function () {
+                                                            $("#STYLE_3_TOP_MENU_LINK_HOVER_COLOR").val($(this).val());
+                                                        });
+                                                        $("#STYLE_3_TOP_MENU_LINK_HOVER_COLOR").on("keyup", function () {
+                                                            $("#STYLE_3_TOP_MENU_LINK_HOVER_COLOR_CHOOSER").val($(this).val());
+                                                        });
+                                                    });
+                                                </script>
+                                                @endpush
+                                            </div>
+                                        </div>
                                         <li>
                                             <label for="MAIN_MENU_STYLE" class="text-capitalize">Main Menu Style: </label>
                                             <select name="MAIN_MENU_STYLE" id="MAIN_MENU_STYLE">
