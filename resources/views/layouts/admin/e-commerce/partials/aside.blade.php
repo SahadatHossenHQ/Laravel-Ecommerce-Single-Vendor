@@ -746,60 +746,6 @@
 
                         <ul class="nav nav-treeview">
                             <li
-                                class="nav-item {{Request::is('admin/setting/layout') ? 'menu-is-opening menu-open':''}}">
-                                <a href="{{route('admin.setting.layout')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-cog"></i>
-                                    <p>
-                                        Layout
-                                    </p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item {{Request::is('admin/setting/shop_settings') ? 'menu-is-opening menu-open':''}}">
-                                <a href="{{route('admin.setting.shop_settings')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-cog"></i>
-                                    <p>
-                                        Shop Settings/Configure
-                                    </p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item {{Request::is('admin/setting/color') ? 'menu-is-opening menu-open':''}}">
-                                <a href="{{route('admin.setting.color')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-cog"></i>
-                                    <p>
-                                        Color
-                                    </p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item {{Request::is('admin/setting/site_info') ? 'menu-is-opening menu-open':''}}">
-                                <a href="{{route('admin.setting.site_info')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-cog"></i>
-                                    <p>
-                                        Site Info
-                                    </p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
-                                <a href="{{route('admin.setting.header')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-cog"></i>
-                                    <p>
-                                        Header - Backend
-                                    </p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
-                                <a href="{{route('admin.setting.mailsmsapireglog')}}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-cog"></i>
-                                    <p>
-                                        SMS | Mail | Login | Reg
-                                    </p>
-                                </a>
-                            </li>
-                            <li
                                 class="nav-item {{Request::is('admin/setting/getway') ? 'menu-is-opening menu-open':''}}">
                                 <a href="{{route('admin.setting.getway')}}" class="nav-link">
                                     <i class="nav-icon fas fa-user-cog"></i>
@@ -851,6 +797,60 @@
                                 </ul>
                             </li>
                         </ul>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/layout') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.layout')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Layout
+                                </p>
+                            </a>
+                        </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/shop_settings') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.shop_settings')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Shop Settings/Configure
+                                </p>
+                            </a>
+                        </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/color') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.color')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Color
+                                </p>
+                            </a>
+                        </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/site_info') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.site_info')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Site Info
+                                </p>
+                            </a>
+                        </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.header')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Header - Backend
+                                </p>
+                            </a>
+                        </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.mailsmsapireglog')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    SMS | Mail | Login | Reg
+                                </p>
+                            </a>
+                        </li>
                 </li>
                 <li class="nav-item {{Request::is('admin/shop') ? 'menu-is-opening menu-open':''}}">
                     <a href="{{routeHelper('shop')}}" class="nav-link">
