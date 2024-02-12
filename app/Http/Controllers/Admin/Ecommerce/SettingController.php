@@ -210,6 +210,9 @@ class SettingController extends Controller
         }
         elseif ($request->type == 10) {
             Setting::updateOrCreate(['name' => 'GUEST_CHECKOUT'], ['value' => $request->get('GUEST_CHECKOUT')]);
+            Setting::updateOrCreate(['name' => 'shipping_free_above'], ['value' => $request->get('shipping_free_above')]);
+            Setting::updateOrCreate(['name' => 'shipping_charge'], ['value' => $request->get('shipping_charge')]);
+            Setting::updateOrCreate(['name' => 'shipping_charge_out_of_range'], ['value' => $request->get('shipping_charge_out_of_range')]);
             
             notify()->success("Shop settings successfully updated", "Success");
             return back();

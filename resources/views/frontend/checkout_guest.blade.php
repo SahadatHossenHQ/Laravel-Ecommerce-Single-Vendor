@@ -390,8 +390,24 @@ z-index: -9;
                             <span><span id="sub-total">{{$stotal}}</span><strong> Tk</strong></span>
                         </div>
                         <div class="rvinfo">
-                            <span>Shipping Charge</span>
-                            <span>+ <span id="ship-charge">@if(isset($order->shipping_charge)) {{$order->single_charge*$seller_count}} @else 0.00 @endif</span><strong> Tk</strong></span>
+                            <span>
+                                Shipping Charge @if ($stotal > setting('shipping_free_above'))(Free)@endif
+                            </span>
+                            <span>
+                                +
+                                @if ($stotal > setting('shipping_free_above'))
+                                    0.00
+                                @else
+                                    <span id="ship-charge">
+                                        @if(isset($order->shipping_charge))
+
+                                        {{$order->single_charge*$seller_count}}
+
+                                        @else 0.00 @endif
+                                    </span>
+                                @endif
+                                <strong> Tk</strong>
+                            </span>
                         </div>
                         <div class="rvinfo coupon">
                             <span>Coupon <span class="coupon-name"></span></span>
@@ -403,15 +419,19 @@ z-index: -9;
                             <span>Total</span>
                             <h4>
                                 @if (Session::has('coupon'))
-                                    @php
-                                        $sub_total = $stotal;
-                                        $discount  = Session::get('coupon')['discount'];
-                                        $rep_sub   = str_replace(',', '', $sub_total);
-                                        $total     = number_format($rep_sub - $discount, 2, '.', ',');
-                                    @endphp
+                                @php
+                                $sub_total = $stotal;
+                                $discount = Session::get('coupon')['discount'];
+                                $rep_sub = str_replace(',', '', $sub_total);
+                                $total = number_format($rep_sub - $discount, 2, '.', ',');
+                                @endphp
                                 @endif
                                 <strong>
-                                    <span id="total">{{$total ?? $stotal}}</span> Tk
+                                    @if ($stotal > setting('shipping_free_above'))
+                                        {{ $stotal }}
+                                    @else
+                                        <span id="total">{{$total ?? $stotal}}</span> Tk
+                                    @endif
                                 </strong>
                             </h4>
                         </div> 
