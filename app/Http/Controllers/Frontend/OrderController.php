@@ -71,12 +71,17 @@ class OrderController extends Controller
 
 
         $seller_count = $request->seller_count;
-        if ($request->city == 'Dhaka') {
-            $shipping_charge = setting('shipping_charge') * $seller_count;
-            $single_charge = setting('shipping_charge');
-        } else {
-            $shipping_charge = setting('shipping_charge_out_of_range') * $seller_count;
-            $single_charge = setting('shipping_charge_out_of_range');
+        if($request->stotal > setting('shipping_free_above')){
+            $shipping_charge = 0;
+            $single_charge = 0;
+        } else{
+            if ($request->city == 'Dhaka') {
+                $shipping_charge = setting('shipping_charge') * $seller_count;
+                $single_charge = setting('shipping_charge');
+            } else {
+                $shipping_charge = setting('shipping_charge_out_of_range') * $seller_count;
+                $single_charge = setting('shipping_charge_out_of_range');
+            }
         }
 
         $cart_subtotal = $request->stotal;
@@ -408,13 +413,17 @@ class OrderController extends Controller
 
         
         $seller_count=$request->seller_count;
-        if ($request->city == 'Dhaka') {
-            $shipping_charge = setting('shipping_charge')*$seller_count;
-            $single_charge = setting('shipping_charge');
-        }
-        else {
-            $shipping_charge = setting('shipping_charge_out_of_range')*$seller_count;
-            $single_charge = setting('shipping_charge_out_of_range');
+        if($request->stotal > setting('shipping_free_above')){
+            $shipping_charge = 0;
+            $single_charge = 0;
+        } else{
+            if ($request->city == 'Dhaka') {
+                $shipping_charge = setting('shipping_charge') * $seller_count;
+                $single_charge = setting('shipping_charge');
+            } else {
+                $shipping_charge = setting('shipping_charge_out_of_range') * $seller_count;
+                $single_charge = setting('shipping_charge_out_of_range');
+            }
         }
 
         $cart_subtotal = $request->stotal;
