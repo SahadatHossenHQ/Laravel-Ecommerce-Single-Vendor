@@ -9,7 +9,7 @@
                     
                     <li><a href="{{route('account')}}">My Account</a></li>
                     <li><a href="{{route('order')}}">Orders</a></li>
-                    <li><a href="{{route('returns')}}"><i class="fas fa-undo-alt"></i>Returns</a></li>
+                    <li><a href="{{route('returns')}}">Returns</a></li>
                     <li><a href="{{route('download')}}">Download</a></li>
                     <li><a href="{{route('wishlist')}}">Wishlist</a></li>
                     <li><a href="{{route('ticket')}}">Support Ticket</a></li>
