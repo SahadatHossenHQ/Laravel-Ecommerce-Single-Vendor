@@ -128,11 +128,12 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::get('apply/coupon/{code}/{stotal}', [CartController::class, 'applyCoupon'])->name('apply.coupon');
     Route::get('apply/coupon/buy-now/{code}/{id}/{qty}/{dynamic}', [CartController::class, 'applyCouponBuyNow'])->name('apply.coupon.buy');
     Route::get('order', [OrderController::class, 'order'])->name('order');
+    Route::get('returns', [OrderController::class, 'returns'])->name('returns');
     Route::post('order', [OrderController::class, 'orderStore'])->name('order.store');
     Route::post('order/buy-now', [OrderController::class, 'orderBuyNowStore'])->name('order.buy.store');
     Route::get('order/invoice/{id}', [OrderController::class, 'orderInvoice'])->name('order.invoice');
     Route::get('order/cacnel/{id}', [OrderController::class, 'cancel'])->name('order.cacnel');
-
+    Route::get('order/return_req/{id}', [OrderController::class, 'return_req'])->name('order.return_req');
     Route::get('buy/product', [OrderController::class, 'buyProduct'])->name('buy.product');
 
     Route::get('download', [OrderController::class, 'download'])->name('download');

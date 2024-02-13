@@ -442,6 +442,40 @@ class OrderController extends Controller
         return back();
     }
    
+        // Return Accept by Admin
+        public function returnAccept($id)
+        {
+            $order = Order::findOrFail($id);
+            if ($order->status == 6) {
+                $order->status = 7; // return accept status
+                DB::table('multi_order')->where('order_id', $id)->update(['status' => 7]);
+                $order->save();
+            
+                notify()->success("Order return accepted successfully", "Congratulations");
+                return back();
+                $this->sendNotification('delevery', $order->invoice, $order->user_id);
+            }
+            notify()->warning("This order status not return accepted", "Something Wrong");
+            return back();
+        }
+        
+        // Complete return by admin as got the product from customer
+        public function returnComplete($id)
+        {
+            $order = Order::findOrFail($id);
+            if ($order->status == 7) {
+    
+                $order->status = 8; // return completed status
+                DB::table('multi_order')->where('order_id', $id)->update(['status' => 8]);
+                $order->save();
+                
+                notify()->success("Order Returned back successfully", "Congratulations");
+                return back();
+                $this->sendNotification('delevery', $order->invoice, $order->user_id);
+            }
+            notify()->warning("This order retrun system not completed yet", "Something Wrong");
+            return back();
+        }
 
 
     /**

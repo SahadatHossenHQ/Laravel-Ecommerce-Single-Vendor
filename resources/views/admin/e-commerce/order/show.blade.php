@@ -44,8 +44,17 @@
                             <i class="fas fa-running"></i>
                             Processing
                         </a>
-                         @if ($order->status !=2 && $order->status !=3)
-                          <a title="Shipping" href="{{routeHelper('order/status/shipping/'. $order->id)}}" id="btnShipping" onclick="return confirm('Are you sure Shipping this order?')" class="btn btn-info btn-sm">
+
+                        @if ($order->status == 6)
+                            <a title="Accept return request]" href="{{routeHelper('order/status/return_req_accept/'. $order->id)}}" onclick="alert('Return process are start')" class="btn btn-success btn-sm">
+                                Return Accept
+                            </a>
+                        @elseif ($order->status == 7)
+                            <a title="Complete the return process, you got the product from customer as a return completely." href="{{routeHelper('order/status/return_complete/'. $order->id)}}" onclick="alert('Complete the return, you got the product from customer?')" class="btn btn-success btn-sm">
+                                    Return Complete
+                            </a>
+                        @elseif ($order->status !=2 && $order->status !=3 && $order->status !=6 && $order->status !=7 && $order->status !=8)
+                        <a title="Shipping" href="{{routeHelper('order/status/shipping/'. $order->id)}}" id="btnShipping" onclick="return confirm('Are you sure Shipping this order?')" class="btn btn-info btn-sm">
                                         <i class="fas fa-plane"></i> Shipping
                                     </a>
                         
@@ -196,11 +205,17 @@
                                     <span class="badge badge-primary">Processing</span>
                                 @elseif ($order->status == 2)
                                     <span class="badge badge-danger">Canceled</span>
-                                     @elseif ($order->status == 5)
+                                @elseif ($order->status == 5)
                                     <span class="badge badge-danger">Refund</span>
-                               @elseif ($order->status == 4)
+                                @elseif ($order->status == 4)
                                     <span class="badge" style="background: #7db1b1;">Shipping</span>
-                                @else 
+                                @elseif ($order->status == 6)
+                                    <span class="badge" style="background: #7db1b1;">Return Request By User</span>
+                                @elseif ($order->status == 7)
+                                    <span class="badge" style="background: #7db1b1;">Return process accept by Owner</span>
+                                @elseif ($order->status == 8)
+                                    <span class="badge" style="background: #7db1b1;">Returned</span>
+                                @elseif ($order->status == 3)
                                     <span class="badge badge-success">Delivered</span>
                                 @endif    
                             </td>
@@ -316,11 +331,17 @@
                                     <span class="badge badge-primary">Processing</span>
                                 @elseif ($vendor->status == 2)
                                     <span class="badge badge-danger">Canceled</span>
-                                     @elseif ($vendor->status == 4)
+                                @elseif ($vendor->status == 4)
                                     <span class="badge" style="background: #7db1b1;">Shipping</span>
-                                 @elseif ($vendor->status == 5)
+                                @elseif ($vendor->status == 5)
                                     <span class="badge badge-danger">Refund</span>
-                                @else 
+                                @elseif ($order->status == 6)
+                                    <span class="badge" style="background: #7db1b1;">Return Request By User</span>
+                                @elseif ($order->status == 7)
+                                    <span class="badge" style="background: #7db1b1;">Return process accept by Owner</span>
+                                @elseif ($order->status == 8)
+                                    <span class="badge" style="background: #7db1b1;">Returned</span>
+                                @elseif ($order->status == 3)
                                     <span class="badge badge-success">Delivered</span>
                                 @endif    
                            </div>

@@ -199,6 +199,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('status/processing/{id}', [OrderController::class, 'statusProcessing'])->name('status.processing');
         Route::get('status/cancel/{id}', [OrderController::class, 'statusCancel'])->name('status.cancel');
         Route::get('status/delivered/{id}', [OrderController::class, 'statusDelivered'])->name('status.delivered');
+        Route::get('status/return_req_accept/{id}', [OrderController::class, 'returnAccept'])->name('status.returnAccept');
+        Route::get('status/return_complete/{id}', [OrderController::class, 'returnComplete'])->name('status.returnComplete');
         Route::get('status/shipping/{id}', [OrderController::class, 'statusShipping'])->name('status.shipping');
         Route::get('status/sub/{id}/{status}/{vendor}', [OrderController::class, 'sub_status'])->name('subStatus');
     });

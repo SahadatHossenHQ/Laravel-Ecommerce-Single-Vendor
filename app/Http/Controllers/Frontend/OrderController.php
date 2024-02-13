@@ -37,7 +37,15 @@ class OrderController extends Controller
     }
 
 
-
+    public function returns()
+    {
+        $orders = Order::where('user_id', auth()->id())
+            ->whereIn('status', [6, 7, 8])
+            ->latest('id')
+            ->get();
+        return view('frontend.returns_order', compact('orders'));
+    }
+    
 
     /**
      * store Guest order
@@ -1111,6 +1119,64 @@ class OrderController extends Controller
 
         
     }
+
+
+    // Return command by user
+    public function return_req($id){
+        $order = Order::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+
+        if ($order->status == 3) {
+            foreach ($order->orderDetails as $item) {
+                $product = Product::find($item->product_id);
+                if ($product) {
+                    $vendor = User::find($product->user_id);
+                    if ($vendor->role_id == 1) {
+                        $amount = $vendor->vendorAccount->pending_amount;
+                        $vendor->vendorAccount()->update([
+                            'pending_amount' => $amount - $item->g_total
+                        ]);
+                    } else {
+                        $grand_total = $item->g_total;
+                        $vendor_amount = $grand_total;;
+                        $admin_amount = Commission::where('order_id', $order->id)->first();
+                        $adminAccount = VendorAccount::where('vendor_id', 1)->first();
+                        $amount = $adminAccount->pending_amount;
+
+
+                        $vendor->vendorAccount()->update([
+                            'pending_amount' => $vendor->vendorAccount->pending_amount - $vendor_amount
+                        ]);
+                        $adminAccount->update([
+                            'pending_amount' => $amount - $admin_amount->amount
+                        ]);
+                    }
+
+                    $product->quantity = $product->quantity + $item->qty;
+                    $product->save();
+                }
+            }
+
+            // $order->commission->update([
+            //     'status'  => false,
+            // ]);
+            $order->status = 6; // return status
+            $order->save();
+            $user = User::find($order->user_id);
+            $user->pen_point -= $order->point;
+            if ($order->payment_method == 'wallate') {
+                $user->wallate = $user->wallate + $order->total;
+            }
+            if ($user->cancel_attempt == 3) {
+                $user->status = 0;
+            } else {
+                $user->cancel_attempt += 1;
+            }
+            $user->update();
+            notify()->success("Order Return", "Congratulations");
+            return redirect()->route('order');
+        }
+    }
+
     
     /**
      * ordered product review

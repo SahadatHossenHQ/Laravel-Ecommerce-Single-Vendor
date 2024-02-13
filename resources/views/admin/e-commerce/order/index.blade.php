@@ -76,11 +76,17 @@
                                     <span class="badge badge-primary">order confirm</span>
                                 @elseif ($data->status == 2)
                                     <span class="badge badge-danger">Canceled</span>
-                                     @elseif ($data->status == 5)
+                                @elseif ($data->status == 5)
                                     <span class="badge badge-danger">refund</span>
                                 @elseif ($data->status == 4)
                                     <span class="badge" style="background: #7db1b1;">Shipping</span>
-                                @else 
+                                @elseif ($data->status == 6)
+                                    <span class="badge badge-warning"><small>Return<br>Requested</small></span>
+                                @elseif ($data->status == 7)
+                                    <span class="badge badge-warning"><small>Returning by Customer</small></span>
+                                @elseif ($data->status == 8)
+                                    <span class="badge badge-danger">Returned</span>
+                                @elseif ($order->status == 3)
                                     <span class="badge badge-success">Delivered</span>
                                 @endif  
                             </td>
