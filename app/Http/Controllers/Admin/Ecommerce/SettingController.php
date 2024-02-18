@@ -228,6 +228,14 @@ class SettingController extends Controller
             notify()->success("Notice successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 12) {
+            Setting::updateOrCreate(['name' => 'STEEDFAST_STATUS'], ['value' => $request->get('STEEDFAST_STATUS')]);
+            Setting::updateOrCreate(['name' => 'STEEDFAST_API_KEY'], ['value' => $request->get('STEEDFAST_API_KEY')]);
+            Setting::updateOrCreate(['name' => 'STEEDFAST_API_SECRET_KEY'], ['value' => $request->get('STEEDFAST_API_SECRET_KEY')]);
+
+            notify()->success("Steedfast api successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();
@@ -444,10 +452,6 @@ class SettingController extends Controller
 
             $get_STYLE_3_TOP_MENU_LINK_HOVER_COLOR = Setting::where('name', 'STYLE_3_TOP_MENU_LINK_HOVER_COLOR')->first();
             $STYLE_3_TOP_MENU_LINK_HOVER_COLOR = (!$get_STYLE_3_TOP_MENU_LINK_HOVER_COLOR) ? (object)['value' => ''] : $get_STYLE_3_TOP_MENU_LINK_HOVER_COLOR;
-
-
-            
-            
             
             $get_MAIN_MENU_STYLE = Setting::where('name', 'MAIN_MENU_STYLE')->first();
             $MAIN_MENU_STYLE = (!$get_MAIN_MENU_STYLE) ? (object)['value' => '1'] : $get_MAIN_MENU_STYLE;
@@ -572,6 +576,28 @@ class SettingController extends Controller
         ));
 
         // echo $PRIMARY_BG_TEXT_COLOR;
+    }
+
+
+
+    public function courierIndex(){
+
+        $get_header_code = Setting::where('name', 'header_code')->first();
+        $get_fb_pixel = Setting::where('name', 'fb_pixel')->first();
+
+        if (!$get_header_code) {
+            $header_code = (object)['value' => ''];
+        } else {
+            $header_code = $get_header_code;
+        }
+
+        if (!$get_fb_pixel) {
+            $fb_pixel = (object)['value' => ''];
+        } else {
+            $fb_pixel = $get_fb_pixel;
+        }
+
+        return view('admin.e-commerce.setting.courierIndex', compact('header_code', 'fb_pixel'));
     }
 
 

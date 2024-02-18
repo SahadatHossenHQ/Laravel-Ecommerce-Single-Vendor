@@ -268,6 +268,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('setting/shop_settings', [SettingController::class, 'shopSettingsIndex'])->name('setting.shop_settings');
     Route::get('setting/color', [SettingController::class, 'colorIndex'])->name('setting.color');
     Route::get('setting/header', [SettingController::class, 'headerIndex'])->name('setting.header');
+    Route::get('setting/courier', [SettingController::class, 'courierIndex'])->name('setting.courier');
+
     Route::get('setting/mailsmsapireglog', [SettingController::class, 'mailsmsapireglogIndex'])->name('setting.mailsmsapireglog');
 
     // Route::get('setting/social', [SettingController::class, 'social'])->name('setting.social');

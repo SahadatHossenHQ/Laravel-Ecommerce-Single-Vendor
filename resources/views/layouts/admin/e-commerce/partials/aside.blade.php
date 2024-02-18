@@ -851,6 +851,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/courier') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.courier')}}" class="nav-link">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <p>
+                                Courier
+                            </p>
+                        </a>
+                    </li>
                 </li>
                 <li class="nav-item {{Request::is('admin/shop') ? 'menu-is-opening menu-open':''}}">
                     <a href="{{routeHelper('shop')}}" class="nav-link">
