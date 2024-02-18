@@ -44,5 +44,24 @@ class CourierController extends Controller
         // Return the API response as JSON
         // return response()->json($response);
         dd($response);
+
+        // All Response
+            //         array:3 [▼
+            // "status" => 200
+            // "message" => "Consignment has been created successfully."
+            // "consignment" => array:11 [▼
+            //     "consignment_id" => 74261643
+            //     "invoice" => "80"
+            //     "tracking_code" => "46D248B1E"
+            //     "recipient_name" => "Shamim Khan"
+            //     "recipient_phone" => "01721600688"
+            //     "recipient_address" => "h, Dhaka, Dhaka,"
+            //     "cod_amount" => 0
+            //     "status" => "in_review"
+            //     "note" => "N/A"
+            //     "created_at" => "2024-02-18T11:58:59.000000Z"
+            //     "updated_at" => "2024-02-18T11:58:59.000000Z"
+            // ]
+            // ]
     }
 }
