@@ -81,9 +81,21 @@
                               Refund
                             </button>
                         @endif
-                        <a href="{{route('admin.order.delete',['did'=>$order->id])}}"   class="btn btn-danger btn-sm">
-                                    <i class="nav-icon fas fa-trash-alt"></i> Delete
-                                </a>
+                        <a href="{{route('admin.order.delete',['did'=>$order->id])}}"   class="btn btn-danger btn-sm"><i class="nav-icon fas fa-trash-alt"></i> Delete</a>
+                        <form action="{{ route('admin.setting.courier.sendsteedfast') }}" method="POST">
+                        @csrf
+                            <input type="hidden" name="invoice" value="{{ $order->invoice }}">
+                            <input type="hidden" name="recipient_name" value="{{ $order->first_name }}">
+                            <input type="hidden" name="recipient_phone" value="{{ $order->phone }}">
+                            <input type="hidden" name="recipient_address" value="{{ $order->address . ', ' . $order->town . ', ' . $order->district . ', ' . $order->post_code }}">
+                            @if ($order->pay_staus == 1)
+                                <input type="hidden" name="cod_amount" value="0.00">
+                            @else
+                                <input type="hidden" name="cod_amount" value="{{ $order->total }}">
+                            @endif
+                            <input type="hidden" name="note" value="N/A">
+                            <input type="submit" value="Send Courier">
+                        </form>
                         <a href="{{routeHelper('order/print/'. $order->id)}}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                     </div>
                 </div>

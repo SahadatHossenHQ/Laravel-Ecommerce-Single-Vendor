@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\Ecommerce\AuthController;
 use App\Http\Controllers\campaingController;
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\blogControler as ablogController;
+use App\Http\Controllers\CourierController;
 
 use App\Http\Controllers\subscriptionController;
 use App\Models\ticket;
@@ -269,6 +270,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('setting/color', [SettingController::class, 'colorIndex'])->name('setting.color');
     Route::get('setting/header', [SettingController::class, 'headerIndex'])->name('setting.header');
     Route::get('setting/courier', [SettingController::class, 'courierIndex'])->name('setting.courier');
+    Route::post('setting/courier/sendsteedfast', [CourierController::class, 'sendsteedfast'])->name('setting.courier.sendsteedfast');
 
     Route::get('setting/mailsmsapireglog', [SettingController::class, 'mailsmsapireglogIndex'])->name('setting.mailsmsapireglog');
 
