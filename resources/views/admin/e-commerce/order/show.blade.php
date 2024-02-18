@@ -31,15 +31,38 @@
                     <div class="col-sm-6">
                         <h3 class="card-title">Customer Information</h3>
                     </div>
-                    <div class="col-sm-6 text-right">
+                    <div class="col-sm-12 col-12 text-right"
+                    style="display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-end;
+                    grid-column-gap: 8px;">
                         @if ($order->status !=5)
                         @if ($order->status !=2)
-                         @if($order->status !=3)
-                         <a title="@if($order->pay_staus==1)Unpaid @else Paid @endif" href="{{route('admin.order.pay',['id'=>$order->id])}}" class="btn @if($order->pay_staus==1)btn-danger @else btn-success @endif btn-sm">
+                        @if($order->status !=3)
+                        <a title="@if($order->pay_staus==1)Unpaid @else Paid @endif" href="{{route('admin.order.pay',['id'=>$order->id])}}" class="btn @if($order->pay_staus==1)btn-danger @else btn-success @endif btn-sm">
                                         <i class="fas fa-money-bill"></i>  @if($order->pay_staus==1)Unpaid @else Paid @endif
                         </a>
                         @endif
                         @endif
+
+                        @if($order->status == 1 || $order->pay_staus==1 )
+                        <form action="{{ route('admin.setting.courier.sendsteedfast') }}" method="POST">
+                            @csrf
+                                <input type="hidden" name="invoice" value="{{ $order->invoice }}">
+                                <input type="hidden" name="recipient_name" value="{{ $order->first_name }}">
+                                <input type="hidden" name="recipient_phone" value="{{ $order->phone }}">
+                                <input type="hidden" name="recipient_address" value="{{ $order->address . ', ' . $order->town . ', ' . $order->district . ', ' . $order->post_code }}">
+                                @if ($order->pay_staus == 1)
+                                    <input type="hidden" name="cod_amount" value="0.00">
+                                @else
+                                    <input type="hidden" name="cod_amount" value="{{ $order->total }}">
+                                @endif
+                                <input type="hidden" name="note" value="N/A">
+                                <input class="btn btn-info btn-sm" type="submit" value="Send Courier">
+                            </form>
+                        @endif
+
                         <a title="Processing" href="{{routeHelper('order/status/processing/'. $order->id)}}" onclick="alert('Are you sure change status this order?')" class="btn btn-primary btn-sm">
                             <i class="fas fa-running"></i>
                             Processing
@@ -70,10 +93,9 @@
                         </a>
                         @endif
                         @endif
-
-                         @if($order->status ==3  )
+                        @if($order->status ==3  )
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#refund">
-                          Refund
+                        Refund
                         </button>
                             @endif
                         @if($order->status ==2  )
@@ -82,20 +104,6 @@
                             </button>
                         @endif
                         <a href="{{route('admin.order.delete',['did'=>$order->id])}}"   class="btn btn-danger btn-sm"><i class="nav-icon fas fa-trash-alt"></i> Delete</a>
-                        <form action="{{ route('admin.setting.courier.sendsteedfast') }}" method="POST">
-                        @csrf
-                            <input type="hidden" name="invoice" value="{{ $order->invoice }}">
-                            <input type="hidden" name="recipient_name" value="{{ $order->first_name }}">
-                            <input type="hidden" name="recipient_phone" value="{{ $order->phone }}">
-                            <input type="hidden" name="recipient_address" value="{{ $order->address . ', ' . $order->town . ', ' . $order->district . ', ' . $order->post_code }}">
-                            @if ($order->pay_staus == 1)
-                                <input type="hidden" name="cod_amount" value="0.00">
-                            @else
-                                <input type="hidden" name="cod_amount" value="{{ $order->total }}">
-                            @endif
-                            <input type="hidden" name="note" value="N/A">
-                            <input type="submit" value="Send Courier">
-                        </form>
                         <a href="{{routeHelper('order/print/'. $order->id)}}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                     </div>
                 </div>
