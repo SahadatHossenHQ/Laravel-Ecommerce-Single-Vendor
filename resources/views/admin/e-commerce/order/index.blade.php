@@ -86,6 +86,8 @@
                                     <span class="badge badge-warning"><small>Returning by Customer</small></span>
                                 @elseif ($data->status == 8)
                                     <span class="badge badge-danger">Returned</span>
+                                @elseif ($data->status == 9)
+                                    <span class="badge badge-danger"><small>Sended to Courier</small></span>
                                 @elseif ($order->status == 3)
                                     <span class="badge badge-success">Delivered</span>
                                 @endif  

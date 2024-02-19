@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Services\SteadfastCourierService;
 
 class CourierController extends Controller
@@ -40,10 +42,32 @@ class CourierController extends Controller
             $codAmount,
             $note
         );
+        // dd($response);
+
+
+
+        $order = Order::findOrFail($invoice);
+        if ($order->status != 9) {
+            $order->status = 9; // sended to courier
+            DB::table('multi_order')->where('order_id', $invoice)->update(['status' => 9]);
+            $order->save();
+        
+            notify()->success("Courerier Sended successfully", "Congratulations");
+            return back();
+            $this->sendNotification('Courier', $order->invoice, $order->user_id);
+        }
+
+        
+        if($response['status'] != 200){
+            notify()->warning($response['errors']['invoice'][0], "Something Wrong");
+            return back();
+        }
 
         // Return the API response as JSON
         // return response()->json($response);
-        dd($response);
+        // dd($response);
+
+
 
         // All Response
             //         array:3 [▼

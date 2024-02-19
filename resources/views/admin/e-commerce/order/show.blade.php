@@ -46,8 +46,8 @@
                         @endif
                         @endif
 
-                        @if($order->status == 1 || $order->pay_staus==1 )
-                        <form action="{{ route('admin.setting.courier.sendsteedfast') }}" method="POST">
+                        @if (setting('STEEDFAST_STATUS')  == 1 && $order->status !=9)
+                            <form action="{{ route('admin.setting.courier.sendsteedfast') }}" method="POST">
                             @csrf
                                 <input type="hidden" name="invoice" value="{{ $order->invoice }}">
                                 <input type="hidden" name="recipient_name" value="{{ $order->first_name }}">
@@ -61,6 +61,8 @@
                                 <input type="hidden" name="note" value="N/A">
                                 <input class="btn btn-info btn-sm" type="submit" value="Send Courier">
                             </form>
+                        @else
+                        <i class="btn btn-info btn-sm">Courierd Already</i>
                         @endif
 
                         <a title="Processing" href="{{routeHelper('order/status/processing/'. $order->id)}}" onclick="alert('Are you sure change status this order?')" class="btn btn-primary btn-sm">
@@ -100,7 +102,7 @@
                             @endif
                         @if($order->status ==2  )
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#refund2">
-                              Refund
+                            Refund
                             </button>
                         @endif
                         <a href="{{route('admin.order.delete',['did'=>$order->id])}}"   class="btn btn-danger btn-sm"><i class="nav-icon fas fa-trash-alt"></i> Delete</a>
@@ -235,6 +237,8 @@
                                     <span class="badge" style="background: #7db1b1;">Return process accept by Owner</span>
                                 @elseif ($order->status == 8)
                                     <span class="badge" style="background: #7db1b1;">Returned</span>
+                                @elseif ($order->status == 9)
+                                    <span class="badge" style="background: #7db1b1;">Sended to Courier</span>
                                 @elseif ($order->status == 3)
                                     <span class="badge badge-success">Delivered</span>
                                 @endif    
