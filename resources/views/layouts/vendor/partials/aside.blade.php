@@ -78,7 +78,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item {{Request::is('vendor/order*') ? 'menu-is-opening menu-open':''}}">
+                {{-- <li class="nav-item {{Request::is('vendor/order*') ? 'menu-is-opening menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fab fa-jedi-order"></i>
                         <p>
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                     </ul>
-                </li> 
+                </li>  --}}
 
                 <li class="nav-item {{Request::is('admin/profile*') ? 'menu-is-opening menu-open':''}}">
                     <a href="#" class="nav-link">
