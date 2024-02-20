@@ -290,7 +290,7 @@ public function upload($book){
             }
             
             
-             $filepath = $image->move(public_path('uploads/product'), $imageName);
+            $filepath = $image->move(public_path('uploads/product'), $imageName);
             $imagesize   = getimagesize($filepath);
             $width  = $imagesize[0] - (5/100 * $imagesize[0]);
             $height = $imagesize[1] - (5/100 * $imagesize[1]);
@@ -343,17 +343,18 @@ public function upload($book){
             'brand_id'          => $request->brand,
             'slug'              => rand(pow(10, 5-1), pow(10, 15)-1),
             'title'             => $request->title,
+            'sku'               => $request->sku,
             'author_id'             => $request->author_id,
             'book_file'             => $bookName ?? NULL,
             'short_description' => $request->short_description,
-             'isbn' => $request->isbn,
-             'edition' => $request->edition,
-             'pages' => $request->pages,
-             'video' => $videoName?? Null,
-              'videoTName' => $videoTName?? Null,
-              'yvideo' => $linky,
-             'country' => $request->country,
-             'language' => $request->language,
+            'isbn' => $request->isbn,
+            'edition' => $request->edition,
+            'pages' => $request->pages,
+            'video' => $videoName?? Null,
+            'videoTName' => $videoTName?? Null,
+            'yvideo' => $linky,
+            'country' => $request->country,
+            'language' => $request->language,
             'full_description'  => $request->full_description,
             'buying_price'      => $request->buying_price,
             'regular_price'     => $request->regular_price,
@@ -714,10 +715,10 @@ public function upload($book){
             }
         }
         $product->update([
-            'sku'               => $request->sku,
             'user_id'           => $request->vendor ?? 1,
             'brand_id'          => $request->brand,
             'title'             => $request->title,
+            'sku'               => $request->sku,
             'short_description' => $request->short_description,
             'author_id'             => $request->author_id,
             'book_file'             => $bookName ?? Null,

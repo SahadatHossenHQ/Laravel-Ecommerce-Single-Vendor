@@ -30,8 +30,8 @@ class ProductController extends Controller
         return view('vendor.product.index', compact('products'));
     }
     public function lowProduct(){
-         $products=\App\Models\Product::where('quantity','<','6')->where('user_id',auth()->id())->get();
-          return view('vendor.product.index', compact('products'));
+        $products=\App\Models\Product::where('quantity','<','6')->where('user_id',auth()->id())->get();
+        return view('vendor.product.index', compact('products'));
     }
     /**
      * Show the form for creating a new resource.
@@ -62,17 +62,17 @@ class ProductController extends Controller
             'title'             => 'required|string|max:255',
             'short_description' => 'required|string',
             'full_description'  => 'required|string',
-            'buying_price'     => 'required|numeric',
+            'buying_price'      => 'required|numeric',
             'regular_price'     => 'required|numeric',
-            'whole_price'     => 'nullable|numeric',
+            'whole_price'       => 'nullable|numeric',
             'discount_price'    => 'nullable|numeric',
-            'dis_type'    => 'required',
-            'point'    => 'nullable',
+            'dis_type'          => 'required',
+            'point'             => 'nullable',
             'quantity'          => 'required|integer',
             'categories'        => 'required|array',
             'categories.*'      => 'integer',
-            'sub_categories.'  => 'integer',
-            'extra_categories.'  => 'integer',
+            'sub_categories.'   => 'integer',
+            'extra_categories.' => 'integer',
             'mini_categories.'  => 'integer',
             'brand'             => 'required|integer',
             'sizes'             => 'array',
@@ -134,6 +134,7 @@ class ProductController extends Controller
             'brand_id'          => $request->brand,
             'slug'              => rand(pow(10, 5-1), pow(10, 15)-1),
             'title'             => $request->title,
+            'sku'               => $request->sku,
             'short_description' => $request->short_description,
             'full_description'  => $request->full_description,
             'buying_price'     => $request->buying_price,
@@ -338,19 +339,18 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
-       $this->validate($request, [
-            'sku'               => $request->sku,
+        $this->validate($request, [
             'title'             => 'required|string|max:255',
             'short_description' => 'required|string',
             'full_description'  => 'required|string',
             'regular_price'     => 'required|numeric',
-               'whole_price'     => 'nullable|numeric',
+            'whole_price'       => 'nullable|numeric',
             'discount_price'    => 'nullable|numeric',
-            'point'    => 'nullable',
+            'point'             => 'nullable',
             'quantity'          => 'required|integer',
             'categories'        => 'required|array',
             'categories.*'      => 'required|integer',
-              'extra_categories.'  => 'integer',
+            'extra_categories.' => 'integer',
             'brand'             => 'integer',
             'sizes'             => 'array',
             'sizes.*'           => 'integer',
@@ -401,12 +401,13 @@ class ProductController extends Controller
         }else{
             $discount_price=$request->discount_price;
         }
-         if($discount_price<0){
+        if($discount_price<0){
             $discount_price='Null';
         }
         $product->update([
             'brand_id'          => $request->brand,
             'title'             => $request->title,
+            'sku'               => $request->sku,
             'short_description' => $request->short_description,
             'full_description'  => $request->full_description,
             'buying_price'     => $request->buying_price,

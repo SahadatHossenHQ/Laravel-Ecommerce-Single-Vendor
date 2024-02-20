@@ -119,7 +119,7 @@
             @endisset
             <div class="card-body">
                 <div class="form-group">
-                    <label for="title">Title:</label>
+                    <label for="title">Title (*):</label>
                     <input type="text" name="title" id="title" placeholder="Write product title" class="form-control @error('title') is-invalid @enderror" value="{{ $product->title ?? old('title') }}" required>
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -133,7 +133,7 @@
                     @enderror --}}
                 </div>
                 <div class="form-group">
-                    <label for="short_description">Short Description:</label>
+                    <label for="short_description">Short Description (*):</label>
                     <textarea name="short_description" id="short_description" rows="3" placeholder="Write product short description" class="form-control @error('short_description') is-invalid @enderror" required>{{ $product->short_description ?? old('short_description') }}</textarea>
                     @error('short_description')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="buying_price">Buying Price:</label>
+                        <label for="buying_price">Buying Price (*):</label>
                         <input type="number" name="buying_price" id="buying_price" placeholder="Enter product buying price" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}" required>
                         @error('buying_price')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
