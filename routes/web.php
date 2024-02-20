@@ -48,10 +48,8 @@ Route::post('admin/login', [LoginController::class, 'superLogin'])->name('super.
 Route::GET('user/login', [LoginController::class, 'login'])->name('login.get');
 Route::post('user/register', [RegisterController::class, 'register'])->name('register.new');
 Route::get('user/otp', [RegisterController::class, 'sendotp'])->name('register.otp');
-
 Route::get('/recover-ac/mobile', [AccountController::class, 'pasmRecover'])->name('password.recover.mobile');
 Route::Post('password/reset', [AccountController::class, 'pasm'])->name('password.send');
-
 Route::Post('zt_admin.zishan/login/confirm', [LoginController::class, 'superLoginconfirm'])->name('super.login.confirm');
 
 Route::get('vendors', [VendorController::class, 'showAllVendors'])->name('vendors');
@@ -105,6 +103,8 @@ Route::get('/render/superCat', [HomeController::class, 'superCat']);
 Route::get('/render/subCat', [HomeController::class, 'subCat']);
 
 
+
+
 Route::middleware(['account', 'auth'])->group(function () {
     Route::group(['as' => 'connection.', 'prefix' => 'connection'], function () {
 
@@ -113,6 +113,7 @@ Route::middleware(['account', 'auth'])->group(function () {
         Route::get('/live-chat-list', [chatController::class, 'liveChatList'])->name('live.chat.list');
         Route::post('/live-chat', [chatController::class, 'storeLiveChatForm'])->name('store.chat');
     });
+
 
     Route::get('account/password', [AccountController::class, 'passChangeUser'])->name('pass-change');
     Route::put('password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
@@ -124,6 +125,7 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::get('order/track', [HomeController::class, 'track_form'])->name('track');
     Route::post('order/tracking', [HomeController::class, 'tracking'])->name('tracking');
     Route::get('order/tracking', [HomeController::class, 'track_form'])->name('tracking.re');
+
 
     Route::post('account/update', [AccountController::class, 'accountUpdate'])->name('account.update');
     Route::get('apply/coupon/{code}/{stotal}', [CartController::class, 'applyCoupon'])->name('apply.coupon');
@@ -137,8 +139,10 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::get('order/return_req/{id}', [OrderController::class, 'return_req'])->name('order.return_req');
     Route::get('buy/product', [OrderController::class, 'buyProduct'])->name('buy.product');
 
+
     Route::get('download', [OrderController::class, 'download'])->name('download');
     Route::get('download/product/{pro_id}/{id}', [OrderController::class, 'downloadProductFile'])->name('download.product');
+
 
     Route::get('review/{order_id}', [OrderController::class, 'review'])->name('review');
     Route::post('review/{id}', [OrderController::class, 'storeReview'])->name('review.store');
@@ -146,17 +150,21 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::post('wishlist/add', [wishlistController::class, 'store'])->name('wishlist.add');
     Route::get('wishlist/remove/{item}', [wishlistController::class, 'delete'])->name('wishlist.remove');
     Route::get('ticket/', [ContactController::class, 'ticket'])->name('ticket');
-
     Route::post('ticket/create', [ContactController::class, 'ticketCreate'])->name('ticket.create');
+
 
     Route::get('/user-blogs', [ablogController::class, 'index3'])->name('user_blog');
     Route::get('/redem', [AccountController::class, 'redem'])->name('redem.index');
     Route::get('/cashout', [AccountController::class, 'cashout'])->name('redem.cashout');
     Route::Post('/withdraw', [AccountController::class, 'withdraw'])->name('redem.withdraw');
     Route::post('/redem/covert', [AccountController::class, 'covert'])->name('redem.convert');
+    
+    
     Route::get("/myrefer", function () {
         return View::make("frontend.myrefer");
     })->name('myrefer');
+
+
     Route::post('/create-blog', [ablogController::class, 'store2'])->name('create_blog');
     Route::get('blog/status/{blog}', [ablogController::class, 'status'])->name('blog.status');
     Route::delete('/blog-delete/{blog}', [ablogController::class, 'destory'])->name('blog_delete');
@@ -174,6 +182,8 @@ Route::middleware(['account', 'auth'])->group(function () {
     Route::get('order/payment/{slug}', [OrderController::class, 'payform'])->name('order.pay.form');
     Route::Post('order/payment/create/{slug}', [OrderController::class, 'payCreate'])->name('order.pay.create');
 });
+
+
 Route::get('/classic/product/{slug}', [adsController::class, 'show'])->name('clasified.show');
 Route::get('/{slug}', [pageController::class, 'pageshow'])->name('page');
 Route::middleware(['auth', 'customer'])->group(function () {
@@ -181,10 +191,14 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::post('setup/vendor', [VendorController::class, 'setupVendor'])->name('setup.vendor');
 });
 
+
+
 Route::middleware(['auth'])->group(function () {
     Route::post('product/comment/{slug}', [ProductController::class, 'comment'])->name('comment');
     // Route::post('product/comment/reply/{slug}/{id}', [ProductController::class, 'reply'])->name('reply');
 });
+
+
 Route::get('service/form', [ContactController::class, 'service'])->name('service');
 Route::get('sheba/list', [HomeController::class, 'sheba'])->name('sheba');
 Route::get('contact/form', [ContactController::class, 'index'])->name('contact');
@@ -208,6 +222,7 @@ Route::get('/auth/facebook/callback', [socialController::class, 'handleFacebookC
 Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
 Route::post('/send-notification', [App\Http\Controllers\HomeController::class, 'sendNotification'])->name('send.notification');
 Route::post('register/send-otp', [RegisterController::class, 'sendotp'])->name('sendotp');
+
 
 
 Route::post('/success', [OrderController::class, 'success'])->name('success');
