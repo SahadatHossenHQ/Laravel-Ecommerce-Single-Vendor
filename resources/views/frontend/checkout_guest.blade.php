@@ -38,8 +38,9 @@ if(empty($order)){
 </style>
 <div id="checkout">
     <div class="container">
-        <form action="{{route('order.store')}}" method="POST">
+        <form action="{{route('order.store_guest')}}" method="POST">
             @csrf
+            <input type="hidden" name="checkout_user_type" value="guest">
             <div class="row mt-3">
                 <div class="col-md-8 offset-md-2 alert-message">
                     <div class="alert"></div>

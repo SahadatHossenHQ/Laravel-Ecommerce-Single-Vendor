@@ -419,11 +419,11 @@ right: -10px;
                                         <p style="margin-bottom: 0;">{{$review->body}}</p>
                                           <style type="text/css">
                                             .crv img{
-                                                  width: 80px;
-height: 80px;
-object-fit: cover;
-margin: 5px;
-border: 2px solid black;
+                                                width: 80px;
+                                                height: 80px;
+                                                object-fit: cover;
+                                                margin: 5px;
+                                                border: 2px solid black;
                                             }
                                         </style>
                                         <div class="d-flex crv">
