@@ -9,8 +9,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
+        {{-- <div class="col-lg-3 col-6">
             <a href="{{routeHelper('product/create')}}">
             	<div class="small-box bg-info">
 	                <div class="inner">
@@ -22,7 +21,7 @@
 	                </div>
 	            </div>
             </a>
-        </div>
+        </div> --}}
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <a href="{{route('admin.product.inhouse.create')}}">
