@@ -22,7 +22,8 @@
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
         "mckenziearts/laravel-notify": "^2.1",
-        "ourcodeworld/name-that-color": "dev-master"
+        "ourcodeworld/name-that-color": "dev-master",
+        "symfony/mime": "^5.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
