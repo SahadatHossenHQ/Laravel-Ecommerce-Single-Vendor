@@ -221,13 +221,14 @@ public function upload($book){
         }
         $this->validate($request, [
             'title'             => 'required|string|max:255',
+            'sku'               => 'nullable|string|max:255',
             'short_description' => 'nullable|string',
-            'full_description'  => 'nullable|string',
-            'buying_price'      => 'required|numeric',
+            'full_description'  => 'required|string',
+            'buying_price'      => 'nullable|numeric',
             'regular_price'     => 'required|numeric',
             'whole_price'       => 'nullable|numeric',
+            'dis_type'          => 'nullable',
             'discount_price'    => 'nullable|numeric',
-            'dis_type'          => 'required',
             'quantity'          => 'required|integer',
             'categories'        => 'required|array',
             'categories.*'      => 'integer',
