@@ -336,16 +336,19 @@ right: -10px;
                     
                 </div>
                 @if($product->sku)<p>Product Code (SKU): <b><i>{{$product->sku}}</i></b></p>@endif
+                @isset($product->user->shop_info->name)
                 <p>
-                    Seller:  
-                    <a style="font-size: 17px"  href="{{ route('vendor', $product->user->shop_info->slug)}}">{{$product->user->shop_info->name}}</a>
+                    Seller: <a style="font-size: 17px"  href="{{ route('vendor', $product->user->shop_info->slug)}}">{{$product->user->shop_info->name}}</a>
                 </p>
+                @endisset
                 {{-- <p>
                     Point : {{$product->point}}
                 </p> --}}
-                <p> Brand: <a style="font-size:14px" href="{{route('brand.product',['slug'=>$product->brand->slug])}}">{{$product->brand->name}}</a></p>
+                @isset($product->brand->name)
+                <p>Brand: <a style="font-size:14px" href="{{route('brand.product',['slug'=>$product->brand->slug])}}">{{$product->brand->name}}</a></p>
+                @endisset
                 @if($product->book==1)
-                <p> {{$product->book==1 ? 'by':'brand'}} <a style="font-size:14px" href="{{route('author.product',['slug'=>$product->author_id])}}">{{$product->author->name}}</a></p>
+                <p>{{$product->book==1 ? 'by':'brand'}} <a style="font-size:14px" href="{{route('author.product',['slug'=>$product->author_id])}}">{{$product->author->name}}</a></p>
                 @endif
                 <p>
                     <?php if(isset($campaigns_product)){$product->discount_price=$campaigns_product->price;}?>

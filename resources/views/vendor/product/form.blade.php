@@ -119,7 +119,7 @@
             @endisset
             <div class="card-body">
                 <div class="form-group">
-                    <label for="title">Title (*):</label>
+                    <label for="title">Title <span class="text-danger">(*)</span>:</label>
                     <input type="text" name="title" id="title" placeholder="Write product title" class="form-control @error('title') is-invalid @enderror" value="{{ $product->title ?? old('title') }}" required>
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -133,29 +133,29 @@
                     @enderror --}}
                 </div>
                 <div class="form-group">
-                    <label for="short_description">Short Description (*):</label>
+                    <label for="short_description">Short Description <span class="text-danger">(*)</span>:</label>
                     <textarea name="short_description" id="short_description" rows="3" placeholder="Write product short description" class="form-control @error('short_description') is-invalid @enderror" required>{{ $product->short_description ?? old('short_description') }}</textarea>
                     @error('short_description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="full_description">Full Description:</label>
-                    <textarea name="full_description" id="full_description" class="form-control" required>{{$product->full_description??old('full_description')}}</textarea>
+                    <label for="full_description">Full Description <span class="text-danger">(*)</span>:</label>
+                    <textarea name="full_description" id="full_description" class="form-control">{{$product->full_description??old('full_description')}}</textarea>
                     @error('full_description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="buying_price">Buying Price (*):</label>
-                        <input type="number" name="buying_price" id="buying_price" placeholder="Enter product buying price" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}" required>
+                        <label for="buying_price">Buying Price:</label>
+                        <input type="number" name="buying_price" id="buying_price" placeholder="Enter product buying price" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}">
                         @error('buying_price')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="regular_price">Regular Price:</label>
+                        <label for="regular_price">Regular Price <span class="text-danger">(*)</span>:</label>
                         <input type="number" name="regular_price" id="regular_price" placeholder="Enter product regular price" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price ?? old('regular_price') }}" required>
                         @error('regular_price')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -163,7 +163,8 @@
                     </div>
                         <div class="form-group col-md-6">
                             <label for="dis_type">Select Type:</label>
-                            <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror" required>
+                            <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror">
+                                <option value="0" @isset($product) {{$product->dis_type == '0' ? 'selected':''}} @endisset>None</option>
                                 <option value="1" @isset($product) {{$product->dis_type == '1' ? 'selected':''}} @endisset>Flat</option>
                                 <option value="2" @isset($product) {{$product->dis_type == '2' ? 'selected':''}} @endisset>Parcent %</option>
                             </select>
@@ -173,7 +174,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="regular_price">Whole Sell Price:</label>
-                            <input type="number" name="whole_price" id="whole_price" placeholder="Enter product whole sell price" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}" required>
+                            <input type="number" name="whole_price" id="whole_price" placeholder="Enter product whole sell price" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}">
                             @error('whole_price')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -194,7 +195,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="quantity">Quantity:</label>
+                            <label for="quantity">Quantity <span class="text-danger">(*)</span>:</label>
                             <input type="number" name="quantity" id="quantity" placeholder="Enter product quantity" class="form-control @error('quantity') is-invalid @enderror" value="{{ $product->quantity ?? old('quantity') }}" required>
                             @error('quantity')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -203,8 +204,8 @@
 
                         <div class="form-group col-md-6">
                             <label for="brand">Select Brand:</label>
-                            <select name="brand" id="brand" data-placeholder="Select Brand" class="form-control select2 @error('brand') is-invalid @enderror" required>
-                                <option value="">Select Brand</option>
+                            <select name="brand" id="brand" data-placeholder="Select Brand" class="form-control select2 @error('brand') is-invalid @enderror">
+                                <option value="0">Select Brand</option>
                                 @foreach ($brands as $brand)
                                     <option value="{{$brand->id}}" @isset($product) {{$brand->id == $product->brand_id ? 'selected':''}} @endisset>{{$brand->name}}</option>
                                 @endforeach
@@ -215,7 +216,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="category">Select Category:</label>
+                            <label for="category">Select Category <span class="text-danger">(*)</span>:</label>
                             <select name="categories[]" id="category" multiple data-placeholder="Select Category" class="category form-control select2 @error('categories') is-invalid @enderror" required>
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
@@ -280,58 +281,58 @@
                                 @enderror
                         </div>
                         <input type='hidden' name="shipping_charge" value="1">
-
                         <div class="form-group col-md-12">
                             <div style="background: #eeeeee;padding: 10px;border-radius: 5px;">
                                 <div class="row">
                                     <div class="form-group col-md-12" style="margin-bottom: 5px;border:1px solid gainsboro;">
-                                        <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button" data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false" aria-controls="collapseExampleColor">Select Color:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button></label>
-                                       <div class="collapse" id="collapseExampleColor">
-                                          <div style="display: flex;" class="input-group ">
-                                                
-                                                <select id="select_color"  data-placeholder="Select Color" class="form-control  @error('colors') is-invalid @enderror" >
+                                        <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button"
+                                                data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false"
+                                                aria-controls="collapseExampleColor">Select Color:<i
+                                                    style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i>
+                                            </button></label>
+                                        <div class="collapse" id="collapseExampleColor">
+                                            <div style="display: flex;" class="input-group ">
+                                                <select id="select_color" data-placeholder="Select Color"
+                                                    class="form-control  @error('colors') is-invalid @enderror">
                                                     <option value="">Select Color</option>
                                                     @foreach ($colors as $color)
-                                                        <option style="color:white;background: {{$color->code}}" value="{{$color->slug.','.$color->id}}" >{{$color->name}}</option>
+                                                    <option style="color:white;background: {{$color->code}}"
+                                                        value="{{$color->slug.','.$color->id}}">{{$color->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('colors')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
-                                               
-                                               
-
-                                          </div>
-                                          <div id="increment_color">
-                                            @isset($product)
-                                            @foreach($colors_product as $pro_color)
-                                                <div class="input-group mt-2"> 
-                                                    <input class="form-control" type="hidden" readonly="" name="colors[]" value="{{$pro_color->id}}">
-                                                     <input class="form-control" type="text"  readonly="" value="{{$pro_color->name}}"> 
-                                                     <input class="form-control" type="number" placeholder="extra price" name="color_prices[]" value="{{$pro_color->price}}"> 
-                                                     <input class="form-control" type="number" placeholder="extra quantity" name="color_quantits[]" value="{{$pro_color->qnty}}">
-                                                      <div class="input-group-append" id="remove" style="cursor:context-menu">
-                                                            <a href="{{route('admin.color.delete.n2',['cc'=>$pro_color->id,'pp'=>$product->id])}}">
-                                                                <span class="input-group-text">Remove</span>
-                                                            </a>
+                                            </div>
+                                            <div id="increment_color">
+                                                @isset($product)
+                                                @foreach($colors_product as $pro_color)
+                                                <div class="input-group mt-2">
+                                                    <input class="form-control" type="hidden" readonly="" name="colors[]"
+                                                        value="{{$pro_color->id}}">
+                                                    <input class="form-control" type="text" readonly="" value="{{$pro_color->name}}">
+                                                    <input class="form-control" type="number" placeholder="extra price" name="color_prices[]"
+                                                        value="{{$pro_color->price}}">
+                                                    <input class="form-control" type="number" placeholder="extra quantity"
+                                                        name="color_quantits[]" value="{{$pro_color->qnty}}">
+                                                    <div class="input-group-append" id="remove" style="cursor:context-menu">
+                                                        <a href="{{route('admin.color.delete.n2',['cc'=>$pro_color->id,'pp'=>$product->id])}}">
+                                                            <span class="input-group-text">Remove</span>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                            @endforeach 
-                                            @endisset
-                                              
-                                          </div>
-                                          </div>
+                                                @endforeach
+                                                @endisset
+                                            </div>
+                                        </div>
                                     </div>
-                                   
                                 </div>
                                 <div id="sho_attributes" class="row">
-                                      
-                                  </div>
+                                </div>
                             </div>
                         </div>
-                    
                         <div class="form-group col-md-6">
-                            <label for="image">Product Image:</label>
+                            <label for="image">Product Image <span class="text-danger">(*)</span>:</label>
                             <input type="file" name="image" id="image" accept="image/*" class="form-control dropify @error('image') is-invalid @enderror" data-default-file="@isset($product) /uploads/product/{{$product->image}}@enderror">
                             @error('image')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -341,7 +342,7 @@
                     
                     @else
                     <div class="form-group col-md-6">
-                        <label>Product Gallery Image:</label>
+                        <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
                         <div class="input-group" id="increment">
                             <input type="file" class="form-control" accept="image/*" id="images" name="images[]" required>
                                 

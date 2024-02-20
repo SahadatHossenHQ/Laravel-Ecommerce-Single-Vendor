@@ -132,7 +132,9 @@
                                 @endif 
                             </small>
                         </h4>
+                        @isset($product->brand->name)
                         <h4 class="mt-0"><small>Brand: {{$product->brand->name}}</small> </h4>
+                        @endisset
                     </div>
                 </div>
             </div>
