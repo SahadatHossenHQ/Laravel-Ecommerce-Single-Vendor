@@ -163,6 +163,12 @@ class VendorController extends Controller
         return view('admin.e-commerce.vendor.show', compact('vendor'));
     }
 
+
+    public function change_passIndex(){
+        $vendor = User::where('id', $id)->where('role_id', 2)->firstOrFail();
+        return view('admin.e-commerce.vendor.show', compact('vendor'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -9,6 +9,35 @@
   <link rel="stylesheet" href="/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endpush
 
+
+@push('js')
+    <!-- DataTables  & Plugins -->
+    <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/assets/plugins/jszip/jszip.min.js"></script>
+    <script src="/assets/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/assets/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script>
+        $(function () { 
+            $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        })
+    </script>
+@endpush
+
+
+
+
+
 @section('content')
 
 <!-- Content Header (Page header) -->
@@ -56,8 +85,8 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Status</th>
-                         <th>Amount</th>
-                          <th>pending</th>
+                        <th>Amount</th>
+                        <th>pending</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -69,17 +98,17 @@
                             <td>{{$data->username}}</td>
                             <td>{{$data->email}}</td>
                             <td>{{$data->phone}}</td>
-                           
+                        
                             <td>
-                                  @if ($data->is_approved==1)
+                                @if ($data->is_approved==1)
                                     <span class="badge badge-success">Active</span>
                                 @else
                                     <span class="badge badge-danger">Disable</span>
-                                @endif  
+                                @endif
                             </td>
-                             <td>{{$data->vendorAccount->amount}}</td>
-                              <td>{{$data->vendorAccount->pending_amount}}</td>
-                            <td>
+                            <td>{{$data->vendorAccount->amount}}</td>
+                            <td>{{$data->vendorAccount->pending_amount}}</td>
+                            <td style="position:relative;">
                                 @if ($data->is_approved==1)
                                 <a title="Disable" href="{{ routeHelper('user/status/'. $data->id) }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-lock-open"></i>
@@ -105,43 +134,23 @@
                                     @csrf
                                     @method('DELETE')
                                 </form>
-
+                                <button class="btn btn-info btn-sm mt-2" onclick="action_vn({{$data->id}})">ACTION</button>
+                                <div id="action_apply_vn_{{$data->id}}" style="display:none;background:var(--primary_color);padding:7px 10px;position:absolute;bottom:-30px;right:100%;width:90%;border-radius:4px;z-index:9999;">
+                                    <a style="color:var(--secondary_color);" href="{{ route('vendor.') }}">Change Password</a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
-                    
+                    @push('js')<script>function action_vn(data_id){$(`#action_apply_vn_${data_id}`).toggle();}</script>@endpush
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
     </div>
-      <!-- /.card -->    
+    <!-- /.card -->    
 
 </section>
 <!-- /.content -->
 
 @endsection
 
-@push('js')
-    <!-- DataTables  & Plugins -->
-    <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="/assets/plugins/jszip/jszip.min.js"></script>
-    <script src="/assets/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="/assets/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script>
-        $(function () { 
-            $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        })
-    </script>
-@endpush
