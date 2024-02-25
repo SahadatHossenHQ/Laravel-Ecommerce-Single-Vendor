@@ -78,7 +78,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('author', AuthController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('vendor', VendorController::class);
-    Route::get('vendor/change-pass/{id}', [VendorController::class, 'change_passIndex'])->name('vendor.change_pass');
+    Route::get('vendor/change-pass/{id}', [VendorController::class, 'change_passIndex'])->name('vendor.change_pass_index');
     Route::put('vendor/change-pass/{id}', [VendorController::class, 'change_pass'])->name('vendor.change_pass');
     // Route::post('author/update/{vid}',[AuthController::class,'update'])->name('author.update');
     Route::get('vendor/product/{vid}', [VendorController::class, 'Vproduct'])->name('vendor.product');

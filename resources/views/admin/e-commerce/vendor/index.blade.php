@@ -136,7 +136,7 @@
                                 </form>
                                 <button class="btn btn-info btn-sm mt-2" onclick="action_vn({{$data->id}})">ACTION</button>
                                 <div id="action_apply_vn_{{$data->id}}" style="display:none;background:var(--primary_color);padding:7px 10px;position:absolute;bottom:-30px;right:100%;width:90%;border-radius:4px;z-index:9999;">
-                                    <a style="color:var(--secondary_color);" href="{{ route('admin.vendor.change_pass', ['id'=>$data->id]) }}">Change Password</a>
+                                    <a style="color:var(--secondary_color);" href="{{ route('admin.vendor.change_pass_index', ['id'=>$data->id]) }}">Change Password</a>
                                 </div>
                             </td>
                         </tr>
