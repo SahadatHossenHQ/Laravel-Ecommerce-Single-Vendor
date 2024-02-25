@@ -164,10 +164,29 @@ class VendorController extends Controller
     }
 
 
-    public function change_passIndex(){
+    public function change_passIndex($id){
         $vendor = User::where('id', $id)->where('role_id', 2)->firstOrFail();
-        return view('admin.e-commerce.vendor.show', compact('vendor'));
+        return view('admin.e-commerce.vendor.change_passIndex', compact('vendor'));
     }
+    public function change_pass(Request $request, $id)
+    {
+        $vendor = User::where('id', $id)->where('role_id', 2)->firstOrFail();
+        $this->validate($request, [
+            'password'     => 'required|string|min:8|confirmed',
+        ]);
+
+        
+
+        $vendor->update([
+            'password'      => Hash::make($request->password)
+        ]);
+
+
+        notify()->success("Password successfully updated", "Update");
+        return redirect()->to(routeHelper('vendor'));
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -208,7 +227,7 @@ class VendorController extends Controller
             'commission'   => 'nullable|numeric',
             'profile'      => 'nullable|image|max:1024|mimes:jpg,jpeg,bmp,png',
             'cover_photo'  => 'nullable|image|max:1024|mimes:jpg,jpeg,bmp,png',
-                  'trade'  => 'required|image|max:1024|mimes:jpg,jpeg,bmp,png',
+            'trade'  => 'required|image|max:1024|mimes:jpg,jpeg,bmp,png',
             'nid'  => 'required|image|max:1024|mimes:jpg,jpeg,bmp,png'
         ]);
 
