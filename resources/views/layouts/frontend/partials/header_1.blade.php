@@ -149,10 +149,10 @@
             <div class="top-menu">
                 <ul>
                     <li><a href="{{route('wishlist')}}"> <i class="fal fa-heart" aria-hidden="true"></i> <sup> <span
-                                    id="total-cart-amount">{{App\Models\wishlist::where('user_id',auth()->id())->count()}}</span></sup></a>
+                                    id="total-cart-{{-- amount --}}">{{App\Models\wishlist::where('user_id',auth()->id())->count()}}</span></sup></a>
                     </li>
                     <li><a href="{{route('cart')}}"><i class="fal fa-shopping-basket"></i> <sup> <span
-                                    id="total-cart-amount">{{Cart::count()}}</span></sup> </a></li>
+                                    id="total-cart-{{-- amount --}}">{{Cart::count()}}</span></sup> </a></li>
                     @guest
                     {{-- <li><a href="{{route('login')}}">login</a></li>
                         <li><a href="{{route('register')}}">register</a></li>

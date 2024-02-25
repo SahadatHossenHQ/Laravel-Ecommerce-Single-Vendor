@@ -5,7 +5,9 @@
 <meta property='og:image:height' content='627' />
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="author" content="{{config('app.name')}}">
+@if (Route::currentRouteName() == 'home')
 <meta property="og:image" content="{{asset('uploads/setting/'.setting('auth_logo'))}}"/>
+@endif
 <!--meta start-->
 
 

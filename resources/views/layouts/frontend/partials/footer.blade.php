@@ -43,7 +43,7 @@
         <ul>
             <li><a href="{{route('home')}}"><span><i class="fas fa-home" aria-hidden="true"></i></span> Home</a></li>
             <li><a href="{{route('cart')}}"><span><i class="fas fa-shopping-bag" aria-hidden="true"></i></span> Cart</a>
-                <sup style="top: -50px;left: 15px;"> (<span id="total-cart-amount">{{Cart::count()}}</span>)</sup></li>
+                <sup style="top: -50px;left: 15px;"> (<span id="total-cart-{{-- amount --}}">{{Cart::count()}}</span>)</sup></li>
 
             <!-- <li><a href="{{route('cart')}}"><img src="https://t4.ftcdn.net/jpg/01/36/29/27/240_F_136292799_kapdXE2Vhrk0ndKsZk8nyEvg3VwBuwwU.jpg" alt=""></a></li> -->
             <li class="mobile-menu-openar"><a href="#" class="bars"><span><i class="fas fa-bars"
