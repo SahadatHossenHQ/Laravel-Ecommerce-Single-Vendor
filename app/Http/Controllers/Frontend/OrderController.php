@@ -1896,6 +1896,9 @@ class OrderController extends Controller
     }
     public function success2(Request $request)
     {
+
+        // dd($request);
+
         if (empty($request->invoice_id)) {
             die('Invalid Request');
         }
@@ -1939,7 +1942,9 @@ class OrderController extends Controller
             return redirect()->route('home');
         } else {
             // pending payment
-            dd($data);
+            // dd($data);
+            notify()->warning("Your order successfully done, but payment is pending", "Congratulations");
+            return redirect()->route('home');
         }
     }
     public function success(Request $request){

@@ -205,13 +205,13 @@ z-index: -9;
                                        
                                          <div id="accordion" class="col-12">
   <div class="card">
-    <!--<div class="card-header" id="headingOne">-->
-    <!--  <h5 class="mb-0">-->
-    <!--    <div class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
-    <!--      Online Pay-->
-    <!--    </div>-->
-    <!--  </h5>-->
-    <!--</div>-->
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <div class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Online Pay
+        </div>
+      </h5>
+    </div>
 
     <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
