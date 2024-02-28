@@ -1686,7 +1686,32 @@ class OrderController extends Controller
             return view('frontend.buy-checkout_guest', compact('request', 'product'));
         }
 
-        return view('frontend.checkout_gust', compact('request', 'product'));
+
+
+
+        if (Auth::check()) {
+            
+            if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3) {
+                return view('frontend.buy-checkout', compact('request', 'product'));
+            } 
+            else {
+                notify()->warning("Your are not authorized this action.", "Wrong");
+                return back();
+            }
+        }
+        // elseif(setting('GUEST_CHECKOUT') == 1 || setting('GUEST_CHECKOUT') == ""){
+        //     return view('frontend.buy-checkout_guest', compact('request', 'product'));
+        // }
+        elseif(setting('GUEST_CHECKOUT') == 0){
+            return redirect()->route('login');
+        }else{
+            return view('frontend.buy-checkout_guest', compact('request', 'product'));
+        }
+
+
+
+
+
     }
     public function payform($slug){
         $order=Order::where('order_id',$slug)->first();
