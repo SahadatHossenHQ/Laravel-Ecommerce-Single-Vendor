@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.frontend.partials.meta')
+    @php echo setting('fb_pixel');@endphp
     @if(Request::route()->getName()=='home')
     <title>{{config('app.name')}}</title>
     @else
@@ -17,6 +18,7 @@
     @php echo setting('header_code');@endphp
 </head>
 <body class="">
+    @php echo setting('body_code');@endphp
     <div id="fb-root"></div>
 
     {{-- <!-- Your Chat Plugin code --> --}}

@@ -51,6 +51,12 @@
                                 </div>
                                 <hr>
                                 <div class="form-group col-md-12">
+                                    <label for="body_code" class="text-capitalize">Body Code</label>
+                                    <textarea name="body_code" id="body_code" rows="4"
+                                        class="form-control ">{{ setting('body_code') ?? "" }}</textarea>
+                                </div>
+                                <hr>
+                                <div class="form-group col-md-12">
                                     <label for="fb_pixel" class="text-capitalize">Facebook Pixel Code</label>
                                     <textarea name="fb_pixel" id="fb_pixel" rows="4"
                                         class="form-control ">{{$fb_pixel->value}}</textarea>

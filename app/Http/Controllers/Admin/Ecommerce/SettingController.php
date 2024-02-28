@@ -98,13 +98,14 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
             Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
-            Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->fb_pixel]);
+            // Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->fb_pixel]);
             notify()->success("Setting successfully updated", "Success");
             return back();
         }
         elseif ($request->type == 2) {
             Setting::updateOrCreate(['name' => 'header_code'], ['value' => $request->get('header_code')]);
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
+            Setting::updateOrCreate(['name' => 'body_code'], ['value' => $request->get('body_code')]);
             Setting::updateOrCreate(['name' => 'FOOTER_COL_4_HTML'], ['value' => $request->get('FOOTER_COL_4_HTML')]);
             
             notify()->success("Successfully updated", "Success");
