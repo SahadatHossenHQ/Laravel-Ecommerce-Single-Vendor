@@ -16,38 +16,46 @@ class CheckoutController extends Controller
      */
     public function checkout()
     {
-        if (Auth::check()) {
+
+        return view('frontend.checkout');
+
+        
+        
+        // if (Auth::check()) {
             
-            if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3) {
+        //     if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3) {
                 
-                if (Cart::count() > 0) {
-                    return view('frontend.checkout');
-                }
-                notify()->warning("You cart is empty.", "Empty");
-                return back();
-            } 
-            else {
+        //         if (Cart::count() > 0) {
+        //             return view('frontend.checkout');
+        //         }
+        //         notify()->warning("You cart is empty.", "Empty");
+        //         return back();
+        //     } 
+        //     else {
                 
-                notify()->warning("Your are not authorized this action.", "Wrong");
-                return back();
-            }
+        //         notify()->warning("Your are not authorized this action.", "Wrong");
+        //         return back();
+        //     }
 
-        }
-        elseif(setting('GUEST_CHECKOUT') == 1 || setting('GUEST_CHECKOUT') == ""){
+        // }
+        // elseif(setting('GUEST_CHECKOUT') == 1 || setting('GUEST_CHECKOUT') == ""){
             
-            if (Cart::count() > 0) {
+        //     if (Cart::count() > 0) {
 
-                return view('frontend.checkout_guest');
-            } else{
+        //         return view('frontend.checkout_guest');
+        //     } else{
 
-                notify()->warning("You cart is empty.", "Empty");
-                return back();
-            }
+        //         notify()->warning("You cart is empty.", "Empty");
+        //         return back();
+        //     }
             
-        }
-        elseif(setting('GUEST_CHECKOUT') == 0){
+        // }
+        // elseif(setting('GUEST_CHECKOUT') == 0){
             
-            return redirect()->route('login');
-        }
+        //     return redirect()->route('login');
+        // }
+
+
+
     }
 }
