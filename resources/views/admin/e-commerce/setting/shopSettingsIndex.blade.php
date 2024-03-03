@@ -58,6 +58,15 @@
                                         </li>
 
                                         <li>
+                                            <label for="CHECKOUT_TYPE" class="text-capitalize">Checkout Type</label>
+                                            <select name="CHECKOUT_TYPE" id="CHECKOUT_TYPE">
+                                                <option class="bg-info" value="{{ setting('CHECKOUT_TYPE') ?? 0 }}">{{ (setting('CHECKOUT_TYPE')== 1 ? "Complex"  : "Minimal" ) }}</option>
+                                                <option value="1">Complex</option>
+                                                <option value="0">Minimal</option>
+                                            </select>
+                                        </li>
+
+                                        <li>
                                             <label for="shipping_free_above" class="text-capitalize">Shipping Charge Free Above Amount</label>
                                             <input name="shipping_free_above" id="shipping_free_above" class="border border-info p-1" type="text" value="{{ setting('shipping_free_above') ?? 10000 }}">
                                         </li>

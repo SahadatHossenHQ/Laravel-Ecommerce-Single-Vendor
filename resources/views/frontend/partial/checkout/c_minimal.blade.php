@@ -1,37 +1,29 @@
 @extends('layouts.frontend.app')
-
 @push('meta')
 <meta name='description' content="Checkout cart product"/>
 <meta name='keywords' content="" />
 @endpush
-
-@section('title', 'Checkout cart product')
-
+@section('title', 'Minimal - Checkout cart product')
 @section('content')
 @php
-$order=App\Models\Order::where('user_id',auth()->id())->select('address','shipping_charge','town','district','thana')->first();
-if(empty($order)){
-    $town=''; $address=''; $district='';$thana='';
-}
+    $order=App\Models\Order::where('user_id',auth()->id())->select('address','shipping_charge','town','district','thana')->first();
+    if(empty($order)){
+        $town=''; $address=''; $district='';$thana='';
+    }
 @endphp
 <style>
     .arrow-in {
-
         top: 5px;
     }
-
     .arrow2 .icofont-simple-down {
         display: block;
     }
-
     .arrow2 .icofont-simple-right {
         display: none;
     }
-
     .collapsed .arrow2 .icofont-simple-down {
         display: none !important;
     }
-
     .collapsed .arrow2 .icofont-simple-right {
         display: block !important;
     }
@@ -46,7 +38,6 @@ if(empty($order)){
                     <div class="alert"></div>
                 </div>
                 <div class="widget3 col-md-7">
-
                     <h4 class="form-title"><span>1</span> Billing Info </h4>
                     <div class="card">
                         <div class="row">
@@ -54,17 +45,9 @@ if(empty($order)){
                                 <label for="first_name">Full Name <sup style="color: red;"></sup>*</label>
                                 <input required value="{{-- {{auth()->user()->name}} --}}" name="first_name" id="first_name"
                                     class="form-control @error('first_name') is-invalid @enderror" type="text" />
-                                @error('first_name')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                @error('first_name')<small class="form-text text-danger">{{$message}}</small>@enderror
                             </div>
-                            <div class="">
-                                <!-- <label for="last_name">Last Name <sup style="color: red;"></sup>*</label> -->
-                                <input required value="null" name="last_name" id="last_name"
-                                    class="form-control @error('last_name') is-invalid @enderror" type="hidden" />
-
-                            </div>
-
+                    
                             <div class="form-group ">
                                 <!-- <label for="country">Country/Region <sup style="color: red;">*</sup></label> -->
                                 <input name="country" id="country" value="Bangladesh"
@@ -245,6 +228,7 @@ if(empty($order)){
 
                                         <div id="accordion" class="col-12">
                                             <div class="card">
+                                                
                                                 <div class="card-header" id="headingOne">
                                                     <h5 class="mb-0">
                                                         <div class="" data-toggle="collapse" data-target="#collapseOne"
@@ -264,6 +248,7 @@ if(empty($order)){
                                                             <img src="{{asset('/')}}icon/aamarpay_logo.png">
                                                             Aamarpay
                                                         </label>
+                                                        
                                                         @endif
                                                         @if(setting('g_uddok')=='true')
                                                         <label for="uddoktapay">
@@ -274,7 +259,6 @@ if(empty($order)){
                                                             Uddoktapay
                                                         </label>
                                                         @endif
-
 
 
                                                         @if(setting('g_wallate')=='true')
@@ -289,6 +273,7 @@ if(empty($order)){
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="card">
                                                 <div class="card-header" id="headingTwo">
                                                     <h5 class="mb-0">
@@ -346,16 +331,13 @@ if(empty($order)){
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="card">
 
+                                            <div class="card">
                                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                                                     data-parent="#accordion">
-
                                                 </div>
                                             </div>
                                         </div>
-
-
                                         @error('payment_method')
                                         <small class="form-text text-danger">{{$message}}</small>
                                         @enderror
@@ -377,34 +359,26 @@ if(empty($order)){
                             $ids=[];
                             $cartCollection= Cart::content();
                             $data= $cartCollection->sortBy('weight');
-         
                         ?>
                         @foreach ($data as $item)
-
-
-
-                        <div style="margin-bottom: 10px;display: flex;" class="product">
-                            <img style="width:50px" src="{{asset('uploads/product/'.$item->options->image)}}" alt="">
-                            <a style="margin-left:10px"
-                                href="{{route('product.details', $item->options->slug)}}">{{$item->name}}</a>
-                            <?php 
-                            
-                             $whole=\App\Models\Product::find($item->id);
-                             if (!in_array("$whole->user_id", $ids)) {
-                                 $ids[]=$whole->user_id;
-                             }
-
-                            
-                                if($item->qty>=6 && $whole->whole_price >0){
-
-                                 $istotal=$item->qty*$whole->whole_price;
-                                 $stotal+=$item->qty*$whole->whole_price;
-                            }else{
-                                $istotal=$item->subtotal;
-                                $stotal+=$item->subtotal;
-                            }?>
-                            <span style="flex: 1 auto;text-align: right;">{{$istotal.'.00'}}</span>
-                        </div>
+                            <div style="margin-bottom: 10px;display: flex;" class="product">
+                                <img style="width:50px" src="{{asset('uploads/product/'.$item->options->image)}}" alt="">
+                                <a style="margin-left:10px"
+                                    href="{{route('product.details', $item->options->slug)}}">{{$item->name}}</a>
+                                <?php
+                                    $whole=\App\Models\Product::find($item->id);
+                                    if (!in_array("$whole->user_id", $ids)) {
+                                        $ids[]=$whole->user_id;
+                                    }
+                                    if($item->qty>=6 && $whole->whole_price >0){
+                                    $istotal=$item->qty*$whole->whole_price;
+                                    $stotal+=$item->qty*$whole->whole_price;
+                                    }else{
+                                    $istotal=$item->subtotal;
+                                    $stotal+=$item->subtotal;
+                                }?>
+                                <span style="flex: 1 auto;text-align: right;">{{$istotal.'.00'}}</span>
+                            </div>
                         @endforeach
                         <?php
                             $seller_count= sizeof($ids);
@@ -432,8 +406,6 @@ if(empty($order)){
                         <!--            <span><label for="">Use Wallate</label> </span> =={{-- {{auth()->user()->wallate}} --}}<span class="arrow"></span>-->
                         <!--        </a>-->
                         <!--        <div class="collapse" id="collapseWall">-->
-
-
                         <!--        </div>-->
                         <!--    </div>-->
                         <!--</div>-->

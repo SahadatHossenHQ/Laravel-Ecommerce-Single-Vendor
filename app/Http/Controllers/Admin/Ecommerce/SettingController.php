@@ -210,7 +210,9 @@ class SettingController extends Controller
             return back();
         }
         elseif ($request->type == 10) {
+            
             Setting::updateOrCreate(['name' => 'GUEST_CHECKOUT'], ['value' => $request->get('GUEST_CHECKOUT')]);
+            Setting::updateOrCreate(['name' => 'CHECKOUT_TYPE'], ['value' => $request->get('CHECKOUT_TYPE')]);
             Setting::updateOrCreate(['name' => 'shipping_free_above'], ['value' => $request->get('shipping_free_above')]);
             Setting::updateOrCreate(['name' => 'shipping_charge'], ['value' => $request->get('shipping_charge')]);
             Setting::updateOrCreate(['name' => 'shipping_charge_out_of_range'], ['value' => $request->get('shipping_charge_out_of_range')]);

@@ -1,6 +1,6 @@
 @auth
-    @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 2)
-        @include('frontend.partial.checkout.c_guest')
+    @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
+        @include('frontend.partial.checkout.c')
     @else
         @php
             header("refresh:0;url=" . route('login'));
@@ -15,6 +15,11 @@
             exit;
         @endphp
     @else
-        @include('frontend.partial.checkout.c_guest')
+        @if (setting('CHECKOUT_TYPE') == 1)
+            @include('frontend.partial.checkout.c_guest')
+        @else
+            @include('frontend.partial.checkout.c_minimal')
+        @endif
     @endif
 @endauth
+
