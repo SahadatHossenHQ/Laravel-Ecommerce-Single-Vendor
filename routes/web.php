@@ -208,6 +208,8 @@ Route::post('subscription', [subscriptionController::class, 'store'])->name('sub
 
 // Guest Order
 Route::post('order_guest', [OrderController::class, 'orderStore_guest'])->name('order.store_guest');
+Route::post('order_minimal', [OrderController::class, 'orderStore_minimal'])->name('order.store_minimal');
+
 
 // direct buy
 Route::get('buy/product', [OrderController::class, 'buyProduct'])->name('buy.product');

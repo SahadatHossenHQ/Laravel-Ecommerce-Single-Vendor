@@ -30,7 +30,7 @@
 </style>
 <div id="checkout">
     <div class="container">
-        <form action="{{route('order.store_guest')}}" method="POST">
+        <form action="{{route('order.store_minimal')}}" method="POST">
             @csrf
             <input type="hidden" name="checkout_user_type" value="guest">
             <div class="row mt-3">
@@ -56,7 +56,7 @@
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
+                            {{-- <div class="form-group col-md-6">
                                 <label for="city">Division <sup style="color: red;">*</sup></label>
                                 <select name="city" id="divisions"
                                     class="form-control @error('city') is-invalid @enderror"
@@ -85,8 +85,8 @@
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
 
-                            </div>
-                            <div class="form-group col-md-6">
+                            </div> --}}
+                            {{-- <div class="form-group col-md-6">
                                 <label for="district">District <sup style="color: red;">*</sup></label>
                                 <select name="district" class="form-control @error('district') is-invalid @enderror"
                                     id="distr" onchange="thanaList();">
@@ -99,8 +99,8 @@
                                 @error('district')
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div>
-                            <div class="form-group col-md-6">
+                            </div> --}}
+                            {{-- <div class="form-group col-md-6">
                                 <label for="district">Thana <sup style="color: red;">*</sup></label>
                                 <select name="thana" class="form-control @error('district') is-invalid @enderror"
                                     id="polic_sta">
@@ -109,28 +109,8 @@
                                     <option selected value="{{$order->thana}}">{{$order->thana}}</option>
                                     @endisset
                                 </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="address">Address <sup style="color: red;">*</sup></label>
-                                <input required name="address"
-                                    placeholder="For Example: House# 123, Street# 123, ABC Road" id="address"
-                                    class="form-control @error('address') is-invalid @enderror" type="text"
-                                    value="{{$order->address ?? $address}}" />
-                                @error('address')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
-                            </div>
-
-
-                            <!-- <div class="form-group">
-                            <label for="postcode">Postcode / ZIP(optional)</label>
-                            <input  name="postcode" id="postcode" class="form-control @error('postcode') is-invalid @enderror" type="text"  />
-                            @error('email')
-                                <small class="form-text text-danger">{{$message}}</small>
-                            @enderror
-                        </div> -->
-
-                            <div class="form-group col-md-6">
+                            </div> --}}
+                            <div class="form-group col-md-12">
                                 <label for="phone">Phone <sup style="color: red;">*</sup></label>
                                 <input value="" required name="phone" id="phone"
                                     class="form-control @error('phone') is-invalid @enderror" type="number" />
@@ -138,22 +118,47 @@
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
+                            
+                            <div class="form-group col-md-12">
+                                    <label for="address">Full Address</label>
+                                    <textarea name="address" id="address" rows="4"
+                                        class="form-control "></textarea>
+                            </div>
+                            
+                            <div class="form-group col-md-12">
+                                <select name="shipping_range" id="shipping_range" class="form-control">
+                                    <option value="1">Inside {{ setting('shipping_range_inside') }} ({{ setting('shipping_charge') }})</option>
+                                    <option value="0">Outside of {{ setting('shipping_charge_out_of_range') }} ({{ setting('shipping_charge') }})</option>
+                                </select>
+                            </div>
+                            
+
+                            {{-- <div class="form-group">
+                                <label for="postcode">Postcode / ZIP(optional)</label>
+                                <input  name="postcode" id="postcode" class="form-control @error('postcode') is-invalid @enderror" type="text"  />
+                                @error('email')
+                                    <small class="form-text text-danger">{{$message}}</small>
+                                @enderror
+                            </div> --}}
+
+                            
+
+                            {{-- <div class="form-group col-md-6">
                                 <label for="email">Email Address <sup style="color: red;">*</sup></label>
-                                <input value="{{-- {{auth()->user()->email}} --}}" required name="email" id="email"
+                                <input required name="email" id="email"
                                     class="form-control @error('email') is-invalid @enderror" type="text" />
                                 @error('email')
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div>
-                            <div class="form-group col-md-12">
+                            </div> --}}
+                            {{-- <div class="form-group col-md-12">
                                 <label for="company">Company (optional)</label>
                                 <input name="company" id="company"
                                     class="form-control @error('company') is-invalid @enderror" type="text" />
                                 @error('email')
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -163,7 +168,7 @@
 
                 <div class="widget3 col-md-5">
                     <div class="row">
-                        <!-- <div class="widget3 col-md-12">
+                        {{-- <div class="widget3 col-md-12">
                             <h4 class="form-title"><span>2</span>Shipping Method </h4>
                             <div class="card">
                                 <div class="form-group ofl">
@@ -177,7 +182,7 @@
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div> --}}
                         <style>
                             #accordion .card {
                                 padding: 0 !important;
@@ -222,12 +227,12 @@
                         </style>
                         <div class="widget-3 col-md-12">
                             <div class="widget3">
-                                <h4 class="form-title"><span>3</span>Payment Method</h4>
+                                <h4 class="form-title"><span>2</span>Payment Method</h4>
                                 <div class="card pa">
                                     <div class="form-row">
 
                                         <div id="accordion" class="col-12">
-                                            <div class="card">
+                                            {{-- <div class="card">
                                                 
                                                 <div class="card-header" id="headingOne">
                                                     <h5 class="mb-0">
@@ -248,8 +253,8 @@
                                                             <img src="{{asset('/')}}icon/aamarpay_logo.png">
                                                             Aamarpay
                                                         </label>
-                                                        
                                                         @endif
+
                                                         @if(setting('g_uddok')=='true')
                                                         <label for="uddoktapay">
                                                             <input type="radio" name="payment_method"
@@ -272,10 +277,10 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="card">
-                                                <div class="card-header" id="headingTwo">
+                                                {{-- <div class="card-header" id="headingTwo">
                                                     <h5 class="mb-0">
                                                         <div class=" collapsed" data-toggle="collapse"
                                                             data-target="#collapseTwo" aria-expanded="false"
@@ -283,19 +288,51 @@
                                                             Offline Pay
                                                         </div>
                                                     </h5>
-                                                </div>
+                                                </div> --}}
                                                 <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
                                                     data-parent="#accordion">
                                                     <div class="card-body">
+                                                        
                                                         @if(setting('g_cod')=='true')
                                                         <label for="cod">
                                                             <input type="radio" name="payment_method"
                                                                 class="payment_method" value="Cash on Delivery"
-                                                                id="cod">
+                                                                id="cod" checked>
                                                             <img src="{{asset('/')}}icon/delivery-man.png">
-                                                            Cash on delivery
+                                                            Cash on<br>delivery
                                                         </label>
                                                         @endif
+
+                                                        @if(setting('g_aamar')=='true')
+                                                        <label for="aamarpay">
+                                                            <input type="radio" name="payment_method"
+                                                                class="payment_method" value="aamarpay" id="aamarpay">
+                                                            <img src="{{asset('/')}}icon/aamarpay_logo.png">
+                                                            <small>Aamarpay<br>Online</small>
+                                                        </label>
+                                                        @endif
+                                                        
+                                                        @if(setting('g_uddok')=='true')
+                                                        <label for="uddoktapay">
+                                                            <input type="radio" name="payment_method"
+                                                                class="payment_method" value="uddoktapay"
+                                                                id="uddoktapay">
+                                                            <img src="{{asset('/')}}icon/uddoktapay.png">
+                                                            <small>Uddoktapay<br>Online</small>
+                                                        </label>
+                                                        @endif
+
+
+                                                        @if(setting('g_wallate')=='true')
+                                                        <label for="wallate">
+                                                            <input type="radio" name="payment_method"
+                                                                class="payment_method" value="wallate" id="wallate">
+                                                            <img src="{{asset('/')}}icon/wallet.png">
+                                                            Wallate
+                                                            <p>{{auth()->user()->wallate}}</p>
+                                                        </label>
+                                                        @endif
+
                                                         @if(setting('g_bkash')=='true')
                                                         <label for="Bkash">
                                                             <input type="radio" name="payment_method"
@@ -345,14 +382,12 @@
                                     <p class="mt-2" id="appended"
                                         style="background: #dcdcdc80;padding: 10px;border-radius: 5px;margin-bottom: 10px;">
                                     </p>
-                                    <div id="payment-details">
-
-                                    </div>
+                                    <div id="payment-details">পণ্য হাতে পেয়ে টাকা দিন।{{-- for COD auto Select --}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h4 class="form-title"><span>4</span>Order Summary </h4>
+                    <h4 class="form-title"><span>3</span>Order Summary </h4>
                     <div class="card">
                         <?php 
                             $stotal=0;
@@ -483,7 +518,8 @@
             let code = $('input#coupon').val();
             let seller_count = $('#seller_count').val();
             let shipping_charge = 0;
-            if ($("select[name='city']").val() == 'Dhaka') {
+
+            if ($("select[name='shipping_range']").val() == 1) {
                 let charge = "{!! setting('shipping_charge') !!}";
                 shipping_charge += parseInt(charge);
             } else {
@@ -527,9 +563,24 @@
             }, 10000);
         });
 
+        // default COD - Payment Method
+        $('#cod').parent("label").css("background", "yellow");
+        $('.payment_method').change(function(e) {
+            // Check if the selected payment method is not "Cash on Delivery"
+            if ($(this).val() !== 'Cash on Delivery') {
+                // If not, automatically select the "Cash on Delivery" option
+                $('#cod').parent("label").css("background", "white");
+
+            }
+        });
+
+        // Change - Payment Method
         $(document).on('click', '.payment_method', function (e) {
             $("label").css("background", "white");
             $(this).parent("label").css("background", "yellow");
+
+
+            
             let method = $(this).val();
             let html = '';
             var bkash = "{!! setting('bkash') !!}";
@@ -550,7 +601,6 @@
             } else if (method == 'Bank') {
                 appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> ' + 'Bank Name: ' + bank + '<br>Branch: ' + branch + '<br>holder: ' + holder + '<br>Account: ' + account + '<br>Routing: ' + routing);
             } else if (method == 'Cash on Delivery') {
-
                 appended.html('পণ্য হাতে পেয়ে টাকা দিন। ');
             } else {
                 appended.html('');
@@ -586,17 +636,17 @@
                 html += '<input required type="text" name="routing" id="routing" class="form-control" placeholder="Enter routing number"/>'
                 html += '</div>'
             } else {
-                html = '';
+                html = 'Onlne Payment Selectd, Place order and pay online';
             }
             $('#payment-details').html(html);
         })
-        $(document).on('change', '#divisions', function (e) {
+        $(document).on('change', '#shipping_range', function (e) {
             div();
         });
         function div() {
             let shipping_charge = 0;
             let seller_count = $('#seller_count').val();
-            if ($("select[name='city']").val() == 'Dhaka') {
+            if ($("select[name='shipping_range']").val() == 1) {
                 let charge = "{!! setting('shipping_charge') !!}";
                 shipping_charge += parseInt(charge);
             } else {

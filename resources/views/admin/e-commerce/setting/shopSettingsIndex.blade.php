@@ -71,11 +71,16 @@
                                             <input name="shipping_free_above" id="shipping_free_above" class="border border-info p-1" type="text" value="{{ setting('shipping_free_above') ?? 10000 }}">
                                         </li>
 
+
                                         <li>
-                                            <label for="shipping_charge" class="text-capitalize">Shipping Charge</label>
-                                            <input name="shipping_charge" id="shipping_charge" class="border border-info p-1" type="text" value="{{ setting('shipping_charge') ?? 80 }}">
+                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range</label>
+                                            <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}">
                                         </li>
 
+                                        <li>
+                                            <label for="shipping_charge" class="text-capitalize">Shipping Charge Inside Range</label>
+                                            <input name="shipping_charge" id="shipping_charge" class="border border-info p-1" type="text" value="{{ setting('shipping_charge') ?? 80 }}">
+                                        </li>
                                         <li>
                                             <label for="shipping_charge_out_of_range" class="text-capitalize">Shipping Charge Out Of Range</label>
                                             <input name="shipping_charge_out_of_range" id="shipping_charge_out_of_range" class="border border-info p-1" type="text" value="{{ setting('shipping_charge_out_of_range') ?? 130 }}">
