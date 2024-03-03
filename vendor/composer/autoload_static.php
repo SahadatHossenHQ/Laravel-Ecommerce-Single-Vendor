@@ -668,7 +668,6 @@ class ComposerStaticInit627110f95c4e40f798a7e789e26ecd0d
         'App\\Http\\Controllers\\Frontend\\CheckoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CheckoutController.php',
         'App\\Http\\Controllers\\Frontend\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ContactController.php',
         'App\\Http\\Controllers\\Frontend\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/OrderController.php',
-        'App\\Http\\Controllers\\Frontend\\OrderController_guest' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/OrderController_guest.php',
         'App\\Http\\Controllers\\Frontend\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ProductController.php',
         'App\\Http\\Controllers\\Frontend\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/VendorController.php',
         'App\\Http\\Controllers\\Frontend\\adsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/adsController.php',

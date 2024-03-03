@@ -50,7 +50,6 @@ return array(
     'App\\Http\\Controllers\\Frontend\\CheckoutController' => $baseDir . '/app/Http/Controllers/Frontend/CheckoutController.php',
     'App\\Http\\Controllers\\Frontend\\ContactController' => $baseDir . '/app/Http/Controllers/Frontend/ContactController.php',
     'App\\Http\\Controllers\\Frontend\\OrderController' => $baseDir . '/app/Http/Controllers/Frontend/OrderController.php',
-    'App\\Http\\Controllers\\Frontend\\OrderController_guest' => $baseDir . '/app/Http/Controllers/Frontend/OrderController_guest.php',
     'App\\Http\\Controllers\\Frontend\\ProductController' => $baseDir . '/app/Http/Controllers/Frontend/ProductController.php',
     'App\\Http\\Controllers\\Frontend\\VendorController' => $baseDir . '/app/Http/Controllers/Frontend/VendorController.php',
     'App\\Http\\Controllers\\Frontend\\adsController' => $baseDir . '/app/Http/Controllers/Frontend/adsController.php',

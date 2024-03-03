@@ -98,7 +98,7 @@ class OrderController extends Controller
             }
         }
 
-        dd($request);
+
 
         $cart_subtotal = $request->stotal;
         if (Session::has('coupon')) {
