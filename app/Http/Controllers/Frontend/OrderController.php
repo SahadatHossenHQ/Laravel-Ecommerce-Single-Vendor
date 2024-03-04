@@ -1089,20 +1089,19 @@ class OrderController extends Controller
     public function orderBuyNowStore_minimal(Request $request)
     {
 
-        dd($request);
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
             'last_name'       => 'nullable|string|max:255',
             'company'         => 'nullable|string|max:255',
-            'country'         => 'required|string|max:255',
+            'country'         => 'nullable|string|max:255',
             'address'         => 'required|string|max:255',
-            'city'            => 'required|string|max:255',
-            'district'        => 'required|string|max:255',
+            'city'            => 'nullable|string|max:255',
+            'district'        => 'nullable|string|max:255',
             'postcode'        => 'nullable|string|max:255',
             'phone'           => 'required|string|max:11|min:11',
-            'email'           => 'required|email|string|max:255',
+            'email'           => 'nullable|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
-            'payment_method'  => 'required|string|max:255',
+            'payment_method'  => 'nullable|string|max:255',
             'mobile_number'   => 'nullable|string|max:255',
             'transaction_id'  => 'nullable|string|max:255',
             'bank_name'       => 'nullable|string|max:255',
@@ -1111,7 +1110,9 @@ class OrderController extends Controller
             'branch'          => 'nullable|string|max:255',
             'routing'         => 'nullable|string|max:255',
         ]);
+        
         $product  = Product::find($request->id);
+
         if($product->download_able !=1){
             // if ($request->city == 'Dhaka') {
             //     $shipping_charge = setting('shipping_charge');
@@ -1122,7 +1123,7 @@ class OrderController extends Controller
             if($request->stotal > setting('shipping_free_above')){
                 $shipping_charge = 0;
             } else{
-                if ($request->city == 'Dhaka') {
+                if ($request->shipping_range == 1) {
                     $shipping_charge = setting('shipping_charge');
                 } else {
                     $shipping_charge = setting('shipping_charge_out_of_range');
@@ -1131,6 +1132,8 @@ class OrderController extends Controller
         } else{
             $shipping_charge=0;
         }
+
+
 
         $total_refer=$product->regular_price/100;
 
