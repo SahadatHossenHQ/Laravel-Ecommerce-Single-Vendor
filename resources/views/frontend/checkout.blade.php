@@ -1,9 +1,17 @@
 @auth
     @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
         @if (setting('CHECKOUT_TYPE') == 1)
-            @include('frontend.partial.checkout.c')
+            @if (isset($request))
+                @include('frontend.partial.checkout.bc')
+            @else
+                @include('frontend.partial.checkout.c')
+            @endif
         @else
-            @include('frontend.partial.checkout.c_minimal')
+            @if (isset($request))
+                @include('frontend.partial.checkout.bc_minimal')
+            @else
+                @include('frontend.partial.checkout.c_minimal')
+            @endif
         @endif
     @else
         @php
@@ -20,10 +28,17 @@
         @endphp
     @else
         @if (setting('CHECKOUT_TYPE') == 1)
-            @include('frontend.partial.checkout.c_guest')
+            @if (isset($request))
+                @include('frontend.partial.checkout.bc_guest')
+            @else
+                @include('frontend.partial.checkout.c_guest')
+            @endif
         @else
-            @include('frontend.partial.checkout.c_minimal')
+            @if (isset($request))
+                @include('frontend.partial.checkout.bc_minimal')
+            @else
+                @include('frontend.partial.checkout.c_minimal')
+            @endif
         @endif
     @endif
 @endauth
-
