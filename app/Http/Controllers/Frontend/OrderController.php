@@ -2031,9 +2031,10 @@ class OrderController extends Controller
         }
 
         if(Auth::user()){
-            return view('frontend.buy-checkout', compact('request', 'product'));
+            return view('frontend.partial.checkout.buy-checkout', compact('request', 'product'));
         }else{
-            return view('frontend.buy-checkout_guest', compact('request', 'product'));
+            // return view('frontend.partial.checkout.buy-checkout_guest', compact('request', 'product'));
+            return view('frontend.partial.checkout.c_minimal', compact('request', 'product'));
         }
 
 
