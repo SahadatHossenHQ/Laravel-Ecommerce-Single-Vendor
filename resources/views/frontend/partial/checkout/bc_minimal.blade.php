@@ -41,7 +41,9 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="phone">Phone <sup style="color: red;">*</sup></label>
-                                    <input value="" required name="phone" id="phone"
+                                    <input @if (auth()->user())
+                                    value="{{auth()->user()->phone}}"
+                                    @endif required name="phone" id="phone"
                                         class="form-control @error('phone') is-invalid @enderror" type="number" />
                                     @error('phone')
                                         <small class="form-text text-danger">{{ $message }}</small>
