@@ -5,7 +5,7 @@
 <meta name='keywords' content="@foreach($product->tags as $tag){{$tag->name.', '}}@endforeach" />
 @endpush
 
-@section('title', 'Buy now product')
+@section('title', 'Guest - Buy now product')
 
 @section('content')
 @php

@@ -214,6 +214,7 @@ Route::post('order_minimal', [OrderController::class, 'orderStore_minimal'])->na
 // direct buy
 Route::get('buy/product', [OrderController::class, 'buyProduct'])->name('buy.product');
 Route::post('order/buy-now_guest', [OrderController::class, 'orderBuyNowStore_guest'])->name('order.buy.store_guest');
+Route::post('order/buy-now_minimal', [OrderController::class, 'orderBuyNowStore_minimal'])->name('order.buy.store_minimal');
 
 
 /** Google OAuth routes */

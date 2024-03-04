@@ -5,7 +5,7 @@
     <meta name='keywords' content="@foreach ($product->tags as $tag){{ $tag->name . ', ' }} @endforeach" />
 @endpush
 
-@section('title', 'Buy now product')
+@section('title', 'Minimal - Buy now product')
 
 @section('content')
     @php
@@ -15,7 +15,7 @@
     @endphp
     <div id="checkout">
         <div class="container">
-            <form action="{{ route('order.buy.store_guest') }}" method="POST">
+            <form action="{{ route('order.buy.store_minimal') }}" method="POST">
                 @csrf
                 <div class="row mt-3">
                     <div class="col-md-8 offset-md-2 alert-message">
