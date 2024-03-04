@@ -127,6 +127,9 @@
                                     <label for="address">Full Address</label>
                                     <textarea name="address" id="address" rows="4"
                                         class="form-control "></textarea>
+                                    @error('address')
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                    @enderror
                             </div>
                             
                             <div class="form-group col-md-12">
@@ -582,9 +585,6 @@
         $(document).on('click', '.payment_method', function (e) {
             $("label").css("background", "white");
             $(this).parent("label").css("background", "yellow");
-
-
-            
             let method = $(this).val();
             let html = '';
             var bkash = "{!! setting('bkash') !!}";
