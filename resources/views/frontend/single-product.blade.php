@@ -353,16 +353,16 @@ right: -10px;
                 <p>
                     <?php if(isset($campaigns_product)){$product->discount_price=$campaigns_product->price;}?>
                     @if($product->discount_price>0)
-                    <span><del>TK.{{$product->regular_price}}</del></span>
+                    <span><del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</del></span>
 
-                    <span class="item_price">Tk.<span id="dynamic_price">{{$product->discount_price}}</span></span>
+                    <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span id="dynamic_price">{{$product->discount_price}}</span></span>
                     @php
                     $per= $product->regular_price/100;
                     $amc=$product->regular_price-$product->discount_price;
                     @endphp
-                    <span style="font-size:13px">You Save Tk.{{$amc}} ({{round(($amc/$per))}}%)</span>
+                    <span style="font-size:13px">You Save {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$amc}} ({{round(($amc/$per))}}%)</span>
                     @else
-                    <span class="item_price">Tk.<span id="dynamic_price">{{$product->regular_price}}</span></span>
+                    <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span id="dynamic_price">{{$product->regular_price}}</span></span>
                     @endif
                 
                 </p>

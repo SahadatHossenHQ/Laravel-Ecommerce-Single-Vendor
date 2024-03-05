@@ -144,7 +144,7 @@
                             <th>Coupon Code</th>
                             <td>{{$order->coupon_code}}</td>
                             <th>Subtotal</th>
-                            <td>{{$total}} <strong>Tk</strong></td>
+                            <td>{{$total}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                         </tr>
                           @php
                           $part=DB::table('multi_order')->where('order_id',$order->id)->where('vendor_id',auth()->id())->sum('partial_pay');
@@ -152,24 +152,24 @@
                            @endphp
                         <tr>
                             <th>Shipping Charge</th>
-                            <td>{{$order->shipping_charge/$seller_count}} <strong>Tk</strong></td>
+                            <td>{{$order->shipping_charge/$seller_count}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                             <th>Discount</th>
-                            <td>{{$discount}} <strong>Tk</strong></td>
+                            <td>{{$discount}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                         </tr>
                        
                            
                             <tr>
                             <th>partial pay  </th>
-                            <td>{{$part}} <strong>Tk</strong></td>
+                            <td>{{$part}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                             <th>Total</th>
-                            <td>{{$total+($order->shipping_charge/$seller_count)}} <strong>Tk</strong></td>
+                            <td>{{$total+($order->shipping_charge/$seller_count)}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                            
                         </tr>
                         
                          
                         <tr>
                              <th>Due</th>
-                            <td>{{($total+($order->shipping_charge/$seller_count)-$part)-$discount}} <strong>Tk</strong></td>
+                            <td>{{($total+($order->shipping_charge/$seller_count)-$part)-$discount}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                             <th>Status</th>
                             <td>
                                 @if ($order_dt->status == 0)

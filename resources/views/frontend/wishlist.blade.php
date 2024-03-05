@@ -46,9 +46,9 @@
 
                           <td>
                              @if($product->discount_price>0 || $product->price)
-             <h6><strong style="color: #28a745">Tk.{{$product->price ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
+             <h6><strong style="color: #28a745">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->price ?? $product->discount_price}}</strong> <del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</del></h6>
             @else
-               <h6><strong style="color: #28a745">Tk.{{$product->regular_price}}</strong></h6>
+               <h6><strong style="color: #28a745">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</strong></h6>
             @endif</td>
                     </tr>
                     <tr>
@@ -255,10 +255,10 @@
                 max: 9000,
                 values: [50, 6000],
                 slide: function (event, ui) {
-                    $("#amount").val("TK" + ui.values[0] + " - TK" + ui.values[1]);
+                    $("#amount").val({{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + ui.values[0] + " -"{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + ui.values[1]);
                 }
             });
-            $("#amount").val("TK" + $("#slider-range").slider("values", 0) + " - TK" + $("#slider-range").slider("values", 1));
+            $("#amount").val({{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + $("#slider-range").slider("values", 0) + " -"{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + $("#slider-range").slider("values", 1));
         });
         
     </script>

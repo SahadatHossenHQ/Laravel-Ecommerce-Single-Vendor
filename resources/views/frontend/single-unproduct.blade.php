@@ -123,7 +123,7 @@
             <div class="col-md-7 single-right-left simpleCart_shelfItem">
                 <h4 style="padding-top: 20px"><b>{{$product->title}}</b></h4>
                 <p style="display: flex;margin: 10px 0px;">
-                <b>Price:</b> <span class="item_price">Tk.<span id="dynamic_price">{{$product->price}}</span></span>
+                <b>Price:</b> <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span id="dynamic_price">{{$product->price}}</span></span>
                 </p>
                 <style>
                     tr{

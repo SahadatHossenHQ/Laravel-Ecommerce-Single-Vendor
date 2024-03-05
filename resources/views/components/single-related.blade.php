@@ -15,9 +15,9 @@
                             </a> 
                             <p style="color: #333;font-size: 14px;">
                                 Price:@if($product->discount_price>0 || $product->price)
-             <span><strong style="color: var(--primary_color)">Tk.{{$product->price ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></span>
+             <span><strong style="color: var(--primary_color)">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->price ?? $product->discount_price}}</strong> <del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</del></span>
             @else
-               <span><strong style="color: var(--primary_color)">Tk.{{$product->regular_price}}</strong></span>
+               <span><strong style="color: var(--primary_color)">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</strong></span>
             @endif</p>
                              <div class="rating1" style="font-size: 11px;margin: 0;text-align: left !important;">
                     @php

@@ -189,13 +189,13 @@
                             <th>Coupon Code</th>
                             <td>{{$order->coupon_code}}</td>
                             <th>Subtotal</th>
-                            <td>{{$order->subtotal}} <strong>Tk</strong></td>
+                            <td>{{$order->subtotal}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                         </tr>
                         <tr>
                             <th>Shipping Charge</th>
-                            <td>{{$order->shipping_charge}} <strong>Tk</strong></td>
+                            <td>{{$order->shipping_charge}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                             <th>Discount</th>
-                            <td>{{$order->discount}} <strong>Tk</strong></td>
+                            <td>{{$order->discount}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                         </tr>
                          <tr>
                             <th>Payment Status</th>
@@ -210,14 +210,14 @@
                                 $part=App\Models\PartialPayment::where('order_id',$order->id)->where('status',1)->sum('amount');
                                 $ds=$order->total;
                                 @endphp
-                                {{$part}}<strong>Tk</strong>
+                                {{$part}}<strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong>
                             </td>
                             <th>Due</th>
-                            <td>  {{$order->total-$part}} <strong>Tk</strong></td>
+                            <td>  {{$order->total-$part}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                         </tr>
                         <tr>
                             <th>Total</th>
-                            <td>{{$ds}} <strong>Tk</strong></td>
+                            <td>{{$ds}} <strong>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></td>
                             <th>Status</th>
                             <td>
                                 

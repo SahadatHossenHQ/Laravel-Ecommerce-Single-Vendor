@@ -443,7 +443,7 @@
 
                             <div class="rvinfo">
                                 <span>Subtotal</span>
-                                <span><span id="sub-total"> {{ $sub_total }}</< /span> <strong> Tk</strong></span>
+                                <span><span id="sub-total"> {{ $sub_total }}</< /span> <strong> {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></span>
                             </div>
                             <div class="rvinfo">
                                 <span>Shipping Charge</span>
@@ -453,14 +453,14 @@
                                         @else
                                             0.00
                                         @endif
-                                    </span><strong> Tk</strong></span>
+                                    </span><strong> {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></span>
                             </div>
 
                             <div class="rvinfo coupon">
                                 <span>Coupon <span class="coupon-name"></span></span>
                                 <span>- <span
                                         id="coupon">{{ Session::has('coupon') ? number_format(Session::get('coupon')['discount'], 2, '.', ',') : '0.00' }}</span><strong>
-                                        Tk</strong></span>
+                                            {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></span>
                             </div>
                             <hr>
                             <div class="rvinfo">
@@ -474,7 +474,7 @@
                                     @endif
                                     <strong>
                                         <span id="total">
-                                            {{ $total ?? number_format($sub_total, 2, '.', ',') }}</span> Tk
+                                            {{ $total ?? number_format($sub_total, 2, '.', ',') }}</span> {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}
                                     </strong>
                                 </h4>
                             </div>

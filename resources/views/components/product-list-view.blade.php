@@ -25,9 +25,9 @@
 
                         <td>
                              @if($product->discount_price>0 || $product->price)
-             <h6><strong style="color: var(--primary_color)">Tk.{{$product->price ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
+             <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->price ?? $product->discount_price}}</strong> <del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</del></h6>
             @else
-               <h6><strong style="color: var(--primary_color)">Tk.{{$product->regular_price}}</strong></h6>
+               <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</strong></h6>
             @endif</td>
                     </tr>
                   
@@ -130,7 +130,7 @@
                                 @php($discount_price=round((($product->regular_price - $product->discount_price) / ($product->regular_price ))*100).'%')
                             @else
                                 <?php 
-                                    $discount_price='Tk.'. ($product->regular_price-$product->discount_price)
+                                    $discount_price={{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}. ($product->regular_price-$product->discount_price)
                                 ?>
                             @endif
                     <h6 class="dis-label">{{$discount_price}} OFF</h6>

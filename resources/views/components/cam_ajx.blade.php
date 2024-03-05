@@ -30,7 +30,7 @@
             <p class="point">Point:{{$product->point}}</p></div>
         @endif
         <div class="home-add2">
-             <h6><strong style="color: var(--primary_color)">Tk.{{$product->cprice ?? $product->discount_price}}</strong> <del>Tk.{{$product->regular_price}}</del></h6>
+             <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->cprice ?? $product->discount_price}}</strong> <del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->regular_price}}</del></h6>
           
            <div class="cbtn">
                 <button type="submit" class="redirect" style="margin-top: 10px;" data-url="{{route('camp.product.info',$product->pid)}}" id="productInfo1" type="submit" title="Add To Cart"><i class="fal fa-shopping-cart" aria-hidden="true"></i> </button>

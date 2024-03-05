@@ -62,7 +62,7 @@
                             @if ($coupon->discount_type == 'percent')
                                 {{$coupon->discount.' %'}}
                             @else
-                                {{$coupon->discount.' tk'}}
+                                {{$coupon->discount}} {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}
                             @endif
                         </td>
                     </tr>

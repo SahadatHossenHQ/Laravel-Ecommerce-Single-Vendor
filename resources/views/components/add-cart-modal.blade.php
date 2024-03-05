@@ -15,10 +15,10 @@
                 <div class="col-md-6">
                     <div class="row ml-1" >
                         <div class="col-12 pl-0 mb-2" id="nhide">
-                            <p><strong>Regular Price:</strong><span id="item_price"></span>tk</p>
+                            <p><strong>Regular Price:</strong><span id="item_price"></span>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</p>
                         </div>
                         <div class="col-12 pl-0 mb-2" >
-                            <p><strong id="nprice">Discount Price:</strong><span id="del_price"></span>tk</p>
+                            <p><strong id="nprice">Discount Price:</strong><span id="del_price"></span>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</p>
                         </div>
                     </div>
                     <div class="row ml-1">

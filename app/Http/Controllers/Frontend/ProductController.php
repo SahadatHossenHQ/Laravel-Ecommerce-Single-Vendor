@@ -461,9 +461,16 @@ class ProductController extends Controller
         $unr=$request->unr;
         $max_amount =  substr($request->amount, strpos($request->amount, "-") + 1);;
         $min_amount =  substr($request->amount, 0, strpos($request->amount, '-'));
-        $min        = str_replace('TK', '', $min_amount);
-        $max        = str_replace('TK', '', $max_amount);
-
+        // $min        = str_replace('TK', '', $min_amount);
+        // $max        = str_replace('TK', '', $max_amount);
+        if(setting('CURRENCY_CODE_MIN')){
+            $currency_code_min = setting('CURRENCY_CODE_MIN');
+        }else{
+            $currency_code_min = "Tk";
+        }
+        $min        = str_replace($currency_code_min , '', $min_amount);
+        $max        = str_replace($currency_code_min, '', $max_amount);
+        
         $num = (int)$min;
         $num2 = (int)$max;
         $products = Product::where('status','1');

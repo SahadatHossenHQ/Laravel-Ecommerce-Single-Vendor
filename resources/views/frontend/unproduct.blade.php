@@ -27,7 +27,7 @@
                                 <a href="{{route('clasified.show',['slug'=>$product->slug])}}">
                                     <h5>{{$product->title}}</h5>
                                 </a>
-                                <h6><strong style="color: var(--primary_color)">Tk.{{$product->price}}</strong></h6>
+                                <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{$product->price}}</strong></h6>
                             </div>
                        </div>
                     </div>

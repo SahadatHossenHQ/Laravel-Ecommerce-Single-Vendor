@@ -441,7 +441,7 @@ if(empty($order)){
 
                         <div class="rvinfo">
                             <span>Subtotal</span>
-                            <span><span id="sub-total">{{$stotal}}</span><strong> Tk</strong></span>
+                            <span><span id="sub-total">{{$stotal}}</span><strong> {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></span>
                         </div>
                         <div class="rvinfo">
                             <span>
@@ -460,14 +460,14 @@ if(empty($order)){
                                         @else 0.00 @endif
                                     </span>
                                 @endif
-                                <strong> Tk</strong>
+                                <strong> {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong>
                             </span>
                         </div>
                         <div class="rvinfo coupon">
                             <span>Coupon <span class="coupon-name"></span></span>
                             <span>- <span
                                     id="coupon">{{Session::has('coupon') ? number_format(Session::get('coupon')['discount'], 2, '.', ',') : '0.00'}}</span><strong>
-                                    Tk</strong></span>
+                                        {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</strong></span>
                         </div>
 
                         <hr>
@@ -486,7 +486,7 @@ if(empty($order)){
                                     @if ($stotal > setting('shipping_free_above'))
                                         {{ $stotal }}
                                     @else
-                                        <span id="total">{{$total ?? $stotal}}</span> Tk
+                                        <span id="total">{{$total ?? $stotal}}</span> {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}
                                     @endif
                                 </strong>
                             </h4>

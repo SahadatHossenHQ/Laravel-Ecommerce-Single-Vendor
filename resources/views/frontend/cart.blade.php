@@ -401,7 +401,7 @@ margin-left: 0;
                                 html += '<div class="product-title">'+val.name+'</div>';
                                 // html += '<p class="product-description">'+val.options.color+', '+val.options.size+'</p>';
                                 html += '</div>';
-                                html += '<div class="product-price"><span class="m-price" style="display:none">Price</span> '+number_format(val.price, 2, '.', ',')+'.TK</div>';
+                                html += '<div class="product-price"><span class="m-price" style="display:none">Price</span> '+number_format(val.price, 2, '.', ',')+'.{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</div>';
                                 html += '<div class="quantity product-quantity">';
                                 html += '<div class="quantity-select">';
                                 html += '<div class="entry value-minus" data-id="'+key+'">&nbsp;</div>';
@@ -414,7 +414,7 @@ margin-left: 0;
                                 html += '<div class="close2 remove-product">remove</div>';
                                 html += '</a>';
                                 html += '</div>';
-                                html += '<div class="product-line-price"> <span class="m-price" style="display:none">Sub Total</span> '+number_format(val.subtotal, 2, '.', ',')+'.TK</div>';
+                                html += '<div class="product-line-price"> <span class="m-price" style="display:none">Sub Total</span> '+number_format(val.subtotal, 2, '.', ',')+'.{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}</div>';
                                 html += '</div>';
          
                                
