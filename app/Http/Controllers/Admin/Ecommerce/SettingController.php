@@ -167,6 +167,16 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'SITE_INFO_ADDRESS'], ['value' => $request->get('SITE_INFO_ADDRESS')]);
             Setting::updateOrCreate(['name' => 'SITE_INFO_PHONE'], ['value' => $request->get('SITE_INFO_PHONE')]);
             Setting::updateOrCreate(['name' => 'SITE_INFO_SUPPORT_MAIL'], ['value' => $request->get('SITE_INFO_SUPPORT_MAIL')]);
+
+
+            Setting::updateOrCreate(['name' => 'COUNTRY_SERVE'], ['value' => $request->get('COUNTRY_SERVE')]);
+            Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
+            Setting::updateOrCreate(['name' => 'CURRENCY_CODE'], ['value' => $request->get('CURRENCY_CODE')]);
+            Setting::updateOrCreate(['name' => 'CURRENCY_ICON'], ['value' => $request->get('CURRENCY_ICON')]);
+
+
+
+
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
         }

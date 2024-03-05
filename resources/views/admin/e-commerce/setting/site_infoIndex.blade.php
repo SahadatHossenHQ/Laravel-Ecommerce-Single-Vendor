@@ -52,6 +52,26 @@
                                             <label for="SITE_INFO_SUPPORT_MAIL" class="text-capitalize">Company suupport mail</label>
                                             <input type="text" name="SITE_INFO_SUPPORT_MAIL" id="SITE_INFO_SUPPORT_MAIL" placeholder="Company Support Email" value="{{ $SITE_INFO_SUPPORT_MAIL->value }}">
                                         </li>
+
+                                        <li>
+                                            <label for="COUNTRY_SERVE" class="text-capitalize">Country of Site</label>
+                                            <input type="text" name="COUNTRY_SERVE" id="COUNTRY_SERVE" placeholder="Bangladesh" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}">
+                                        </li>
+
+                                        <li>
+                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range</label>
+                                            <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}">
+                                        </li>
+
+                                        <li>
+                                            <label for="CURRENCY_CODE" class="text-capitalize">Currency Code</label>
+                                            <input type="text" name="CURRENCY_CODE" id="CURRENCY_CODE" placeholder="Currency code" value="{{ setting('CURRENCY_CODE') ?? 'BDT' }}">
+                                        </li>
+
+                                        <li>
+                                            <label for="CURRENCY_ICON" class="text-capitalize">Currency Icon</label>
+                                            <input type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}">
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
