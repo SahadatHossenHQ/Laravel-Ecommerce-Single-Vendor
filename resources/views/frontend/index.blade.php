@@ -625,7 +625,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
                             <a href="{{route('clasified.show',['slug'=>$unproduct->slug])}}">
                                 <h5>{{$unproduct->title}}</h5>
                             </a>
-                            <h6><strong style="color: var(--primary_color)">৳{{$unproduct->price}}</strong></h6>
+                            <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_ICON') ?? '৳' }}{{$unproduct->price}}</strong></h6>
                         </div>
                     </div>
                 </div>

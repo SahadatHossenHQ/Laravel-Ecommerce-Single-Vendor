@@ -99,9 +99,9 @@
                     </div>
                 </div>
                 @if($product->discount_price>0 || $product->price)
-             <h6><strong style="color: var(--primary_color)">৳{{$product->price ?? $product->discount_price}}</strong> <del>৳{{$product->regular_price}}</del></h6>
+             <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_ICON') ?? '৳' }}{{$product->price ?? $product->discount_price}}</strong> <del>{{ setting('CURRENCY_ICON') ?? '৳' }}{{$product->regular_price}}</del></h6>
             @else
-               <h6><strong style="color: var(--primary_color)">৳{{$product->regular_price}}</strong></h6>
+               <h6><strong style="color: var(--primary_color)">{{ setting('CURRENCY_ICON') ?? '৳' }}{{$product->regular_price}}</strong></h6>
             @endif
                 <a href="{{route('product.details', $product->slug)}}">
                     <h5>{{implode(' ', array_slice(explode(' ', $product->title), 0, 10))}}...</h5>
@@ -114,7 +114,8 @@
                                 @php($discount_price=round((($product->regular_price - $product->discount_price) / ($product->regular_price ))*100).'%')
                             @else
                                 <?php 
-                                    $discount_price='৳'. ($product->regular_price-$product->discount_price)
+                                    $currency_icon = (setting('CURRENCY_ICON')) ? setting('CURRENCY_ICON') : '৳';
+                                    $discount_price=  $currency_icon . ($product->regular_price-$product->discount_price)
                                 ?>
                             @endif
                     <h6 class="dis-label d-block">{{$discount_price}} OFF</h6>

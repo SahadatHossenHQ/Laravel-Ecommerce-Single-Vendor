@@ -56,7 +56,7 @@
                                 @isset(auth()->user()->customer_info)
                                 <div class="form-group col-md-6">
                                     <label>Country <sup style="color: red;">*</sup></label>
-                                    <input type="text" name="country" id="country" class="form-control @error('country') is-invalid @enderror" autocomplete="off" required value="Bangladesh" readonly/>
+                                    <input type="text" name="country" id="country" class="form-control @error('country') is-invalid @enderror" autocomplete="off" required value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}" readonly/>
                                     @error('country')
                                         <small class="form-text text-danger">{{$message}}</small>
                                     @enderror

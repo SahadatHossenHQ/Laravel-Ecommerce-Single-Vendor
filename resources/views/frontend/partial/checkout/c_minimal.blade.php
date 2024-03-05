@@ -52,7 +52,7 @@
                     
                             <div class="form-group ">
                                 <!-- <label for="country">Country/Region <sup style="color: red;">*</sup></label> -->
-                                <input name="country" id="country" value="Bangladesh"
+                                <input name="country" id="country" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}"
                                     class="form-control @error('country') is-invalid @enderror" type="hidden" />
                                 @error('country')
                                 <small class="form-text text-danger">{{$message}}</small>
