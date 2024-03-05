@@ -30,8 +30,8 @@ border-radius: 5px;
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
-              <span class="btn-success p-2 text-center"> Minimum Withdaw {{setting('min_with')}} Taka</span>
-               <span class="btn-primary p-2 text-center"> Minimum Recharge {{setting('min_rec')}} Taka</span>
+              <span class="btn-success p-2 text-center"> Minimum Withdaw {{setting('min_with')}} {{ setting('CURRENCY_CODE') }}</span>
+               <span class="btn-primary p-2 text-center"> Minimum Recharge {{setting('min_rec')}} {{ setting('CURRENCY_CODE') }}</span>
                 <form action="{{ route('redem.withdraw') }}" method="POST">
                     @csrf
                     <div class="card-body">

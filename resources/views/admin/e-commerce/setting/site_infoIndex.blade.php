@@ -69,6 +69,12 @@
                                         </li>
 
                                         <li>
+                                            <label for="CURRENCY_CODE_MIN" class="text-capitalize">Currency Code Small</label>
+                                            <input type="text" name="CURRENCY_CODE_MIN" id="CURRENCY_CODE_MIN" placeholder="Currency code" value="{{ setting('CURRENCY_CODE_MIN') ?? 'Tk' }}">
+                                        </li>
+
+                                        
+                                        <li>
                                             <label for="CURRENCY_ICON" class="text-capitalize">Currency Icon</label>
                                             <input type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}">
                                         </li>

@@ -69,7 +69,7 @@
                                 @if ($data->discount_type == 'percent')
                                     {{$data->discount.' %'}}
                                 @else
-                                    {{$data->discount.' tk'}}
+                                    {{$data->discount}} {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}
                                 @endif
                             </td>
                             <td>{{$data->limit_per_user}}</td>

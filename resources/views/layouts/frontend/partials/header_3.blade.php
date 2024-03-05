@@ -280,7 +280,7 @@
                     <style>
                         #google_translate_element>div>div>span>a>span{color:var(--secondary_color);}
                     </style>
-                    <li>{{ Cart::total() }} BDT</li>
+                    <li>{{ Cart::total() }} {{ setting('CURRENCY_CODE') }}</li>
                 </ul>
                     
                 
