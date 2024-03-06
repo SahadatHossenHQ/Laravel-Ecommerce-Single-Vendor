@@ -23,6 +23,7 @@ public/uploads/*
 public/uploads/**/*
 public/uploads/**/*/
 .htaccess
+public/sitemap.xml
 
 **/*.mp4
 **/*.mkv

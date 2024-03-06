@@ -74,16 +74,7 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
 
 
-            Setting::updateOrCreate(['name' => 'bkash'], ['value' => $request->get('bkash')]);
-            Setting::updateOrCreate(['name' => 'nagad'], ['value' => $request->get('nagad')]);
-            Setting::updateOrCreate(['name' => 'rocket'], ['value' => $request->get('rocket')]);
-
-
-            Setting::updateOrCreate(['name' => 'bank_name'], ['value' => $request->get('bank_name')]);
-            Setting::updateOrCreate(['name' => 'bank_account'], ['value' => $request->get('bank_account')]);
-            Setting::updateOrCreate(['name' => 'branch_name'], ['value' => $request->get('branch_name')]);
-            Setting::updateOrCreate(['name' => 'holder_name'], ['value' => $request->get('holder_name')]);
-            Setting::updateOrCreate(['name' => 'routing'], ['value' => $request->get('routing')]);
+            
 
 
 
@@ -723,6 +714,20 @@ class SettingController extends Controller
 
     public function setting_g(Request $request)
     {
+
+
+        // Information
+        Setting::updateOrCreate(['name' => 'bkash'], ['value' => $request->get('bkash')]);
+        Setting::updateOrCreate(['name' => 'nagad'], ['value' => $request->get('nagad')]);
+        Setting::updateOrCreate(['name' => 'rocket'], ['value' => $request->get('rocket')]);
+
+        Setting::updateOrCreate(['name' => 'bank_name'], ['value' => $request->get('bank_name')]);
+        Setting::updateOrCreate(['name' => 'bank_account'], ['value' => $request->get('bank_account')]);
+        Setting::updateOrCreate(['name' => 'branch_name'], ['value' => $request->get('branch_name')]);
+        Setting::updateOrCreate(['name' => 'holder_name'], ['value' => $request->get('holder_name')]);
+        Setting::updateOrCreate(['name' => 'routing'], ['value' => $request->get('routing')]);
+
+        // Activatoin/Deactivation
         Setting::updateOrCreate(['name' => 'g_bkash'], ['value' => json_encode($request->filled('bkash'))]);
         Setting::updateOrCreate(['name' => 'g_nagad'], ['value' => json_encode($request->filled('nagad'))]);
         Setting::updateOrCreate(['name' => 'g_rocket'], ['value' => json_encode($request->filled('rocket'))]);
