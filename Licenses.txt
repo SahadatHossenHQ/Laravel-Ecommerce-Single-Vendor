@@ -1,13 +1,7 @@
-Licence
+Licenses
 ==============================================
-1. This Application is licence to "Shop Name".
-
-2. Licence by "Finva Soft Limited".
-
-3. Application Version: v5.3
-
-4. Installation Code for this site: EYPFI NVASO FTUYE GGEEW 
-
+Regular License: Use in a single domain. (you can’t use one of our Regular Licenses on multiple domains)
+License Issued: Finva Soft Limited.
 
 Notes
 ==============================================
