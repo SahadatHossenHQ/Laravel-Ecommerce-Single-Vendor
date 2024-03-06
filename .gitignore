@@ -19,6 +19,9 @@ public/error_log
 
 public/uploads
 public/uploads/
+public/uploads/*
+public/uploads/**/*
+public/uploads/**/*/
 .htaccess
 
 **/*.mp4
