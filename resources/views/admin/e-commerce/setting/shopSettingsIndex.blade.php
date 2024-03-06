@@ -45,56 +45,62 @@
                             @method('PUT')
                             <div class="card-body">
                                 <input type="hidden" name="type" value="10">
-                                <div class="form-group col-md-12">
-                                    <ul>
-                                        <li class="heading"><b>Checkout</b></li>
-                                        <li>
+                                {{-- <div class="form-group col-md-12"> --}}
+                                    <ul class="form-row">
+                                        <li class="heading col-12"><b>Checkout</b></li>
+                                        <li class="col-12 col-md-6 form-group">
                                             <label for="GUEST_CHECKOUT" class="text-capitalize">Gust Checkout</label>
-                                            <select name="GUEST_CHECKOUT" id="GUEST_CHECKOUT">
+                                            <select class="form-control" name="GUEST_CHECKOUT" id="GUEST_CHECKOUT">
                                                 <option class="bg-info" value="{{ $GUEST_CHECKOUT->value }}">{{ ($GUEST_CHECKOUT->value == 1 ? "On"  : "Off" ) }}</option>
                                                 <option value="1">On</option>
                                                 <option value="0">Off</option>
                                             </select>
                                         </li>
 
-                                        <li>
+                                        <li class="col-12 col-md-6 form-group">
                                             <label for="CHECKOUT_TYPE" class="text-capitalize">Checkout Type</label>
-                                            <select name="CHECKOUT_TYPE" id="CHECKOUT_TYPE">
+                                            <select class="form-control" name="CHECKOUT_TYPE" id="CHECKOUT_TYPE">
                                                 <option class="bg-info" value="{{ setting('CHECKOUT_TYPE') ?? 0 }}">{{ (setting('CHECKOUT_TYPE')== 1 ? "Complex"  : "Minimal" ) }}</option>
                                                 <option value="1">Complex</option>
                                                 <option value="0">Minimal</option>
                                             </select>
                                         </li>
-
-                                        <hr>
-                                        {{-- <li>
-                                            <label for="shipping_free_above" class="text-capitalize">Shipping Charge Free Above Amount</label>
-                                            <input name="shipping_free_above" id="shipping_free_above" class="border border-info p-1" type="text" value="{{ setting('shipping_free_above') ?? 10000 }}">
-                                        </li>
-                                        <li>
-                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range</label>
-                                            <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}">
-                                        </li>
-                                        <li>
-                                            <label for="shipping_charge" class="text-capitalize">Shipping Charge Inside Range</label>
-                                            <input name="shipping_charge" id="shipping_charge" class="border border-info p-1" type="text" value="{{ setting('shipping_charge') ?? 80 }}">
-                                        </li>
-                                        <li>
-                                            <label for="shipping_charge_out_of_range" class="text-capitalize">Shipping Charge Out Of Range</label>
-                                            <input name="shipping_charge_out_of_range" id="shipping_charge_out_of_range" class="border border-info p-1" type="text" value="{{ setting('shipping_charge_out_of_range') ?? 130 }}">
-                                        </li> --}}
-
-                                        <hr>
-                                        <li>
+                                    </ul>
+                                    <ul class="form-row">
+                                        <li class="heading col-12"><b>Withdrawn</b></li>
+                                        <li class="col-12 col-md-6 form-group">
                                             <label for="min_rec" class="text-capitalize">Minimum Recharge</label>
-                                            <input name="min_rec" id="min_rec" class="border border-info p-1" type="text" value="{{ setting('min_rec') ?? 50 }}">
+                                            <input class="form-control" name="min_rec" id="min_rec" class="border border-info p-1" type="text" value="{{ setting('min_rec') ?? 50 }}">
                                         </li>
-                                        <li>
+                                        <li class="col-12 col-md-6 form-group">
                                             <label for="min_with" class="text-capitalize">Minimum Withdraw</label>
-                                            <input name="min_with" id="min_with" class="border border-info p-1" type="text" value="{{ setting('min_with') ?? 500 }}">
+                                            <input class="form-control" name="min_with" id="min_with" class="border border-info p-1" type="text" value="{{ setting('min_with') ?? 500 }}">
                                         </li>
                                     </ul>
-                                </div>
+                                    <ul class="form-row">
+                                        <li class="heading col-12"><b>Shipping</b></li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="COUNTRY_SERVE" class="text-capitalize">Country of Serve <span class="text-red">*</span></label>
+                                            <input class="form-control" type="text" name="COUNTRY_SERVE" id="COUNTRY_SERVE" placeholder="Bangladesh" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range <span class="text-red">*</span></label>
+                                            <input class="form-control" name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="CURRENCY_CODE" class="text-capitalize">Currency Code <span class="text-red">*</span></label>
+                                            <input class="form-control" type="text" name="CURRENCY_CODE" id="CURRENCY_CODE" placeholder="Currency code" value="{{ setting('CURRENCY_CODE') ?? 'BDT' }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="CURRENCY_CODE_MIN" class="text-capitalize">Currency Code Small <span class="text-red">*</span></label>
+                                            <input class="form-control" type="text" name="CURRENCY_CODE_MIN" id="CURRENCY_CODE_MIN" placeholder="Currency code" value="{{ setting('CURRENCY_CODE_MIN') ?? 'Tk' }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="CURRENCY_ICON" class="text-capitalize">Currency Icon <span class="text-red">*</span></label>
+                                            <input class="form-control" type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}" required>
+                                        </li>
+                                    </ul>
+                                {{-- </div> --}}
                                 <hr>
                             </div>
                             <!-- /.card-body -->

@@ -95,37 +95,7 @@
                                             <label for="instagram" class="text-capitalize">Instagram</label>
                                             <input class="form-control" type="text" name="instagram" id="instagram" value="{{ setting('instagram') ?? 'https://instagram.com/asifulmamun' }}">
                                         </li>
-                                    </ul>
-
-
-
-
-
-
-
-                                    <hr>
-                                    <ul class="form-row">
-                                        <li class="col-12 col-md-6 form-group">
-                                            <label for="COUNTRY_SERVE" class="text-capitalize">Country of Serve <span class="text-red">*</span></label>
-                                            <input type="text" name="COUNTRY_SERVE" id="COUNTRY_SERVE" placeholder="Bangladesh" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}" required>
-                                        </li>
-                                        <li class="col-12 col-md-6 form-group">
-                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range <span class="text-red">*</span></label>
-                                            <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}" required>
-                                        </li>
-                                        <li class="col-12 col-md-6 form-group">
-                                            <label for="CURRENCY_CODE" class="text-capitalize">Currency Code <span class="text-red">*</span></label>
-                                            <input type="text" name="CURRENCY_CODE" id="CURRENCY_CODE" placeholder="Currency code" value="{{ setting('CURRENCY_CODE') ?? 'BDT' }}" required>
-                                        </li>
-                                        <li class="col-12 col-md-6 form-group">
-                                            <label for="CURRENCY_CODE_MIN" class="text-capitalize">Currency Code Small <span class="text-red">*</span></label>
-                                            <input type="text" name="CURRENCY_CODE_MIN" id="CURRENCY_CODE_MIN" placeholder="Currency code" value="{{ setting('CURRENCY_CODE_MIN') ?? 'Tk' }}" required>
-                                        </li>
-                                        <li class="col-12 col-md-6 form-group">
-                                            <label for="CURRENCY_ICON" class="text-capitalize">Currency Icon <span class="text-red">*</span></label>
-                                            <input type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}" required>
-                                        </li>
-                                    </ul>
+                                    </ul>                                    
                                 </div>
                             </div>
                             <div class="card-footer">

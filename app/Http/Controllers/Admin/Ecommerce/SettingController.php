@@ -154,12 +154,6 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'youtube'], ['value' => $request->get('youtube')]);
             Setting::updateOrCreate(['name' => 'instagram'], ['value' => $request->get('instagram')]);
 
-            Setting::updateOrCreate(['name' => 'COUNTRY_SERVE'], ['value' => $request->get('COUNTRY_SERVE')]);
-            Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
-            Setting::updateOrCreate(['name' => 'CURRENCY_CODE'], ['value' => $request->get('CURRENCY_CODE')]);
-            Setting::updateOrCreate(['name' => 'CURRENCY_CODE_MIN'], ['value' => $request->get('CURRENCY_CODE_MIN')]);
-            Setting::updateOrCreate(['name' => 'CURRENCY_ICON'], ['value' => $request->get('CURRENCY_ICON')]);
-
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
         }
@@ -209,6 +203,12 @@ class SettingController extends Controller
 
             Setting::updateOrCreate(['name' => 'min_rec'], ['value' => $request->get('min_rec')]);
             Setting::updateOrCreate(['name' => 'min_with'], ['value' => $request->get('min_with')]);
+
+            Setting::updateOrCreate(['name' => 'COUNTRY_SERVE'], ['value' => $request->get('COUNTRY_SERVE')]);
+            Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
+            Setting::updateOrCreate(['name' => 'CURRENCY_CODE'], ['value' => $request->get('CURRENCY_CODE')]);
+            Setting::updateOrCreate(['name' => 'CURRENCY_CODE_MIN'], ['value' => $request->get('CURRENCY_CODE_MIN')]);
+            Setting::updateOrCreate(['name' => 'CURRENCY_ICON'], ['value' => $request->get('CURRENCY_ICON')]);
 
             notify()->success("Shop settings successfully updated", "Success");
             return back();
