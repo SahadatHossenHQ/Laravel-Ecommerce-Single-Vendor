@@ -36,47 +36,94 @@
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-                                <div class="form-group col-md-12">
+                                <div class="col-md-12">
                                     <input type="hidden" name="type" value="8">
-                                    <ul>
-                                        <li>
-                                            <label for="SITE_INFO_ADDRESS" class="text-capitalize">Company full address</label>
-                                            <input type="text" name="SITE_INFO_ADDRESS" id="SITE_INFO_ADDRESS" placeholder="Company Full Address" value="{{ $SITE_INFO_ADDRESS->value }}">
+                                    <ul class="form-row">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="SITE_INFO_ADDRESS" class="text-capitalize">Company full address <span class="text-red">(*)</span></label>
+                                            <input class="form-control" type="text" name="SITE_INFO_ADDRESS" id="SITE_INFO_ADDRESS" placeholder="Company Full Address" value="{{ $SITE_INFO_ADDRESS->value }}">
                                         </li>
-                                        <li>
-                                            <label for="SITE_INFO_PHONE" class="text-capitalize">Company primary phone</label>
-                                            <input type="text" name="SITE_INFO_PHONE" id="SITE_INFO_PHONE" placeholder="Company Primary Phone" value="{{ $SITE_INFO_PHONE->value }}">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="SITE_INFO_PHONE" class="text-capitalize">Company primary phone <span class="text-red">(*)</span></label>
+                                            <input class="form-control" type="text" name="SITE_INFO_PHONE" id="SITE_INFO_PHONE" placeholder="Company Primary Phone" value="{{ $SITE_INFO_PHONE->value }}">
                                         </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="SITE_INFO_SUPPORT_MAIL" class="text-capitalize">Company suupport mail <span class="text-red">(*)</span></label>
+                                            <input class="form-control" type="text" name="SITE_INFO_SUPPORT_MAIL" id="SITE_INFO_SUPPORT_MAIL" placeholder="Company Support Email" value="{{ $SITE_INFO_SUPPORT_MAIL->value }}">
+                                        </li>
+                                        <li class="col-12 col-md-6">
+                                            <label for="copy_right_text" class="text-capitalize">Copyright Text <span class="text-red">(*)</span></label>
+                                            <input class="form-control" type="text" name="copy_right_text" id="copy_right_text" placeholder="Company Support Email" value="{{ setting('copy_right_text') ?? '© Lems Copyright' }}">
+                                        </li>
+                                        <li class="col-12 col-md-12">
+                                            <label for="footer_description" class="text-capitalize">Footer Descripttion <span class="text-red">(*)</span></label>
+                                            <textarea name="footer_description" id="footer_description" rows="4"
+                                                class="form-control">{{setting('footer_description') ?? 'Footer Description, Example: This is Lems by Finvasoft'}}</textarea>
+                                        </li>
+                                    </ul>
 
-                                        <li>
-                                            <label for="SITE_INFO_SUPPORT_MAIL" class="text-capitalize">Company suupport mail</label>
-                                            <input type="text" name="SITE_INFO_SUPPORT_MAIL" id="SITE_INFO_SUPPORT_MAIL" placeholder="Company Support Email" value="{{ $SITE_INFO_SUPPORT_MAIL->value }}">
+                                    <hr>
+                                    <ul class="form-row">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="whatsapp" class="text-capitalize">WhatsApp</label>
+                                            <input class="form-control" type="number" name="whatsapp" id="whatsapp" placeholder="8801721600688" value="{{ setting('whatsapp') ?? '01721*****88' }}">
                                         </li>
-
-                                        <li>
-                                            <label for="COUNTRY_SERVE" class="text-capitalize">Country of Site</label>
-                                            <input type="text" name="COUNTRY_SERVE" id="COUNTRY_SERVE" placeholder="Bangladesh" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <small class="text-red">With Country Code (Without + sign),<br>Example: 8801721600688,<br>There first 880 is contry code</small>
                                         </li>
-
-                                        <li>
-                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range</label>
-                                            <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="facebook" class="text-capitalize">Facebook</label>
+                                            <input class="form-control" type="text" name="facebook" id="facebook" value="{{ setting('facebook') ?? 'https://facebook.com/finvasoft' }}">
                                         </li>
-
-                                        <li>
-                                            <label for="CURRENCY_CODE" class="text-capitalize">Currency Code</label>
-                                            <input type="text" name="CURRENCY_CODE" id="CURRENCY_CODE" placeholder="Currency code" value="{{ setting('CURRENCY_CODE') ?? 'BDT' }}">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="messanger" class="text-capitalize">Messanger</label>
+                                            <input class="form-control" type="text" name="messanger" id="messanger" value="{{ setting('messanger') ?? 'https://m.me/finvasoft' }}">
                                         </li>
-
-                                        <li>
-                                            <label for="CURRENCY_CODE_MIN" class="text-capitalize">Currency Code Small</label>
-                                            <input type="text" name="CURRENCY_CODE_MIN" id="CURRENCY_CODE_MIN" placeholder="Currency code" value="{{ setting('CURRENCY_CODE_MIN') ?? 'Tk' }}">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="linkedin" class="text-capitalize">Linkedin</label>
+                                            <input class="form-control" type="text" name="linkedin" id="linkedin" value="{{ setting('linkedin') ?? 'https://linkedin.com/in/asifulmamun' }}">
                                         </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="twitter" class="text-capitalize">Twitter</label>
+                                            <input class="form-control" type="text" name="twitter" id="twitter" value="{{ setting('twitter') ?? 'https://twitter.com/asifulmamun' }}">
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="youtube" class="text-capitalize">Youtube</label>
+                                            <input class="form-control" type="text" name="youtube" id="youtube" value="{{ setting('youtube') ?? 'https://youtube.com/@asifulmamun' }}">
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="instagram" class="text-capitalize">Instagram</label>
+                                            <input class="form-control" type="text" name="instagram" id="instagram" value="{{ setting('instagram') ?? 'https://instagram.com/asifulmamun' }}">
+                                        </li>
+                                    </ul>
 
-                                        
-                                        <li>
-                                            <label for="CURRENCY_ICON" class="text-capitalize">Currency Icon</label>
-                                            <input type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}">
+
+
+
+
+
+
+                                    <hr>
+                                    <ul class="form-row">
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="COUNTRY_SERVE" class="text-capitalize">Country of Serve <span class="text-red">*</span></label>
+                                            <input type="text" name="COUNTRY_SERVE" id="COUNTRY_SERVE" placeholder="Bangladesh" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range <span class="text-red">*</span></label>
+                                            <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="CURRENCY_CODE" class="text-capitalize">Currency Code <span class="text-red">*</span></label>
+                                            <input type="text" name="CURRENCY_CODE" id="CURRENCY_CODE" placeholder="Currency code" value="{{ setting('CURRENCY_CODE') ?? 'BDT' }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="CURRENCY_CODE_MIN" class="text-capitalize">Currency Code Small <span class="text-red">*</span></label>
+                                            <input type="text" name="CURRENCY_CODE_MIN" id="CURRENCY_CODE_MIN" placeholder="Currency code" value="{{ setting('CURRENCY_CODE_MIN') ?? 'Tk' }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="CURRENCY_ICON" class="text-capitalize">Currency Icon <span class="text-red">*</span></label>
+                                            <input type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}" required>
                                         </li>
                                     </ul>
                                 </div>

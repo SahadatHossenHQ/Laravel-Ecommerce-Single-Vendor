@@ -131,7 +131,7 @@
                         @endif
                         @if (!empty(setting('whatsapp')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
+                            <a class="nav-link" href="https://wa.me/{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
                         </li>
                         @endif
                         @if (!empty(setting('messanger')))                            

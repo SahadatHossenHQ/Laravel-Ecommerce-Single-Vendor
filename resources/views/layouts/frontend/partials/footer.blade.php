@@ -25,7 +25,7 @@
 
 @if (setting('FLOAT_LIVE_CHAT') != 1 || setting('FLOAT_LIVE_CHAT') == "")
     @if(!empty(setting('whatsapp')))
-    <li class="fixed_what"><a href="https://wa.me/88{{setting('whatsapp')}}"
+    <li class="fixed_what"><a href="https://wa.me/{{setting('whatsapp')}}"
             style="color:var(--primary_bg_color_text);background:var(--primary_color);border-radius: 50%;width: 45px;display: block;height: 45px;text-align: center;line-height: 45px;font-size: 25px;position: fixed;right: 10px;bottom: 80px;z-index: 999999;box-shadow: 0px 0px 10px gainsboro;"><i
                 class="icofont icofont-social-whatsapp"></i></a></li>
     @endif
@@ -221,7 +221,7 @@
                         @endif
 
                         @if(!empty(setting('whatsapp')))
-                        <li class="s-l-i-3"><a href="https://wa.me/88{{setting('whatsapp')}}"><i style="background:#439665 ;"
+                        <li class="s-l-i-3"><a href="https://wa.me/{{setting('whatsapp')}}"><i style="background:#439665 ;"
                                     class="icofont icofont-social-whatsapp"></i></a></li>
                         @endif
                         @if(!empty(setting('twitter')))

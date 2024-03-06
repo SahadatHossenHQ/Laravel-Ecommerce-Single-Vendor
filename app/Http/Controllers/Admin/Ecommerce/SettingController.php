@@ -68,6 +68,8 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'placeholder_two'], ['value' => $request->get('placeholder_two')]);
             Setting::updateOrCreate(['name' => 'placeholder_three'], ['value' => $request->get('placeholder_three')]);
             Setting::updateOrCreate(['name' => 'placeholder_four'], ['value' => $request->get('placeholder_four')]);
+
+
             Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
             Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
 
@@ -84,15 +86,7 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'routing'], ['value' => $request->get('routing')]);
 
 
-            Setting::updateOrCreate(['name' => 'copy_right_text'], ['value' => $request->get('copy_right_text')]);
-            Setting::updateOrCreate(['name' => 'facebook'], ['value' => $request->get('facebook')]);
-            Setting::updateOrCreate(['name' => 'whatsapp'], ['value' => $request->get('whatsapp')]);
-            Setting::updateOrCreate(['name' => 'twitter'], ['value' => $request->get('twitter')]);
-            Setting::updateOrCreate(['name' => 'linkedin'], ['value' => $request->get('linkedin')]);
-            Setting::updateOrCreate(['name' => 'youtube'], ['value' => $request->get('youtube')]);
-            Setting::updateOrCreate(['name' => 'instagram'], ['value' => $request->get('instagram')]);
-            Setting::updateOrCreate(['name' => 'messanger'], ['value' => $request->get('messanger')]);
-            Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
+
 
             Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
             Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
@@ -162,19 +156,27 @@ class SettingController extends Controller
             return back();
         }
         elseif ($request->type == 8) {
+
             Setting::updateOrCreate(['name' => 'SITE_INFO_ADDRESS'], ['value' => $request->get('SITE_INFO_ADDRESS')]);
             Setting::updateOrCreate(['name' => 'SITE_INFO_PHONE'], ['value' => $request->get('SITE_INFO_PHONE')]);
             Setting::updateOrCreate(['name' => 'SITE_INFO_SUPPORT_MAIL'], ['value' => $request->get('SITE_INFO_SUPPORT_MAIL')]);
 
-            
+            Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
+            Setting::updateOrCreate(['name' => 'copy_right_text'], ['value' => $request->get('copy_right_text')]);
+
+            Setting::updateOrCreate(['name' => 'whatsapp'], ['value' => $request->get('whatsapp')]);
+            Setting::updateOrCreate(['name' => 'facebook'], ['value' => $request->get('facebook')]);
+            Setting::updateOrCreate(['name' => 'messanger'], ['value' => $request->get('messanger')]);
+            Setting::updateOrCreate(['name' => 'linkedin'], ['value' => $request->get('linkedin')]);
+            Setting::updateOrCreate(['name' => 'twitter'], ['value' => $request->get('twitter')]);
+            Setting::updateOrCreate(['name' => 'youtube'], ['value' => $request->get('youtube')]);
+            Setting::updateOrCreate(['name' => 'instagram'], ['value' => $request->get('instagram')]);
+
             Setting::updateOrCreate(['name' => 'COUNTRY_SERVE'], ['value' => $request->get('COUNTRY_SERVE')]);
             Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
             Setting::updateOrCreate(['name' => 'CURRENCY_CODE'], ['value' => $request->get('CURRENCY_CODE')]);
             Setting::updateOrCreate(['name' => 'CURRENCY_CODE_MIN'], ['value' => $request->get('CURRENCY_CODE_MIN')]);
             Setting::updateOrCreate(['name' => 'CURRENCY_ICON'], ['value' => $request->get('CURRENCY_ICON')]);
-
-
-
 
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
