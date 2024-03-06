@@ -67,7 +67,7 @@
                                         </li>
 
                                         <hr>
-                                        <li>
+                                        {{-- <li>
                                             <label for="shipping_free_above" class="text-capitalize">Shipping Charge Free Above Amount</label>
                                             <input name="shipping_free_above" id="shipping_free_above" class="border border-info p-1" type="text" value="{{ setting('shipping_free_above') ?? 10000 }}">
                                         </li>
@@ -82,7 +82,7 @@
                                         <li>
                                             <label for="shipping_charge_out_of_range" class="text-capitalize">Shipping Charge Out Of Range</label>
                                             <input name="shipping_charge_out_of_range" id="shipping_charge_out_of_range" class="border border-info p-1" type="text" value="{{ setting('shipping_charge_out_of_range') ?? 130 }}">
-                                        </li>
+                                        </li> --}}
 
                                         <hr>
                                         <li>

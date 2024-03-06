@@ -73,12 +73,6 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
             Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
 
-
-            
-
-
-
-
             Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
             Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
             Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
@@ -111,10 +105,7 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'OPTIONAL_BG_TEXT_COLOR'], ['value' => $request->get('OPTIONAL_BG_TEXT_COLOR')]);
             Setting::updateOrCreate(['name' => 'MAIN_MENU_BG'], ['value' => $request->get('MAIN_MENU_BG')]);
             Setting::updateOrCreate(['name' => 'MAIN_MENU_ul_li_color'], ['value' => $request->get('MAIN_MENU_ul_li_color')]);
-
-            
-            
-            
+                        
             notify()->success("Successfully updated", "Success");
             return back();
         }
@@ -215,10 +206,7 @@ class SettingController extends Controller
             // Shop Setting
             Setting::updateOrCreate(['name' => 'GUEST_CHECKOUT'], ['value' => $request->get('GUEST_CHECKOUT')]);
             Setting::updateOrCreate(['name' => 'CHECKOUT_TYPE'], ['value' => $request->get('CHECKOUT_TYPE')]);
-            Setting::updateOrCreate(['name' => 'shipping_free_above'], ['value' => $request->get('shipping_free_above')]);
-            Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
-            Setting::updateOrCreate(['name' => 'shipping_charge'], ['value' => $request->get('shipping_charge')]);
-            Setting::updateOrCreate(['name' => 'shipping_charge_out_of_range'], ['value' => $request->get('shipping_charge_out_of_range')]);
+
             Setting::updateOrCreate(['name' => 'min_rec'], ['value' => $request->get('min_rec')]);
             Setting::updateOrCreate(['name' => 'min_with'], ['value' => $request->get('min_with')]);
 
@@ -726,6 +714,12 @@ class SettingController extends Controller
         Setting::updateOrCreate(['name' => 'branch_name'], ['value' => $request->get('branch_name')]);
         Setting::updateOrCreate(['name' => 'holder_name'], ['value' => $request->get('holder_name')]);
         Setting::updateOrCreate(['name' => 'routing'], ['value' => $request->get('routing')]);
+
+        // Shipping
+        Setting::updateOrCreate(['name' => 'shipping_free_above'], ['value' => $request->get('shipping_free_above')]);
+        Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
+        Setting::updateOrCreate(['name' => 'shipping_charge'], ['value' => $request->get('shipping_charge')]);
+        Setting::updateOrCreate(['name' => 'shipping_charge_out_of_range'], ['value' => $request->get('shipping_charge_out_of_range')]);
 
         // Activatoin/Deactivation
         Setting::updateOrCreate(['name' => 'g_bkash'], ['value' => json_encode($request->filled('bkash'))]);
