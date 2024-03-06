@@ -66,17 +66,15 @@
                                             </select>
                                         </li>
 
+                                        <hr>
                                         <li>
                                             <label for="shipping_free_above" class="text-capitalize">Shipping Charge Free Above Amount</label>
                                             <input name="shipping_free_above" id="shipping_free_above" class="border border-info p-1" type="text" value="{{ setting('shipping_free_above') ?? 10000 }}">
                                         </li>
-
-
                                         <li>
                                             <label for="shipping_range_inside" class="text-capitalize">Text - Shipping in Range</label>
                                             <input name="shipping_range_inside" id="shipping_range_inside" class="border border-info p-1" type="text" value="{{ setting('shipping_range_inside') ?? "Dhaka" }}">
                                         </li>
-
                                         <li>
                                             <label for="shipping_charge" class="text-capitalize">Shipping Charge Inside Range</label>
                                             <input name="shipping_charge" id="shipping_charge" class="border border-info p-1" type="text" value="{{ setting('shipping_charge') ?? 80 }}">
@@ -84,6 +82,16 @@
                                         <li>
                                             <label for="shipping_charge_out_of_range" class="text-capitalize">Shipping Charge Out Of Range</label>
                                             <input name="shipping_charge_out_of_range" id="shipping_charge_out_of_range" class="border border-info p-1" type="text" value="{{ setting('shipping_charge_out_of_range') ?? 130 }}">
+                                        </li>
+
+                                        <hr>
+                                        <li>
+                                            <label for="min_rec" class="text-capitalize">Minimum Recharge</label>
+                                            <input name="min_rec" id="min_rec" class="border border-info p-1" type="text" value="{{ setting('min_rec') ?? 50 }}">
+                                        </li>
+                                        <li>
+                                            <label for="min_with" class="text-capitalize">Minimum Withdraw</label>
+                                            <input name="min_with" id="min_with" class="border border-info p-1" type="text" value="{{ setting('min_with') ?? 500 }}">
                                         </li>
                                     </ul>
                                 </div>

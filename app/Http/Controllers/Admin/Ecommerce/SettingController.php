@@ -68,23 +68,22 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'placeholder_two'], ['value' => $request->get('placeholder_two')]);
             Setting::updateOrCreate(['name' => 'placeholder_three'], ['value' => $request->get('placeholder_three')]);
             Setting::updateOrCreate(['name' => 'placeholder_four'], ['value' => $request->get('placeholder_four')]);
-            Setting::updateOrCreate(['name' => 'shipping_charge'], ['value' => $request->get('shipping_charge')]);
-            Setting::updateOrCreate(['name' => 'shipping_charge_out_of_range'], ['value' => $request->get('shipping_charge_out_of_range')]);
             Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
             Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
-
-            Setting::updateOrCreate(['name' => 'min_rec'], ['value' => $request->get('min_rec')]);
-            Setting::updateOrCreate(['name' => 'min_with'], ['value' => $request->get('min_with')]);
 
 
             Setting::updateOrCreate(['name' => 'bkash'], ['value' => $request->get('bkash')]);
             Setting::updateOrCreate(['name' => 'nagad'], ['value' => $request->get('nagad')]);
             Setting::updateOrCreate(['name' => 'rocket'], ['value' => $request->get('rocket')]);
+
+
             Setting::updateOrCreate(['name' => 'bank_name'], ['value' => $request->get('bank_name')]);
             Setting::updateOrCreate(['name' => 'bank_account'], ['value' => $request->get('bank_account')]);
             Setting::updateOrCreate(['name' => 'branch_name'], ['value' => $request->get('branch_name')]);
             Setting::updateOrCreate(['name' => 'holder_name'], ['value' => $request->get('holder_name')]);
             Setting::updateOrCreate(['name' => 'routing'], ['value' => $request->get('routing')]);
+
+
             Setting::updateOrCreate(['name' => 'copy_right_text'], ['value' => $request->get('copy_right_text')]);
             Setting::updateOrCreate(['name' => 'facebook'], ['value' => $request->get('facebook')]);
             Setting::updateOrCreate(['name' => 'whatsapp'], ['value' => $request->get('whatsapp')]);
@@ -93,12 +92,11 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'youtube'], ['value' => $request->get('youtube')]);
             Setting::updateOrCreate(['name' => 'instagram'], ['value' => $request->get('instagram')]);
             Setting::updateOrCreate(['name' => 'messanger'], ['value' => $request->get('messanger')]);
+            Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
+
             Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
             Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
             Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
-            Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
-            Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
-            // Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->fb_pixel]);
             notify()->success("Setting successfully updated", "Success");
             return back();
         }
@@ -221,14 +219,16 @@ class SettingController extends Controller
             return back();
         }
         elseif ($request->type == 10) {
-            
+            // Shop Setting
             Setting::updateOrCreate(['name' => 'GUEST_CHECKOUT'], ['value' => $request->get('GUEST_CHECKOUT')]);
             Setting::updateOrCreate(['name' => 'CHECKOUT_TYPE'], ['value' => $request->get('CHECKOUT_TYPE')]);
             Setting::updateOrCreate(['name' => 'shipping_free_above'], ['value' => $request->get('shipping_free_above')]);
             Setting::updateOrCreate(['name' => 'shipping_range_inside'], ['value' => $request->get('shipping_range_inside')]);
             Setting::updateOrCreate(['name' => 'shipping_charge'], ['value' => $request->get('shipping_charge')]);
             Setting::updateOrCreate(['name' => 'shipping_charge_out_of_range'], ['value' => $request->get('shipping_charge_out_of_range')]);
-            
+            Setting::updateOrCreate(['name' => 'min_rec'], ['value' => $request->get('min_rec')]);
+            Setting::updateOrCreate(['name' => 'min_with'], ['value' => $request->get('min_with')]);
+
             notify()->success("Shop settings successfully updated", "Success");
             return back();
         }
