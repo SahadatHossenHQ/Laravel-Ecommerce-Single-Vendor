@@ -744,7 +744,7 @@
                             </a>
                         </li>
 
-                        <ul class="nav nav-treeview">
+                        {{-- <ul class="nav nav-treeview">
                             <li
                                 class="nav-item {{Request::is('admin/setting/getway') ? 'menu-is-opening menu-open':''}}">
                                 <a href="{{route('admin.setting.getway')}}" class="nav-link">
@@ -796,7 +796,58 @@
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> --}}
+
+                        <li class="nav-item {{Request::is('admin/setting/getway') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.getway')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Payment Gateway
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item {{Request::is('admin/setting/home') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.home')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Home
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item {{Request::is('admin/setting/docs') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.docs')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Documents
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item {{Request::is('admin/profile*') ? 'menu-is-opening menu-open':''}}">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-circle"></i>
+                                <p>
+                                    Profile
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{routeHelper('profile')}}"
+                                        class="nav-link {{Request::is('admin/profile/show') ? 'active':''}}">
+                                        <i class="fas fa-user nav-icon"></i>
+                                        <p>My Profile</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{routeHelper('profile/change-password')}}"
+                                        class="nav-link {{Request::is('admin/profile/change-password') ? 'active':''}}">
+                                        <i class="fas fa-key nav-icon"></i>
+                                        <p>Change Password</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li
                             class="nav-item {{Request::is('admin/setting/layout') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
                             <a href="{{route('admin.setting.layout')}}" class="nav-link">

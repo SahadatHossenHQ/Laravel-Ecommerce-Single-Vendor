@@ -1,37 +1,38 @@
 <?php
 
-use App\Http\Controllers\Admin\CustomOrderController;
-use App\Http\Controllers\Admin\Ecommerce\BrandController;
-use App\Http\Controllers\Admin\Ecommerce\CategoryController;
-use App\Http\Controllers\Admin\Ecommerce\CollectionController;
-use App\Http\Controllers\Admin\Ecommerce\ColorController;
-use App\Http\Controllers\Admin\Ecommerce\CouponController;
-use App\Http\Controllers\Admin\Ecommerce\CustomerController;
-use App\Http\Controllers\Admin\Ecommerce\DashboardController;
-use App\Http\Controllers\Admin\Ecommerce\OrderController;
-use App\Http\Controllers\Admin\Ecommerce\ClassicController;
-use App\Http\Controllers\Admin\Ecommerce\ProductController;
-use App\Http\Controllers\Admin\chatController;
-use App\Http\Controllers\WithdrawController;
-use App\Http\Controllers\Admin\attributeController;
-use App\Http\Controllers\Admin\Ecommerce\ProfileController;
-use App\Http\Controllers\Admin\Ecommerce\SettingController;
-use App\Http\Controllers\Admin\Ecommerce\StafController;
-use App\Http\Controllers\Admin\Ecommerce\SizeController;
-use App\Http\Controllers\Admin\Ecommerce\SliderController;
-use App\Http\Controllers\Admin\Ecommerce\SubCategoryController;
-use App\Http\Controllers\Admin\Ecommerce\TagController;
-use App\Http\Controllers\Admin\Ecommerce\VendorController;
-use App\Http\Controllers\Admin\Ecommerce\ticketController;
-use App\Http\Controllers\Admin\Ecommerce\AuthController;
-use App\Http\Controllers\campaingController;
-use App\Http\Controllers\pageController;
-use App\Http\Controllers\blogControler as ablogController;
-use App\Http\Controllers\CourierController;
-
-use App\Http\Controllers\subscriptionController;
 use App\Models\ticket;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\pageController;
+use App\Http\Controllers\SystemController;
+use App\Http\Controllers\CourierController;
+use App\Http\Controllers\campaingController;
+use App\Http\Controllers\WithdrawController;
+use App\Http\Controllers\Admin\chatController;
+use App\Http\Controllers\subscriptionController;
+use App\Http\Controllers\Admin\attributeController;
+use App\Http\Controllers\Admin\CustomOrderController;
+use App\Http\Controllers\Admin\Ecommerce\TagController;
+use App\Http\Controllers\Admin\Ecommerce\AuthController;
+use App\Http\Controllers\Admin\Ecommerce\SizeController;
+use App\Http\Controllers\Admin\Ecommerce\StafController;
+use App\Http\Controllers\Admin\Ecommerce\BrandController;
+use App\Http\Controllers\Admin\Ecommerce\ColorController;
+use App\Http\Controllers\Admin\Ecommerce\OrderController;
+use App\Http\Controllers\Admin\Ecommerce\CouponController;
+use App\Http\Controllers\Admin\Ecommerce\SliderController;
+use App\Http\Controllers\Admin\Ecommerce\ticketController;
+use App\Http\Controllers\Admin\Ecommerce\VendorController;
+use App\Http\Controllers\blogControler as ablogController;
+use App\Http\Controllers\Admin\Ecommerce\ClassicController;
+use App\Http\Controllers\Admin\Ecommerce\ProductController;
+use App\Http\Controllers\Admin\Ecommerce\ProfileController;
+use App\Http\Controllers\Admin\Ecommerce\SettingController;
+use App\Http\Controllers\Admin\Ecommerce\CategoryController;
+
+use App\Http\Controllers\Admin\Ecommerce\CustomerController;
+use App\Http\Controllers\Admin\Ecommerce\DashboardController;
+use App\Http\Controllers\Admin\Ecommerce\CollectionController;
+use App\Http\Controllers\Admin\Ecommerce\SubCategoryController;
 
 
 /*
@@ -46,6 +47,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth', 'admin'])->group(function () {
+
+
+    // System Update
+    Route::get('/update', [SystemController::class, 'updateIndex'])->name('updateIndex');
+    Route::post('/update', [SystemController::class, 'update'])->name('update');
+
+
+
+
 
     Route::get('dashboard', DashboardController::class)->name('dashboard');
 
