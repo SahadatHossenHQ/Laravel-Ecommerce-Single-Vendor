@@ -62,7 +62,7 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-    <p style="text-align:center;margin: 0;padding: 5px 0px;">Developed by: Finva Soft Ltd.</p>
+    <p style="text-align:center;margin: 0;padding: 5px 0px;">Lems v6.0.0 - Developed by: Finva Soft Ltd</p>
 
     <!-- jQuery -->
     <script src="/assets/plugins/jquery/jquery.min.js"></script>
