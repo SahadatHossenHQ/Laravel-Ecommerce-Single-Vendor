@@ -40,7 +40,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header bg-success">
                             <h3 class="card-title">Application Images</h3>
@@ -86,15 +86,21 @@
                     </div>
                 </div>
 
+                <div class="col-12 col-md-8">
+                    <div class="card text-white bg-secondary mb-3">
+                        <div class="card-header">Update Notice</div>
+                        <div class="card-body">
+                            <h5 class="card-title">We are allways for there for support.</h5>
+                            <p class="card-text">We are coming with new innovation @Finvasoft</p>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="col-sm-8">
-                    <!-- Default box -->
+                {{-- <div class="col-sm-8">
                     <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Setting</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
@@ -105,8 +111,6 @@
                                     @php
                                     $name = str_replace('_', ' ', $setting->name);
                                     @endphp
-
-
                                     @if ($setting->name == 'footer_description')
                                     <div class="form-group col-md-12 {{$setting->name}}">
                                         <label for="{{$setting->name}}" class="text-capitalize">{{$name}}</label>
@@ -171,19 +175,15 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-arrow-circle-up"></i>
                                     Update
                                 </button>
                             </div>
-                            <!-- /.card-footer -->
                         </form>
-
                     </div>
-                    <!-- /.card -->
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
