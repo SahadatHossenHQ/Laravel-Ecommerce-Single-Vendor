@@ -276,7 +276,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('notice', [SettingController::class, 'noticeIndex'])->name('notice_index');
 
 
-    Route::get('setting/site_info', [SettingController::class, 'site_infoIndex'])->name('setting.site_info');
+    Route::get('setting/site_info', [SettingController::class, 'shop_infoIndex'])->name('setting.site_info');
     Route::get('setting/layout', [SettingController::class, 'layoutIndex'])->name('setting.layout');
     Route::get('setting/shop_settings', [SettingController::class, 'shopSettingsIndex'])->name('setting.shop_settings');
     Route::get('setting/color', [SettingController::class, 'colorIndex'])->name('setting.color');

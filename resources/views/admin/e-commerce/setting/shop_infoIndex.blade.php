@@ -114,7 +114,7 @@
 
 @endsection
 
-@push('css')
+{{-- @push('css')
     <style>
         form ul li input[type="text"],
         form ul li input[type="email"],
@@ -129,4 +129,4 @@
             margin: .5rem;
         }
     </style>
-@endpush
+@endpush --}}

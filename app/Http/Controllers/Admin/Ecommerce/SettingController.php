@@ -71,11 +71,12 @@ class SettingController extends Controller
 
 
             Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
-            Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
 
+            Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
             Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
             Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
             Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
+            
             notify()->success("Setting successfully updated", "Success");
             return back();
         }
@@ -266,7 +267,7 @@ class SettingController extends Controller
     }
 
 
-    public function site_infoIndex(){
+    public function shop_infoIndex(){
         $get_SITE_INFO_ADDRESS = Setting::where('name', 'SITE_INFO_ADDRESS')->first();
         $SITE_INFO_ADDRESS = (!$get_SITE_INFO_ADDRESS) ? (object)['value' => 'Dhaka, Bangladesh' ] : $get_SITE_INFO_ADDRESS;
 
@@ -277,7 +278,7 @@ class SettingController extends Controller
         $SITE_INFO_SUPPORT_MAIL = (!$get_SITE_INFO_SUPPORT_MAIL) ? (object)['value' => 'hello@asifulmamun.info.bd' ] : $get_SITE_INFO_SUPPORT_MAIL;
 
 
-        return view('admin.e-commerce.setting.site_infoIndex', compact(
+        return view('admin.e-commerce.setting.shop_infoIndex', compact(
             'SITE_INFO_ADDRESS',
             'SITE_INFO_PHONE',
             'SITE_INFO_SUPPORT_MAIL',
