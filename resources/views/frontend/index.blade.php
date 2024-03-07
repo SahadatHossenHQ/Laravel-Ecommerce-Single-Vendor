@@ -859,7 +859,7 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 <x-add-cart-modal />
 @include('components.cart-modal-attri')
 
-
+{{-- Catgory Collups and Expand System --}}
 @push('css')
 <style>
     .superCatHomeToggle{
@@ -881,7 +881,6 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
     }
 </style>
 @endpush
-
 @push('js')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -891,11 +890,8 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
         var superCatElement = document.getElementById('superCat');
         superCatElement.appendChild(buttonElement);
         superCatElement.classList.add('superCatHomeToggle');
-
         buttonElement.addEventListener('click', function () {
-            // Toggle the class .superCatHomeToggle on the superCat element
             superCatElement.classList.toggle('superCatHomeToggle');
-
             if (buttonElement.innerText === 'View All') {
                 buttonElement.innerText = 'Close';
             } else {
@@ -905,6 +901,8 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
     });
 </script>
 @endpush
+{{-- / Catgory Collups and Expand System --}}
+
 
 @endsection
 
