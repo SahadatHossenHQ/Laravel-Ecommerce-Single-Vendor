@@ -28,15 +28,6 @@ class SettingController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
     public function update(Request $request)
     {
         if ($request->type == 1) {
@@ -142,7 +133,7 @@ class SettingController extends Controller
 
             Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
             Setting::updateOrCreate(['name' => 'copy_right_text'], ['value' => $request->get('copy_right_text')]);
-            
+
             Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
             Setting::updateOrCreate(['name' => 'whatsapp'], ['value' => $request->get('whatsapp')]);
             Setting::updateOrCreate(['name' => 'facebook'], ['value' => $request->get('facebook')]);

@@ -23,14 +23,14 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Site Information</h3>
+            <h3 class="card-title">Shop Information</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-8 offset-md-2">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Setting - Site Information</h3>
+                            <h3 class="card-title">Setting - Shop Information</h3>
                         </div>
                         <form id="email_config" action="{{routeHelper('setting')}}" method="POST">
                             @csrf
