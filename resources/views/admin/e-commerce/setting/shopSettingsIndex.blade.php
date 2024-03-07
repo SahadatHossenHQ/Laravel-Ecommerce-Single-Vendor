@@ -100,6 +100,29 @@
                                             <input class="form-control" type="text" name="CURRENCY_ICON" id="CURRENCY_ICON" placeholder="Currency icon" value="{{ setting('CURRENCY_ICON') ?? '৳' }}" required>
                                         </li>
                                     </ul>
+                                    <ul class="form-row">
+                                        <li class="bg-light p-2 mb-1 col-12"><b>Calculation</b></li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="shop_commission" class="text-capitalize">Vendor Commission <span class="text-red">*</span></label>
+                                            <input class="form-control" type="number" name="shop_commission" id="shop_commission" placeholder="Bangladesh" value="{{ setting('shop_commission') ?? 0 }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="is_point" class="text-capitalize">Point System Status</label>
+                                            <select class="form-control" name="is_point" id="is_point">
+                                                <option class="bg-info" value="{{ setting('is_point') ?? 0 }}">{{ (setting('is_point')== 1 ? "Active"  : "Deactive" ) }}</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Deactive</option>
+                                            </select>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="Default_Point" class="text-capitalize">Default Point <span class="text-red">*</span></label>
+                                            <input class="form-control" type="text" name="Default_Point" id="Default_Point" placeholder="Bangladesh" value="{{ setting('Default_Point') ?? 0 }}" required>
+                                        </li>
+                                        <li class="col-12 col-md-6 form-group">
+                                            <label for="Point_rate" class="text-capitalize">Point Rate <span class="text-red">*</span></label>
+                                            <input class="form-control" type="text" name="Point_rate" id="Point_rate" placeholder="Bangladesh" value="{{ setting('Point_rate') ?? 0 }}" required>
+                                        </li>
+                                    </ul>
                                 {{-- </div> --}}
                                 <hr>
                             </div>

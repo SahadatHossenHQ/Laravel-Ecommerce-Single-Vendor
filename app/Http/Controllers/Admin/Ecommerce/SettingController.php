@@ -55,14 +55,6 @@ class SettingController extends Controller
                 'headerCode' => 'nullable|string',
             ]);
 
-
-
-            
-
-            Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
-            Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
-            Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
-            Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
             
             notify()->success("Setting successfully updated", "Success");
             return back();
@@ -205,6 +197,11 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'CURRENCY_CODE'], ['value' => $request->get('CURRENCY_CODE')]);
             Setting::updateOrCreate(['name' => 'CURRENCY_CODE_MIN'], ['value' => $request->get('CURRENCY_CODE_MIN')]);
             Setting::updateOrCreate(['name' => 'CURRENCY_ICON'], ['value' => $request->get('CURRENCY_ICON')]);
+
+            Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
+            Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
+            Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
+            Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
 
             notify()->success("Shop settings successfully updated", "Success");
             return back();
