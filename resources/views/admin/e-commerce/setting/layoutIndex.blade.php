@@ -32,13 +32,10 @@
             <div class="row">
 
                 <div class="col-10 offset-md-1">
-                    <!-- Default box -->
                     <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Setting - Layout Change</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form id="layoutForm" action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
@@ -289,17 +286,14 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-arrow-circle-up"></i>
                                     Update
                                 </button>
                             </div>
-                            <!-- /.card-footer -->
                         </form>
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
         </div>
