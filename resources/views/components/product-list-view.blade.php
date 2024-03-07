@@ -130,7 +130,7 @@
                                 @php($discount_price=round((($product->regular_price - $product->discount_price) / ($product->regular_price ))*100).'%')
                             @else
                                 <?php 
-                                    $discount_price={{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}. ($product->regular_price-$product->discount_price)
+                                    $discount_price=setting('CURRENCY_CODE_MIN') ?? 'TK' . ($product->regular_price-$product->discount_price)
                                 ?>
                             @endif
                     <h6 class="dis-label">{{$discount_price}} OFF</h6>
