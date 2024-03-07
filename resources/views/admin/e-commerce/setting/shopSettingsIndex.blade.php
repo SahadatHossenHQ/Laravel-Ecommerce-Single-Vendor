@@ -47,7 +47,7 @@
                                 <input type="hidden" name="type" value="10">
                                 {{-- <div class="form-group col-md-12"> --}}
                                     <ul class="form-row">
-                                        <li class="heading col-12"><b>Checkout</b></li>
+                                        <li class="bg-light p-2 mb-1 col-12"><b>Checkout</b></li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="GUEST_CHECKOUT" class="text-capitalize">Gust Checkout</label>
                                             <select class="form-control" name="GUEST_CHECKOUT" id="GUEST_CHECKOUT">
@@ -67,7 +67,7 @@
                                         </li>
                                     </ul>
                                     <ul class="form-row">
-                                        <li class="heading col-12"><b>Withdrawn</b></li>
+                                        <li class="bg-light p-2 mb-1 col-12"><b>Withdrawn</b></li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="min_rec" class="text-capitalize">Minimum Recharge</label>
                                             <input class="form-control" name="min_rec" id="min_rec" class="border border-info p-1" type="text" value="{{ setting('min_rec') ?? 50 }}">
@@ -78,7 +78,7 @@
                                         </li>
                                     </ul>
                                     <ul class="form-row">
-                                        <li class="heading col-12"><b>Shipping</b></li>
+                                        <li class="bg-light p-2 mb-1 col-12"><b>Shipping</b></li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="COUNTRY_SERVE" class="text-capitalize">Country of Serve <span class="text-red">*</span></label>
                                             <input class="form-control" type="text" name="COUNTRY_SERVE" id="COUNTRY_SERVE" placeholder="Bangladesh" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}" required>
@@ -124,27 +124,3 @@
 </section>
 <!-- /.content -->
 @endsection
-
-@push('css')
-<style>
-    form#shopSettingsForm ul li.heading{
-        background: var(--MAIN_MENU_BG);
-        color: var(--primary_bg_color_text);
-        padding: 0.5rem;
-        font-size: 18px;
-        text-transform: uppercase;
-        margin-top: 2rem;
-        margin-bottom: 0.7rem;
-    }
-
-    form#shopSettingsForm ul li{
-        list-style-type: none;
-        padding: .5rem .3rem;
-    }
-    form#shopSettingsForm input[type="color"],
-    form#shopSettingsForm select{
-        cursor: pointer;
-    }
-</style>    
-@endpush
-

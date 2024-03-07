@@ -19,5 +19,7 @@
 <style>
     a,i:hover{text-decoration:none !important;}
     {{ $color_var }}
+    select{cursor:pointer!important;}
+
 </style>
 
