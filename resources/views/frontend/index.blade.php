@@ -859,6 +859,53 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 <x-add-cart-modal />
 @include('components.cart-modal-attri')
 
+
+@push('css')
+<style>
+    .superCatHomeToggle{
+        height: 330px;
+        overflow: hidden;
+    }
+    .superCatHomeToggle  #superCatViewAll{
+        bottom: 0;
+    }
+    #superCatViewAll{
+        position: absolute;
+        bottom: -1.5rem;
+        left: 0;
+        right: 0;
+        background: var(--MAIN_MENU_BG);
+        color: var(--MAIN_MENU_ul_li_color);
+        z-index: 999;
+        outline: none;
+    }
+</style>
+@endpush
+
+@push('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var buttonElement = document.createElement('button');
+        buttonElement.id = 'superCatViewAll';
+        buttonElement.innerText = 'View All';
+        var superCatElement = document.getElementById('superCat');
+        superCatElement.appendChild(buttonElement);
+        superCatElement.classList.add('superCatHomeToggle');
+
+        buttonElement.addEventListener('click', function () {
+            // Toggle the class .superCatHomeToggle on the superCat element
+            superCatElement.classList.toggle('superCatHomeToggle');
+
+            if (buttonElement.innerText === 'View All') {
+                buttonElement.innerText = 'Close';
+            } else {
+                buttonElement.innerText = 'View All';
+            }
+        });
+    });
+</script>
+@endpush
+
 @endsection
 
 
