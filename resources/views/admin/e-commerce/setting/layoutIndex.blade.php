@@ -187,102 +187,102 @@
                                     <li class="col-12 col-md-12 bg-light"><b>Home Layout</b></li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="TOP_CAT_STATUS" class="text-capitalize">Top Category Status</label>
-                                        <select name="TOP_CAT_STATUS" id="TOP_CAT_STATUS">
+                                        <select class="form-control w-25" name="TOP_CAT_STATUS" id="TOP_CAT_STATUS">
                                             <option class="text-white bg-success" value="{{ $TOP_CAT_STATUS->value }}">{{ ($TOP_CAT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
                                         </select>
                                         <br>
                                         <label for="TOP_CAT" class="text-capitalize">Top Category Title</label>
-                                        <input class="border" type="text" name="TOP_CAT" value="{{ setting('TOP_CAT') ?? '' }}">
+                                        <input class="form-control w-75" class="border" type="text" name="TOP_CAT" value="{{ setting('TOP_CAT') ?? '' }}">
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="SELLER_STATUS" class="text-capitalize">Seller Status</label>
-                                        <select name="SELLER_STATUS" id="SELLER_STATUS">
+                                        <select class="form-control w-25" name="SELLER_STATUS" id="SELLER_STATUS">
                                             <option class="text-white bg-success" value="{{ $SELLER_STATUS->value }}">{{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($SELLER_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="LATEST_PRODUCT_STATUS" class="text-capitalize">Latest Products Status</label>
-                                        <select name="LATEST_PRODUCT_STATUS" id="LATEST_PRODUCT_STATUS">
+                                        <select class="form-control w-25" name="LATEST_PRODUCT_STATUS" id="LATEST_PRODUCT_STATUS">
                                             <option class="text-white bg-success" value="{{ $LATEST_PRODUCT_STATUS->value }}">{{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($LATEST_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="FEATURE_PRODUCT_STATUS" class="text-capitalize">Feature Products Status</label>
-                                        <select name="FEATURE_PRODUCT_STATUS" id="FEATURE_PRODUCT_STATUS">
+                                        <select class="form-control w-25" name="FEATURE_PRODUCT_STATUS" id="FEATURE_PRODUCT_STATUS">
                                             <option class="text-white bg-success" value="{{ $FEATURE_PRODUCT_STATUS->value }}">{{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($FEATURE_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="CLASSIFIED_SELL_STATUS" class="text-capitalize">Classified Sell Status</label>
-                                        <select name="CLASSIFIED_SELL_STATUS" id="CLASSIFIED_SELL_STATUS">
+                                        <select class="form-control w-25" name="CLASSIFIED_SELL_STATUS" id="CLASSIFIED_SELL_STATUS">
                                             <option class="text-white bg-success" value="{{ $CLASSIFIED_SELL_STATUS->value }}">{{ ($CLASSIFIED_SELL_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($CLASSIFIED_SELL_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="MEGA_CAT_PRODUCT_STATUS" class="text-capitalize">MEGA Cateogory Status</label>
-                                        <select name="MEGA_CAT_PRODUCT_STATUS" id="MEGA_CAT_PRODUCT_STATUS">
+                                        <select class="form-control w-25" name="MEGA_CAT_PRODUCT_STATUS" id="MEGA_CAT_PRODUCT_STATUS">
                                             <option class="text-white bg-success" value="{{ $MEGA_CAT_PRODUCT_STATUS->value }}">{{ ($MEGA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($MEGA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="SUB_CAT_PRODUCT_STATUS" class="text-capitalize">Sub Cateogory Status</label>
-                                        <select name="SUB_CAT_PRODUCT_STATUS" id="SUB_CAT_PRODUCT_STATUS">
+                                        <select class="form-control w-25" name="SUB_CAT_PRODUCT_STATUS" id="SUB_CAT_PRODUCT_STATUS">
                                             <option class="text-white bg-success" value="{{ $SUB_CAT_PRODUCT_STATUS->value }}">{{ ($SUB_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($SUB_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="MINI_CAT_PRODUCT_STATUS" class="text-capitalize">Mini Category Status</label>
-                                        <select name="MINI_CAT_PRODUCT_STATUS" id="MINI_CAT_PRODUCT_STATUS">
+                                        <select class="form-control w-25" name="MINI_CAT_PRODUCT_STATUS" id="MINI_CAT_PRODUCT_STATUS">
                                             <option class="text-white bg-success" value="{{ $MINI_CAT_PRODUCT_STATUS->value }}">{{ ($MINI_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($MINI_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="EXTRA_CAT_PRODUCT_STATUS" class="text-capitalize">Extra Category Status</label>
-                                        <select name="EXTRA_CAT_PRODUCT_STATUS" id="EXTRA_CAT_PRODUCT_STATUS">
+                                        <select class="form-control w-25" name="EXTRA_CAT_PRODUCT_STATUS" id="EXTRA_CAT_PRODUCT_STATUS">
                                             <option class="text-white bg-success" value="{{ $EXTRA_CAT_PRODUCT_STATUS->value }}">{{ ($EXTRA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($EXTRA_CAT_PRODUCT_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="BRAND_STATUS" class="text-capitalize">Brand Status</label>
-                                        <select name="BRAND_STATUS" id="BRAND_STATUS">
+                                        <select class="form-control w-25" name="BRAND_STATUS" id="BRAND_STATUS">
                                             <option class="text-white bg-success" value="{{ $BRAND_STATUS->value }}">{{ ($BRAND_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($BRAND_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="CATEGORY_SMALL_SUMMERY" class="text-capitalize">Cateogry Small Summery Status</label>
-                                        <select name="CATEGORY_SMALL_SUMMERY" id="CATEGORY_SMALL_SUMMERY">
+                                        <select class="form-control w-25" name="CATEGORY_SMALL_SUMMERY" id="CATEGORY_SMALL_SUMMERY">
                                             <option class="text-white bg-success" value="{{ $CATEGORY_SMALL_SUMMERY->value }}">{{ ($CATEGORY_SMALL_SUMMERY->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($CATEGORY_SMALL_SUMMERY->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                     <li class="col-12 col-md-6 form-group">
                                         <label for="NEWS_LETTER_STATUS" class="text-capitalize">News Letter Status</label>
-                                        <select name="NEWS_LETTER_STATUS" id="NEWS_LETTER_STATUS">
+                                        <select class="form-control w-25" name="NEWS_LETTER_STATUS" id="NEWS_LETTER_STATUS">
                                             <option class="text-white bg-success" value="{{ $NEWS_LETTER_STATUS->value }}">{{ ($NEWS_LETTER_STATUS->value == 1 ? "On"  : "Off" ) }}</option>
                                             <option value="1">On</option>
                                             <option value="0">Off</option>
-                                        </select><small style="text-danger"><b>Selected</b>&nbsp;{{ ($NEWS_LETTER_STATUS->value == 1 ? "On"  : "Off" ) }}</small>
+                                        </select>
                                     </li>
                                 </ul>
                             </div>
