@@ -64,10 +64,6 @@ class SettingController extends Controller
                 'headerCode' => 'nullable|string',
             ]);
 
-            Setting::updateOrCreate(['name' => 'placeholder_one'], ['value' => $request->get('placeholder_one')]);
-            Setting::updateOrCreate(['name' => 'placeholder_two'], ['value' => $request->get('placeholder_two')]);
-            Setting::updateOrCreate(['name' => 'placeholder_three'], ['value' => $request->get('placeholder_three')]);
-            Setting::updateOrCreate(['name' => 'placeholder_four'], ['value' => $request->get('placeholder_four')]);
 
 
             Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
@@ -167,6 +163,13 @@ class SettingController extends Controller
                 Setting::updateOrCreate(['name' => 'STYLE_3_TOP_MENU_LINK_HOVER_COLOR'], ['value' => $request->get('STYLE_3_TOP_MENU_LINK_HOVER_COLOR')]);
                 Setting::updateOrCreate(['name' => 'STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT'], ['value' => $request->get('STYLE_3_HEADER_SEARCH_INPUT_BAR_WIDHT')]);
                 Setting::updateOrCreate(['name' => 'MAIN_MENU_STYLE'], ['value' => $request->get('MAIN_MENU_STYLE')]);
+
+                // Place Holder Text
+                    Setting::updateOrCreate(['name' => 'placeholder_one'], ['value' => $request->get('placeholder_one')]);
+                    Setting::updateOrCreate(['name' => 'placeholder_two'], ['value' => $request->get('placeholder_two')]);
+                    Setting::updateOrCreate(['name' => 'placeholder_three'], ['value' => $request->get('placeholder_three')]);
+                    Setting::updateOrCreate(['name' => 'placeholder_four'], ['value' => $request->get('placeholder_four')]);
+    
 
             // COMPONENTS
                 Setting::updateOrCreate(['name' => 'SLIDER_LAYOUT_STATUS'], ['value' => $request->get('SLIDER_LAYOUT_STATUS')]);
