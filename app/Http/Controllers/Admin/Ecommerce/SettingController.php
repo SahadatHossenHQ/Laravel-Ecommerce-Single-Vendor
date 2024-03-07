@@ -66,7 +66,7 @@ class SettingController extends Controller
 
 
 
-            Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
+            
 
             Setting::updateOrCreate(['name' => 'shop_commission'], ['value' => $request->get('shop_commission')]);
             Setting::updateOrCreate(['name' => 'is_point'], ['value' => $request->get('is_point')]);
@@ -142,7 +142,8 @@ class SettingController extends Controller
 
             Setting::updateOrCreate(['name' => 'footer_description'], ['value' => $request->get('footer_description')]);
             Setting::updateOrCreate(['name' => 'copy_right_text'], ['value' => $request->get('copy_right_text')]);
-
+            
+            Setting::updateOrCreate(['name' => 'email'], ['value' => $request->get('email')]);
             Setting::updateOrCreate(['name' => 'whatsapp'], ['value' => $request->get('whatsapp')]);
             Setting::updateOrCreate(['name' => 'facebook'], ['value' => $request->get('facebook')]);
             Setting::updateOrCreate(['name' => 'messanger'], ['value' => $request->get('messanger')]);

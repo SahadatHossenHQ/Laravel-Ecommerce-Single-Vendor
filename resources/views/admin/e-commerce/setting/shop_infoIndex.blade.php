@@ -41,59 +41,61 @@
                                     <ul class="form-row">
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="SITE_INFO_ADDRESS" class="text-capitalize">Company full address <span class="text-red">(*)</span></label>
-                                            <input class="form-control" type="text" name="SITE_INFO_ADDRESS" id="SITE_INFO_ADDRESS" placeholder="Company Full Address" value="{{ $SITE_INFO_ADDRESS->value }}">
+                                            <input class="form-control" type="text" name="SITE_INFO_ADDRESS" id="SITE_INFO_ADDRESS" placeholder="Company Full Address" value="{{ $SITE_INFO_ADDRESS->value }}" required>
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="SITE_INFO_PHONE" class="text-capitalize">Company primary phone <span class="text-red">(*)</span></label>
-                                            <input class="form-control" type="text" name="SITE_INFO_PHONE" id="SITE_INFO_PHONE" placeholder="Company Primary Phone" value="{{ $SITE_INFO_PHONE->value }}">
+                                            <input class="form-control" type="text" name="SITE_INFO_PHONE" id="SITE_INFO_PHONE" placeholder="Company Primary Phone" value="{{ $SITE_INFO_PHONE->value }}" required>
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="SITE_INFO_SUPPORT_MAIL" class="text-capitalize">Company suupport mail <span class="text-red">(*)</span></label>
-                                            <input class="form-control" type="text" name="SITE_INFO_SUPPORT_MAIL" id="SITE_INFO_SUPPORT_MAIL" placeholder="Company Support Email" value="{{ $SITE_INFO_SUPPORT_MAIL->value }}">
+                                            <input class="form-control" type="text" name="SITE_INFO_SUPPORT_MAIL" id="SITE_INFO_SUPPORT_MAIL" placeholder="Company Support Email" value="{{ $SITE_INFO_SUPPORT_MAIL->value }}" required>
                                         </li>
                                         <li class="col-12 col-md-6">
                                             <label for="copy_right_text" class="text-capitalize">Copyright Text <span class="text-red">(*)</span></label>
-                                            <input class="form-control" type="text" name="copy_right_text" id="copy_right_text" placeholder="Company Support Email" value="{{ setting('copy_right_text') ?? '© Lems Copyright' }}">
+                                            <input class="form-control" type="text" name="copy_right_text" id="copy_right_text" placeholder="Company Support Email" value="{{ setting('copy_right_text') ?? '© Lems Copyright' }}" required>
                                         </li>
                                         <li class="col-12 col-md-12">
                                             <label for="footer_description" class="text-capitalize">Footer Descripttion <span class="text-red">(*)</span></label>
                                             <textarea name="footer_description" id="footer_description" rows="4"
-                                                class="form-control">{{setting('footer_description') ?? 'Footer Description, Example: This is Lems by Finvasoft'}}</textarea>
+                                                class="form-control" required>{{setting('footer_description') ?? 'Footer Description, Example: This is Lems by Finvasoft'}}</textarea>
                                         </li>
                                     </ul>
 
                                     <hr>
                                     <ul class="form-row">
                                         <li class="col-12 col-md-6 form-group">
-                                            <label for="whatsapp" class="text-capitalize">WhatsApp</label>
-                                            <input class="form-control" type="number" name="whatsapp" id="whatsapp" placeholder="8801721600688" value="{{ setting('whatsapp') ?? '01721*****88' }}">
+                                            <label for="email" class="text-capitalize">E-mail <span class="text-red">(*)</span></label>
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="info@finvasoft.com" value="{{ setting('email') ?? 'hello@asifulmamun.info.bd' }}" required>
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
-                                            <small class="text-red">With Country Code (Without + sign),<br>Example: 8801721600688,<br>There first 880 is contry code</small>
+                                            <label for="whatsapp" class="text-capitalize">WhatsApp</label>
+                                            <input class="form-control" type="number" name="whatsapp" id="whatsapp" placeholder="8801721600688" value="{{ setting('whatsapp') ?? '01721*****88' }}">
+                                            <small class="text-red">With Country Code (Without + sign)</small>
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="facebook" class="text-capitalize">Facebook</label>
-                                            <input class="form-control" type="text" name="facebook" id="facebook" value="{{ setting('facebook') ?? 'https://facebook.com/finvasoft' }}">
+                                            <input class="form-control" type="text" name="facebook" id="facebook" value="{{ setting('facebook') ?? '' }}">
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="messanger" class="text-capitalize">Messanger</label>
-                                            <input class="form-control" type="text" name="messanger" id="messanger" value="{{ setting('messanger') ?? 'https://m.me/finvasoft' }}">
+                                            <input class="form-control" type="text" name="messanger" id="messanger" value="{{ setting('messanger') ?? '' }}">
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="linkedin" class="text-capitalize">Linkedin</label>
-                                            <input class="form-control" type="text" name="linkedin" id="linkedin" value="{{ setting('linkedin') ?? 'https://linkedin.com/in/asifulmamun' }}">
+                                            <input class="form-control" type="text" name="linkedin" id="linkedin" value="{{ setting('linkedin') ?? '' }}">
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="twitter" class="text-capitalize">Twitter</label>
-                                            <input class="form-control" type="text" name="twitter" id="twitter" value="{{ setting('twitter') ?? 'https://twitter.com/asifulmamun' }}">
+                                            <input class="form-control" type="text" name="twitter" id="twitter" value="{{ setting('twitter') ?? '' }}">
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="youtube" class="text-capitalize">Youtube</label>
-                                            <input class="form-control" type="text" name="youtube" id="youtube" value="{{ setting('youtube') ?? 'https://youtube.com/@asifulmamun' }}">
+                                            <input class="form-control" type="text" name="youtube" id="youtube" value="{{ setting('youtube') ?? '' }}">
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="instagram" class="text-capitalize">Instagram</label>
-                                            <input class="form-control" type="text" name="instagram" id="instagram" value="{{ setting('instagram') ?? 'https://instagram.com/asifulmamun' }}">
+                                            <input class="form-control" type="text" name="instagram" id="instagram" value="{{ setting('instagram') ?? '' }}">
                                         </li>
                                     </ul>                                    
                                 </div>
@@ -113,20 +115,3 @@
 </section>
 
 @endsection
-
-{{-- @push('css')
-    <style>
-        form ul li input[type="text"],
-        form ul li input[type="email"],
-        form ul li input[type="password"]{
-            border: 1px solid #ccc;
-            margin-top: .5rem;
-            margin-right: .5rem;
-            padding: .4rem;
-        }
-
-        form select{
-            margin: .5rem;
-        }
-    </style>
-@endpush --}}
