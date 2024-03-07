@@ -203,7 +203,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('cancel', [OrderController::class, 'cancel'])->name('cancel');
         Route::get('delivered', [OrderController::class, 'delivered'])->name('delivered');
         Route::get('partials', [OrderController::class, 'partials'])->name('partials');
-        Route::GEt('partials/status/{id}/{st}', [OrderController::class, 'partialStatus'])->name('partials.status');
+        Route::get('partials/status/{id}/{st}', [OrderController::class, 'partialStatus'])->name('partials.status');
         Route::get('print/{id}', [OrderController::class, 'print'])->name('print');
         Route::get('{id}', [OrderController::class, 'show'])->name('show');
 
