@@ -107,7 +107,6 @@ Route::get('/render/subCat', [HomeController::class, 'subCat']);
 
 Route::middleware(['account', 'auth'])->group(function () {
     Route::group(['as' => 'connection.', 'prefix' => 'connection'], function () {
-
         Route::get('/live-chat', [chatController::class, 'showLiveChatForm'])->name('live.chat');
         Route::get('/live-chat/new-sms/count', [chatController::class, 'countNewMessage'])->name('live.chat.new-sms.count');
         Route::get('/live-chat-list', [chatController::class, 'liveChatList'])->name('live.chat.list');

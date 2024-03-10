@@ -37,8 +37,8 @@ class ProductController extends Controller
         return view('admin.e-commerce.product.index', compact('products'));
     }
     public function lowProduct(){
-         $products=\App\Models\Product::where('quantity','<','6')->where('user_id',auth()->id())->get();
-          return view('admin.e-commerce.product.index', compact('products'));
+        $products=\App\Models\Product::where('quantity','<','6')->where('user_id',auth()->id())->get();
+        return view('admin.e-commerce.product.index', compact('products'));
     }
     public function commetn_delte($id){
         $comment=Comment::find($id);
@@ -48,24 +48,21 @@ class ProductController extends Controller
             }
         }
         $comment->delete();
-           notify()->success("Comment deleted", "Delete");
+        notify()->success("Comment deleted", "Delete");
         return back();
     }
     public function rating_delte($id){
         $comment=Review::find($id);
-      
         $comment->delete();
-           notify()->success("Rating deleted", "Delete");
+         notify()->success("Rating deleted", "Delete");
         return back();
     }
-     public function rating_edit($id){
+    public function rating_edit($id){
         $rating=Review::find($id);
-      
-           return view('admin.e-commerce.product.rating', compact('rating'));
+        return view('admin.e-commerce.product.rating', compact('rating'));
     }
     public function rating_update(Request $request){
         $check = Review::find($request->id);
-         
         $book = $request->file('report');
         if ($book) {
             $bookName=$this->upload($book);
@@ -199,7 +196,7 @@ public function upload($book){
         $categories = DB::table('categories')->latest('id')->get(['id', 'name']);
         $colors     = DB::table('colors')->latest('id')->get(['id', 'name','slug','code']);
         $attributes = Attribute::all();
-        $campaigns = Campaign::where('status',1)->get();
+        $campaigns  = Campaign::where('status',1)->get();
         $sizes      = DB::table('sizes')->latest('id')->get(['id', 'name']);
         $tags       = DB::table('tags')->latest('id')->get(['id', 'name']);
         $brands     = DB::table('brands')->latest('id')->get(['id', 'name']);
@@ -482,7 +479,7 @@ public function upload($book){
                 }
             } 
             if($request->file_url){
-                 foreach ($request->file_url as $index => $file_url) {
+                foreach ($request->file_url as $index => $file_url) {
                 
                 if ($file_url != '') {
                     $product->downloads()->create([
@@ -492,7 +489,6 @@ public function upload($book){
                 }
             }
             }
-           
         }
 
         notify()->success("Product successfully added", "Added");
@@ -572,13 +568,11 @@ public function upload($book){
     }
     public function idelte($id){
         $image = ProductImage::find($id);
-
-         
             if (file_exists('uploads/product/'.$image->name)) {
                 unlink('uploads/product/'.$image->name);
             }
             $image->delete();
-             notify()->success("successfully deleted", "Delete");
+            notify()->success("successfully deleted", "Delete");
         return back();
         
     }
@@ -592,6 +586,9 @@ public function upload($book){
      */
     public function update(Request $request, Product $product)
     {
+
+        // dd($request);
+
         $this->validate($request, [
             'title'             => 'required|string|max:255',
             'short_description' => 'nullable|string',
@@ -618,7 +615,8 @@ public function upload($book){
             'file_url'          => 'nullable',
             'file_url.*'        => 'nullable',
             'download_limit'    => 'nullable|integer',
-            'download_expire'   => 'nullable|date'
+            'download_expire'   => 'nullable|date',
+            'prdct_extra_msg'   => 'nullable|string',
         ]);
         $book = $request->file('pdf');
         if ($book) {
@@ -748,6 +746,7 @@ public function upload($book){
             'download_expire'   => $download_expire ?? NULL,
             'sheba'             => $request->filled('sheba'),
             'book'             => $request->filled('book'),
+            'prdct_extra_msg'   => $request->filled('prdct_extra_msg'),
         ]);
 
 

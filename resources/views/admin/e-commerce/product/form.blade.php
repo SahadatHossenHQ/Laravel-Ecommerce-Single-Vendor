@@ -48,7 +48,7 @@
         .note-editor{
             box-shadow: none !important;
         }
-   </style>
+    </style>
 @endpush
 
 @section('content')
@@ -140,9 +140,9 @@
                     <div class="form-group">
                         <label for="title">Product Code (SKU):</label>
                         <input type="text" name="sku" id="sku" placeholder="Product Code/SKU" class="form-control @error('title') is-invalid @enderror" value="{{ $product->sku ?? old('sku') }}" >
-                        {{-- @error('title')
+                        @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -193,6 +193,15 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="dis_type">Product Extra Message:</label>
+                            <input type="text" name="prdct_extra_msg" id="prdct_extra_msg" placeholder="Express Delivery in Dhaka" class="form-control @error('prdct_extra_msg') is-invalid @enderror" value="{{ $product->prdct_extra_msg ?? "" }}">
+                            @error('dis_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="form-group col-md-6">
                             <label for="dis_type">Discount Type:</label>
                             <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror">
@@ -358,9 +367,9 @@
                             <div style="background: #eeeeee;padding: 10px;border-radius: 5px;">
                                 <div class="row">
                                     <div class="form-group col-md-12" style="margin-bottom: 5px;border:1px solid gainsboro;">
-                                       <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button" data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false" aria-controls="collapseExampleColor">Select Color:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button></label>
-                                       <div class="collapse" id="collapseExampleColor">
-                                          <div style="display: flex;" class="input-group ">
+                                    <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button" data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false" aria-controls="collapseExampleColor">Select Color:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button></label>
+                                    <div class="collapse" id="collapseExampleColor">
+                                        <div style="display: flex;" class="input-group ">
                                                 
                                                 <select id="select_color"  data-placeholder="Select Color" class="form-control  @error('colors') is-invalid @enderror" >
                                                     <option value="">Select Color</option>
@@ -371,9 +380,7 @@
                                                 @error('colors')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
-                                               
-                                               
-
+                                              
                                           </div>
                                           <div id="increment_color">
                                             @isset($product)
@@ -450,7 +457,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                             <div class="form-group col-md-6">
+                            <div class="form-group col-md-6">
                                 <label for="title">language:</label>
                                 <input type="text" name="language" id="language" placeholder="Write product language" class="form-control @error('language') is-invalid @enderror" value="{{ $product->language ?? old('language') }}" >
                                 @error('language')
