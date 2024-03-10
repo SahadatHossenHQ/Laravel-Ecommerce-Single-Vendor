@@ -5,13 +5,16 @@
        $typeid=$product->slug;
     ?>
 
-    <div class="product-wrapper "  style="height: 350px;" >
-        <style>
-    .pxc.product:hover .details{
-	transition: all 0.4s;
-	padding-top: 0 !important;
-}
-</style>
+    <div class="product-wrapper"  style="height: 366px;" >
+    <style>
+        .product-wrapper{
+            overflow: hidden;
+        }
+        .pxc.product:hover .details{
+            transition: all 0.4s;
+            padding-top: 0 !important;
+        }
+    </style>
         <div class="pin">
             <div class="thumbnail">
             <a href="{{route('product.details', $product->slug)}}">
@@ -106,29 +109,30 @@
                 <a href="{{route('product.details', $product->slug)}}">
                     <h5>{{implode(' ', array_slice(explode(' ', $product->title), 0, 10))}}...</h5>
                 </a>
-               
-               @if($product->discount_price>0)
+            
+            @if($product->discount_price>0)
                 <span style="color: #ea6721;">
-                  
-                            @if($product->dis_type == '2')
-                                @php($discount_price=round((($product->regular_price - $product->discount_price) / ($product->regular_price ))*100).'%')
-                            @else
-                                <?php 
-                                    $currency_icon = (setting('CURRENCY_ICON')) ? setting('CURRENCY_ICON') : '৳';
-                                    $discount_price=  $currency_icon . ($product->regular_price-$product->discount_price)
-                                ?>
-                            @endif
+        
+                    @if($product->dis_type == '2')
+                        @php($discount_price=round((($product->regular_price - $product->discount_price) / ($product->regular_price ))*100).'%')
+                    @else
+                        <?php 
+                            $currency_icon = (setting('CURRENCY_ICON')) ? setting('CURRENCY_ICON') : '৳';
+                            $discount_price=  $currency_icon . ($product->regular_price-$product->discount_price)
+                        ?>
+                    @endif
                     <h6 class="dis-label d-block">{{$discount_price}} OFF</h6>
                     <h6></h6>
                 </span>
                 @endif
             </div>
+            <h6 class="px-2 py-1" style="line-height:.9rem;font-size:.9rem;"><small>{{ $product->prdct_extra_msg }}</small></h6>
             <div class="quick-view"> <a href="{{route('product.details', $product->slug)}}"><i class="icofont icofont-search"></i> Quick View</a></div>
        </div>
 
         <div class="home-add2">
             
-           <div class="cbtn">
+           <div class="cbtn bg-white">
             @if($product->quantity <= '0')
              <a  href="{{route('product.details', $product->slug)}}" class="redirect" style="margin-top: 10px;background: red;color: white;border-color: red;" >Pre  </a>
             @else
