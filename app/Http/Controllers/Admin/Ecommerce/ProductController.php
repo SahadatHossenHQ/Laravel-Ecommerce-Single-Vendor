@@ -247,7 +247,9 @@ public function upload($book){
             'file_url'          => 'nullable',
             'file_url.*'        => 'nullable',
             'download_limit'    => 'nullable|integer',
-            'download_expire'   => 'nullable|date'
+            'download_expire'   => 'nullable|date',
+            'prdct_extra_msg'   => 'nullable|string',
+
         ]);
         $book = $request->file('pdf');
         if ($book) {
@@ -371,6 +373,7 @@ public function upload($book){
             'download_expire'   => $download_expire ?? NULL,
             'sheba'             => $request->filled('sheba'),
             'book'             => $request->filled('book'),
+            'prdct_extra_msg'   => $request->prdct_extra_msg,
         ]);
 
         $product->categories()->sync($request->categories, []);
@@ -746,7 +749,7 @@ public function upload($book){
             'download_expire'   => $download_expire ?? NULL,
             'sheba'             => $request->filled('sheba'),
             'book'             => $request->filled('book'),
-            'prdct_extra_msg'   => $request->filled('prdct_extra_msg'),
+            'prdct_extra_msg'   => $request->prdct_extra_msg,
         ]);
 
 
