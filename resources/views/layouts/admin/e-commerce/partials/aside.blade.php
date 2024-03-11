@@ -107,7 +107,7 @@
                     <a href="{{ route('admin.notice_index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
-                            Custom Notice/Below Banner
+                            Custom Elements - Notice
                         </p>
                     </a>
                 </li>
@@ -782,7 +782,16 @@
                             <a href="{{route('admin.setting.home')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>
                                 <p>
-                                    Home
+                                    Home - Products visibility
+                                </p>
+                            </a>
+                        </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.header')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Header Footer - Backend
                                 </p>
                             </a>
                         </li>
@@ -830,15 +839,7 @@
                             </a>
                         </li>
 
-                        <li
-                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
-                            <a href="{{route('admin.setting.header')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user-cog"></i>
-                                <p>
-                                    Header/Footer - Backend
-                                </p>
-                            </a>
-                        </li>
+                        
                         <li
                             class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
                             <a href="{{route('admin.setting.mailsmsapireglog')}}" class="nav-link">
