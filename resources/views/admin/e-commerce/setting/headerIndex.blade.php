@@ -42,8 +42,8 @@
                         <form action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
+                            <input type="hidden" name="type" value="2">
                             <div class="card-body">
-                                <input type="hidden" name="type" value="2">
                                 <div class="form-group col-md-12">
                                     <label for="header_code" class="text-capitalize">Custom header code</label>
                                     <textarea name="header_code" id="header_code" rows="4"
@@ -62,6 +62,20 @@
                                         class="form-control ">{{ setting('body_code') ?? "" }}</textarea>
                                 </div>
 
+                                <hr>
+                                <div class="form-group col-md-12">
+                                    <label for="global_css" class="text-capitalize">Global CSS</label>
+                                    <textarea name="global_css" id="global_css" rows="4" placeholder=".body{color:red;}"
+                                        class="form-control ">{{ setting('global_css') ?? "" }}</textarea>
+                                </div>
+                                <hr>
+                                <div class="form-group col-md-12">
+                                    <label for="global_js" class="text-capitalize">Global JS</label>
+                                    <textarea name="global_js" id="global_js" rows="4" placeholder="console.log('Hello Lems');"
+                                        class="form-control ">{{ setting('global_js') ?? "" }}</textarea>
+                                </div>
+
+                                <hr>
                                 <div class="border border-info py-2 mt-2">
                                     <div class="form-group col-md-12">
                                         <label for="BELOW_SLIDER_HTML_CODE_STATUS" class="text-capitalize">Below Slider Custom HTML Code Status</label>
@@ -82,7 +96,6 @@
                                     </div>
                                 </div>
                                 <div class="border border-info py-2 mt-2">
-                                    <input type="hidden" name="type" value="11">
                                     <div class="form-group col-md-12">
                                         <label for="NOTICE_STATUS" class="text-capitalize">NOTICE STATUS</label>
                                         <select name="NOTICE_STATUS" id="NOTICE_STATUS">
@@ -102,9 +115,6 @@
                                             class="form-control ">{{ setting('CUSTOM_NOTICE') ?? 'Today is offer for 30%' }}</textarea>
                                     </div>
                                 </div>
-
-
-
 
                                 <hr>
                                 <div class="form-group col-md-12">

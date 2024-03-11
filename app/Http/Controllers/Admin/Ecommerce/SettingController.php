@@ -30,6 +30,9 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
+
+        // dd($request);
+
         if ($request->type == 1) {
             $this->validate($request, [
                 'shipping_charge' => 'string|integer',
@@ -60,9 +63,12 @@ class SettingController extends Controller
             return back();
         }
         elseif ($request->type == 2) {
+
             Setting::updateOrCreate(['name' => 'header_code'], ['value' => $request->get('header_code')]);
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
             Setting::updateOrCreate(['name' => 'body_code'], ['value' => $request->get('body_code')]);
+            Setting::updateOrCreate(['name' => 'global_css'], ['value' => $request->get('global_css')]);
+            Setting::updateOrCreate(['name' => 'global_js'], ['value' => $request->get('global_js')]);
             Setting::updateOrCreate(['name' => 'NOTICE_STATUS'], ['value' => $request->get('NOTICE_STATUS')]);
             Setting::updateOrCreate(['name' => 'CUSTOM_NOTICE'], ['value' => $request->get('CUSTOM_NOTICE')]);
             Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE_STATUS'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE_STATUS')]);
