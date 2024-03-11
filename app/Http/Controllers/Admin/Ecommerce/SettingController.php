@@ -229,6 +229,14 @@ class SettingController extends Controller
             notify()->success("Steedfast api successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 13) {
+            Setting::updateOrCreate(['name' => 'site_title'], ['value' => $request->get('site_title')]);
+            Setting::updateOrCreate(['name' => 'meta_description'], ['value' => $request->get('meta_description')]);
+            Setting::updateOrCreate(['name' => 'meta_keywords'], ['value' => $request->get('meta_keywords')]);
+            
+            notify()->success("Steedfast api successfully updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();

@@ -58,7 +58,7 @@
                                 <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="meta_img_wrap">
                                 <label for="auth_logo">Meta Imgaes 1200*627px</label>
                                 <input type="file" name="auth_logo" id="auth_logo"
                                     class="form-control @error('auth_logo') is-invalid @enderror"
@@ -66,6 +66,7 @@
                                 @error('auth_logo')
                                 <div class="invalid-feedback text-danger d-block">{{ $message }}</div>
                                 @enderror
+                                <a href="{{ route('admin.setting.seo') }}">Meta Data <i class="fas fa-caret-right"></i></a>
                             </div>
                             <div class="card-body">
                                 <label for="favicon">Favicon</label>

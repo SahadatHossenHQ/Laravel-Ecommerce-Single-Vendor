@@ -41,7 +41,7 @@
                         <!-- form start -->
                         <form action="{{routeHelper('setting')}}" method="POST">
                             @csrf
-                            <input type="hidden" name="type" value="0">
+                            <input type="hidden" name="type" value="13">
                             @method('PUT')
                             <div class="card-body">
                                 
@@ -62,7 +62,7 @@
                                         class="form-control" placeholder="Quality Cloths, Backpack bangladesh, BD price Ba" required>{{ setting('meta_keywords') }}</textarea>
                                 </div>
                                 
-
+                                <a href="{{ route('admin.setting') }}#meta_img_wrap">Meta Image <i class="fas fa-caret-right"></i></a>
 
                             </div>
                             <div class="card-footer">
