@@ -504,10 +504,10 @@
                                 </div>
                             </div>
                             {{-- <div class="input-images-1" style="padding-top: .5rem;"></div> --}}
-                            
                             @error('images')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
+
                             <style type="text/css">
                                 .d {
                                     display: flex;
@@ -517,24 +517,19 @@
                                     border-radius: 5px;
                                 }
                             </style>
+
                             @isset($product)
                                 @foreach($product->images as $image)
-                                  <div class="d" @foreach ($colors as $color)
-                                        @if($color->slug==$image->color_attri)
-                                      style="background: {{$color->code}}"
-                                        @endif
-                                    @endforeach>
-                                <img src="{{asset('uploads/product/'.$image->name)}}" style="width: 100px;height: 70px;object-fit: cover;">
-                                 
-                                    <div style="flex: 1;text-align: right;">
-                                 <a  class="btn btn-danger" href="{{route('admin.idelte',$image->id)}}">Delete</a>
-                                 </div></div>
+                                    <div class="d" @foreach ($colors as $color) @if($color->slug==$image->color_attri) style="background: {{$color->code}}" @endif @endforeach>
+                                        <img src="{{asset('uploads/product/'.$image->name)}}" style="width: 100px;height: 70px;object-fit: cover;">
+                                        <div style="flex: 1;text-align: right;">
+                                            <a  class="btn btn-danger" href="{{route('admin.idelte',$image->id)}}">Delete</a>
+                                        </div>
+                                    </div>
                                 @endforeach
-@endisset
+                            @endisset
                             
                         </div>
-                     
-                        
                     </div>
 
                     <div class="form-row">
@@ -547,7 +542,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                         <div class="form-group col-sm-2">
+                        <div class="form-group col-sm-2">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input" name="book" id="book" @isset ($product) {{ $product->book ? 'checked':'' }} @else  @endisset>
                                 <label class="custom-control-label" for="book">book</label>
@@ -556,7 +551,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                         <div class="form-group col-sm-2">
+                        <div class="form-group col-sm-2">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input" name="sheba" id="sheba" @isset ($product) {{ $product->sheba ? 'checked':'' }} @else  @endisset>
                                 <label class="custom-control-label" for="sheba">sheba</label>

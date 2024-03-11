@@ -38,13 +38,12 @@ Route::middleware(['auth', 'vendor'])->group(function () {
         Route::put('info', [ProfileController::class, 'updateInfo'])->name('update.info');
         Route::get('change-password', [ProfileController::class, 'showChangePasswordForm'])->name('change.password');
         Route::put('password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
-
     });
     Route::get('withdraw', [WithdrawController::class, 'withdraw'])->name('withdraw');
     Route::get('withdraw/list', [WithdrawController::class, 'userWithList'])->name('withdraw.list');
     Route::POST('withdraw/create', [WithdrawController::class, 'create'])->name('withdraw.create');
 
-     Route::group(['as' => 'order.', 'prefix' => 'order'], function() {
+    Route::group(['as' => 'order.', 'prefix' => 'order'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('invoice/{id}', [OrderController::class, 'invoice'])->name('invoice');
         Route::get('pending', [OrderController::class, 'pending'])->name('pending');
@@ -56,8 +55,8 @@ Route::middleware(['auth', 'vendor'])->group(function () {
         Route::GEt('partials/status/{id}/{st}', [OrderController::class, 'partialStatus'])->name('partials.status');
         Route::get('print/{id}', [OrderController::class, 'print'])->name('print');
         Route::get('{id}', [OrderController::class, 'show'])->name('show');
-        
-     Route::get('order/delete/{did}',[OrderController::class,'delete'])->name('delete');
+
+        Route::get('order/delete/{did}', [OrderController::class, 'delete'])->name('delete');
 
         Route::get('status/processing/{id}', [OrderController::class, 'statusProcessing'])->name('status.processing');
         Route::get('status/cancel/{id}', [OrderController::class, 'statusCancel'])->name('status.cancel');
@@ -65,4 +64,3 @@ Route::middleware(['auth', 'vendor'])->group(function () {
         Route::get('status/shipping/{id}', [OrderController::class, 'statusShipping'])->name('status.shipping');
     });
 });
-

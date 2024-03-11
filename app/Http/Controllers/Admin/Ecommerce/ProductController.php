@@ -251,6 +251,9 @@ public function upload($book){
             'prdct_extra_msg'   => 'nullable|string',
 
         ]);
+
+        
+
         $book = $request->file('pdf');
         if ($book) {
             $currentDate = Carbon::now()->toDateString();

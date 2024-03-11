@@ -161,6 +161,13 @@
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="dis_type">Product Extra Message:</label>
+                        <input type="text" name="prdct_extra_msg" id="prdct_extra_msg" placeholder="Express Delivery in Dhaka" class="form-control @error('prdct_extra_msg') is-invalid @enderror" value="{{ $product->prdct_extra_msg ?? "" }}">
+                        @error('dis_type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                         <div class="form-group col-md-6">
                             <label for="dis_type">Select Type:</label>
                             <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror">
@@ -338,25 +345,64 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
-                    @isset($product)
-                    
-                    @else
-                    <div class="form-group col-md-6">
-                        <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
-                        <div class="input-group" id="increment">
-                            <input type="file" class="form-control" accept="image/*" id="images" name="images[]" required>
-                                
-                            <div class="input-group-append" id="add" style="cursor:context-menu">
-                                <span class="input-group-text">Add More</span>
+                        @isset($product)                     
+                            <div class="form-group col-md-6">
+                                <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
+                                <div class="input-group" id="increment">
+                                    <input type="file" class="form-control" accept="image/*" id="images" name="images[]"
+                                        @isset($product) @else required @endisset>
+                                    <select name="imagesc[]" id="imagesc">
+                                        <option value="">Select Color</option>
+                                        @foreach($colors as $color)
+                                            <option style="color:white;background: {{ $color->code }}"
+                                                value="{{ $color->slug }}">{{ $color->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="input-group-append" id="add" style="cursor:context-menu">
+                                        <span class="input-group-text">Add More</span>
+                                    </div>
+                                </div>
+                                @error('images')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                                <style type="text/css">
+                                    .d {
+                                        display: flex;
+                                        align-items: center;
+                                        padding: 10px;
+                                        margin: 10px 0px;
+                                        border-radius: 5px;
+                                    }
+                                </style>
+                                @isset($product)
+                                    @foreach($product->images as $image)
+                                        <div class="d" @foreach ($colors as $color) @if($color->slug==$image->color_attri)
+                                            style="background: {{ $color->code }}" @endif @endforeach>
+                                            <img src="{{ asset('uploads/product/'.$image->name) }}"
+                                                style="width: 100px;height: 70px;object-fit: cover;">
+                                            <div style="flex: 1;text-align: right;">
+                                                <a class="btn btn-danger"
+                                                    href="{{ route('admin.idelte',$image->id) }}">Delete</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endisset
                             </div>
-                        </div>
-                        {{-- <div class="input-images-1" style="padding-top: .5rem;"></div> --}}
-                        
-                        @error('images')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    @endisset
+                        @else
+                            <div class="form-group col-md-6">
+                                <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
+                                <div class="input-group" id="increment">
+                                    <input type="file" class="form-control" accept="image/*" id="images" name="images[]" required>
+                                        
+                                    <div class="input-group-append" id="add" style="cursor:context-menu">
+                                        <span class="input-group-text">Add More</span>
+                                    </div>
+                                </div>
+                                @error('images')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endisset
                     </div>
                     
 
@@ -436,7 +482,7 @@
                                     {{-- <button type="submit" class="btn btn-primary">Add</button> --}}
                                 </div>
                             </div>
-                          <!-- /.modal-content -->
+                        <!-- /.modal-content -->
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
@@ -529,7 +575,7 @@
     </div>
     <!-- /.card -->
     
-    @isset($product)
+    {{-- @isset($product)
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Update Product Gallery Images</h3>
@@ -537,12 +583,49 @@
         <div class="card-body">
             <form action="{{routeHelper('update/product/image')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id" id="id" value="{{$product->id}}">
-                <div class="input-field">
-                    <label class="active">Photos</label>
-                    <div class="input-images-1" style="padding-top: .5rem;"></div>
-                    
+                <div class="form-group col-md-6">
+                    <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
+                    <div class="input-group" id="increment">
+                        <input type="file" class="form-control" accept="image/*" id="images" name="images[]"
+                            @isset($product) @else required @endisset>
+                        <select name="imagesc[]" id="imagesc">
+                            <option value="">Select Color</option>
+                            @foreach($colors as $color)
+                                <option style="color:white;background: {{ $color->code }}"
+                                    value="{{ $color->slug }}">{{ $color->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append" id="add" style="cursor:context-menu">
+                            <span class="input-group-text">Add More</span>
+                        </div>
+                    </div>
+                    @error('images')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                    <style type="text/css">
+                        .d {
+                            display: flex;
+                            align-items: center;
+                            padding: 10px;
+                            margin: 10px 0px;
+                            border-radius: 5px;
+                        }
+                    </style>
+                    @isset($product)
+                        @foreach($product->images as $image)
+                            <div class="d" @foreach ($colors as $color) @if($color->slug==$image->color_attri)
+                                style="background: {{ $color->code }}" @endif @endforeach>
+                                <img src="{{ asset('uploads/product/'.$image->name) }}"
+                                    style="width: 100px;height: 70px;object-fit: cover;">
+                                <div style="flex: 1;text-align: right;">
+                                    <a class="btn btn-danger"
+                                        href="{{ route('admin.idelte',$image->id) }}">Delete</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endisset
                 </div>
+
                 <button type="submit" class="btn btn-primary mt-2">
                     <i class="fas fa-arrow-circle-up"></i>    
                     Update
@@ -550,9 +633,8 @@
             </form>
         </div>
     </div> 
-    @endisset
+    @endisset --}}
 
-    
     @if(isset($product->downloads) && $product->downloads->count() > 0)
     <div class="card">
         <div class="card-header">

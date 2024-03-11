@@ -90,7 +90,8 @@ class ProductController extends Controller
             'file_url'          => 'nullable',
             'file_url.*'        => 'nullable',
             'download_limit'    => 'nullable|integer',
-            'download_expire'   => 'nullable|date'
+            'download_expire'   => 'nullable|date',
+            'prdct_extra_msg'   => 'nullable|string',
         ]);
 
         $image = $request->file('image');
@@ -154,8 +155,9 @@ class ProductController extends Controller
             'download_expire'   => $download_expire ?? NULL,
             'status'=>'0',
             'is_aproved'=>'0',
+            'prdct_extra_msg'   => $request->prdct_extra_msg,
         ]);
-
+        dd($request);
        $product->categories()->sync($request->categories, []);
                if(!empty( $request->get('sub_categories'))){
             foreach($request->sub_categories as $catid){
@@ -367,27 +369,27 @@ class ProductController extends Controller
             'file_url'          => 'nullable',
             'file_url.*'        => 'nullable',
             'download_limit'    => 'nullable|integer',
-            'download_expire'   => 'nullable|date'
+            'download_expire'   => 'nullable|date',
+            'prdct_extra_msg'   => 'nullable|string',
         ]);
         $image = $request->file('image');
         if ($image) {
             $currentDate = Carbon::now()->toDateString();
-            $imageName   = $currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-            
-            if (file_exists('uploads/product/'.$product->image)) {
-                unlink('uploads/product/'.$product->image);
+            $imageName   = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            if (file_exists('uploads/product/' . $product->image)) {
+                unlink('uploads/product/' . $product->image);
             }
             if (!file_exists('uploads/product')) {
                 mkdir('uploads/product', 0777, true);
             }
-             $filepath = $image->move(public_path('uploads/product'), $imageName);
+            $filepath = $image->move(public_path('uploads/product'), $imageName);
             $imagesize   = getimagesize($filepath);
-            $width  = $imagesize[0] - (5/100 * $imagesize[0]);
-            $height = $imagesize[1] - (5/100 * $imagesize[1]);
+            $width  = $imagesize[0] - (5 / 100 * $imagesize[0]);
+            $height = $imagesize[1] - (5 / 100 * $imagesize[1]);
             $image  = Image::make($filepath);
             $image->save($filepath);
-        }
-        else {
+        } else {
             $imageName = $product->image;
         }
 
@@ -395,16 +397,16 @@ class ProductController extends Controller
             $download_limit  = $request->download_limit;
             $download_expire = $request->download_expire;
         }
-        if($request->dis_type==2){
-            $discount=($request->regular_price/100)*$request->discount_price;
-            $discount_price=$request->regular_price-$discount;
-        }elseif($request->discount_price>0){
-            $discount_price=$request->regular_price-$request->discount_price;
-        }else{
-            $discount_price=$request->discount_price;
+        if ($request->dis_type == 2) {
+            $discount = ($request->regular_price / 100) * $request->discount_price;
+            $discount_price = $request->regular_price - $discount;
+        } elseif ($request->discount_price > 0) {
+            $discount_price = $request->regular_price - $request->discount_price;
+        } else {
+            $discount_price = $request->discount_price;
         }
-        if($discount_price<0){
-            $discount_price='Null';
+        if ($discount_price < 0) {
+            $discount_price = 'Null';
         }
         $product->update([
             'brand_id'          => $request->brand,
@@ -424,87 +426,111 @@ class ProductController extends Controller
             'download_able'     => $request->filled('download_able'),
             'download_limit'    => $download_limit ?? NULL,
             'download_expire'   => $download_expire ?? NULL,
-            'status'=>'0',
-            'is_aproved'=>'0',
+            'status' => '0',
+            'is_aproved' => '0',
+            'prdct_extra_msg'   => $request->prdct_extra_msg,
         ]);
 
-      $product->categories()->sync($request->categories);
-                if(!empty( $request->get('sub_categories'))){
+
+        $images = $request->file('images');
+        if($images){
+        foreach ($images as $key=>$gallery) {
+            $currentDate      = Carbon::now()->toDateString();
+            $galleryImageName = $currentDate.'-'.uniqid().'.'.$gallery->getClientOriginalExtension();
+            
+            if (!file_exists('uploads/product')) {
+                mkdir('uploads/product', 0777, true);
+            }
+            $gallery->move(public_path('uploads/product'), $galleryImageName);
+
+            // save product database
+            $product->images()->create([
+                'name' => $galleryImageName,
+                'color_attri' => $request->imagesc[$key],
+            ]);
+        }}
+
+
+
+        $product->categories()->sync($request->categories);
+        if (!empty($request->get('sub_categories'))) {
             $product->sub_categories()->sync($request->sub_categories);
         }
-      if(!empty( $request->get('mini_categories'))){
+        if (!empty($request->get('mini_categories'))) {
             $product->mini_categories()->sync($request->mini_categories);
         }
-      if(!empty( $request->get('extra_categories'))){
+        if (!empty($request->get('extra_categories'))) {
             $product->extra_categories()->sync($request->extra_categories);
         }
         $product->tags()->sync($request->tags);
         $product->sizes()->sync($request->sizes);
-       $i=0;
-        if(!empty( $request->get('colors'))){
-        foreach($request->colors as $colors){
-            $hasc=DB::table('color_product')->where('color_id',$colors)->where('product_id',$product->id)->first();
-              if($hasc){
+        $i = 0;
+        if (!empty($request->get('colors'))) {
+            foreach ($request->colors as $colors) {
+                $hasc = DB::table('color_product')->where('color_id', $colors)->where('product_id', $product->id)->first();
+                if ($hasc) {
                     DB::table('color_product')
-                    ->where('id',$hasc->id)
-                    ->Update([
-                       'color_id'=>$colors,
-                       'product_id'=>$product->id,
-                       'qnty'=>$request->color_quantits[$i],
-                       'price'=>$request->color_prices[$i],
-                    ]);
-              }else{
+                    ->where('id', $hasc->id)
+                        ->Update([
+                            'color_id' => $colors,
+                            'product_id' => $product->id,
+                            'qnty' => $request->color_quantits[$i],
+                            'price' => $request->color_prices[$i],
+                        ]);
+                } else {
                     DB::table('color_product')->Insert([
-                        'color_id'=>$colors,
-                        'product_id'=>$product->id,
-                        'qnty'=>$request->color_quantits[$i],
-                        'price'=>$request->color_prices[$i],
+                        'color_id' => $colors,
+                        'product_id' => $product->id,
+                        'qnty' => $request->color_quantits[$i],
+                        'price' => $request->color_prices[$i],
                     ]);
-              }
-        
-            $i++;
-        }}
-         $a=0;
-          if(!empty( $request->get('attributes'))){
-        foreach($request->get('attributes') as $attribute){
-            $has=DB::table('attribute_product')->where('attribute_value_id',$attribute)->where('product_id',$product->id)->first();
-            if($has){
-                DB::table('attribute_product')
-                ->where('id',$has->id)
-                ->update([
-                'attribute_value_id'=>$attribute,
-                'product_id'=>$product->id,
-                'qnty'=>$request->attribute_prices[$a],
-                'price'=>$request->attributes_quantits[$a],
-                ]);
-            }else{
-                DB::table('attribute_product')->Insert([
-                    'attribute_value_id'=>$attribute,
-                    'product_id'=>$product->id,
-                    'qnty'=>$request->attribute_prices[$a],
-                    'price'=>$request->attributes_quantits[$a],
-                ]);
+                }
+
+                $i++;
             }
-            $a++;
-        }}
-        
-        
+        }
+        $a = 0;
+        if (!empty($request->get('attributes'))) {
+            foreach ($request->get('attributes') as $attribute) {
+                $has = DB::table('attribute_product')->where('attribute_value_id', $attribute)->where('product_id', $product->id)->first();
+                if ($has) {
+                    DB::table('attribute_product')
+                    ->where('id', $has->id)
+                        ->update([
+                            'attribute_value_id' => $attribute,
+                            'product_id' => $product->id,
+                            'qnty' => $request->attribute_prices[$a],
+                            'price' => $request->attributes_quantits[$a],
+                        ]);
+                } else {
+                    DB::table('attribute_product')->Insert([
+                        'attribute_value_id' => $attribute,
+                        'product_id' => $product->id,
+                        'qnty' => $request->attribute_prices[$a],
+                        'price' => $request->attributes_quantits[$a],
+                    ]);
+                }
+                $a++;
+            }
+        }
+
+
         if ($request->filled('download_able')) {
             // store product image in storage and database
             $files = $request->file('files');
-            
+
             if (isset($files)) {
 
                 foreach ($files as $key => $file) {
 
                     $currentDate = Carbon::now()->toDateString();
-                    $fileName    = $currentDate.'-'.uniqid().'.'.$file->getClientOriginalExtension();
-                    
+                    $fileName    = $currentDate . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+
                     if (!file_exists('uploads/product/download')) {
                         mkdir('uploads/product/download', 0777, true);
                     }
                     $file->move(public_path('uploads/product/download'), $fileName);
-                    
+
                     $product->downloads()->create([
                         'name' => $request->file_name[$key],
                         'url'  => NULL,
@@ -514,7 +540,7 @@ class ProductController extends Controller
             }
             if (isset($request->file_url)) {
                 foreach ($request->file_url as $index => $file_url) {
-                
+
                     if ($file_url != '') {
                         $product->downloads()->create([
                             'name' => $request->file_name[$index],
@@ -523,15 +549,13 @@ class ProductController extends Controller
                         ]);
                     }
                 }
-            } 
-            
-        }
-        else {
+            }
+        } else {
             if ($product->downloads) {
                 foreach ($product->downloads as $download) {
                     if ($download->file != NULL) {
-                        if (file_exists('uploads/product/download/'.$download->file)) {
-                            unlink('uploads/product/download/'.$download->file);
+                        if (file_exists('uploads/product/download/' . $download->file)) {
+                            unlink('uploads/product/download/' . $download->file);
                         }
                     }
                     $download->delete();
