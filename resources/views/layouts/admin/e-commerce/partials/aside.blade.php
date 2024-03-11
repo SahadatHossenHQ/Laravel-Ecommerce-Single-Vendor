@@ -795,6 +795,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li
+                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':''}}">
+                            <a href="{{route('admin.setting.seo')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    SEO
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item {{Request::is('admin/setting/docs') ? 'menu-is-opening menu-open':''}}">
                             <a href="{{route('admin.setting.docs')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>

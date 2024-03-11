@@ -594,6 +594,11 @@ class SettingController extends Controller
     }
 
 
+    public function seoIndex(){
+
+        return view('admin.e-commerce.setting.seoIndex');
+    }
+
     public function headerIndex(){
 
         $get_header_code = Setting::where('name', 'header_code')->first();

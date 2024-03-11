@@ -281,6 +281,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('setting/shop_settings', [SettingController::class, 'shopSettingsIndex'])->name('setting.shop_settings');
     Route::get('setting/color', [SettingController::class, 'colorIndex'])->name('setting.color');
     Route::get('setting/header', [SettingController::class, 'headerIndex'])->name('setting.header');
+    Route::get('setting/seo', [SettingController::class, 'seoIndex'])->name('setting.seo');
     Route::get('setting/courier', [SettingController::class, 'courierIndex'])->name('setting.courier');
     Route::post('setting/courier/sendsteedfast', [CourierController::class, 'sendsteedfast'])->name('setting.courier.sendsteedfast');
 
