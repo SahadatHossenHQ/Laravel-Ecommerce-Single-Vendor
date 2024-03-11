@@ -1,65 +1,9 @@
-<style>
-    @font-face {
-        font-family: muli;
-        src: url('{{asset("/")}}assets/frontend/font/Muli/Muli-VariableFont_wght.ttf');
-    }
-    header .main-menu {
-        z-index: 999999;
-    }
-    @media(max-width:750px) {
-        .sear_wrapper,
-        #search-view {
-            width: 100% !important;
-        }
-    }
-    .goog-te-gadget img {
-        display: none;
-    }
-    .goog-te-banner-frame {
-        display: none;
-    }
-    .VIpgJd-ZVi9od-ORHb-OEVmcd {
-        display: none !important;
-    }
-</style>
-
-@if(Request::is('/'))
-@else
-<style>
-    .products .product .thumbnail {
-        height: 190px !important;
-    }
-
-    #list-view .product .thumbnail img {
-        width: 200px;
-    }
-
-    @media(max-width:767px) {
-        #list-view .product .thumbnail img {
-            width: inherit;
-        }
-
-        #list-view .product h4 {
-            font-size: 17px;
-            font-weight: 1;
-            margin-top: 10px;
-        }
-
-        #list-view .product .details {
-            margin-left: 15px;
-        }
-
-        #list-view .product .details .dis-label {
-            display: none;
-        }
-    }
-</style>
+<style>@font-face{font-family:muli;src:url('{{asset("/")}}assets/frontend/font/Muli/Muli-VariableFont_wght.ttf');}header .main-menu{z-index:999999;}@media(max-width:750px){.sear_wrapper, #search-view{width:100% !important;}}.goog-te-gadget img {display:none;}.goog-te-banner-frame {display:none;}.VIpgJd-ZVi9od-ORHb-OEVmcd {display:none !important;}</style>
+@if(!Request::is('/'))
+<style>.products .product .thumbnail {height: 190px !important;}#list-view .product .thumbnail img {width: 200px;}@media(max-width:767px) {#list-view .product .thumbnail img {width: inherit;}#list-view .product h4 {font-size: 17px;font-weight: 1;margin-top: 10px;}#list-view .product .details {margin-left: 15px;}#list-view .product .details .dis-label {display: none;}}</style>
 @endif
-
-
-<!-- <header class="{{Request::is('/') ? 'home':'not-home'}}"> -->
 <header class="not-home">
-    <div class="upper-header" style="">
+<div class="upper-header" style="">
         <div class="container">
             <div style="display: flex;">
                 <div class="dvts" style="flex: 1;">

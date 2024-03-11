@@ -2,7 +2,7 @@
 @push('meta')
 <meta property="og:image" content="{{asset('uploads/setting/'.setting('auth_logo'))}}" />
 @endpush
-@section('title','' )
+{{-- @section('title', setting('site_title') ) --}}
 
 @section('content')
 @php
@@ -860,27 +860,7 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @include('components.cart-modal-attri')
 
 {{-- Catgory Collups and Expand System --}}
-@push('css')
-<style>
-    .superCatHomeToggle{
-        height: 330px;
-        overflow: hidden;
-    }
-    .superCatHomeToggle  #superCatViewAll{
-        bottom: 0;
-    }
-    #superCatViewAll{
-        position: absolute;
-        bottom: -1.5rem;
-        left: 0;
-        right: 0;
-        background: var(--MAIN_MENU_BG);
-        color: var(--MAIN_MENU_ul_li_color);
-        z-index: 999;
-        outline: none;
-    }
-</style>
-@endpush
+@push('internal_css').superCatHomeToggle{height:330px;overflow:hidden;}.superCatHomeToggle  #superCatViewAll{bottom:0;}#superCatViewAll{position:absolute;bottom:-1.5rem;left:0;right:0;background:var(--MAIN_MENU_BG);color:var(--MAIN_MENU_ul_li_color);z-index:999;outline:none;}@endpush
 @push('js')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -902,7 +882,6 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 </script>
 @endpush
 {{-- / Catgory Collups and Expand System --}}
-
 
 @endsection
 

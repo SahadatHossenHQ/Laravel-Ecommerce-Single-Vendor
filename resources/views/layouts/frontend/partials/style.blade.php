@@ -5,14 +5,7 @@
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/all.css">
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/slick.css">
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/toast.min.css">
-
-<style>
-    .modal{
-        z-index:99999999999999;
-    }
-</style>
-
-{{-- <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/all.css"> --}}
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/icofont.css">
 <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/latest/css/pro.min.css" media="all">
 @stack('css')
+<style>@stack('internal_css')</style>
