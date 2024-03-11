@@ -51,16 +51,63 @@
                                 </div>
                                 <hr>
                                 <div class="form-group col-md-12">
-                                    <label for="body_code" class="text-capitalize">Body Code</label>
-                                    <textarea name="body_code" id="body_code" rows="4"
-                                        class="form-control ">{{ setting('body_code') ?? "" }}</textarea>
-                                </div>
-                                <hr>
-                                <div class="form-group col-md-12">
                                     <label for="fb_pixel" class="text-capitalize">Facebook Pixel Code</label>
                                     <textarea name="fb_pixel" id="fb_pixel" rows="4"
                                         class="form-control ">{{$fb_pixel->value}}</textarea>
                                 </div>
+                                <hr>
+                                <div class="form-group col-md-12">
+                                    <label for="body_code" class="text-capitalize">Body Code</label>
+                                    <textarea name="body_code" id="body_code" rows="4"
+                                        class="form-control ">{{ setting('body_code') ?? "" }}</textarea>
+                                </div>
+
+
+
+                                <div class="border border-info py-2 mt-2">
+                                    <div class="form-group col-md-12">
+                                        <label for="BELOW_SLIDER_HTML_CODE_STATUS" class="text-capitalize">Below Slider Custom HTML Code Status</label>
+                                        <select name="BELOW_SLIDER_HTML_CODE_STATUS" id="BELOW_SLIDER_HTML_CODE_STATUS">
+                                            @if ( setting('BELOW_SLIDER_HTML_CODE_STATUS') == 1)
+                                            <option value="1">ON</option>
+                                            <option value="0">OFF</option>
+                                            @else
+                                            <option value="0">OFF</option>
+                                            <option value="1">ON</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="BELOW_SLIDER_HTML_CODE" class="text-capitalize">Custom Html Code</label>
+                                        <textarea name="BELOW_SLIDER_HTML_CODE" id="BELOW_SLIDER_HTML_CODE" rows="4"
+                                            class="form-control ">{{ setting('BELOW_SLIDER_HTML_CODE') ?? '<b>Hello www.asifulmamun.info.bd</b>' }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="border border-info py-2 mt-2">
+                                    <input type="hidden" name="type" value="11">
+                                    <div class="form-group col-md-12">
+                                        <label for="NOTICE_STATUS" class="text-capitalize">NOTICE STATUS</label>
+                                        <select name="NOTICE_STATUS" id="NOTICE_STATUS">
+                                            @if ( setting('NOTICE_STATUS') == 1)
+                                            <option value="1">ON</option>
+                                            <option value="0">OFF</option>
+                                            @else
+                                            <option value="0">OFF</option>
+                                            <option value="1">ON</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="CUSTOM_NOTICE" class="text-capitalize">CUSTOM NOTICE</label>
+                                        <small class="bg-warning p-1">It's under container of bootstrap</small>
+                                        <textarea name="CUSTOM_NOTICE" id="CUSTOM_NOTICE" rows="4"
+                                            class="form-control ">{{ setting('CUSTOM_NOTICE') ?? 'Today is offer for 30%' }}</textarea>
+                                    </div>
+                                </div>
+
+
+
+
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="FOOTER_COL_4_HTML" class="text-capitalize">Footer Column 4</label>

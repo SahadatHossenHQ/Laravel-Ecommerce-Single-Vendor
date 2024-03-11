@@ -63,6 +63,10 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'header_code'], ['value' => $request->get('header_code')]);
             Setting::updateOrCreate(['name' => 'fb_pixel'], ['value' => $request->get('fb_pixel')]);
             Setting::updateOrCreate(['name' => 'body_code'], ['value' => $request->get('body_code')]);
+            Setting::updateOrCreate(['name' => 'NOTICE_STATUS'], ['value' => $request->get('NOTICE_STATUS')]);
+            Setting::updateOrCreate(['name' => 'CUSTOM_NOTICE'], ['value' => $request->get('CUSTOM_NOTICE')]);
+            Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE_STATUS'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE_STATUS')]);
+            Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE')]);
             Setting::updateOrCreate(['name' => 'FOOTER_COL_4_HTML'], ['value' => $request->get('FOOTER_COL_4_HTML')]);
             
             notify()->success("Successfully updated", "Success");
