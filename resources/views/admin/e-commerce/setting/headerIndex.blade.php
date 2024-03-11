@@ -62,8 +62,6 @@
                                         class="form-control ">{{ setting('body_code') ?? "" }}</textarea>
                                 </div>
 
-
-
                                 <div class="border border-info py-2 mt-2">
                                     <div class="form-group col-md-12">
                                         <label for="BELOW_SLIDER_HTML_CODE_STATUS" class="text-capitalize">Below Slider Custom HTML Code Status</label>
