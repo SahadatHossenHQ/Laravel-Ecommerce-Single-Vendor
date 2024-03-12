@@ -41,5 +41,6 @@
 
 @yield('content')
 @include('layouts.frontend.partials.footer')
+<!-- OVERRIDE CSS _@stack('override_css') --><style>@stack('override_css'){{ setting('override_css') }}</style>
 @include('layouts.frontend.partials.script')
 </body></html>

@@ -74,7 +74,12 @@
                                     <textarea name="global_js" id="global_js" rows="4" placeholder="console.log('Hello Lems');"
                                         class="form-control ">{{ setting('global_js') ?? "" }}</textarea>
                                 </div>
-
+                                <hr>
+                                <div class="form-group col-md-12">
+                                    <label for="override_css" class="text-capitalize">Bottom CSS - Override CSS</label>
+                                    <textarea name="override_css" id="override_css" rows="4" placeholder="a{color:red !important;}"
+                                        class="form-control ">{{ setting('override_css') ?? "" }}</textarea>
+                                </div>
                                 <hr>
                                 <div class="border border-info py-2 mt-2">
                                     <div class="form-group col-md-12">
