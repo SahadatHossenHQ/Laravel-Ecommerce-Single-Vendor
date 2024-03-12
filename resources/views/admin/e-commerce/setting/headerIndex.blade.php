@@ -65,7 +65,7 @@
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="global_css" class="text-capitalize">Global CSS</label>
-                                    <textarea name="global_css" id="global_css" rows="4" placeholder=".body{color:red;}"
+                                    <textarea name="global_css" id="global_css" rows="4" placeholder="body{color:red;}"
                                         class="form-control ">{{ setting('global_css') ?? "" }}</textarea>
                                 </div>
                                 <hr>

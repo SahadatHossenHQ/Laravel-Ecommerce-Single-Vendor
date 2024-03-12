@@ -24,7 +24,7 @@
 </div>
 @endif
 
-@push ('internaal_global_top_css').dtrr {width: 260px;}@media(max-width:576px) {.oc.shop-category .cat-row a:nth-last-child(2) {display: none }}@media(max-width:1199px) {.hero-slider.col-lg-9 {flex: 0 0 72% !important;max-width: 72% !important;}.hero-categories ul li:last-child {display: none;}.hero-categories ul li:nth-last-child(2) {display: none;}}@media(max-width:1000px) {.hero-categories ul li:last-child {display: block;}.hero-categories ul li:nth-last-child(2) {display: block;}.dtrr {display: none;}.hero-slider.col-lg-9 {flex: inherit !important;max-width: inherit !important;}}@endpush
+@push ('internal_css').dtrr {width: 260px;}@media(max-width:576px) {.oc.shop-category .cat-row a:nth-last-child(2) {display: none }}@media(max-width:1199px) {.hero-slider.col-lg-9 {flex: 0 0 72% !important;max-width: 72% !important;}.hero-categories ul li:last-child {display: none;}.hero-categories ul li:nth-last-child(2) {display: none;}}@media(max-width:1000px) {.hero-categories ul li:last-child {display: block;}.hero-categories ul li:nth-last-child(2) {display: block;}.dtrr {display: none;}.hero-slider.col-lg-9 {flex: inherit !important;max-width: inherit !important;}}@endpush
 
 <section class="hero-area" style="margin-top:2px">
     <div class="container">
@@ -51,4 +51,4 @@
     </div>
 </section>
 
-@push('internaal_global_top_css').sub-slider img::hover {transform: scale(1.1) !important;}.navbar_fixed {position: fixed;top: 0;left: 0;right: 0;z-index: 9999999;}.catplay .draggable {padding: 20px 0px }.catplay .slick-slide {margin: 0px 5px }@endpush
+@push('internal_css').sub-slider img::hover {transform: scale(1.1) !important;}.navbar_fixed {position: fixed;top: 0;left: 0;right: 0;z-index: 9999999;}.catplay .draggable {padding: 20px 0px }.catplay .slick-slide {margin: 0px 5px }@endpush

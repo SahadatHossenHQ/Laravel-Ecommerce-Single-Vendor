@@ -12,6 +12,4 @@
     // End Color Variable
     $color_var .= '}';
 @endphp
-
-{{-- <!-- GLOBAL BLADE --> --}}
-<style>a,i:hover{text-decoration:none!important;}{{ $color_var }}select{cursor:pointer!important;}.modal{z-index:99999999999999;}@stack('internaal_global_top_css')</style>
+<!-- GLOBAL TOP CSS _@stack('internaal_global_top_css') --><style>a,i:hover{text-decoration:none!important;}{{ $color_var }}select{cursor:pointer!important;}.modal{z-index:99999999999999;}@stack('internaal_global_top_css')</style>
