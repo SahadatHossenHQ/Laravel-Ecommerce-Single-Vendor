@@ -35,9 +35,13 @@
                         <form id="email_config" action="{{routeHelper('setting')}}" method="POST">
                             @csrf
                             @method('PUT')
+                            <input type="hidden" name="type" value="8">
                             <div class="card-body">
                                 <div class="col-md-12">
-                                    <input type="hidden" name="type" value="8">
+
+                                    <a class="btn btn-primary" href="{{routeHelper('shop')}}">Update Main Information <i class="fas fa-caret-right"></i></a>
+                                    <br><br>
+
                                     <ul class="form-row">
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="SITE_INFO_ADDRESS" class="text-capitalize">Company full address <span class="text-red">(*)</span></label>

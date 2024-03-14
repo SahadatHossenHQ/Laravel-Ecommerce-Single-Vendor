@@ -42,6 +42,9 @@
                 @csrf
                 @method('PUT')
                 <div class="card-body">
+
+                    <a class="btn btn-primary" href="{{route('admin.setting.site_info')}}">Update Shop Information <i class="fas fa-caret-right"></i></a><br><br>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="shop_name">Shop Name:</label>
