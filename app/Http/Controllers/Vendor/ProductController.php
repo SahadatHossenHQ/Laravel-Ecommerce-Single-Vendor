@@ -157,7 +157,7 @@ class ProductController extends Controller
             'is_aproved'=>'0',
             'prdct_extra_msg'   => $request->prdct_extra_msg,
         ]);
-        dd($request);
+        // dd($request);
        $product->categories()->sync($request->categories, []);
                if(!empty( $request->get('sub_categories'))){
             foreach($request->sub_categories as $catid){
