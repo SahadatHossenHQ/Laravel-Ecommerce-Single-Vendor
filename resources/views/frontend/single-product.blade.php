@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="{{asset('/')}}assets/frontend/css/image-zoom.css">
   <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
 <style>
+h1.p_title{font-size:1.4rem !important;}
 .get_attri_price+label {
   background: gainsboro;
   padding: 2px 10px;
@@ -257,7 +258,7 @@ right: -10px;
                 </div>
             </div>
             <div class="col-md-5 single-right-left simpleCart_shelfItem">
-                <h3 class="p_title">{{$product->title}}</h3>
+                <h1 class="p_title">{{$product->title}}</h1>
                 <div class="s_d">
                     <p>{!!$product->short_description !!}</p>
                 </div>

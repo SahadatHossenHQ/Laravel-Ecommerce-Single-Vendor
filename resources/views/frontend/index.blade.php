@@ -61,45 +61,63 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 
 @if (setting('TOP_CAT_STATUS') != 0 || setting('TOP_CAT_STATUS') == "")
 <!--================ top category Area =================-->
-@if (setting('TOP_CAT'))
-<div class="container mt-3"><h3 class="title  col-md-12"><span>{{ setting('TOP_CAT') }}</span> <a href="#"></a></h3></div>
-@endif
 <div class="shop-category oc" style="padding-bottom: 10px;text-align: center;">
     <div class="container">
+        @if (setting('TOP_CAT'))
+        @endif
+        <h3 class="title  col-md-12 text-left pt-3"><span>{{ setting('TOP_CAT') ?? 'Top Categories' }}</span> <a href="{{route('vendors')}}">view all</a></h3>
         <div class="cat-row">
+            
+            @php $categories_f_count = 0; @endphp
             @foreach ($categories_f as $category)
-            <a href="{{route('category.product',$category->slug)}}" class="cat-item">
-                <div class="">
-                    <div class="thumbnail">
-                        <img src="{{asset('uploads/category/'.$category->cover_photo)}}" alt="">
-                    </div>
-                    <h3>{{$category->name}}</h3>
-                </div>
-            </a>
+                @if ($categories_f_count < 8)
+                    <a href="{{route('category.product',$category->slug)}}" class="cat-item">
+                        <div class="">
+                            <div class="thumbnail">
+                                <img src="{{asset('uploads/category/'.$category->cover_photo)}}" alt="">
+                            </div>
+                            <h3>{{$category->name}}</h3>
+                        </div>
+                    </a>
+                    @php $categories_f_count++; @endphp
+                @else
+                    @break
+                @endif
             @endforeach
+
+            @php $mini_f_count = 0; @endphp
             @foreach ($mini_f as $category)
-            <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
-                <div class="">
-                    <div class="thumbnail">
-                        <img src="{{asset('uploads/mini-category/'.$category->cover_photo)}}" alt="">
-                    </div>
-                    <h3>{{$category->name}}</h3>
-                </div>
-            </a>
-
+                @if ($mini_f < 4)
+                    <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
+                        <div class="">
+                            <div class="thumbnail">
+                                <img src="{{asset('uploads/mini-category/'.$category->cover_photo)}}" alt="">
+                            </div>
+                            <h3>{{$category->name}}</h3>
+                        </div>
+                    </a>
+                    @php $mini_f_count++; @endphp
+                @else
+                    @break
+                @endif
             @endforeach
+
+            @php $sub_f_count = 0; @endphp
             @foreach ($sub_f as $category)
-            <a href="{{route('subCategory.product',$category->slug)}}" class="cat-item">
-                <div class="">
-                    <div class="thumbnail">
-                        <img src="{{asset('uploads/sub category/'.$category->cover_photo)}}" alt="">
-                    </div>
-                    <h3>{{$category->name}}</h3>
-                </div>
-            </a>
-
+                @if ($sub_f_count < 6)
+                    <a href="{{route('subCategory.product',$category->slug)}}" class="cat-item">
+                        <div class="">
+                            <div class="thumbnail">
+                                <img src="{{asset('uploads/sub category/'.$category->cover_photo)}}" alt="">
+                            </div>
+                            <h3>{{$category->name}}</h3>
+                        </div>
+                    </a>
+                    @php $sub_f_count++; @endphp
+                @else
+                    @break
+                @endif
             @endforeach
-
         </div>
     </div>
 </div>
