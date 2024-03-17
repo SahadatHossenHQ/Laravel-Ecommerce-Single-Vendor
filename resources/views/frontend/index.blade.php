@@ -87,7 +87,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 
             @php $mini_f_count = 0; @endphp
             @foreach ($mini_f as $category)
-                @if ($mini_f < 9)
+                @if ($mini_f_count < 9)
                     <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
                         <div class="">
                             <div class="thumbnail">
