@@ -218,17 +218,19 @@ class OrderController extends Controller
             ]);
 
             $product = Product::find($item->id);
-            // $userPoint = User::find(auth()->id());
-            // $pointp = $product->point * $item->qty;
-            // if (setting('is_point') == 1) {
-            //     $point = $pointp;
-            // } else {
-            //     $point = 0;
-            // }
-            // $userPoint->pen_point += $point;
+            if(auth()->user()){
+                $userPoint = User::find(auth()->id());
+                $pointp = $product->point * $item->qty;
+                if (setting('is_point') == 1) {
+                    $point = $pointp;
+                } else {
+                    $point = 0;
+                }
+                $userPoint->pen_point += $point;
 
-            // $userPoint->update();
-            // $order->point += $point;
+                $userPoint->update();
+                $order->point += $point;
+            }
             $order->save();
             // echo 'Order Saved';
             if ($product) {
@@ -288,34 +290,37 @@ class OrderController extends Controller
                 'pay_date'  => date('d-m-y'),
             ]);
         }
-        // if ($request->partial_paid < auth()->user()->wallate && $request->partial_paid > 0) {
-        //     $parts = DB::table('multi_order')->where('order_id', $order->id)->get();
-        //     $amount = $request->partial_paid;
-        //     foreach ($parts as $part) {
-        //         if ($amount > 0) {
-        //             if ($part->partial_pay != $part->total) {
-        //                 $total_requested = $part->partial_pay + $amount;
+        
+        if(auth()->user()){
+            if ($request->partial_paid < auth()->user()->wallate && $request->partial_paid > 0) {
+                $parts = DB::table('multi_order')->where('order_id', $order->id)->get();
+                $amount = $request->partial_paid;
+                foreach ($parts as $part) {
+                    if ($amount > 0) {
+                        if ($part->partial_pay != $part->total) {
+                            $total_requested = $part->partial_pay + $amount;
 
-        //                 if ($total_requested > $part->total) {
-        //                     $new_balance = $total_requested - $part->total;
-        //                     $slice = $amount - $new_balance;
-        //                     $amount -= $slice;
-        //                 } else {
-        //                     $slice = $amount;
-        //                     $amount -= $slice;
-        //                 }
+                            if ($total_requested > $part->total) {
+                                $new_balance = $total_requested - $part->total;
+                                $slice = $amount - $new_balance;
+                                $amount -= $slice;
+                            } else {
+                                $slice = $amount;
+                                $amount -= $slice;
+                            }
 
-        //                 DB::table('multi_order')->where('id', $part->id)->update(['partial_pay' => $part->partial_pay + $slice]);
-        //             }
-        //         }
-        //     }
-        //     PartialPayment::create([
-        //         'order_id' => $order->id,
-        //         'payment_method' => 'wall',
-        //         'amount' => $request->partial_paid,
-        //         'status' => 1,
-        //     ]);
-        // }
+                            DB::table('multi_order')->where('id', $part->id)->update(['partial_pay' => $part->partial_pay + $slice]);
+                        }
+                    }
+                }
+                PartialPayment::create([
+                    'order_id' => $order->id,
+                    'payment_method' => 'wall',
+                    'amount' => $request->partial_paid,
+                    'status' => 1,
+                ]);
+            }
+        }
 
         if (Session::has('coupon')) {
             $n_parts = DB::table('multi_order')->where('order_id', $order->id)->get();
@@ -523,143 +528,150 @@ class OrderController extends Controller
 
 
         $total_refer = 0;
-        // $usids = [];
-        // foreach (Cart::content() as $item) {
-        //     $pp = Product::find($item->id);
-        //     if (!in_array("$pp->user_id", $usids)) {
-        //         $usids[] = $pp->user_id;
-        //     }
+        $usids = [];
+        foreach (Cart::content() as $item) {
+            $pp = Product::find($item->id);
+            if (!in_array("$pp->user_id", $usids)) {
+                $usids[] = $pp->user_id;
+            }
 
-        //     $total_refer += (($item->price / 100) * $item->qty);
-        //     if ($item->qty >= 6 && $pp->whole_price > 0) {
-        //         $price = $pp->whole_price;
-        //     } else {
-        //         $price = $item->price;
-        //     }
-        //     $vendor = User::find($pp->user_id);
-        //     $vp = $price * $item->qty;
-        //     if ($vendor->role_id == 1) {
-        //         $gt = $vp;
-        //     } else {
-        //         if ($vendor->shop_info->commission == NULL) {
-        //             $commission  = (setting('shop_commission') / 100) * $vp;
-        //             $gt = $vp - $commission;
-        //         } else {
-        //             $commission  = ($vendor->shop_info->commission / 100) * $vp;
-        //             $gt = $vp - $commission;
-        //         }
-        //     }
-        //     $order->orderDetails()->create([
-        //         'product_id'  => $item->id,
-        //         'seller_id'     => $pp->user_id,
-        //         'title'       => $item->name,
-        //         'color'       => $item->options->color,
-        //         'size'        => json_encode($item->options->attributes),
-        //         'qty'         => $item->qty,
-        //         'price'       => $price,
-        //         'total_price' => $price * $item->qty,
-        //         'g_total' => $gt
-        //     ]);
+            $total_refer += (($item->price / 100) * $item->qty);
+            if ($item->qty >= 6 && $pp->whole_price > 0) {
+                $price = $pp->whole_price;
+            } else {
+                $price = $item->price;
+            }
+            $vendor = User::find($pp->user_id);
+            $vp = $price * $item->qty;
+            if ($vendor->role_id == 1) {
+                $gt = $vp;
+            } else {
+                if ($vendor->shop_info->commission == NULL) {
+                    $commission  = (setting('shop_commission') / 100) * $vp;
+                    $gt = $vp - $commission;
+                } else {
+                    $commission  = ($vendor->shop_info->commission / 100) * $vp;
+                    $gt = $vp - $commission;
+                }
+            }
+            $order->orderDetails()->create([
+                'product_id'  => $item->id,
+                'seller_id'     => $pp->user_id,
+                'title'       => $item->name,
+                'color'       => $item->options->color,
+                'size'        => json_encode($item->options->attributes),
+                'qty'         => $item->qty,
+                'price'       => $price,
+                'total_price' => $price * $item->qty,
+                'g_total' => $gt
+            ]);
 
-        //     $product = Product::find($item->id);
-        //     // $userPoint = User::find(auth()->id());
-        //     // $pointp = $product->point * $item->qty;
-        //     // if (setting('is_point') == 1) {
-        //     //     $point = $pointp;
-        //     // } else {
-        //     //     $point = 0;
-        //     // }
-        //     // $userPoint->pen_point += $point;
+            $product = Product::find($item->id);
 
-        //     // $userPoint->update();
-        //     // $order->point += $point;
-        //     $order->save();
-        //     echo 'Order Saved';
-        //     // if ($product) {
-        //     //     $vendor = User::find($product->user_id);
-        //     //     if ($vendor->role_id == 1) {
-        //     //         $account = VendorAccount::where('vendor_id', 1)->first();
-        //     //         $account->pending_amount += $vp;
-        //     //         $account->save();
-        //     //     } else {
+            if(auth()->user()){
+                $userPoint = User::find(auth()->id());
+                $pointp = $product->point * $item->qty;
+                if (setting('is_point') == 1) {
+                    $point = $pointp;
+                } else {
+                    $point = 0;
+                }
+                $userPoint->pen_point += $point;
 
-        //     //         $grand_total = $price * $item->qty;
+                $userPoint->update();
+                $order->point += $point;
+            }
 
-        //     //         if ($vendor->shop_info->commission == NULL) {
-        //     //             $commission  = (setting('shop_commission') / 100) * $grand_total;
-        //     //             $amount = $grand_total - $commission;
-        //     //         } else {
-        //     //             $commission  = ($vendor->shop_info->commission / 100) * $grand_total;
-        //     //             $amount = $grand_total - $commission;
-        //     //         }
-        //     //         $adminAccount = VendorAccount::where('vendor_id', 1)->first();
-        //     //         $adminAccount->update([
-        //     //             'pending_amount' => $adminAccount->pending_amount + $commission
-        //     //         ]);
+            $order->save();
+            // echo 'Order Saved';
+            if ($product) {
+                $vendor = User::find($product->user_id);
+                if ($vendor->role_id == 1) {
+                    $account = VendorAccount::where('vendor_id', 1)->first();
+                    $account->pending_amount += $vp;
+                    $account->save();
+                } else {
 
-        //     //         $vendor->vendorAccount()->update([
-        //     //             'pending_amount' => $vendor->vendorAccount->pending_amount + $amount
-        //     //         ]);
+                    $grand_total = $price * $item->qty;
 
-        //     //         $check = Commission::where('user_id', $product->user_id)->where('order_id', $order->id)->first();
-        //     //         if (!$check) {
-        //     //             Commission::create([
-        //     //                 'user_id'  => $product->user_id,
-        //     //                 'order_id' => $order->id,
-        //     //                 'amount'   => $commission,
-        //     //                 'status' => '0',
-        //     //             ]);
-        //     //         } else {
-        //     //             $check->amount = $check->amount + $commission;
-        //     //             $check->update();
-        //     //         }
-        //     //     }
-        //     //     $product->quantity = $product->quantity - $item->qty;
-        //     //     $product->save();
-        //     // }
-        // }
+                    if ($vendor->shop_info->commission == NULL) {
+                        $commission  = (setting('shop_commission') / 100) * $grand_total;
+                        $amount = $grand_total - $commission;
+                    } else {
+                        $commission  = ($vendor->shop_info->commission / 100) * $grand_total;
+                        $amount = $grand_total - $commission;
+                    }
+                    $adminAccount = VendorAccount::where('vendor_id', 1)->first();
+                    $adminAccount->update([
+                        'pending_amount' => $adminAccount->pending_amount + $commission
+                    ]);
 
-        // foreach ($usids as $seller) {
-        //     $total = DB::table('order_details')->where('seller_id', $seller)->where('order_id', $order->id)->sum('total_price');
-        //     $total += $single_charge;
-        //     DB::table('multi_order')->insert(
-        //         ['vendor_id' => $seller, 'order_id' => $order->id, 'partial_pay' => 0, 'status' => 0, 'total' => $total]
-        //     );
-        // }
-        // if ($request->payment_method == 'wallate') {
-        //     $order->update([
-        //         'pay_staus' => 1,
-        //         'pay_date'  => date('d-m-y'),
-        //     ]);
-        // }
-        // if ($request->partial_paid < auth()->user()->wallate && $request->partial_paid > 0) {
-        //     $parts = DB::table('multi_order')->where('order_id', $order->id)->get();
-        //     $amount = $request->partial_paid;
-        //     foreach ($parts as $part) {
-        //         if ($amount > 0) {
-        //             if ($part->partial_pay != $part->total) {
-        //                 $total_requested = $part->partial_pay + $amount;
+                    $vendor->vendorAccount()->update([
+                        'pending_amount' => $vendor->vendorAccount->pending_amount + $amount
+                    ]);
 
-        //                 if ($total_requested > $part->total) {
-        //                     $new_balance = $total_requested - $part->total;
-        //                     $slice = $amount - $new_balance;
-        //                     $amount -= $slice;
-        //                 } else {
-        //                     $slice = $amount;
-        //                     $amount -= $slice;
-        //                 }
+                    $check = Commission::where('user_id', $product->user_id)->where('order_id', $order->id)->first();
+                    if (!$check) {
+                        Commission::create([
+                            'user_id'  => $product->user_id,
+                            'order_id' => $order->id,
+                            'amount'   => $commission,
+                            'status' => '0',
+                        ]);
+                    } else {
+                        $check->amount = $check->amount + $commission;
+                        $check->update();
+                    }
+                }
+                $product->quantity = $product->quantity - $item->qty;
+                $product->save();
+            }
+        }
 
-        //                 DB::table('multi_order')->where('id', $part->id)->update(['partial_pay' => $part->partial_pay + $slice]);
-        //             }
-        //         }
-        //     }
-        //     PartialPayment::create([
-        //         'order_id' => $order->id,
-        //         'payment_method' => 'wall',
-        //         'amount' => $request->partial_paid,
-        //         'status' => 1,
-        //     ]);
-        // }
+        foreach ($usids as $seller) {
+            $total = DB::table('order_details')->where('seller_id', $seller)->where('order_id', $order->id)->sum('total_price');
+            $total += $single_charge;
+            DB::table('multi_order')->insert(
+                ['vendor_id' => $seller, 'order_id' => $order->id, 'partial_pay' => 0, 'status' => 0, 'total' => $total]
+            );
+        }
+        if ($request->payment_method == 'wallate') {
+            $order->update([
+                'pay_staus' => 1,
+                'pay_date'  => date('d-m-y'),
+            ]);
+        }
+
+        if(auth()->user()){
+            if ($request->partial_paid < auth()->user()->wallate && $request->partial_paid > 0) {
+                $parts = DB::table('multi_order')->where('order_id', $order->id)->get();
+                $amount = $request->partial_paid;
+                foreach ($parts as $part) {
+                    if ($amount > 0) {
+                        if ($part->partial_pay != $part->total) {
+                            $total_requested = $part->partial_pay + $amount;
+
+                            if ($total_requested > $part->total) {
+                                $new_balance = $total_requested - $part->total;
+                                $slice = $amount - $new_balance;
+                                $amount -= $slice;
+                            } else {
+                                $slice = $amount;
+                                $amount -= $slice;
+                            }
+
+                            DB::table('multi_order')->where('id', $part->id)->update(['partial_pay' => $part->partial_pay + $slice]);
+                        }
+                    }
+                }
+                PartialPayment::create([
+                    'order_id' => $order->id,
+                    'payment_method' => 'wall',
+                    'amount' => $request->partial_paid,
+                    'status' => 1,
+                ]);
+            }
+        }
 
         if (Session::has('coupon')) {
             $n_parts = DB::table('multi_order')->where('order_id', $order->id)->get();
@@ -904,17 +916,19 @@ class OrderController extends Controller
             ]);
 
             $product = Product::find($item->id);
-            $userPoint = User::find(auth()->id());
-            $pointp = $product->point * $item->qty;
-            if (setting('is_point') == 1) {
-                $point = $pointp;
-            } else {
-                $point = 0;
-            }
-            $userPoint->pen_point += $point;
+            if(auth()->user()){
+                $userPoint = User::find(auth()->id());
+                $pointp = $product->point * $item->qty;
+                if (setting('is_point') == 1) {
+                    $point = $pointp;
+                } else {
+                    $point = 0;
+                }
+                $userPoint->pen_point += $point;
 
-            $userPoint->update();
-            $order->point += $point;
+                $userPoint->update();
+                $order->point += $point;
+            }
             $order->save();
             if ($product) {
                 $vendor = User::find($product->user_id);
@@ -973,33 +987,36 @@ class OrderController extends Controller
                 'pay_date'  => date('d-m-y'),
             ]);
         }
-        if ($request->partial_paid < auth()->user()->wallate && $request->partial_paid > 0) {
-            $parts = DB::table('multi_order')->where('order_id', $order->id)->get();
-            $amount = $request->partial_paid;
-            foreach ($parts as $part) {
-                if ($amount > 0) {
-                    if ($part->partial_pay != $part->total) {
-                        $total_requested = $part->partial_pay + $amount;
 
-                        if ($total_requested > $part->total) {
-                            $new_balance = $total_requested - $part->total;
-                            $slice = $amount - $new_balance;
-                            $amount -= $slice;
-                        } else {
-                            $slice = $amount;
-                            $amount -= $slice;
+        if(auth()->user()){
+            if ($request->partial_paid < auth()->user()->wallate && $request->partial_paid > 0) {
+                $parts = DB::table('multi_order')->where('order_id', $order->id)->get();
+                $amount = $request->partial_paid;
+                foreach ($parts as $part) {
+                    if ($amount > 0) {
+                        if ($part->partial_pay != $part->total) {
+                            $total_requested = $part->partial_pay + $amount;
+
+                            if ($total_requested > $part->total) {
+                                $new_balance = $total_requested - $part->total;
+                                $slice = $amount - $new_balance;
+                                $amount -= $slice;
+                            } else {
+                                $slice = $amount;
+                                $amount -= $slice;
+                            }
+
+                            DB::table('multi_order')->where('id', $part->id)->update(['partial_pay' => $part->partial_pay + $slice]);
                         }
-
-                        DB::table('multi_order')->where('id', $part->id)->update(['partial_pay' => $part->partial_pay + $slice]);
                     }
                 }
+                PartialPayment::create([
+                    'order_id' => $order->id,
+                    'payment_method' => 'wall',
+                    'amount' => $request->partial_paid,
+                    'status' => 1,
+                ]);
             }
-            PartialPayment::create([
-                'order_id' => $order->id,
-                'payment_method' => 'wall',
-                'amount' => $request->partial_paid,
-                'status' => 1,
-            ]);
         }
 
         if (Session::has('coupon')) {
