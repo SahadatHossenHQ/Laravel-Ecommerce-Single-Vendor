@@ -70,7 +70,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
             
             @php $categories_f_count = 0; @endphp
             @foreach ($categories_f as $category)
-                @if ($categories_f_count < 5)
+                @if ($categories_f_count < 8)
                     <a href="{{route('category.product',$category->slug)}}" class="cat-item">
                         <div class="">
                             <div class="thumbnail">
@@ -87,7 +87,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 
             @php $mini_f_count = 0; @endphp
             @foreach ($mini_f as $category)
-                @if ($mini_f_count < 9)
+                @if ($mini_f_count < 3)
                     <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
                         <div class="">
                             <div class="thumbnail">
@@ -104,7 +104,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 
             @php $sub_f_count = 0; @endphp
             @foreach ($sub_f as $category)
-                @if ($sub_f_count < 9)
+                @if ($sub_f_count < 6)
                     <a href="{{route('subCategory.product',$category->slug)}}" class="cat-item">
                         <div class="">
                             <div class="thumbnail">
