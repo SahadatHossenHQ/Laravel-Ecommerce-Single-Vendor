@@ -212,9 +212,6 @@ right: -10px;
                                  <li   data-thumb="{{asset('uploads/product/video/'.$product->video_thumb)}}" style="width: 437px; float: left; display: block;" class="">
                                         <div class="thumb-image">
                                               <iframe  width="100%" style="height:300px;background:black"   src="{{$product->yvideo}}" ></iframe>
-                                                 
-                       
-                                           
                                         </div>
                                     </li>
                                 @elseif($product->video)
