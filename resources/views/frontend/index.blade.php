@@ -63,62 +63,80 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 <!--================ top category Area =================-->
 <div class="shop-category oc" style="padding-bottom: 10px;text-align: center;">
     <div class="container">
-        @if (setting('TOP_CAT'))
-            <h3 class="title  col-md-12 text-left pt-3"><span>{{ setting('TOP_CAT') ?? 'Top Categories' }}</span> <a href="{{route('categories_all')}}">view all</a></h3>
-        @endif
-        <div class="cat-row">
-            
-            @php $categories_f_count = 0; @endphp
+        {{-- @if (setting('TOP_CAT')) --}}
+            <h3 class="title  col-md-12 text-left pt-3"><span>{{ setting('TOP_CAT') ?? 'Top Categories' }}</span> <button id="cat_row_more">View All</button></h3>
+        {{-- @endif --}}
+        <div id="cat_row" class="cat-row cat_row_hide">
             @foreach ($categories_f as $category)
-                @if ($categories_f_count < 8)
-                    <a href="{{route('category.product',$category->slug)}}" class="cat-item">
-                        <div class="">
-                            <div class="thumbnail">
-                                <img src="{{asset('uploads/category/'.$category->cover_photo)}}" alt="">
-                            </div>
-                            <h3>{{$category->name}}</h3>
+                <a href="{{route('category.product',$category->slug)}}" class="cat-item">
+                    <div class="">
+                        <div class="thumbnail">
+                            <img src="{{asset('uploads/category/'.$category->cover_photo)}}" alt="">
                         </div>
-                    </a>
-                    @php $categories_f_count++; @endphp
-                @else
-                    @break
-                @endif
+                        <h3>{{$category->name}}</h3>
+                    </div>
+                </a>
             @endforeach
-
-            @php $mini_f_count = 0; @endphp
             @foreach ($mini_f as $category)
-                @if ($mini_f_count < 3)
-                    <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
-                        <div class="">
-                            <div class="thumbnail">
-                                <img src="{{asset('uploads/mini-category/'.$category->cover_photo)}}" alt="">
-                            </div>
-                            <h3>{{$category->name}}</h3>
-                        </div>
-                    </a>
-                    @php $mini_f_count++; @endphp
-                @else
-                    @break
-                @endif
+            <a href="{{route('miniCategory.product',$category->slug)}}" class="cat-item">
+                <div class="">
+                    <div class="thumbnail">
+                        <img src="{{asset('uploads/mini-category/'.$category->cover_photo)}}" alt="">
+                    </div>
+                    <h3>{{$category->name}}</h3>
+                </div>
+            </a>
             @endforeach
-
-            @php $sub_f_count = 0; @endphp
             @foreach ($sub_f as $category)
-                @if ($sub_f_count < 6)
-                    <a href="{{route('subCategory.product',$category->slug)}}" class="cat-item">
-                        <div class="">
-                            <div class="thumbnail">
-                                <img src="{{asset('uploads/sub category/'.$category->cover_photo)}}" alt="">
-                            </div>
-                            <h3>{{$category->name}}</h3>
-                        </div>
-                    </a>
-                    @php $sub_f_count++; @endphp
-                @else
-                    @break
-                @endif
+            <a href="{{route('subCategory.product',$category->slug)}}" class="cat-item">
+                <div class="">
+                    <div class="thumbnail">
+                        <img src="{{asset('uploads/sub category/'.$category->cover_photo)}}" alt="">
+                    </div>
+                    <h3>{{$category->name}}</h3>
+                </div>
+            </a>
             @endforeach
+            {{-- <button id="cat_row_more" class="btn btn-info">More</button> --}}
         </div>
+
+
+        @push('css')
+            <style>
+                #cat_row{
+                    position: relative;
+                    margin-bottom: 3rem;
+                }
+                #cat_row_more{
+                /*  position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    z-index: 9999;
+                    width: fit-content;
+                    background: var(--MAIN_MENU_BG) !important;
+                    padding-right: 2rem;
+                    padding-left: 2rem; */
+                    float: right;
+                    font-size: 16px;
+                    color: #007bff;
+                    text-decoration: none;
+                    background-color: transparent;
+                    outline: none;
+                }
+                .cat_row_hide{
+                    height: 270px !important;
+                    overflow: hidden;
+                }
+            </style>
+        @endpush
+        @push('internal_js')
+            $(document).ready(function(){
+                $('#cat_row_more').click(function(){
+                    $('#cat_row').toggleClass('cat_row_hide');
+                });
+            });
+        @endpush
+
     </div>
 </div>
 <style>
