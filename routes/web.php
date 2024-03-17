@@ -43,6 +43,7 @@ Route::get('/seller', [AccountController::class, 'vendorJoin'])->name('vendorJoi
 // Route::Post('register', [AccountController::class, 'register'])->name('register');
 Route::Post('register2', [AccountController::class, 'register2'])->name('register2');
 Route::get('/', HomeController::class)->name('home');
+Route::get('/categories_all', [HomeController::class, 'categories_all'])->name('categories_all');
 Route::get('admin/', [HomeController::class, 'adminLogin'])->name('adminLogin');
 Route::post('admin/login', [LoginController::class, 'superLogin'])->name('super.login');
 Route::GET('user/login', [LoginController::class, 'login'])->name('login.get');

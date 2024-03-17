@@ -27,31 +27,31 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-         $users = Campaign::where([['is_flash', 1], ['end', '<', date('Y-m-d h-m-s')]])->get();
-         foreach($users as $user){
+        $users = Campaign::where([['is_flash', 1], ['end', '<', date('Y-m-d h-m-s')]])->get();
+        foreach ($users as $user) {
 
-         
+
             $user->is_flash = 0;
-            $user->end=Null;
+            $user->end = Null;
             $user->update();
         }
 
         $sliders        = Slider::where('status', true)->where('is_pop', false)->where('is_sub', false)->where('is_feature', false)->latest('id')->take(6)->get(['image', 'url']);
         $sliders_f        = Slider::where('status', true)->where('is_sub', false)->where('is_pop', false)->where('is_feature', true)->latest('id')->take(4)->get(['image', 'url']);
         $categories     = Category::where('status', true)->latest('id')->get(['name', 'slug', 'cover_photo']);
-      
+
         $shops          = ShopInfo::latest('id')->take('6')->get();
-        $campaigns_product          = Campaign::where('status',1)->where('is_flash','1')->get();
-        $i=1;
-        
-        $productIds  = DB::table('category_product')->where('category_id','!=' ,['13','9'])->get()->pluck('product_id');
+        $campaigns_product          = Campaign::where('status', 1)->where('is_flash', '1')->get();
+        $i = 1;
+
+        $productIds  = DB::table('category_product')->where('category_id', '!=', ['13', '9'])->get()->pluck('product_id');
         $products    = Product::whereIn('id', $productIds)->where('status', true)->latest('id')->take(12)->get();
-        $randomProducts = Product::with('brand')->where('status', true)->where('reach','>','0')->orderBy('reach', 'DESC')->take('6')->get();
-        
-        $unproducts =Unproduct::where('status',1)->inRandomOrder()->take(6)->get();
-   
+        $randomProducts = Product::with('brand')->where('status', true)->where('reach', '>', '0')->orderBy('reach', 'DESC')->take('6')->get();
+
+        $unproducts = Unproduct::where('status', 1)->inRandomOrder()->take(6)->get();
+
         $collections    = Collection::where('status', true)->latest('id')->get();
-        
+
         return view('frontend.index', compact(
             'sliders',
             'unproducts',
@@ -64,6 +64,23 @@ class HomeController extends Controller
             'campaigns_product'
         ));
     }
+    
+    
+    public function categories_all(Request $request)
+    {
+    
+        $categories     = Category::where('status', true)->latest('id')->get(['name', 'slug', 'cover_photo']);
+        $collections    = Collection::where('status', true)->latest('id')->get();
+
+        return view('frontend.categories_all', compact(
+            'categories',
+            'collections',
+        ));
+    }
+    
+
+
+
     public function superCat(Request $request){
        
         $data = View::make("components.hero-category")->render();
