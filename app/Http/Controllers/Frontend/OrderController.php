@@ -378,13 +378,13 @@ class OrderController extends Controller
                 return Redirect::to($url);
             }
         } else {
-            if (setting('mail_config') == 1) {
-                Mail::send('frontend.invoice-mail', $data, function ($mail) use ($data) {
-                    $mail->from(config('mail.from.address'),  config('app.name'))
-                        ->to($data['email'], $data['name'])
-                        ->subject('Order Invoice');
-                });
-            }
+            // if (setting('mail_config') == 1) {
+            //     Mail::send('frontend.invoice-mail', $data, function ($mail) use ($data) {
+            //         $mail->from(config('mail.from.address'),  config('app.name'))
+            //             ->to($data['email'], $data['name'])
+            //             ->subject('Order Invoice');
+            //     });
+            // }
 
             // notify()->success("Your order successfully done", "Congratulations");
             // return redirect()->route('order');
