@@ -482,7 +482,7 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="image">Product Thumbnail Image <span class="text-danger">(*)</span>:</label>
+                            <label for="image">Product Thumbnail Image <span class="text-danger">(*)</span>: <a target="_blank" href="https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
                             <input type="file" name="image" id="image" accept="image/*" class="form-control dropify @error('image') is-invalid @enderror" data-default-file="@isset($product) /uploads/product/{{$product->image}}@enderror">
                             @error('image')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -490,7 +490,7 @@
                         </div>
                         
                         <div class="form-group col-md-6">
-                            <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
+                            <label>Product Gallery Image <span class="text-danger">(*)</span>: <a target="_blank" href="https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
                             <div class="input-group" id="increment">
                                 <input type="file" class="form-control" accept="image/*" id="images" name="images[]"  @isset($product) @else required @endisset  >
                                 <select name="imagesc[]" id="imagesc">
