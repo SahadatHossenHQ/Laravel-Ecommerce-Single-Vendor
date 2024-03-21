@@ -48,7 +48,7 @@
             <!-- /.card-header -->
             <div class="card-body">
                 {{-- {{ $products->links() }} --}}
-                {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
+                {{-- {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         @if ($products->onFirstPage())
@@ -85,7 +85,7 @@
                             </li>
                         @endif
                     </ul>
-                </nav>
+                </nav> --}}
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -184,44 +184,78 @@
                     </tfoot>
                 </table>
 
-                {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
+                {{-- {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results --}}
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        @if ($products->onFirstPage())
-                            <li class="page-item disabled">
-                                <span class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo; Previous</span>
-                                </span>
-                            </li>
-                        @else
+                        {{-- Previous Page Button --}}
+                        @if ($products->previousPageUrl())
                             <li class="page-item">
                                 <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo; Previous</span>
+                                    <span aria-hidden="true">Prev</span>
                                 </a>
                             </li>
                         @endif
                 
-                        @for ($i = 1; $i <= $products->lastPage(); $i++)
-                            <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
-                            </li>
-                        @endfor
-                
-                        @if ($products->hasMorePages())
+                        {{-- Next Page Button --}}
+                        @if ($products->nextPageUrl())
                             <li class="page-item">
                                 <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
-                                    <span aria-hidden="true">Next &raquo;</span>
+                                    <span aria-hidden="true">Next</span>
                                 </a>
-                            </li>
-                        @else
-                            <li class="page-item disabled">
-                                <span class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">Next &raquo;</span>
-                                </span>
                             </li>
                         @endif
                     </ul>
+                
+                    <ul class="pagination">
+                        {{-- First Page Button --}}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $products->url(1) }}">First</a>
+                        </li>
+                
+                        {{-- Page Numbers --}}
+                        @php
+                            $totalPages = ceil($products->total() / $products->perPage());
+                            $currentPage = $products->currentPage();
+                            $middlePage = floor($totalPages / 2);
+                        @endphp
+                
+                        @if ($totalPages > 3)
+                            {{-- Immediate two pages before the first page --}}
+                            @for ($i = max($currentPage - 2, 2); $i < $currentPage; $i++)
+                                <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+                
+                            {{-- Current Page --}}
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{ $currentPage }}</a>
+                            </li>
+                
+                            {{-- Immediate two pages after the last page --}}
+                            @for ($i = $currentPage + 1; $i <= min($currentPage + 2, $totalPages - 1); $i++)
+                                <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+                
+                            {{-- Last Page Button --}}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->url($totalPages) }}">Last</a>
+                            </li>
+                        @else
+                            {{-- Page Numbers if total pages are less than or equal to 3 --}}
+                            @for ($i = 2; $i < $totalPages; $i++)
+                                <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+                        @endif
+                    </ul>
                 </nav>
+                
+                
+                
                 
                 
             </div>
