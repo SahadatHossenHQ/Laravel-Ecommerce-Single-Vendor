@@ -187,26 +187,6 @@
                 {{-- {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results --}}
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        {{-- Previous Page Button --}}
-                        @if ($products->previousPageUrl())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
-                                    <span aria-hidden="true">Prev</span>
-                                </a>
-                            </li>
-                        @endif
-                
-                        {{-- Next Page Button --}}
-                        @if ($products->nextPageUrl())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
-                                    <span aria-hidden="true">Next</span>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                
-                    <ul class="pagination">
                         {{-- First Page Button --}}
                         <li class="page-item">
                             <a class="page-link" href="{{ $products->url(1) }}">First</a>
