@@ -47,6 +47,46 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                {{-- {{ $products->links() }} --}}
+                {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if ($products->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Previous</span>
+                                </span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Previous</span>
+                                </a>
+                            </li>
+                        @endif
+                
+                        @for ($i = 1; $i <= $products->lastPage(); $i++)
+                            <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+                
+                        @if ($products->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                </span>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -143,6 +183,47 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if ($products->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Previous</span>
+                                </span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Previous</span>
+                                </a>
+                            </li>
+                        @endif
+                
+                        @for ($i = 1; $i <= $products->lastPage(); $i++)
+                            <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+                
+                        @if ($products->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                </span>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+                
+                
             </div>
             <!-- /.card-body -->
         </div>
@@ -171,7 +252,10 @@
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
-                "lengthChange": false,
+                // "lengthChange": false,
+                "paging": false, // Disable pagination
+                "info": false, // Hide information element
+                "searching": false, // Hide search input
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
