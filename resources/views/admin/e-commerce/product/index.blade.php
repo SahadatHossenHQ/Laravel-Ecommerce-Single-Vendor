@@ -145,6 +145,7 @@
                 </table>
 
                 {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
+                {{-- {{ $products->total() }} --}}
                 <nav aria-label="Page navigation example">
                     {{-- <ul class="pagination">
                         @if ($products->previousPageUrl())
