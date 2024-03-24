@@ -76,10 +76,10 @@
 <footer>
     <div class="container">
         <div class="row">
-            <!-- <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
+            <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
                 <li id="nav_menu-2" class="widget widget_nav_menu"> 
                     <div style="margin-bottom: 20px;" class="apps footer-logo">
-                     <a href="{{route('home')}}">
+                    <a href="{{route('home')}}">
                     <img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Application Logo" style="width: 150px">
                 </a>
                 </div>
@@ -94,7 +94,7 @@
                     </div>
                     
                 </li>
-            </div> -->
+            </div>
             <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
                 <li id="nav_menu-2" class="widget widget_nav_menu">
                     <div class="title t1">
@@ -189,14 +189,14 @@
                     </div>
 
                 </li>
-            </div>
-            <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
+            {{-- </div>
+            <div class="footer-item  col-lg-3 col-md-3 col-sm-12"> --}}
                 <style>
                     #nav_menu-2 .aroow2 {
                         display: none;
                     }
                 </style>
-                <li id="nav_menu-2" class="widget widget_nav_menu ">
+                <li id="nav_menu-2" class="widget widget_nav_menu pt-3">
                     <div class="title t4">
                         <span>Get In Touch</span>
                         <span class="footer-sub-icon"><i class="icofont icofont-simple-right"></i></span>
