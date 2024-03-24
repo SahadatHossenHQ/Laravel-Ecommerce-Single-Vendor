@@ -2,8 +2,8 @@
 
 
 #### 24.03.2024
-- fix: main catagory filter fixes
-- !fix: product filter
+- fix: only main catagory filter fixes
+- !fix: product all filter
 - App link conditionally visible to footer column 4 while fillable to dashboard
 - Feature: Dynamic the Android App link
 - Fix: Column 1 footer description visible
