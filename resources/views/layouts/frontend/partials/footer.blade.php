@@ -233,6 +233,7 @@
                                     class="icofont icofont-social-linkedin"></i></a></li>
                         @endif
                     </ul>
+                    @if(setting('android_app'))
                     <div class="platform item-content  ic4" style="margin-top: 20px;">
                         <div class="title t1" style="margin-bottom: 8px !important">
                             <span>Download Now!</span>
@@ -245,6 +246,7 @@
                                         alt=""></a></li>
                         </ul>
                     </div>
+                    @endif
                 </li>
                 @php
                     echo setting('FOOTER_COL_4_HTML');

@@ -75,6 +75,7 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE_STATUS'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE_STATUS')]);
             Setting::updateOrCreate(['name' => 'BELOW_SLIDER_HTML_CODE'], ['value' => $request->get('BELOW_SLIDER_HTML_CODE')]);
             Setting::updateOrCreate(['name' => 'FOOTER_COL_4_HTML'], ['value' => $request->get('FOOTER_COL_4_HTML')]);
+            Setting::updateOrCreate(['name' => 'android_app'], ['value' => $request->get('android_app')]);
             
             notify()->success("Successfully updated", "Success");
             return back();

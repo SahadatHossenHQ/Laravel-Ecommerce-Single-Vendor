@@ -47,38 +47,38 @@
                                 <div class="form-group col-md-12">
                                     <label for="header_code" class="text-capitalize">Custom header code</label>
                                     <textarea name="header_code" id="header_code" rows="4"
-                                        class="form-control ">{{ $header_code->value }} </textarea>
+                                        class="form-control">{{ $header_code->value }} </textarea>
                                 </div>
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="fb_pixel" class="text-capitalize">Facebook Pixel Code</label>
                                     <textarea name="fb_pixel" id="fb_pixel" rows="4"
-                                        class="form-control ">{{$fb_pixel->value}}</textarea>
+                                        class="form-control">{{$fb_pixel->value}}</textarea>
                                 </div>
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="body_code" class="text-capitalize">Body Code</label>
                                     <textarea name="body_code" id="body_code" rows="4"
-                                        class="form-control ">{{ setting('body_code') ?? "" }}</textarea>
+                                        class="form-control">{{ setting('body_code') ?? "" }}</textarea>
                                 </div>
 
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="global_css" class="text-capitalize">Global CSS</label>
                                     <textarea name="global_css" id="global_css" rows="4" placeholder="body{color:red;}"
-                                        class="form-control ">{{ setting('global_css') ?? "" }}</textarea>
+                                        class="form-control">{{ setting('global_css') ?? "" }}</textarea>
                                 </div>
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="global_js" class="text-capitalize">Global JS</label>
                                     <textarea name="global_js" id="global_js" rows="4" placeholder="console.log('Hello Lems');"
-                                        class="form-control ">{{ setting('global_js') ?? "" }}</textarea>
+                                        class="form-control">{{ setting('global_js') ?? "" }}</textarea>
                                 </div>
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="override_css" class="text-capitalize">Bottom CSS - Override CSS</label>
                                     <textarea name="override_css" id="override_css" rows="4" placeholder="a{color:red !important;}"
-                                        class="form-control ">{{ setting('override_css') ?? "" }}</textarea>
+                                        class="form-control">{{ setting('override_css') ?? "" }}</textarea>
                                 </div>
                                 <hr>
                                 <div class="border border-info py-2 mt-2">
@@ -97,7 +97,7 @@
                                     <div class="form-group col-md-12">
                                         <label for="BELOW_SLIDER_HTML_CODE" class="text-capitalize">Custom Html Code</label>
                                         <textarea name="BELOW_SLIDER_HTML_CODE" id="BELOW_SLIDER_HTML_CODE" rows="4"
-                                            class="form-control ">{{ setting('BELOW_SLIDER_HTML_CODE') ?? '<b>Hello www.asifulmamun.info.bd</b>' }}</textarea>
+                                            class="form-control">{{ setting('BELOW_SLIDER_HTML_CODE') ?? '<b>Hello www.asifulmamun.info.bd</b>' }}</textarea>
                                     </div>
                                 </div>
                                 <div class="border border-info py-2 mt-2">
@@ -117,19 +117,26 @@
                                         <label for="CUSTOM_NOTICE" class="text-capitalize">CUSTOM NOTICE</label>
                                         <small class="bg-warning p-1">It's under container of bootstrap</small>
                                         <textarea name="CUSTOM_NOTICE" id="CUSTOM_NOTICE" rows="4"
-                                            class="form-control ">{{ setting('CUSTOM_NOTICE') ?? 'Today is offer for 30%' }}</textarea>
+                                            class="form-control">{{ setting('CUSTOM_NOTICE') ?? 'Today is offer for 30%' }}</textarea>
                                     </div>
                                 </div>
 
                                 <hr>
                                 <div class="form-group col-md-12">
                                     <label for="FOOTER_COL_4_HTML" class="text-capitalize">Footer Column 4</label>
-                                    <textarea name="FOOTER_COL_4_HTML" id="FOOTER_COL_4_HTML" rows="4"
-                                        class="form-control ">{{ setting('FOOTER_COL_4_HTML') ?? '<b>Payment Support: Bkash, Roacket, Nagad</b>' }}</textarea>
+                                    <textarea name="FOOTER_COL_4_HTML" id="FOOTER_COL_4_HTML" rows="4" placeholder="Payment Support: Bkash, Roacket, Nagad"
+                                        class="form-control">{{ setting('FOOTER_COL_4_HTML') ?? '' }}</textarea>
                                 </div>
                                 <small class="p-4 bg-light text-primary">
                                     <a target="_blank" class="bg-warning p-2" href="https://getbootstrap.com/docs/4.5/components/alerts/">Help for HTML snippet from Bootstrap V5.4.3</a>
                                 </small>
+
+                                <br><br>
+                                <div class="form-group col-md-12">
+                                    <label for="android_app" class="text-capitalize">Android App</label>
+                                    <input class="form-control" type="text" name="android_app" id="android_app" value="{{ setting('android_app') ?? '' }}" placeholder="https://play.googe.com/">
+                                </div>
+
                             </div>
 
                             
