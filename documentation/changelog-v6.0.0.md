@@ -1,6 +1,12 @@
 ### Version 6.0.0
 
 
+#### 24.03.2024
+- !fix: product filter
+- App link conditionally visible to footer column 4 while fillable to dashboard
+- Feature: Dynamic the Android App link
+- Fix: Column 1 footer description visible
+
 #### 21.03.2024
 - Database raltion break for product page
 - Guildline added to product add page for image optimization

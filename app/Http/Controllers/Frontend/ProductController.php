@@ -448,122 +448,116 @@ class ProductController extends Controller
         notify()->success("Your reply successful", "Success");
         return back();
     }
-    
+
     /**
      * product filtering by requested data
      *
      * @param  mixed $request
      * @return void
      */
-     public function productFilter(Request $request)
+    public function productFilter(Request $request)
     {
         // return $request;
-        $unr=$request->unr;
+        $unr = $request->unr;
         $max_amount =  substr($request->amount, strpos($request->amount, "-") + 1);;
         $min_amount =  substr($request->amount, 0, strpos($request->amount, '-'));
         // $min        = str_replace('TK', '', $min_amount);
         // $max        = str_replace('TK', '', $max_amount);
-        if(setting('CURRENCY_CODE_MIN')){
+        if (setting('CURRENCY_CODE_MIN')) {
             $currency_code_min = setting('CURRENCY_CODE_MIN');
-        }else{
+        } else {
             $currency_code_min = "Tk";
         }
-        $min        = str_replace($currency_code_min , '', $min_amount);
+        $min        = str_replace($currency_code_min, '', $min_amount);
         $max        = str_replace($currency_code_min, '', $max_amount);
-        
+
         $num = (int)$min;
         $num2 = (int)$max;
-        $products = Product::where('status','1');
-        $products   = $products->whereBetween('regular_price', [$num,$num2]);
+        $products = Product::where('status', '1');
+        // $products   = $products->whereBetween('regular_price', [$num, $num2]);
         $sort  = new Sorting();
         $value = $sort->getValue($request->sort);
 
-      
-        
+
+
         // check request sub category
-        
-       
-        if ($request->extra_category!='') {
+
+
+        if ($request->extra_category != '') {
             $sub_category = ExtraMiniCategory::where('slug', $request->extra_category)->pluck('id');
             $sub_category_product_ids = DB::table('extra_mini_category_product')->where('extra_mini_category_id', $sub_category)->get()->pluck('product_id');
             $products = $products->whereIn('id', $sub_category_product_ids);
-        }elseif ($request->mini_category!='') {
+        } elseif ($request->mini_category != '') {
             $sub_category = miniCategory::where('slug', $request->mini_category)->pluck('id');
             $sub_category_product_ids = DB::table('mini_category_product')->where('mini_category_id', $sub_category)->get()->pluck('product_id');
             $products = $products->whereIn('id', $sub_category_product_ids);
-        }elseif($request->sub_category!='') {
+        } elseif ($request->sub_category != '') {
             $sub_category = SubCategory::where('slug', $request->sub_category)->pluck('id');
             $sub_category_product_ids = DB::table('product_sub_category')->where('sub_category_id', $sub_category)->get()->pluck('product_id');
             $products = $products->whereIn('id', $sub_category_product_ids);
-        }elseif ($request->category!='') {
+        } elseif ($request->category != '') {
             $category = Category::where('slug', $request->category)->pluck('id');
             $category_product_ids = DB::table('category_product')->where('category_id', $category)->get()->pluck('product_id');
             $products = $products->whereIn('id', $category_product_ids);
         }
 
         // check request collection
-     if ($request->collection!='') {
+        if ($request->collection != '') {
             $collection  = Collection::where('slug', $request->collection)->first();
             $categoryIds = $collection->categories->pluck('id');
             $collection_product_ids  = DB::table('category_product')->whereIn('category_id', $categoryIds)->get()->pluck('product_id');
             $products = $products->whereIn('id', $collection_product_ids);
         }
         // check request brands
-       
-       
+
+
         // check request colors
-        
+
 
         // check request rating
-         if ($request->rating!='') {
+        if ($request->rating != '') {
             $rating_product_ids = DB::table('reviews')->where('rating', $request->rating)->get()->pluck('product_id');
             $products = $products->whereIn('id', $rating_product_ids);
         }
-        if ($request->colors!='') {
+        if ($request->colors != '') {
             $colors = Color::whereIn('slug', $request->colors)->pluck('id');
             $color_product_ids = DB::table('color_product')->whereIn('color_id', $colors)->get()->pluck('product_id');
-           
+
             $products = $products->whereIn('id', $color_product_ids);
-           
         }
-        
-         if ($request->attri!='') {
+
+        if ($request->attri != '') {
             $brands = AttributeValue::whereIn('slug', $request->attri)->pluck('id');
             $brand_product_ids = DB::table('attribute_product')->whereIn('attribute_value_id', $brands)->get()->pluck('product_id');
-            if($brand_product_ids->count() >0){
-                $products = $products->where('id', $brand_product_ids);    
+            if ($brand_product_ids->count() > 0) {
+                $products = $products->where('id', $brand_product_ids);
             }
         }
-        if ($request->brands!='') {
+        if ($request->brands != '') {
             $brandss = Brand::whereIn('slug', $request->brands)->pluck('id');
-           if($brandss->count() >0){
-                $products = $products->where('id', $brandss);    
+            if ($brandss->count() > 0) {
+                $products = $products->where('id', $brandss);
             }
         }
         if ($value == $sort->oldToNew) {
             $products = $products->orderBy('id', 'asc')->get();
-        }elseif ($value == $sort->best) {
+        } elseif ($value == $sort->best) {
             $products = $products->orderBy('reach', 'desc')->get();
-        }
-        elseif ($value == $sort->highToLow) {
-           $products = $products->orderByRaw('CONVERT(regular_price, SIGNED) desc')->get();
-        }
-        elseif ($value == $sort->lowToHigh) {
+        } elseif ($value == $sort->highToLow) {
+            $products = $products->orderByRaw('CONVERT(regular_price, SIGNED) desc')->get();
+        } elseif ($value == $sort->lowToHigh) {
             $products = $products->orderByRaw('CONVERT(regular_price, SIGNED) asc')->get();
-        }
-         elseif ($value == $sort->dhighToLow) {
-           $products = $products->orderByRaw('CONVERT(discount_price, SIGNED) desc')->get();
-        }
-        elseif ($value == $sort->dlowToHigh) {
+        } elseif ($value == $sort->dhighToLow) {
+            $products = $products->orderByRaw('CONVERT(discount_price, SIGNED) desc')->get();
+        } elseif ($value == $sort->dlowToHigh) {
             $products = $products->orderByRaw('CONVERT(discount_price, SIGNED) asc')->get();
-        }
-        else {
+        } else {
             $products = $products->orderBy('id', 'desc')->get();
         }
-        
-     
-        
-        return view('frontend.filter-product', compact('products', 'request', 'min', 'max','unr'));
+
+
+
+        return view('frontend.filter-product', compact('products', 'request', 'min', 'max', 'unr'));
     }
     
     /**
