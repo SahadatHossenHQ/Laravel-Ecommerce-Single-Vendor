@@ -126,7 +126,7 @@
                 </span>
                 @endif
             </div>
-            <h6 class="px-2 py-1" style="line-height:.9rem;font-size:.9rem;"><small>{{ $product->prdct_extra_msg }}</small></h6>
+            <h6 class="px-2 py-1" style="line-height:.9rem;font-size:.9rem;">@if ($product->prdct_extra_msg)<small>{{ $product->prdct_extra_msg }}</small>@endif</h6>
             <div class="quick-view"> <a href="{{route('product.details', $product->slug)}}"><i class="icofont icofont-search"></i> Quick View</a></div>
        </div>
 
