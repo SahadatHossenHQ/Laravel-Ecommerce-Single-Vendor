@@ -1,6 +1,8 @@
 ### Version 6.0.0
 
 #### 25.03.2024
+- Feature: Checkout time phone number allocation and dynamically found the digit limit
+- Feature: Shop Setting page dynamically changable the digit of 
 - Fix: Product grid view all small custom message hidden by condition based
 - Fix: Minimal checkout double amount problem solved
 - Fix: Page status checked and saving issue solved
