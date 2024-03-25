@@ -9,7 +9,9 @@
         "prod": "npm run production",
         "production": "mix --production",
         "clear": "clear && php artisan clear-compiled && php artisan optimize && composer dump-autoload && composer dump-autoload -o && php artisan route:clear && php artisan view:clear && php artisan cache:clear && php artisan config:cache && php artisan config:clear",
-        "serve": "clear && php artisan cache:clear && php artisan config:cache && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan serve"
+        "serve": "clear && php artisan cache:clear && php artisan config:cache && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan serve",
+        "serve_all": "clear && php artisan cache:clear && php artisan config:cache && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan serve --host 192.168.10.150 --port 8000"
+    
     },
     "devDependencies": {
         "axios": "^0.21",
