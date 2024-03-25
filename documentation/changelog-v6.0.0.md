@@ -1,5 +1,9 @@
 ### Version 6.0.0
 
+#### 25.03.2024
+- Fix: Product grid view all small custom message hidden by condition based
+- Fix: Minimal checkout double amount problem solved
+- Fix: Page status checked and saving issue solved
 
 #### 24.03.2024
 - fix: only main catagory filter fixes

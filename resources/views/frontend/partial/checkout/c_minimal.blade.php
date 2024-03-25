@@ -135,7 +135,7 @@
                             <div class="form-group col-md-12">
                                 <select name="shipping_range" id="shipping_range" class="form-control">
                                     <option value="1">Inside {{ setting('shipping_range_inside') }} ({{ setting('shipping_charge') }})</option>
-                                    <option value="0">Outside of {{ setting('shipping_charge_out_of_range') }} ({{ setting('shipping_charge') }})</option>
+                                    <option value="0">Outside of ({{ setting('shipping_charge_out_of_range') }})</option>
                                 </select>
                             </div>
                             
