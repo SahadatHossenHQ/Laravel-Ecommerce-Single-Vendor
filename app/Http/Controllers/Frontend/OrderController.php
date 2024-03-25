@@ -59,6 +59,10 @@ class OrderController extends Controller
      */
     public function orderStore_minimal(Request $request)
     {
+
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
             'last_name'       => 'nullable|string|max:255',
@@ -69,7 +73,7 @@ class OrderController extends Controller
             'shipping_range'  => 'required|integer|max:255',
             'district'        => 'nullable|string|max:255',
             'postcode'        => 'nullable|string|max:255',
-            'phone'           => 'required|string|max:11|min:11',
+            'phone'           => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'email'           => 'nullable|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
             'payment_method'  => 'nullable|string|max:255',
@@ -412,6 +416,10 @@ class OrderController extends Controller
      */
     public function orderStore_guest(Request $request)
     {
+
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
             'last_name'       => 'nullable|string|max:255',
@@ -421,7 +429,7 @@ class OrderController extends Controller
             'city'            => 'required|string|max:255',
             'district'        => 'required|string|max:255',
             'postcode'        => 'nullable|string|max:255',
-            'phone'           => 'required|string|max:11|min:11',
+            'phone'           => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'email'           => 'nullable|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
             'payment_method'  => 'required|string|max:255',
@@ -761,6 +769,9 @@ class OrderController extends Controller
      */
     public function orderStore(Request $request)
     {
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
             'last_name'       => 'nullable|string|max:255',
@@ -770,7 +781,7 @@ class OrderController extends Controller
             'city'            => 'required|string|max:255',
             'district'        => 'required|string|max:255',
             'postcode'        => 'nullable|string|max:255',
-            'phone'           => 'required|string|max:11|min:11',
+            'phone'           => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'email'           => 'required|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
             'payment_method'  => 'required|string|max:255',
@@ -1098,6 +1109,9 @@ class OrderController extends Controller
     public function orderBuyNowStore_minimal(Request $request)
     {
 
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
             'last_name'       => 'nullable|string|max:255',
@@ -1107,7 +1121,7 @@ class OrderController extends Controller
             'city'            => 'nullable|string|max:255',
             'district'        => 'nullable|string|max:255',
             'postcode'        => 'nullable|string|max:255',
-            'phone'           => 'required|string|max:11|min:11',
+            'phone'           => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'email'           => 'nullable|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
             'payment_method'  => 'nullable|string|max:255',
@@ -1421,6 +1435,9 @@ class OrderController extends Controller
     public function orderBuyNowStore_guest(Request $request)
     {
 
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
         // dd($request);
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
@@ -1431,7 +1448,7 @@ class OrderController extends Controller
             'city'            => 'required|string|max:255',
             'district'        => 'required|string|max:255',
             'postcode'        => 'nullable|string|max:255',
-            'phone'           => 'required|string|max:11|min:11',
+            'phone'           => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'email'           => 'required|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
             'payment_method'  => 'required|string|max:255',
@@ -1740,6 +1757,10 @@ class OrderController extends Controller
     
     public function orderBuyNowStore(Request $request)
     {
+
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
             'last_name'       => 'nullable|string|max:255',
@@ -1749,7 +1770,7 @@ class OrderController extends Controller
             'city'            => 'required|string|max:255',
             'district'        => 'required|string|max:255',
             'postcode'        => 'nullable|string|max:255',
-            'phone'           => 'required|string|max:11|min:11',
+            'phone'           => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'email'           => 'required|email|string|max:255',
             'shipping_method' => 'nullable|string|max:255',
             'payment_method'  => 'required|string|max:255',

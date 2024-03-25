@@ -215,6 +215,12 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'Point_rate'], ['value' => $request->get('Point_rate')]);
             Setting::updateOrCreate(['name' => 'Default_Point'], ['value' => $request->get('Default_Point')]);
 
+            Setting::updateOrCreate(['name' => 'phone_min_dgt'], ['value' => $request->get('phone_min_dgt')]);
+            Setting::updateOrCreate(['name' => 'phone_max_dgt'], ['value' => $request->get('phone_max_dgt')]);
+
+
+
+
             notify()->success("Shop settings successfully updated", "Success");
             return back();
         }
