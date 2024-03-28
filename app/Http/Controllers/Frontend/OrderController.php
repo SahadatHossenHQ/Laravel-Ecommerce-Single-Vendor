@@ -398,7 +398,8 @@ class OrderController extends Controller
             // notify()->success("Your order successfully done", "Congratulations");
             // return redirect()->route('order');
 
-            echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
+            return view('frontend.order_success', compact('data'));
+            // echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
 
             
         }
@@ -753,7 +754,8 @@ class OrderController extends Controller
             // notify()->success("Your order successfully done", "Congratulations");
             // return redirect()->route('order');
 
-            echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
+            return view('frontend.order_success', compact('data'));
+            // echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
 
             
         }
@@ -1421,7 +1423,8 @@ class OrderController extends Controller
             });}
         
             // notify()->success("Your order successfully done", "Congratulations");
-            echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
+            return view('frontend.order_success', compact('data'));
+            // echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
 
             if($product->download_able==1){
                 return redirect()->route('download');
@@ -1744,7 +1747,8 @@ class OrderController extends Controller
             });}
         
             // notify()->success("Your order successfully done", "Congratulations");
-            echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
+            return view('frontend.order_success', compact('data'));
+            // echo 'Thanks for your order, your invoice number is: ' . $data['invoice'] . ' <b><a href="/">Back to home</a></b>';
 
             if($product->download_able==1){
                 return redirect()->route('download');
