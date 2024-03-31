@@ -199,13 +199,10 @@
                 max: 9000,
                 values: ["{!! $min !!}", "{!! $max !!}"],
                 slide: function(event, ui) {
-                    $("#amount").val({{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + ui.values[0] + " -"
-                        {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + ui.values[1]);
+                    $("#amount").val("{!! setting('CURRENCY_CODE_MIN') ?? 'TK' !!}" + ui.values[0] + " - {!! setting('CURRENCY_CODE_MIN') ?? 'TK' !!}" + ui.values[1]);
                 }
             });
-            $("#amount").val({{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + $("#slider-range").slider("values", 0) +
-                " -"
-                {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }} + $("#slider-range").slider("values", 1));
+            $("#amount").val("{!! setting('CURRENCY_CODE_MIN') ?? 'TK' !!}" + $("#slider-range").slider("values", 0) + " - {!! setting('CURRENCY_CODE_MIN') ?? 'TK' !!}" + $("#slider-range").slider("values", 1));
         });
     </script>
 @endpush
