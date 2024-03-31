@@ -1,5 +1,12 @@
 ### Version 6.0.0
 
+
+#### 31.03.2024
+- Fix: Filter category and mini category
+- Fix: Filter Pricing level forntend just
+- Fix: Filter with product attibutes frontend only
+- Fix: JS Issue Filter system
+
 #### 25.03.2024
 - Feature: Checkout time phone number allocation and dynamically found the digit limit
 - Feature: Shop Setting page dynamically changable the digit of 
