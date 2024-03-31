@@ -121,18 +121,29 @@
         <style>
             .cck2 {
                 border-radius: 5px;
-                cursor: pointer;
+                /* cursor: pointer; */
                 border: 1px solid black;
                 text-align: center;
-                padding: 2px 10px;
+                padding: 2px 10px !important;
+                margin-block: .4rem !important;
                 position: relative;
+                margin: 0;
+                padding: 0;
             }
 
             .cck2 input {
                 opacity: 0;
                 position: absolute;
+                cursor: pointer;
+                text-align: center;
+                z-index: 99999;
+                width: 100%;
+                height: 100%;
             }
-
+            .cck2:hover{
+                background: orange;
+                border-color: orange;
+            }
             .cck2.active {
                 background: black;
                 color: white;
