@@ -1,6 +1,10 @@
 ### Version 6.0.0
 
 
+#### 01.04.2024
+- Fix: Single prodcut JS Issue, this problem was make for multiple currency formate
+- 
+
 #### 31.03.2024
 - Fix: Filter category and mini category
 - Fix: Filter Pricing level forntend just
