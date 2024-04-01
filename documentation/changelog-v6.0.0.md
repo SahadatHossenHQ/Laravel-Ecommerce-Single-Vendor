@@ -2,6 +2,7 @@
 
 
 #### 01.04.2024
+- Fix: Single product page formatted reduce the whitespace
 - Fix: Placeholder image issue
 - Fix: Single prodcut JS Issue, this problem was make for multiple currency formate
 - 
