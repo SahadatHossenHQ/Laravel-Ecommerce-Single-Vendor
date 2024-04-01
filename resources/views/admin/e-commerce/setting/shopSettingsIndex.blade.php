@@ -67,12 +67,12 @@
                                         </li>
 
                                         <li class="col-12 col-md-6 form-group">
-                                            <label for="phone_min_dgt" class="text-capitalize">Checkout Phone Number Minimum Digit</label>
+                                            <label for="phone_min_dgt" class="text-capitalize">Phone Number Minimum Digit</label>
                                             <input class="form-control" type="number" id="phone_min_dgt" name="phone_min_dgt" value="{{ setting('phone_min_dgt') ?? 11 }}">
                                         </li>
 
                                         <li class="col-12 col-md-6 form-group">
-                                            <label for="phone_max_dgt" class="text-capitalize">Checkout Phone Number Maximum Digit</label>
+                                            <label for="phone_max_dgt" class="text-capitalize">Phone Number Maximum Digit</label>
                                             <input class="form-control" type="number" id="phone_max_dgt" name="phone_max_dgt" value="{{ setting('phone_max_dgt') ?? 11 }}">
                                         </li>
                                     </ul>

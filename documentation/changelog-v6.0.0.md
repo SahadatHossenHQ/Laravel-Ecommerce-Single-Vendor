@@ -5,7 +5,8 @@
 - Fix: Single product page formatted reduce the whitespace
 - Fix: Placeholder image issue
 - Fix: Single prodcut JS Issue, this problem was make for multiple currency formate
-- 
+- Cng: Phone number level for max/min
+- Single page stock notice BN/EN base on country
 
 #### 31.03.2024
 - Fix: Filter category and mini category

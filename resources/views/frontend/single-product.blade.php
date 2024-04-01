@@ -451,13 +451,12 @@
                             style="background: green;color: white;border-radius: 50%;width: 20px;height: 20px;display: inline-block;font-size: 13px;line-height: 20px;text-align: center;"><i
                                 class="icofont icofont-tick-mark"></i></span> In Stock ({{ $product->quantity }} copies
                         available)
-                    <p style="margin:0;font-size: 11px;margin-left: 21px;margin-top: 4px;">* স্টক আউট হওয়ার আগেই অর্ডার
-                        করুন</p>
+                    <p style="margin:0;font-size: 11px;margin-left: 21px;margin-top: 4px;">@if(setting('COUNTRY_SERVE') == 'Bangladesh')* স্টক আউট হওয়ার আগেই অর্ডার করুন@else * Order before finish the stock @endif</p>
                     </p>
 
                     <!-- @if ($product->whole_price > 0)
-    <p class="item_price">Whole Sell :Tk.{{ $product->whole_price }}</p>
-    @endif -->
+                    <p class="item_price">Whole Sell :Tk.{{ $product->whole_price }}</p>
+                    @endif -->
                     @if ($product->colors->count() != 0)
                         <div class="row ml-1">
                             <div class="col-12 pl-0 mb-2">
@@ -1335,8 +1334,7 @@
 
         <br>
         <div class="products related row"
-            style="background: white;
-box-shadow: 0px 4px 6px -3px #9c9c9c;margin-right: -15px;;margin-left: -15px;">
+            style="background: white;box-shadow: 0px 4px 6px -3px #9c9c9c;margin-right: -15px;;margin-left: -15px;">
             <div class="container">
                 <h3 class="p_title" style="font-size:20px;padding-top: 20px;">Similar Category Best</h3>
                 <?php

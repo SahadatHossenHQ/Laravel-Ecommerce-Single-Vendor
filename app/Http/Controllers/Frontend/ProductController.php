@@ -344,16 +344,16 @@ class ProductController extends Controller
     public function productDetails($slug)
     {
         $product = Product::with('comments', 'reviews')->where('slug', $slug)->where('status', true)->firstOrFail();
-        $product->reach+=1;
+        $product->reach += 1;
         $product->update();
-         $colors_product = DB::table('color_product')
-                    ->select('*')
-                    ->join('colors', 'colors.id', '=', 'color_product.color_id')
-                    ->where('color_product.product_id', $product->id)
-                    ->get();
-           $attributes = Attribute::all();
+        $colors_product = DB::table('color_product')
+        ->select('*')
+            ->join('colors', 'colors.id', '=', 'color_product.color_id')
+            ->where('color_product.product_id', $product->id)
+            ->get();
+        $attributes = Attribute::all();
 
-        return view('frontend.single-product', compact('product','colors_product','attributes'));
+        return view('frontend.single-product', compact('product', 'colors_product', 'attributes'));
     }
      // show product details
     public function productDetails1($slug)
