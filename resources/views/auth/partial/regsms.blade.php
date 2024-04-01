@@ -37,7 +37,7 @@
             @enderror
         </div> --}}
         <div class="form-group col-md-12">
-            <label for="email">Email <sup style="color: red;">*</sup></label>
+            <label for="email">Email <sup style="color: red;"></sup></label>
             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" />
             @error('email')
             <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -51,6 +51,7 @@
             <span class="invalid-feedback" role="alert">{{ $message }}</span>
             @enderror
         </div>
+        @if(setting('sms_config_status') == 1)
         <input type="hidden" value="12345" name="otp" id="otp" class="form-control @error('otp') is-invalid @enderror"
             required />
         <div class="form-group col-md-4">
@@ -65,6 +66,7 @@
             <span class="invalid-feedback" role="alert">{{ $message }}</span>
             @enderror
         </div>
+        @endif
         <div class="form-group col-md-12">
             <label for="password">Password <sup style="color: red;">*</sup>&nbsp;&nbsp;<i id="show_pass" class="fal fa-eye"></i></label>
             <input type="password" name="password" id="password"

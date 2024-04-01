@@ -51,17 +51,17 @@ class OrderController extends Controller
 
 
 
-        /**
+    /**
      * store Guest order
      *
      * @param  mixed $request
      * @return void
+     * 
      */
     public function orderStore_minimal(Request $request)
     {
-
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
 
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
@@ -86,8 +86,6 @@ class OrderController extends Controller
             'routing'         => 'nullable|string|max:255',
         ]);
 
-        
-
         $seller_count = $request->seller_count;
         if($request->stotal > setting('shipping_free_above')){
             $shipping_charge = 0;
@@ -101,8 +99,6 @@ class OrderController extends Controller
                 $single_charge = setting('shipping_charge_out_of_range');
             }
         }
-
-
 
         $cart_subtotal = $request->stotal;
         if (Session::has('coupon')) {
@@ -138,7 +134,6 @@ class OrderController extends Controller
                 $user->update();
             }
         } */
-
 
         $order = Order::create([
             // 'user_id'         => auth()->id(),
@@ -180,7 +175,6 @@ class OrderController extends Controller
             'order_id' => $order_id,
             'invoice'  => '#' . str_pad($order->id, 5, 0, STR_PAD_LEFT),
         ]);
-
 
         $total_refer = 0;
         $usids = [];
@@ -418,8 +412,8 @@ class OrderController extends Controller
     public function orderStore_guest(Request $request)
     {
 
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
 
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
@@ -771,8 +765,8 @@ class OrderController extends Controller
      */
     public function orderStore(Request $request)
     {
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
 
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
@@ -1111,8 +1105,8 @@ class OrderController extends Controller
     public function orderBuyNowStore_minimal(Request $request)
     {
 
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
 
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
@@ -1438,8 +1432,8 @@ class OrderController extends Controller
     public function orderBuyNowStore_guest(Request $request)
     {
 
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
 
         // dd($request);
         $this->validate($request, [
@@ -1762,8 +1756,8 @@ class OrderController extends Controller
     public function orderBuyNowStore(Request $request)
     {
 
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $phoneMinDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
 
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',

@@ -6,7 +6,14 @@
 - Fix: Placeholder image issue
 - Fix: Single prodcut JS Issue, this problem was make for multiple currency formate
 - Cng: Phone number level for max/min
-- Single page stock notice BN/EN base on country
+- Single Page stock notice BN/EN base on country
+- Break: Database operation break, chnage the users table email column nullable
+- Cng: Menu rarrange the SMS | Mail below of shop settings menu
+- Break: Registration form phone number dynamic number digit
+- Break: M ail sms config page rewrite and controller calling reduce the opration for complexity
+- Cng: Registration time email optional or unfillable allow while register
+- Feture: If SMS config status is true then register time OTP is required else not
+- 
 
 #### 31.03.2024
 - Fix: Filter category and mini category

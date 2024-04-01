@@ -120,6 +120,7 @@ class SettingController extends Controller
             Setting::updateOrCreate(['name' => 'SMS_API_URL'], ['value' => $request->get('SMS_API_URL')]);
             Setting::updateOrCreate(['name' => 'SMS_API_KEY'], ['value' => $request->get('SMS_API_KEY')]);
             Setting::updateOrCreate(['name' => 'SMS_API_SENDER_ID'], ['value' => $request->get('SMS_API_SENDER_ID')]);
+            Setting::updateOrCreate(['name' => 'sms_config_status'], ['value' => $request->get('sms_config_status')]);
             notify()->success("SMS configuration successfully updated", "Success");
             return back();
         }
@@ -643,59 +644,42 @@ class SettingController extends Controller
 
     public function mailsmsapireglogIndex(){
 
-        // Registration Verify with
-        $get_regVerify = Setting::where('name', 'regVerify')->first();
-        $regVerify = (!$get_regVerify) ? (object)['value' => 'email' ] : $get_regVerify;
+        // // Registration Verify with
+        // $get_regVerify = Setting::where('name', 'regVerify')->first();
+        // $regVerify = (!$get_regVerify) ? (object)['value' => 'email' ] : $get_regVerify;
 
-        // Registration Verify with
-        $get_recovrAC = Setting::where('name', 'recovrAC')->first();
-        $recovrAC = (!$get_recovrAC) ? (object)['value' => 'emailsms' ] : $get_recovrAC;
+        // // Registration Verify with
+        // $get_recovrAC = Setting::where('name', 'recovrAC')->first();
+        // $recovrAC = (!$get_recovrAC) ? (object)['value' => 'emailsms' ] : $get_recovrAC;
 
-        // Email Configuration
-        $get_mail_config = Setting::where('name', 'mail_config')->first();
-        $mail_config = (!$get_mail_config) ? (object)['value' => 0] : $get_mail_config;
-        $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
-        $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
-        $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
-        $MAIL_PORT = (!$get_MAIL_PORT) ? (object)['value' => '465'] : $get_MAIL_PORT;
-        $get_MAIL_USERNAME = Setting::where('name', 'MAIL_USERNAME')->first();
-        $MAIL_USERNAME = (!$get_MAIL_USERNAME) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_USERNAME;
-        $get_MAIL_PASSWORD = Setting::where('name', 'MAIL_PASSWORD')->first();
-        $MAIL_PASSWORD = (!$get_MAIL_PASSWORD) ? (object)['value' => '@Finva2024'] : $get_MAIL_PASSWORD;
-        $get_MAIL_ENCRYPTION = Setting::where('name', 'MAIL_ENCRYPTION')->first();
-        $MAIL_ENCRYPTION = (!$get_MAIL_ENCRYPTION) ? (object)['value' => 'tls'] : $get_MAIL_ENCRYPTION;
-        $get_MAIL_FROM_ADDRESS = Setting::where('name', 'MAIL_FROM_ADDRESS')->first();
-        $MAIL_FROM_ADDRESS = (!$get_MAIL_FROM_ADDRESS) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_FROM_ADDRESS;
-        $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
-        $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
+        // // Email Configuration
+        // $get_mail_config = Setting::where('name', 'mail_config')->first();
+        // $mail_config = (!$get_mail_config) ? (object)['value' => 0] : $get_mail_config;
+        // $get_MAIL_HOST = Setting::where('name', 'MAIL_HOST')->first();
+        // $MAIL_HOST = (!$get_MAIL_HOST) ? (object)['value' => 'mail.' . $_SERVER['SERVER_NAME']] : $get_MAIL_HOST;
+        // $get_MAIL_PORT = Setting::where('name', 'MAIL_PORT')->first();
+        // $MAIL_PORT = (!$get_MAIL_PORT) ? (object)['value' => '465'] : $get_MAIL_PORT;
+        // $get_MAIL_USERNAME = Setting::where('name', 'MAIL_USERNAME')->first();
+        // $MAIL_USERNAME = (!$get_MAIL_USERNAME) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_USERNAME;
+        // $get_MAIL_PASSWORD = Setting::where('name', 'MAIL_PASSWORD')->first();
+        // $MAIL_PASSWORD = (!$get_MAIL_PASSWORD) ? (object)['value' => '@Finva2024'] : $get_MAIL_PASSWORD;
+        // $get_MAIL_ENCRYPTION = Setting::where('name', 'MAIL_ENCRYPTION')->first();
+        // $MAIL_ENCRYPTION = (!$get_MAIL_ENCRYPTION) ? (object)['value' => 'tls'] : $get_MAIL_ENCRYPTION;
+        // $get_MAIL_FROM_ADDRESS = Setting::where('name', 'MAIL_FROM_ADDRESS')->first();
+        // $MAIL_FROM_ADDRESS = (!$get_MAIL_FROM_ADDRESS) ? (object)['value' => 'no-reply@' . $_SERVER['SERVER_NAME']] : $get_MAIL_FROM_ADDRESS;
+        // $get_MAIL_FROM_NAME = Setting::where('name', 'MAIL_FROM_NAME')->first();
+        // $MAIL_FROM_NAME = (!$get_MAIL_FROM_NAME) ? (object)['value' => env('APP_NAME') ] : $get_MAIL_FROM_NAME;
 
-        // SMS Configuratoin
-        $get_SMS_API_URL = Setting::where('name', 'SMS_API_URL')->first();
-        $SMS_API_URL = (!$get_SMS_API_URL) ? (object)['value' => 'www.asifulmamun.info.bd' ] : $get_SMS_API_URL;
-        $get_SMS_API_KEY = Setting::where('name', 'SMS_API_KEY')->first();
-        $SMS_API_KEY = (!$get_SMS_API_KEY) ? (object)['value' => 'sms api key' ] : $get_SMS_API_KEY;
-        $get_SMS_API_SENDER_ID = Setting::where('name', 'SMS_API_SENDER_ID')->first();
-        $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801721600688' ] : $get_SMS_API_SENDER_ID;
+        // // SMS Configuratoin
+        // $get_SMS_API_URL = Setting::where('name', 'SMS_API_URL')->first();
+        // $SMS_API_URL = (!$get_SMS_API_URL) ? (object)['value' => 'www.asifulmamun.info.bd' ] : $get_SMS_API_URL;
+        // $get_SMS_API_KEY = Setting::where('name', 'SMS_API_KEY')->first();
+        // $SMS_API_KEY = (!$get_SMS_API_KEY) ? (object)['value' => 'sms api key' ] : $get_SMS_API_KEY;
+        // $get_SMS_API_SENDER_ID = Setting::where('name', 'SMS_API_SENDER_ID')->first();
+        // $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801721600688' ] : $get_SMS_API_SENDER_ID;
 
 
-        return view('admin.e-commerce.setting.mailsmsapireglogIndex', compact(
-
-            'regVerify',
-            'recovrAC',
-            
-            'mail_config',
-            'MAIL_HOST',
-            'MAIL_PORT',
-            'MAIL_USERNAME',
-            'MAIL_PASSWORD',
-            'MAIL_ENCRYPTION',
-            'MAIL_FROM_ADDRESS',
-            'MAIL_FROM_NAME',
-
-            'SMS_API_URL',
-            'SMS_API_KEY',
-            'SMS_API_SENDER_ID',
-        ));
+        return view('admin.e-commerce.setting.mailsmsapireglogIndex');
     }
 
 

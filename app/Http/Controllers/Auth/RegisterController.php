@@ -55,11 +55,20 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+
+        $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
+        $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+
+        if(setting('regVerify') == 'sms'){
+            $email_requirements = 'nullable';
+        }else{
+            $email_requirements = 'required';
+        }
+
         $this->validate($request, [
             'name'     => 'required|string|max:50',
-
-            // 'email'    => 'string|email|max:255|unique:users,email',
-            'phone'    => 'required|string|max:11|min:11|unique:users,phone',
+            'email'    => $email_requirements . '|string|email|max:255|unique:users,email',
+            'phone'    => 'required|string|max:' . $phoneMaxDigits . '|min:' . $phoneMinDigits,
             'password' => 'required|string|min:8|confirmed'
         ]);
 

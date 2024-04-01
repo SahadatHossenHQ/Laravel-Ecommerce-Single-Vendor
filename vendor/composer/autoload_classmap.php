@@ -55,6 +55,7 @@ return array(
     'App\\Http\\Controllers\\Frontend\\adsController' => $baseDir . '/app/Http/Controllers/Frontend/adsController.php',
     'App\\Http\\Controllers\\Frontend\\wishlistController' => $baseDir . '/app/Http/Controllers/Frontend/wishlistController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\SystemController' => $baseDir . '/app/Http/Controllers/SystemController.php',
     'App\\Http\\Controllers\\Vendor\\CustomOrderController' => $baseDir . '/app/Http/Controllers/Vendor/CustomOrderController.php',
     'App\\Http\\Controllers\\Vendor\\DashboardController' => $baseDir . '/app/Http/Controllers/Vendor/DashboardController.php',
     'App\\Http\\Controllers\\Vendor\\OrderController' => $baseDir . '/app/Http/Controllers/Vendor/OrderController.php',

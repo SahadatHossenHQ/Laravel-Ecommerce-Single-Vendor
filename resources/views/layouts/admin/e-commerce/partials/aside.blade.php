@@ -762,6 +762,15 @@
                             </a>
                         </li>
                         <li
+                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
+                            <a href="{{route('admin.setting.mailsmsapireglog')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    SMS | Mail | Login | Reg
+                                </p>
+                            </a>
+                        </li>
+                        <li
                             class="nav-item {{Request::is('admin/setting/layout') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
                             <a href="{{route('admin.setting.layout')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>
@@ -844,17 +853,6 @@
                                 <i class="nav-icon fas fa-user-cog"></i>
                                 <p>
                                     Color
-                                </p>
-                            </a>
-                        </li>
-
-                        
-                        <li
-                            class="nav-item {{Request::is('admin/setting/header') ? 'menu-is-opening menu-open':'menu-is-opening menu-open'}}">
-                            <a href="{{route('admin.setting.mailsmsapireglog')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user-cog"></i>
-                                <p>
-                                    SMS | Mail | Login | Reg
                                 </p>
                             </a>
                         </li>
