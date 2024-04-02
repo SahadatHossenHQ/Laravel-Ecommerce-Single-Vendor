@@ -4,7 +4,18 @@
 #### 02.04.2024
 - Fix: Dynamic phone number digit login allow
 - Fix: Single product page variation switcher
-
+- Fix: Filter - reConfigured for better performence als while debug
+        => Color System
+        => Atrribute Sytem
+        => Brand System
+        => MultiBrand System
+        => All Category
+        => Pricing Sliding
+        => Pricing Different
+        => Discount Different
+        => Pricing ASC/DSC
+        => Discount ASC/DSC
+        
 #### 01.04.2024
 - Fix: Single product page formatted reduce the whitespace
 - Fix: Placeholder image issue

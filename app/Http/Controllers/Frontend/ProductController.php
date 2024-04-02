@@ -457,64 +457,60 @@ class ProductController extends Controller
      */
     public function productFilter(Request $request)
     {
+        $products = Product::where('status', '1');
+
+
         // return $request;
         $unr = $request->unr;
-        $max_amount =  substr($request->amount, strpos($request->amount, "-") + 1);;
-        $min_amount =  substr($request->amount, 0, strpos($request->amount, '-'));
-        // $min        = str_replace('TK', '', $min_amount);
-        // $max        = str_replace('TK', '', $max_amount);
-        if (setting('CURRENCY_CODE_MIN')) {
-            $currency_code_min = setting('CURRENCY_CODE_MIN');
-        } else {
-            $currency_code_min = "Tk";
+        
+        // Pricing level string to int
+        if(isset($request->amount)){
+            if (setting('CURRENCY_CODE_MIN')) {
+                $currency_code_min = setting('CURRENCY_CODE_MIN');
+            } else {
+                $currency_code_min = "Tk";
+            }
+            $min        = (int)str_replace($currency_code_min, '', substr($request->amount, 0, strpos($request->amount, '-')));
+            $max        = (int)str_replace($currency_code_min, '', substr($request->amount, strpos($request->amount, "-") + 1));
+            $products   = $products->whereBetween('regular_price', [$min, $max]);
+            
+        } else{
+            $min = 0;
+            $max = 9999999999999999999999999;
         }
-        $min        = str_replace($currency_code_min, '', $min_amount);
-        $max        = str_replace($currency_code_min, '', $max_amount);
+        
 
-        $num = (int)$min;
-        $num2 = (int)$max;
-        $products = Product::where('status', '1');
-        // $products   = $products->whereBetween('regular_price', [$num, $num2]);
-        $sort  = new Sorting();
-        $value = $sort->getValue($request->sort);
-
-
-
-        // check request sub category
-
-
-        if ($request->extra_category != '') {
-            $sub_category = ExtraMiniCategory::where('slug', $request->extra_category)->pluck('id');
-            $sub_category_product_ids = DB::table('extra_mini_category_product')->where('extra_mini_category_id', $sub_category)->get()->pluck('product_id');
-            $products = $products->whereIn('id', $sub_category_product_ids);
-        } elseif ($request->mini_category != '') {
-            $sub_category = miniCategory::where('slug', $request->mini_category)->pluck('id');
-            $sub_category_product_ids = DB::table('mini_category_product')->where('mini_category_id', $sub_category)->get()->pluck('product_id');
-            $products = $products->whereIn('id', $sub_category_product_ids);
-        } elseif ($request->sub_category != '') {
-            $sub_category = SubCategory::where('slug', $request->sub_category)->pluck('id');
-            $sub_category_product_ids = DB::table('product_sub_category')->where('sub_category_id', $sub_category)->get()->pluck('product_id');
-            $products = $products->whereIn('id', $sub_category_product_ids);
-        } elseif ($request->category != '') {
-            $category = Category::where('slug', $request->category)->pluck('id');
-            $category_product_ids = DB::table('category_product')->where('category_id', $category)->get()->pluck('product_id');
-            $products = $products->whereIn('id', $category_product_ids);
-        }
+        // check category
+            if ($request->extra_category != '') {
+                $sub_category = ExtraMiniCategory::where('slug', $request->extra_category)->pluck('id');
+                $sub_category_product_ids = DB::table('extra_mini_category_product')->where('extra_mini_category_id', $sub_category)->get()->pluck('product_id');
+                $products = $products->whereIn('id', $sub_category_product_ids);
+            } elseif ($request->mini_category != '') {
+                $sub_category = miniCategory::where('slug', $request->mini_category)->pluck('id');
+                $sub_category_product_ids = DB::table('mini_category_product')->where('mini_category_id', $sub_category)->get()->pluck('product_id');
+                $products = $products->whereIn('id', $sub_category_product_ids);
+            } elseif ($request->sub_category != '') {
+                $sub_category = SubCategory::where('slug', $request->sub_category)->pluck('id');
+                $sub_category_product_ids = DB::table('product_sub_category')->where('sub_category_id', $sub_category)->get()->pluck('product_id');
+                $products = $products->whereIn('id', $sub_category_product_ids);
+            } elseif ($request->category != '') {
+                $category = Category::where('slug', $request->category)->pluck('id');
+                $category_product_ids = DB::table('category_product')->where('category_id', $category)->get()->pluck('product_id');
+                $products = $products->whereIn('id', $category_product_ids);
+            }
 
         // check request collection
-        if ($request->collection != '') {
-            $collection  = Collection::where('slug', $request->collection)->first();
-            $categoryIds = $collection->categories->pluck('id');
-            $collection_product_ids  = DB::table('category_product')->whereIn('category_id', $categoryIds)->get()->pluck('product_id');
-            $products = $products->whereIn('id', $collection_product_ids);
-        }
+            if ($request->collection != '') {
+                $collection  = Collection::where('slug', $request->collection)->first();
+                $categoryIds = $collection->categories->pluck('id');
+                $collection_product_ids  = DB::table('category_product')->whereIn('category_id', $categoryIds)->get()->pluck('product_id');
+                $products = $products->whereIn('id', $collection_product_ids);
+            }
         // check request brands
-
-
         // check request colors
-
-
         // check request rating
+        
+        // Attributets
         if ($request->rating != '') {
             $rating_product_ids = DB::table('reviews')->where('rating', $request->rating)->get()->pluck('product_id');
             $products = $products->whereIn('id', $rating_product_ids);
@@ -526,19 +522,31 @@ class ProductController extends Controller
             $products = $products->whereIn('id', $color_product_ids);
         }
 
-        if ($request->attri != '') {
-            $brands = AttributeValue::whereIn('slug', $request->attri)->pluck('id');
-            $brand_product_ids = DB::table('attribute_product')->whereIn('attribute_value_id', $brands)->get()->pluck('product_id');
-            if ($brand_product_ids->count() > 0) {
-                $products = $products->where('id', $brand_product_ids);
+
+    
+        $s_attri = $request->input('attri');
+        if (!empty($s_attri)) {
+            $brands = AttributeValue::whereIn('slug', $s_attri)->pluck('id');
+            $brandProductIds = DB::table('attribute_product')->whereIn('attribute_value_id', $brands)->pluck('product_id');
+            if ($brandProductIds->count() > 0) {
+                $products = $products->whereIn('id', $brandProductIds->toArray());
+            } else {
+                // No products found, reset the query to get no products
+                $products = $products->where('id', 0);
             }
         }
-        if ($request->brands != '') {
-            $brandss = Brand::whereIn('slug', $request->brands)->pluck('id');
-            if ($brandss->count() > 0) {
-                $products = $products->where('id', $brandss);
+
+        $brands = $request->input('brands'); // Get brands from the request
+        if (!empty($brands)) {
+            $brandIds = Brand::whereIn('slug', $brands)->pluck('id'); // Fetch IDs of brands in the request
+            if ($brandIds->count() > 0) {
+                $products = $products->whereIn('brand_id', $brandIds); // Filter products based on brand IDs
             }
         }
+
+        // sorting
+        $sort       = new Sorting();
+        $value      = $sort->getValue($request->sort);
         if ($value == $sort->oldToNew) {
             $products = $products->orderBy('id', 'asc')->get();
         } elseif ($value == $sort->best) {
@@ -570,48 +578,46 @@ class ProductController extends Controller
     {
         $product = Product::with(array(
             'colors' => function ($query) {
-                $query->select('code', 'name','slug');
+                $query->select('code', 'name', 'slug');
             },
             'sizes' => function ($query) {
                 $query->select('name');
             }
         ))->where('slug', $slug)->firstOrFail(['id', 'slug', 'regular_price', 'discount_price', 'image']);
-                    $attributes = Attribute::all();
-                    $attrs='';
-                    $values='';
-                    foreach ($attributes as $attribute){
-                            $attribute_prouct = DB::table('attribute_product')
-                              ->select('*')
-                              ->join('attribute_values', 'attribute_values.id', '=', 'attribute_product.attribute_value_id')
-                              ->addselect('attribute_values.name as vName' )
-                              ->addselect('attribute_values.id as vid' )
-                              ->join('attributes', 'attributes.id', '=', 'attribute_values.attributes_id')
-                              ->where('attribute_product.product_id', $product->id)
-                                ->where('attributes.id', $attribute->id)
-                              ->get();
-                        if($attribute_prouct->count() > 0){
+        $attributes = Attribute::all();
+        $attrs = '';
+        $values = '';
+        foreach ($attributes as $attribute) {
+            $attribute_prouct = DB::table('attribute_product')
+            ->select('*')
+                ->join('attribute_values', 'attribute_values.id', '=', 'attribute_product.attribute_value_id')
+                ->addselect('attribute_values.name as vName')
+                ->addselect('attribute_values.id as vid')
+                ->join('attributes', 'attributes.id', '=', 'attribute_values.attributes_id')
+                ->where('attribute_product.product_id', $product->id)
+                ->where('attributes.id', $attribute->id)
+                ->get();
+            if ($attribute_prouct->count() > 0) {
 
-                            $attrs.='<div class="col-12 pl-0 mb-2">
-                                <p><strong>Select '.$attribute->name.':</strong></p>
+                $attrs .= '<div class="col-12 pl-0 mb-2">
+                                <p><strong>Select ' . $attribute->name . ':</strong></p>
                             </div>';
-                           foreach ($attribute_prouct as $attr){
-                                 $attrs.=  '<div class="form-check col-2 col-sm-2"><input id="'.$attr->vName.'" class="form-check-input get_attri_price pp'.$attribute->slug.'" type="radio" name="'.$attribute->slug.'" value="'.$attr->vid.'"><label class="form-check-label" for="'.$attr->vName.'">'.$attr->vName.'</label></div>
-                                 ';
-                                $attrs.=  
-                                  "<script>
-                        $(document).on('click', '.pp".$attribute->slug."', function(e) {
-                            $('input#".$attribute->slug."').val(this.value);
+                foreach ($attribute_prouct as $attr) {
+                    $attrs .=  '<div class="form-check col-2 col-sm-2"><input id="' . $attr->vName . '" class="form-check-input get_attri_price pp' . $attribute->slug . '" type="radio" name="' . $attribute->slug . '" value="' . $attr->vid . '"><label class="form-check-label" for="' . $attr->vName . '">' . $attr->vName . '</label></div>';
+                    $attrs .=
+                        "<script>
+                        $(document).on('click', '.pp" . $attribute->slug . "', function(e) {
+                            $('input#" . $attribute->slug . "').val(this.value);
                         })
                     </script>";
-                                 
-                            
-                            }
-                        foreach ($attribute_prouct as $vattr){ $vid=$vattr->vid;}
-                          $values.='<input type="hidden" name="'.$attribute->slug.'" id="'.$attribute->slug.'" value="blank">';
-                       }
-                      
-                    }
-        return response()->json(array($product,$attrs,$values));
+                }
+                foreach ($attribute_prouct as $vattr) {
+                    $vid = $vattr->vid;
+                }
+                $values .= '<input type="hidden" name="' . $attribute->slug . '" id="' . $attribute->slug . '" value="blank">';
+            }
+        }
+        return response()->json(array($product, $attrs, $values));
     }
      public function productInfo1($id)
     {
