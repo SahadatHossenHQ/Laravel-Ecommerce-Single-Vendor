@@ -3,6 +3,7 @@
 
 #### 02.04.2024
 - Fix: Dynamic phone number digit login allow
+- Fix: Single product page variation switcher
 
 #### 01.04.2024
 - Fix: Single product page formatted reduce the whitespace
