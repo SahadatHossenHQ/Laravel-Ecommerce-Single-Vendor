@@ -1,6 +1,9 @@
 ### Version 6.0.0
 
 
+#### 02.04.2024
+- Fix: Dynamic phone number digit login allow
+
 #### 01.04.2024
 - Fix: Single product page formatted reduce the whitespace
 - Fix: Placeholder image issue
@@ -13,7 +16,6 @@
 - Break: M ail sms config page rewrite and controller calling reduce the opration for complexity
 - Cng: Registration time email optional or unfillable allow while register
 - Feture: If SMS config status is true then register time OTP is required else not
-- 
 
 #### 31.03.2024
 - Fix: Filter category and mini category
