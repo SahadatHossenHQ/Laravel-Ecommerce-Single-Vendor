@@ -298,7 +298,22 @@
     @endif
 </header>
 
+
+
 <style>
+    /* Search Wrapper */
+    .advance-search{
+        background: transparent;
+    }
+
+    /* Search View */
+    #search-view{
+        background: #fff;
+        height: fit-content;
+        max-height: 100%;
+        padding: 0;
+    }
+    
     /* Top header in top menu style 3 */
     
     #style3_top_head_bar{

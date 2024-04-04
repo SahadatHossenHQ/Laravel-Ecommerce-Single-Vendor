@@ -3,6 +3,8 @@
 #### 04.04.2024
 - Feature: Header Styule 3 Added
 - This header transparent the result body and without search it will not impact on main content
+- Feature: in Header Style 3 also transparent
+
 
 
 #### 02.04.2024
