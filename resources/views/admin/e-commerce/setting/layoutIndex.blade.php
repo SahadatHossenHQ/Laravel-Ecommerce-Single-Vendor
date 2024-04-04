@@ -48,7 +48,7 @@
                                             <select class="form-control w-25" name="TOP_HEADER_STYLE" id="TOP_HEADER_STYLE">
                                                 <option class="text-white bg-success" value="{{ $TOP_HEADER_STYLE->value }}">Style {{ $TOP_HEADER_STYLE->value }}</option>
                                                 <option value="1">Style 1</option>
-                                                {{-- <option value="2">Style 2</option> --}}
+                                                <option value="2">Style 2</option>
                                                 <option value="3">Style 3</option>
                                             </select>
                                         </li>
