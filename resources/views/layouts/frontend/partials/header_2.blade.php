@@ -141,6 +141,7 @@
         background: #fff;
         height: fit-content;
         max-height: 100%;
+        padding: 0;
     }
 </style>
 
