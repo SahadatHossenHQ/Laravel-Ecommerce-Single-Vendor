@@ -1,5 +1,9 @@
 ### Version 6.0.0
 
+#### 04.04.2024
+- Feature: Header Styule 3 Added
+- This header transparent the result body and without search it will not impact on main content
+
 
 #### 02.04.2024
 - Fix: Dynamic phone number digit login allow
