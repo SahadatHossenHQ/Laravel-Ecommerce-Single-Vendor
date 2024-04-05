@@ -4,6 +4,7 @@
 #### 05.04.2024
 - Fix: Home page spacer combined
 - DB: Optimize
+- DB: new version backup 5.8.1
 
 
 #### 04.04.2024
