@@ -247,6 +247,7 @@
                         display: none;
                         position:absolute;
                         top:40px;
+                        z-index: 99;
                     }
                 </style>
                 @push('js')

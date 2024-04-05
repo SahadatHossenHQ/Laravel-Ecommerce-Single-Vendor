@@ -5,6 +5,7 @@
 - Fix: Home page spacer combined
 - DB: Optimize
 - DB: new version backup 5.8.1
+- Fix: Style 3 header cateogry z-index solve for floating
 
 
 #### 04.04.2024
