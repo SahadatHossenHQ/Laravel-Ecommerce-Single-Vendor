@@ -42,42 +42,16 @@
                 <div class="col-sm-8 offset-md-2">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Setting - Custom Header Code</h3>
+                            <h3 class="card-title">Setting - System Update</h3>
                         </div>
-
-                        {{-- <form action="{{routeHelper('setting')}}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="type" value="2">
-                            
-                            <div class="card-body">
-                                <div class="form-group col-md-12">
-                                    <label for="FOOTER_COL_4_HTML" class="text-capitalize">Footer Column 4</label>
-                                </div>
-                                <small class="p-4 bg-light text-primary">
-                                    <a target="_blank" class="bg-warning p-2" href="https://getbootstrap.com/docs/4.5/components/alerts/">Help for HTML snippet from Bootstrap V5.4.3</a>
-                                </small>
-                            </div>
-
-                            
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-arrow-circle-up"></i>
-                                    Update
-                                </button>
-                            </div>
-                        </form> --}}
 
                         <form action="{{ route('admin.update') }}" method="POST">
                             @csrf
                             <div class="card-body">
-
                                 <div class="form-group col-md-12">
-                                    <label for="password" class="text-capitalize">Footer Column 4</label>
+                                    <label for="password" class="text-capitalize">Enter your password to update</label>
                                     <input type="password" name="password" id="password" class="form-control" placeholder="***" required>
                                 </div>
-
-
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">

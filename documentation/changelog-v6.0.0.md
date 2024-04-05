@@ -16,7 +16,7 @@
 - DB: Optimize
 - DB: new version backup 5.8.1
 - Fix: Style 3 header cateogry z-index solve for floating
-
+- feature: shell update system menu added
 
 #### 04.04.2024
 - Feature: Header Styule 3 Added
