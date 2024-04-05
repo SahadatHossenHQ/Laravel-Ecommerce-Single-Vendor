@@ -124,8 +124,12 @@ echo setting('BELOW_SLIDER_HTML_CODE');
                     outline: none;
                 }
                 .cat_row_hide{
-                    height: 270px !important;
+                    height: 250px !important;
                     overflow: hidden;
+                }
+
+                .hero-2{
+                    padding-bottom: 60px;
                 }
             </style>
         @endpush
