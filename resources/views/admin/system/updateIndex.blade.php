@@ -39,6 +39,40 @@
         <div class="card-body">
             <div class="row">
 
+
+                <div class="col-sm-8 offset-md-2">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Setting - License</h3>
+                        </div>
+
+                        <form id="email_config" action="{{routeHelper('setting')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="type" value="14">
+                            <div class="card-body">
+                                <div class="col-md-12">
+                                    <ul class="form-row">
+                                        <li class="col-12 col-md-12">
+                                            <label for="license_ssh_key" class="text-capitalize">License Key<span class="text-red">(*)</span></label>
+                                            <textarea name="license_ssh_key" id="license_ssh_key" rows="4" placeholder="Enter Lincense Key..."
+                                                class="form-control" required>{{setting('license_ssh_key') ?? ''}}</textarea>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-arrow-circle-up"></i>
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+
                 <div class="col-sm-8 offset-md-2">
                     <div class="card card-success">
                         <div class="card-header">

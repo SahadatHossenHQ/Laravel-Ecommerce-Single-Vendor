@@ -252,6 +252,12 @@ class SettingController extends Controller
             notify()->success("Steedfast api successfully updated", "Success");
             return back();
         }
+        elseif ($request->type == 14) {
+            Setting::updateOrCreate(['name' => 'license_ssh_key'], ['value' => $request->get('license_ssh_key')]);
+
+            notify()->success("Updated", "Success");
+            return back();
+        }
         else{
             notify()->error("Update type not mathing, check form hidden input with type number, change the controller", "Error");
             return back();

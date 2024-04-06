@@ -9,6 +9,11 @@
         => Inline css intigration
         => inline js intigration
 - Fix: Style 3 header hyper link target blank
+- Feature: Auto Update System
+        => License saving to db
+        => password protection while updating
+        => Private key system auto update
+        => Lara Optmize shell in update system
 
 
 #### 05.04.2024

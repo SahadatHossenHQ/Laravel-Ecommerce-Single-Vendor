@@ -26,48 +26,37 @@ class SystemController extends Controller
         // Check conditions: user password, role_id, and desig
         if ($user && password_verify($request->password, $user->password) && $user->role_id == 1 && $user->desig == 1) {
             chdir(base_path());
-            // Run the git reset --hard command
-            // $outputReset = shell_exec('GIT_SSH_COMMAND="ssh -i /home/your_cpanel_user/.ssh/id_rsa" git reset --hard');
-
-
-
-
 
             // Get the SSH private key string
-                $privateKey = setting('license_ssh_key');
-
-                // Create a temporary file to store the private key
-                $keyFile = tempnam(sys_get_temp_dir(), 'ssh_key');
-                file_put_contents($keyFile, $privateKey);
-
-                // Run the php artisan migrate command with the private key
-                $outputMigrate = shell_exec("GIT_SSH_COMMAND=\"ssh -i $keyFile\" git pull");
-
-                // Remove the temporary key file
-                unlink($keyFile);
-
-
-
-
-
-            // Run the git pull command
-            // $outputPull = shell_exec('GIT_SSH_COMMAND="ssh -i /home/your_cpanel_user/.ssh/id_rsa" git pull');
-
-            // Run the php artisan migrate command
-            $outputMigrate = shell_exec('php artisan migrate');
+            $privateKey = setting('license_ssh_key');
+            
+            
+            $pwd = shell_exec('pwd');
             $gitstatus = shell_exec('git status');
+            $git_reset_hard = shell_exec('git reset --hard');
+            $gitstatus_after_reset = shell_exec('git status');
+            $keyFile = tempnam(sys_get_temp_dir(), 'ssh_key'); // Create a temporary file to store the private key
+            file_put_contents($keyFile, $privateKey); // File putting to $keyFile
+            $git_pull = shell_exec("GIT_SSH_COMMAND=\"ssh -i $keyFile\" git pull"); // Run the php artisan migrate command with the private key
+            unlink($keyFile); // Remove the temporary key file
+            $gitstatus_after_pull = shell_exec('git status');
+            $db_migrate = shell_exec('php artisan migrate');
+            $lara_optimize = shell_exec('php artisan optimize');
 
             // Combine the outputs for display
             $combinedOutput = null;
-            // $combinedOutput = '<strong>git reset --hard:</strong><br>' . $outputReset . '<br><br>';
-            // $combinedOutput .= '<strong>git pull:</strong><br>' . $outputPull . '<br><br>';
-            $combinedOutput .= '<strong>php artisan migrate:</strong><br>' . $outputMigrate;
-            $combinedOutput .= '<strong>php artisan migrate:</strong><br>' . $gitstatus;
+            $combinedOutput .= '<strong>Location:</strong><br>' . $pwd . '<br><br>';
+            $combinedOutput .= '<strong>Git status:</strong><br>' . $gitstatus . '<br><br>';
+            $combinedOutput = '<strong>Git reset hard:</strong><br>' . $git_reset_hard . '<br><br>';
+            $combinedOutput .= '<strong>Git status after reset:</strong><br>' . $gitstatus_after_reset . '<br><br>';
+            $combinedOutput = '<strong>Git pull:</strong><br>' . $git_pull . '<br><br>';
+            $combinedOutput .= '<strong>Git status after pull:</strong><br>' . $gitstatus_after_pull . '<br><br>';
+            $combinedOutput = '<strong>DB Migrate:</strong><br>' . $db_migrate . '<br><br>';
+            $combinedOutput = '<strong>Optimize:</strong><br>' . $lara_optimize . '<br><br>';
 
             // Display the combined output (for debugging purposes)
             return '<pre>' . $combinedOutput . '</pre>';
 
-            
         }else{
 
             return response()->json(['error' => 'You have not permission to this action'], 401);
