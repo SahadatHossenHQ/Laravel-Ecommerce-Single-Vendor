@@ -87,7 +87,7 @@
                             }
                         @endphp
                         @if (!isEnabled('shell_exec'))
-                        <small class="text-red ml-3 mt-3">You have to enable your hosting shell_exec() before the update enable or disable</small>
+                        <small class="text-red ml-3 mt-3">You have to enable your hosting shell_exec() before the update</small>
                         @endif
 
                         <form action="{{ route('admin.update') }}" method="POST">
