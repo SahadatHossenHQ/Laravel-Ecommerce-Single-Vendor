@@ -106,8 +106,8 @@
                                     <span class="badge badge-danger">Disable</span>
                                 @endif
                             </td>
-                            <td>{{$data->vendorAccount->amount}}</td>
-                            <td>{{$data->vendorAccount->pending_amount}}</td>
+                            <td>{{$data->vendorAccount->amount ?? 0}}</td>
+                            <td>{{$data->vendorAccount->pending_amount ?? 0}}</td>
                             <td style="position:relative;">
                                 @if ($data->is_approved==1)
                                 <a title="Disable" href="{{ routeHelper('user/status/'. $data->id) }}" class="btn btn-warning btn-sm">
