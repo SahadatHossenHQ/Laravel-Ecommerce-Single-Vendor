@@ -46,13 +46,13 @@ class SystemController extends Controller
             // Combine the outputs for display
             $combinedOutput = null;
             $combinedOutput .= '<strong>Location:</strong><br>' . $pwd . '<br><br>';
-            $combinedOutput .= '<strong>Git status:</strong><br>' . $gitstatus . '<br><br>';
-            $combinedOutput .= '<strong>Git reset hard:</strong><br>' . $git_reset_hard . '<br><br>';
-            $combinedOutput .= '<strong>Git status after reset:</strong><br>' . $gitstatus_after_reset . '<br><br>';
-            $combinedOutput .= '<strong>Git pull:</strong><br>' . $git_pull . '<br><br>';
-            $combinedOutput .= '<strong>Git status after pull:</strong><br>' . $gitstatus_after_pull . '<br><br>';
-            $combinedOutput .= '<strong>DB Migrate:</strong><br>' . $db_migrate . '<br><br>';
-            $combinedOutput .= '<strong>Optimize:</strong><br>' . $lara_optimize . '<br><br>';
+            // $combinedOutput .= '<strong>Git status:</strong><br>' . $gitstatus . '<br><br>';
+            // $combinedOutput .= '<strong>Git reset hard:</strong><br>' . $git_reset_hard . '<br><br>';
+            // $combinedOutput .= '<strong>Git status after reset:</strong><br>' . $gitstatus_after_reset . '<br><br>';
+            // $combinedOutput .= '<strong>Git pull:</strong><br>' . $git_pull . '<br><br>';
+            // $combinedOutput .= '<strong>Git status after pull:</strong><br>' . $gitstatus_after_pull . '<br><br>';
+            // $combinedOutput .= '<strong>DB Migrate:</strong><br>' . $db_migrate . '<br><br>';
+            // $combinedOutput .= '<strong>Optimize:</strong><br>' . $lara_optimize . '<br><br>';
 
             // Display the combined output (for debugging purposes)
             return '<pre>' . $combinedOutput . '</pre>';
