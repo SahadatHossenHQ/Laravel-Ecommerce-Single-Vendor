@@ -21,6 +21,7 @@
 - Fix: Vendor product list all render product off now show per request
 - Fix: Vendor and and vendor prouducts are now show by paginate request not all render at a time
 - Fix: Vendor
+- Fix: Git conflict
 
 #### 05.04.2024
 - Fix: Home page spacer combined
