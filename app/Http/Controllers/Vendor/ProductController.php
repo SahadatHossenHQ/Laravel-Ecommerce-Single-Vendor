@@ -26,7 +26,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('brand')->where('user_id', auth()->id())->latest('id')->get();
+        // $products = Product::with('brand')->where('user_id', auth()->id())->latest('id')->get();
+        $products = Product::with('brand')->where('user_id', auth()->id())->latest('id')->paginate(10);
         return view('vendor.product.index', compact('products'));
     }
     public function lowProduct(){

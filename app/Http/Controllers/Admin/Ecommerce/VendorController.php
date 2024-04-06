@@ -21,7 +21,11 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $vendors = User::where('role_id', 2)->latest('id')->get();
+        // $vendors = User::where('role_id', 2)->latest('id')->get();
+        $vendors = User::where('role_id', 2)->latest('id')->paginate(10);
+        // $products=Product::where('user_id',$id)->with('brand')->latest('id')->paginate(10);
+
+        
         return view('admin.e-commerce.vendor.index', compact('vendors'));
     }
 
