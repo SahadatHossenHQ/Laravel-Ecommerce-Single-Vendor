@@ -106,12 +106,12 @@
                         <ul class="navbar-nav justify-content-center">
                         @if (!empty(setting('facebook')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ setting('facebook') }}"><i class="fab fa-facebook-f"></i></a>
+                            <a target="_blank" class="nav-link" href="{{ setting('facebook') }}"><i class="fab fa-facebook-f"></i></a>
                         </li>
                         @endif
                         @if (!empty(setting('instagram')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="https://instagram.com/{{ setting('instagram') }}"><i class="fab fa-instagram"></i></a>
+                            <a target="_blank" class="nav-link" href="https://instagram.com/{{ setting('instagram') }}"><i class="fab fa-instagram"></i></a>
                         </li>
                         @endif
                         @if (!empty(setting('twitter')))                            
@@ -121,22 +121,22 @@
                         @endif
                         @if (!empty(setting('linkedin')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ setting('linkedin') }}"><i class="fab fa-linkedin"></i></a>
+                            <a target="_blank" class="nav-link" href="{{ setting('linkedin') }}"><i class="fab fa-linkedin"></i></a>
                         </li>
                         @endif
                         @if (!empty(setting('youtube')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ setting('youtube') }}"><i class="fab fa-youtube"></i></a>
+                            <a target="_blank" class="nav-link" href="{{ setting('youtube') }}"><i class="fab fa-youtube"></i></a>
                         </li>
                         @endif
                         @if (!empty(setting('whatsapp')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="https://wa.me/{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
+                            <a target="_blank" class="nav-link" href="https://wa.me/{{ setting('whatsapp') }}"><i class="fab fa-whatsapp"></i></a>
                         </li>
                         @endif
                         @if (!empty(setting('messanger')))                            
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
+                            <a target="_blank" class="nav-link" href="{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
                         </li>
                         @endif
                         </ul>

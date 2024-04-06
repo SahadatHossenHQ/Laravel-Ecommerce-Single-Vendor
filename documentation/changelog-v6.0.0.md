@@ -8,6 +8,7 @@
         => Optimize the css and js
         => Inline css intigration
         => inline js intigration
+- Fix: Style 3 header hyper link target blank
 
 
 #### 05.04.2024
