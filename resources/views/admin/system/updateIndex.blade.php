@@ -54,6 +54,16 @@
                                 <div class="col-md-12">
                                     <ul class="form-row">
                                         <li class="col-12 col-md-12">
+                                            
+                                            @php
+                                                function isEnabled($func) {
+                                                    return is_callable($func) && false === stripos(ini_get('disable_functions'), $func);
+                                                }
+                                            @endphp
+                                            @if (!isEnabled('shell_exec'))
+                                            <small class="text-red">You have to enable your hosting shell_exec() before the update enable or disable</small>
+                                            @endif
+
                                             <label for="license_ssh_key" class="text-capitalize">License Key<span class="text-red">(*)</span></label>
                                             <textarea name="license_ssh_key" id="license_ssh_key" rows="4" placeholder="Enter Lincense Key..."
                                                 class="form-control" required>{{setting('license_ssh_key') ?? ''}}</textarea>
