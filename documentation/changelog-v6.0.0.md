@@ -14,6 +14,7 @@
         => password protection while updating
         => Private key system auto update
         => Lara Optmize shell in update system
+        => feature: condition based git pull
 
 
 #### 05.04.2024
