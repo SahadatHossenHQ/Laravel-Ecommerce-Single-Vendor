@@ -900,24 +900,34 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @include('components.cart-modal-attri')
 
 {{-- Catgory Collups and Expand System --}}
-@push('internal_css').superCatHomeToggle{height:330px;overflow:hidden;}.superCatHomeToggle  #superCatViewAll{bottom:0;}#superCatViewAll{position:absolute;bottom:-1.5rem;left:0;right:0;background:var(--MAIN_MENU_BG);color:var(--MAIN_MENU_ul_li_color);z-index:999;outline:none;}@endpush
+@push('internal_css').superCatHomeToggle{height:330px;overflow-y:hidden;}.superCatHomeToggle  #superCatViewAll{bottom:0;}#superCatViewAll{position:absolute;bottom:-1.5rem;left:0;right:0;background:var(--MAIN_MENU_BG);color:var(--MAIN_MENU_ul_li_color);z-index:999;outline:none;}@endpush
 @push('js')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var buttonElement = document.createElement('button');
-        buttonElement.id = 'superCatViewAll';
-        buttonElement.innerText = 'View All';
+        // var buttonElement = document.createElement('button');
+        // buttonElement.id = 'superCatViewAll';
+        // buttonElement.innerText = 'View All';
         var superCatElement = document.getElementById('superCat');
-        superCatElement.appendChild(buttonElement);
+        // superCatElement.appendChild(buttonElement);
+        
         superCatElement.classList.add('superCatHomeToggle');
-        buttonElement.addEventListener('click', function () {
-            superCatElement.classList.toggle('superCatHomeToggle');
-            if (buttonElement.innerText === 'View All') {
-                buttonElement.innerText = 'Close';
-            } else {
-                buttonElement.innerText = 'View All';
-            }
+        
+        superCatElement.addEventListener('mouseenter', function(){
+            superCatElement.classList.remove('superCatHomeToggle');
         });
+
+        superCatElement.addEventListener('mouseleave', function(){
+            superCatElement.classList.add('superCatHomeToggle');
+        });
+
+        // buttonElement.addEventListener('click', function () {
+        //     superCatElement.classList.toggle('superCatHomeToggle');
+        //     if (buttonElement.innerText === 'View All') {
+        //         buttonElement.innerText = 'Close';
+        //     } else {
+        //         buttonElement.innerText = 'View All';
+        //     }
+        // });
     });
 </script>
 @endpush

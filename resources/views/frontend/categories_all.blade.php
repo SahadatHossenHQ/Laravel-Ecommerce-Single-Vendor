@@ -113,7 +113,7 @@
 
 
 {{-- Catgory Collups and Expand System --}}
-@push('internal_css').superCatHomeToggle{height:330px;overflow:hidden;}.superCatHomeToggle  #superCatViewAll{bottom:0;}#superCatViewAll{position:absolute;bottom:-1.5rem;left:0;right:0;background:var(--MAIN_MENU_BG);color:var(--MAIN_MENU_ul_li_color);z-index:999;outline:none;}@endpush
+@push('internal_css').superCatHomeToggle{height:330px;overflow-y:hidden;}.superCatHomeToggle  #superCatViewAll{bottom:0;}#superCatViewAll{position:absolute;bottom:-1.5rem;left:0;right:0;background:var(--MAIN_MENU_BG);color:var(--MAIN_MENU_ul_li_color);z-index:999;outline:none;}@endpush
 @push('js')
 <script>
     document.addEventListener('DOMContentLoaded', function () {

@@ -1,6 +1,15 @@
 ### Version 6.0.0
 
 
+#### 06.04.2024
+- fix: Header cat list overflow
+        => Regular css finder and remove
+        => unnecessary js and css remove
+        => Optimize the css and js
+        => Inline css intigration
+        => inline js intigration
+
+
 #### 05.04.2024
 - Fix: Home page spacer combined
 - DB: Optimize
