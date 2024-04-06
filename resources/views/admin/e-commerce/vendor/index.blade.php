@@ -27,13 +27,13 @@
     <script>
         $(function () { 
             $("#example1").DataTable({
-            "responsive": true,
-            // "lengthChange": false,
-            "paging": false, // Disable pagination
+                "responsive": true,
+                // "lengthChange": false,
+                "paging": false, // Disable pagination
                 "info": false, // Hide information element
                 "searching": false, // Hide search input
                 "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         })
     </script>

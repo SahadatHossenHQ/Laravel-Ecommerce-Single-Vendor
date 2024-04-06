@@ -17,6 +17,9 @@
         => feature: condition based git pull
         => PHP info checker added to system update
         => if php shell exec off notice auto in update page
+- Fix: Vendor list only showed 10 now showing paginate
+- Fix: Vendor product list all render product off now show per request
+- Fix: Vendor and and vendor prouducts are now show by paginate request not all render at a time
         
 
 
