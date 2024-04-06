@@ -197,6 +197,13 @@
                             </li>
                         @endfor
                     @endif
+                    @if ($vendors->nextPageUrl())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $vendors->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">Next</span>
+                                </a>
+                            </li>
+                        @endif
                 </ul>
             </nav>
         </div>

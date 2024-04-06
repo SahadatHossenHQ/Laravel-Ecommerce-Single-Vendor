@@ -149,8 +149,8 @@
             </table>
             {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
                 {{-- {{ $products->total() }} --}}
-                <nav aria-label="Page navigation example">
-                    {{-- <ul class="pagination">
+                {{-- <nav aria-label="Page navigation example">
+                    <ul class="pagination">
                         @if ($products->previousPageUrl())
                             <li class="page-item">
                                 <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
@@ -211,6 +211,14 @@
                                     <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
                                 </li>
                             @endfor
+                        @endif
+
+                        @if ($products->nextPageUrl())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">Next</span>
+                                </a>
+                            </li>
                         @endif
                     </ul>
                 </nav>
