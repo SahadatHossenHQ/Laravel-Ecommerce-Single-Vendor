@@ -32,27 +32,33 @@ class SystemController extends Controller
             
             
             $pwd = shell_exec('pwd');
-            // $gitstatus = shell_exec('git status');
-            // $git_reset_hard = shell_exec('git reset --hard');
-            // $gitstatus_after_reset = shell_exec('git status');
-            // $keyFile = tempnam(sys_get_temp_dir(), 'ssh_key'); // Create a temporary file to store the private key
-            // file_put_contents($keyFile, $privateKey); // File putting to $keyFile
-            // $git_pull = shell_exec("GIT_SSH_COMMAND=\"ssh -i $keyFile\" git pull"); // Run the php artisan migrate command with the private key
-            // unlink($keyFile); // Remove the temporary key file
-            // $gitstatus_after_pull = shell_exec('git status');
-            // $db_migrate = shell_exec('php artisan migrate');
-            // $lara_optimize = shell_exec('php artisan optimize');
+            $gitstatus = shell_exec('git status');
+            $git_reset_hard = shell_exec('git reset --hard');
+            $gitstatus_after_reset = shell_exec('git status');
+            $keyFile = tempnam(sys_get_temp_dir(), 'ssh_key'); // Create a temporary file to store the private key
+            file_put_contents($keyFile, $privateKey); // File putting to $keyFile
+            $git_pull = shell_exec("GIT_SSH_COMMAND=\"ssh -i $keyFile\" git pull"); // Run the php artisan migrate command with the private key
+            unlink($keyFile); // Remove the temporary key file
+            $gitstatus_after_pull = shell_exec('git status');
+            $db_migrate = shell_exec('php artisan migrate');
+            $lara_optimize = shell_exec('php artisan optimize');
 
             // Combine the outputs for display
             $combinedOutput = null;
             $combinedOutput .= '<strong>Location:</strong><br>' . $pwd . '<br><br>';
-            // $combinedOutput .= '<strong>Git status:</strong><br>' . $gitstatus . '<br><br>';
-            // $combinedOutput .= '<strong>Git reset hard:</strong><br>' . $git_reset_hard . '<br><br>';
-            // $combinedOutput .= '<strong>Git status after reset:</strong><br>' . $gitstatus_after_reset . '<br><br>';
-            // $combinedOutput .= '<strong>Git pull:</strong><br>' . $git_pull . '<br><br>';
-            // $combinedOutput .= '<strong>Git status after pull:</strong><br>' . $gitstatus_after_pull . '<br><br>';
-            // $combinedOutput .= '<strong>DB Migrate:</strong><br>' . $db_migrate . '<br><br>';
-            // $combinedOutput .= '<strong>Optimize:</strong><br>' . $lara_optimize . '<br><br>';
+            $combinedOutput .= '<strong>Git status:</strong><br>' . $gitstatus . '<br><br>';
+            $combinedOutput .= '<strong>Git reset hard:</strong><br>' . $git_reset_hard . '<br><br>';
+            $combinedOutput .= '<strong>Git status after reset:</strong><br>' . $gitstatus_after_reset . '<br><br>';
+            
+            if(!empty($git_pull)){
+                $combinedOutput .= '<strong>Git pull:</strong><br>' . $git_pull . '<br><br>';
+            }else{
+                $combinedOutput .= '<strong>Git pull:</strong><br>' . shell_exec('git pull') . '<br><br>';
+            }
+
+            $combinedOutput .= '<strong>Git status after pull:</strong><br>' . $gitstatus_after_pull . '<br><br>';
+            $combinedOutput .= '<strong>DB Migrate:</strong><br>' . $db_migrate . '<br><br>';
+            $combinedOutput .= '<strong>Optimize:</strong><br>' . $lara_optimize . '<br><br>';
 
             // Display the combined output (for debugging purposes)
             return '<pre>' . $combinedOutput . '</pre>';
