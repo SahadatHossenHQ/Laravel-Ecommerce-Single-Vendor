@@ -13,7 +13,10 @@ class SystemController extends Controller
         return view('admin.system.updateIndex');
     }
 
-
+    public function php_info(){
+        // phpinfo();
+        return view('admin.system.phpInfo');
+    }
 
     public function update(Request $request)
     {

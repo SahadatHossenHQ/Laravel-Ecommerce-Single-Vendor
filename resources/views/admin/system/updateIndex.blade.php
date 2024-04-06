@@ -54,16 +54,6 @@
                                 <div class="col-md-12">
                                     <ul class="form-row">
                                         <li class="col-12 col-md-12">
-                                            
-                                            @php
-                                                function isEnabled($func) {
-                                                    return is_callable($func) && false === stripos(ini_get('disable_functions'), $func);
-                                                }
-                                            @endphp
-                                            @if (!isEnabled('shell_exec'))
-                                            <small class="text-red">You have to enable your hosting shell_exec() before the update enable or disable</small>
-                                            @endif
-
                                             <label for="license_ssh_key" class="text-capitalize">License Key<span class="text-red">(*)</span></label>
                                             <textarea name="license_ssh_key" id="license_ssh_key" rows="4" placeholder="Enter Lincense Key..."
                                                 class="form-control" required>{{setting('license_ssh_key') ?? ''}}</textarea>
@@ -88,6 +78,17 @@
                         <div class="card-header">
                             <h3 class="card-title">Setting - System Update</h3>
                         </div>
+
+                        <a class="btn btn-info ml-3 mt-3" href="{{  route('admin.info') }}">PHP Info</a>
+                                            
+                        @php
+                            function isEnabled($func) {
+                                return is_callable($func) && false === stripos(ini_get('disable_functions'), $func);
+                            }
+                        @endphp
+                        @if (!isEnabled('shell_exec'))
+                        <small class="text-red">You have to enable your hosting shell_exec() before the update enable or disable</small>
+                        @endif
 
                         <form action="{{ route('admin.update') }}" method="POST">
                             @csrf

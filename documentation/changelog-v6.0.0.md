@@ -15,6 +15,9 @@
         => Private key system auto update
         => Lara Optmize shell in update system
         => feature: condition based git pull
+        => PHP info checker added to system update
+        => if php shell exec off notice auto in update page
+        
 
 
 #### 05.04.2024

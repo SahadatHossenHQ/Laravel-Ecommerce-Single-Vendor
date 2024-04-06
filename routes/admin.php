@@ -52,6 +52,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // System Update
     Route::get('/update', [SystemController::class, 'updateIndex'])->name('updateIndex');
     Route::post('/update', [SystemController::class, 'update'])->name('update');
+    Route::get('/php_info', [SystemController::class, 'php_info'])->name('info');
 
 
 
