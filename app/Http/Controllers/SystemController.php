@@ -41,7 +41,7 @@ class SystemController extends Controller
             unlink($keyFile); // Remove the temporary key file
             $gitstatus_after_pull = shell_exec('git status');
             $db_migrate = shell_exec('php artisan migrate');
-            // $lara_optimize = shell_exec('php artisan optimize');
+            $lara_optimize = shell_exec('php artisan optimize');
 
             // Combine the outputs for display
             $combinedOutput = null;
