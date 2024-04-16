@@ -1,6 +1,13 @@
 ### Version 6.0.0
 
 
+- Fix: Main Order List
+        => Delivery Status (Delivered problem while complste order)
+           It was feture, after adding feature some days ago, it was not delivered status and for this reson not tested before, now fixed;
+- FIx: Multicart (Attempt to assign property "pen_point" on null)
+- Fix: Order
+        => Error fix order controler (reason was for guest checkout and order delivering without user)
+
 #### 06.04.2024
 - fix: Header cat list overflow
         => Regular css finder and remove

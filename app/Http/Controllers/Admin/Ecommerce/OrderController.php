@@ -154,8 +154,10 @@ class OrderController extends Controller
            DB::table('multi_order')->where('order_id',$id)->update(['status'=>1]);
             $order->save();
             $user=User::find($order->user_id);
-            $user->point -=$order->point;
-            $user->update();
+            if ($user !== null) {
+                $user->point -=$order->point;
+                $user->update();
+            }
             notify()->success("Order status processing successfully", "Congratulations");
             return back();
         }elseif ($order->status != 2) {
@@ -174,47 +176,51 @@ class OrderController extends Controller
         notify()->warning("This order status not pending", "Something Wrong");
         return back();
     }
-    public function return_helper($order){
-         foreach ($order->orderDetails as $item) {
-                $product = Product::find($item->product_id);
-                if ($product) {
-                    $vendor = User::find($product->user_id);
-                    if ($vendor->role_id == 1) {
-                        $amount = $vendor->vendorAccount->pending_amount;
-                        $vendor->vendorAccount()->update([
-                            'pending_amount' => $amount +$item->g_total
-                        ]);
-                    }
-                    else {
-                        $grand_total = $item->g_total;
-                        $admin_amount=Commission::where('order_id',$order->id)->first();
-                        $adminAccount = VendorAccount::where('vendor_id', 1)->first();
-                        $vendor_amount = $grand_total;
-                        $amount = $adminAccount->pending_amount;
-                       
+    public function return_helper($order)
+    {
+        foreach ($order->orderDetails as $item) {
+            $product = Product::find($item->product_id);
+            if ($product) {
+                $vendor = User::find($product->user_id);
+                if ($vendor->role_id == 1) {
+                    $amount = $vendor->vendorAccount->pending_amount;
+                    $vendor->vendorAccount()->update([
+                        'pending_amount' => $amount + $item->g_total
+                    ]);
+                } else {
+                    $grand_total = $item->g_total;
+                    $admin_amount = Commission::where('order_id', $order->id)->first();
+                    $adminAccount = VendorAccount::where('vendor_id', 1)->first();
+                    $vendor_amount = $grand_total;
+                    $amount = $adminAccount->pending_amount;
 
-                        $vendor->vendorAccount()->update([
-                            'pending_amount' => $vendor->vendorAccount->pending_amount + $vendor_amount
-                        ]);
-                    }
-                    
-                    $product->quantity = $product->quantity - $item->qty;
-                    $product->save();
+
+                    $vendor->vendorAccount()->update([
+                        'pending_amount' => $vendor->vendorAccount->pending_amount + $vendor_amount
+                    ]);
                 }
+
+                $product->quantity = $product->quantity - $item->qty;
+                $product->save();
             }
-             if ($vendor->role_id != 1) {
-             $adminAccount->update([
-                            'pending_amount' => $amount + $admin_amount->amount
-                        ]);}
-            $order->status = 1;
-            DB::table('multi_order')->where('order_id',$order->id)->update(['status'=>1]);
-            $order->save();
-            $user=User::find($order->user_id);
-            $user->pen_point +=$order->point;
-            if($order->payment_method=='wallate'){
-            $user->wallate =$user->wallate -$order->total;
+        }
+        if ($vendor->role_id != 1) {
+            $adminAccount->update([
+                'pending_amount' => $amount + $admin_amount->amount
+            ]);
+        }
+        $order->status = 1;
+        DB::table('multi_order')->where('order_id', $order->id)->update(['status' => 1]);
+        $order->save();
+        $user = User::find($order->user_id);
+        if ($user !== null) {
+            $user->pen_point += $order->point;
+            if ($order->payment_method == 'wallate') {
+                $user->wallate = $user->wallate - $order->total;
             }
             $user->update();
+        }
+
     }
      public function refund_helper($order){
          foreach ($order->orderDetails as $item) {
@@ -295,48 +301,50 @@ class OrderController extends Controller
       
         
     }
-    public function cancel_helper($order){
-         foreach ($order->orderDetails as $item) {
-                $product = Product::find($item->product_id);
-                if ($product) {
-                    $vendor = User::find($product->user_id);
-                    if ($vendor->role_id == 1) {
-                        $amount = $vendor->vendorAccount->pending_amount;
-                        $vendor->vendorAccount()->update([
-                            'pending_amount' => $amount - $item->g_total
-                        ]);
-                    }
-                    else {
-                        $grand_total = $item->g_total;
-                        $admin_amount=Commission::where('order_id',$order->id)->first();
-                        $adminAccount = VendorAccount::where('vendor_id', 1)->first();
-                        $vendor_amount = $grand_total;
-                        $amount = $adminAccount->pending_amount;
-                       
+    public function cancel_helper($order)
+    {
+        foreach ($order->orderDetails as $item) {
+            $product = Product::find($item->product_id);
+            if ($product) {
+                $vendor = User::find($product->user_id);
+                if ($vendor->role_id == 1) {
+                    $amount = $vendor->vendorAccount->pending_amount;
+                    $vendor->vendorAccount()->update([
+                        'pending_amount' => $amount - $item->g_total
+                    ]);
+                } else {
+                    $grand_total = $item->g_total;
+                    $admin_amount = Commission::where('order_id', $order->id)->first();
+                    $adminAccount = VendorAccount::where('vendor_id', 1)->first();
+                    $vendor_amount = $grand_total;
+                    $amount = $adminAccount->pending_amount;
 
-                        $vendor->vendorAccount()->update([
-                            'pending_amount' => $vendor->vendorAccount->pending_amount - $vendor_amount
-                        ]);
-                    }
-                    
-                    $product->quantity = $product->quantity + $item->qty;
-                    $product->save();
+
+                    $vendor->vendorAccount()->update([
+                        'pending_amount' => $vendor->vendorAccount->pending_amount - $vendor_amount
+                    ]);
                 }
+
+                $product->quantity = $product->quantity + $item->qty;
+                $product->save();
             }
-            if ($vendor->role_id != 1) {
-             $adminAccount->update([
-                            'pending_amount' => $amount - $admin_amount->amount
-                        ]);
-            }
-            $order->status = 2;
-              DB::table('multi_order')->where('order_id',$order->id)->update(['status'=>2]);
-            $order->save();
-            $user=User::find($order->user_id);
-            $user->pen_point -=$order->point;
-            if($order->payment_method=='wallate'){
-            $user->wallate =$user->wallate+$order->total;
+        }
+        if ($vendor->role_id != 1) {
+            $adminAccount->update([
+                'pending_amount' => $amount - $admin_amount->amount
+            ]);
+        }
+        $order->status = 2;
+        DB::table('multi_order')->where('order_id', $order->id)->update(['status' => 2]);
+        $order->save();
+        $user = User::find($order->user_id);
+        if ($user !== null) {
+            $user->pen_point -= $order->point;
+            if ($order->payment_method == 'wallate') {
+                $user->wallate = $user->wallate + $order->total;
             }
             $user->update();
+        }
     }
     /**
      * change order status pending/processing to delivered
@@ -388,11 +396,13 @@ class OrderController extends Controller
             DB::table('multi_order')->where('order_id',$id)->update(['status'=>3]);
             $order->save();
             $user=User::find($order->user_id);
-            $user->point +=$order->point;
-            if($order->payment_method=='wallate'){
-                $user->wallate =$user->wallate -$order->total;
+            if ($user !== null) {
+                $user->point +=$order->point;
+                if($order->payment_method=='wallate'){
+                    $user->wallate =$user->wallate -$order->total;
+                }
+                $user->save();
             }
-             $user->save();
              
              // affaliate bonuse
             
@@ -403,12 +413,12 @@ class OrderController extends Controller
               //               $ref->wallate+=$order->refer_bonus;
               //       $ref->save();
               //          }
-                   
+                
               //     }
-                  
+                
               // }
-          
-            if(env('mail_config')==1){
+        
+            if(setting('mail_config')==1){
                 $data = [
                     'order_id'        => $order->order_id,
                     'invoice'         => $order->invoice,
@@ -626,11 +636,13 @@ class OrderController extends Controller
             $order->refund_method=$request->method;
             $order->save();
             $user=User::find($order->user_id);
-            if($order->refund_method=='wallate'){
-            $user->wallate =$request->amount+$user->wallate;
+            if ($user !== null) {
+                if($order->refund_method=='wallate'){
+                $user->wallate =$request->amount+$user->wallate;
+                }
+                $user->point -=$order->point;
+                $user->update();
             }
-            $user->point -=$order->point;
-            $user->update();
         }else{
              $order->status = 5;
              DB::table('multi_order')->where('order_id',$id)->update(['status'=>5]);
