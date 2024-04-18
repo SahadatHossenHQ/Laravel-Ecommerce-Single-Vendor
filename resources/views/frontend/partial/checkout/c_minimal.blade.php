@@ -122,6 +122,15 @@
                                 <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                             </div>
+
+
+                            <div class="form-group col-md-12 d-none" id="email_wrap">
+                                <label for="email">Email Address <sup style="color: red;">*</sup></label>
+                                <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
+                                @error('email')
+                                    <small class="form-text text-danger">{{$message}}</small>
+                                @enderror
+                            </div>
                             
                             <div class="form-group col-md-12">
                                     <label for="address">Full Address</label>
@@ -597,19 +606,35 @@
             var routing = "{!! setting('routing') !!}"
             var appended = $('#appended');
             if (method == 'Bkash') {
+                off_email();
                 appended.html(bkash + ' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
             } else if (method == 'Nagad') {
+                off_email();
                 appended.html(nogod + ' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
             } else if (method == 'Rocket') {
+                off_email();
                 appended.html(rocket + ' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
             } else if (method == 'Bank') {
+                off_email();
                 appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> ' + 'Bank Name: ' + bank + '<br>Branch: ' + branch + '<br>holder: ' + holder + '<br>Account: ' + account + '<br>Routing: ' + routing);
             } else if (method == 'Cash on Delivery') {
+                off_email();
                 appended.html('পণ্য হাতে পেয়ে টাকা দিন। ');
+            } else if (method == 'uddoktapay') {
+
+                // Email On
+                $('#email_wrap').removeClass('d-none');
+                $('#email').prop('required', true);
+
             } else {
+                off_email();
                 appended.html('');
             }
+
+
             if (method == 'Bkash' || method == 'Nagad' || method == 'Rocket') {
+                off_email();
+
                 html += '<div class="form-group">'
                 html += '<label for="mobile_number">Mobile Number</label>'
                 html += '<input required type="text" name="mobile_number" id="mobile_number" class="form-control" placeholder="Enter your mobile number"/>'
@@ -619,6 +644,8 @@
                 html += '<input required type="text" name="transaction_id" id="transaction_id" class="form-control" placeholder="Enter transaction ID"/>'
                 html += '</div>'
             } else if (method == 'Bank') {
+                off_email();
+
                 html += '<div class="form-group">'
                 html += '<label for="bank_name">Bank Name</label>'
                 html += '<input required type="text" name="bank_name" id="bank_name" class="form-control" placeholder="Enter bank name"/>'
@@ -640,13 +667,24 @@
                 html += '<input required type="text" name="routing" id="routing" class="form-control" placeholder="Enter routing number"/>'
                 html += '</div>'
             } else {
+                
                 html = 'Onlne Payment Selectd, Place order and pay online';
             }
             $('#payment-details').html(html);
         })
+
+
+        // Email Off
+        function off_email(){
+            $('#email_wrap').addClass('d-none');
+            $('#email').removeAttr('required');
+        }
+            
+
         $(document).on('change', '#shipping_range', function (e) {
             div();
         });
+
         function div() {
             let shipping_charge = 0;
             let seller_count = $('#seller_count').val();
