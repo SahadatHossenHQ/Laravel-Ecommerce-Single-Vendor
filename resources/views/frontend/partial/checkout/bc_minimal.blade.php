@@ -37,7 +37,7 @@
                                 {{-- <div class="">
                                 <label for="last_name">Last Name <sup style="color: red;"></sup>*</label>
                                 <input required value="null" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" type="hidden"  />
-                            </div> --}}
+                                </div> --}}
 
                                 <div class="form-group col-md-12">
                                     <label for="phone">Phone <sup style="color: red;">*</sup></label>
@@ -50,13 +50,21 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group col-md-12 d-none" id="email_wrap">
+                                    <label for="email">Email Address <sup style="color: red;">*</sup></label>
+                                    <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
+                                    @error('email')
+                                        <small class="form-text text-danger">{{$message}}</small>
+                                    @enderror
+                                </div>
+
                                 {{-- <div class="form-group ">
                                 <label for="country">Country/Region <sup style="color: red;">*</sup></label>
                                 <input name="country" id="country" value="{{ setting('COUNTRY_SERVE') ?? 'Bangladesh' }}" class="form-control @error('country') is-invalid @enderror" type="hidden"  />
                                 @error('country')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div> --}}
+                                </div> --}}
                                 {{-- <div class="form-group col-md-6">
                                 <label for="city">Division <sup style="color: red;">*</sup></label>
                                 <select name="city" id="divisions"  class="form-control @error('city') is-invalid @enderror"  onchange="divisionsList();">
@@ -73,7 +81,7 @@
                                 @error('city')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div> --}}
+                                </div> --}}
                                 {{-- <div class="form-group col-md-6">
                                 <label for="district">District <sup style="color: red;">*</sup></label>
                                 <select name="district"  class="form-control @error('district') is-invalid @enderror"  id="distr" onchange="thanaList();">
@@ -85,7 +93,7 @@
                                 @error('district')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div> --}}
+                                </div> --}}
                                 {{-- <div class="form-group col-md-6">
                                 <label for="district">Thana <sup style="color: red;">*</sup></label>
                                 <select name="thana"  class="form-control @error('district') is-invalid @enderror"  id="polic_sta">
@@ -119,7 +127,7 @@
                                 @error('email')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                            </div> --}}
+                                </div> --}}
 
                                 @if (!empty($request->pr))
                                     <input type="hidden" name="pr" value="{{ $request->pr }}">
@@ -133,13 +141,7 @@
                                     </select>
                                 </div>
 
-                                {{-- <div class="form-group col-md-6">
-                                <label for="email">Email Address <sup style="color: red;">*</sup></label>
-                                <input required name="email" id="email" class="form-control @error('email') is-invalid @enderror" type="text"  />
-                                @error('email')
-                                    <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
-                            </div> --}}
+                                
                                 {{-- <div class="form-group col-md-12">
                                 <label for="company">Company (optional)</label>
                                 <input  name="company" id="company" class="form-control @error('company') is-invalid @enderror" type="text"  />
@@ -209,58 +211,7 @@
                                         <input type="hidden" value="{{ $request->dynamic_price }}" name="dynamic_prices">
                                         <div class="form-row">
                                             <div id="accordion" class="col-12">
-                                                {{-- <div class="card">
-                                                    <div class="card-header" id="headingOne">
-                                                        <h5 class="mb-0">
-                                                            <div class="" data-toggle="collapse"
-                                                                data-target="#collapseOne" aria-expanded="true"
-                                                                aria-controls="collapseOne">
-                                                                Online Pay
-                                                            </div>
-                                                        </h5>
-                                                    </div>
-                                                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
-                                                        data-parent="#accordion">
-                                                        <div class="card-body">
-                                                            @if (setting('g_aamar') == 'true')
-                                                                <label for="aamarpay">
-                                                                    <input type="radio" name="payment_method"
-                                                                        class="payment_method" value="aamarpay"
-                                                                        id="aamarpay">
-                                                                    <img src="{{ asset('/') }}icon/aamarpay_logo.png">
-                                                                    Aamarpay
-                                                                </label>
-                                                            @endif
-                                                            @if (setting('g_uddok') == 'true')
-                                                                <label for="uddoktapay">
-                                                                    <input type="radio" name="payment_method"
-                                                                        class="payment_method" value="uddoktapay"
-                                                                        id="uddoktapay">
-                                                                    <img src="{{ asset('/') }}icon/uddoktapay.png">
-                                                                    Uddoktapay
-                                                                </label>
-                                                            @endif
-                                                            @if (setting('g_wallate') == 'true')
-                                                            <label for="wallate">
-                                                                <input type="radio" name="payment_method" class="payment_method" value="wallate" id="wallate">
-                                                                <img src="{{asset('/')}}icon/wallet.png">
-                                                                Wallate
-                                                                <p>{{auth()->user()->wallate}}</p>
-                                                            </label>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
                                                 <div class="card">
-                                                    {{-- <div class="card-header" id="headingTwo">
-                                                        <h5 class="mb-0">
-                                                            <div class=" collapsed" data-toggle="collapse"
-                                                                data-target="#collapseTwo" aria-expanded="false"
-                                                                aria-controls="collapseTwo">
-                                                                Offline Pay
-                                                            </div>
-                                                        </h5>
-                                                    </div> --}}
                                                     <div id="collapseTwo" class="collapse show"
                                                         aria-labelledby="headingTwo" data-parent="#accordion">
                                                         <div class="card-body">
@@ -575,21 +526,37 @@
                 var appended = $('#appended');;
                 if (method == 'Bkash') {
                     appended.html(bkash + ' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
+                    off_email();
                 } else if (method == 'Nagad') {
                     appended.html(nogod + ' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
+                    off_email();
                 } else if (method == 'Rocket') {
                     appended.html(rocket +
                         ' - এই নাম্বারে টাকা পাঠিয়ে নিচের ফিল্ডে  Transaction ID টি দিন');
+                    off_email();
                 } else if (method == 'Bank') {
                     appended.html('নিচে দেয়া ব্যাংকে টাকা পাঠিয়ে নিচের ফিল্ডগুলো পূরণ করুন <br> ' +
                         'Bank Name: ' + bank + '<br>Branch: ' + branch + '<br>holder: ' + holder +
                         '<br>Account: ' + account);
+                    
+                        off_email();
                 } else if (method == 'Cash on Delivery') {
                     appended.html('পণ্য হাতে পেয়ে টাকা দিন। ');
+                    off_email();
+                } else if (method == 'uddoktapay') {
+                    // Email On
+                    $('#email_wrap').removeClass('d-none');
+                    // $('#email').addAttr('required');
                 } else {
                     appended.html('');
+                    off_email();
                 }
+
+
                 if (method == 'Bkash' || method == 'Nagad' || method == 'Rocket') {
+
+                    off_email();
+
                     html += '<div class="form-group">'
                     html += '<label for="mobile_number">Mobile Number</label>'
                     html +=
@@ -601,6 +568,9 @@
                         '<input required type="text" name="transaction_id" id="transaction_id" class="form-control" placeholder="Enter transaction ID"/>'
                     html += '</div>'
                 } else if (method == 'Bank') {
+
+                    off_email();
+
                     html += '<div class="form-group">'
                     html += '<label for="bank_name">Bank Name</label>'
                     html +=
@@ -627,6 +597,9 @@
                         '<input required type="text" name="routing" id="routing" class="form-control" placeholder="Enter routing number"/>'
                     html += '</div>'
                 } else {
+
+                    off_email();
+
                     html = '';
                 }
                 $('#payment-details').html(html);
@@ -634,8 +607,16 @@
             $(document).on('change', '#shipping_range', function(e) {
                 divis()
             });
-            divis();
 
+
+            // Email Off
+            function off_email(){
+                $('#email_wrap').addClass('d-none');
+                $('#email').removeAttr('required');
+            }
+            
+            
+            divis();
             function divis() {
                 let shipping_charge = 0;
                 let download_able = "{!! $product->download_able !!}";

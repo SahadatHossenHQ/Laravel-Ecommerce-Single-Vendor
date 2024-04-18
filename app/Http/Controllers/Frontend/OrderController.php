@@ -1107,6 +1107,9 @@ class OrderController extends Controller
 
         $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
+        $request->email =  empty($request->email) ? 'noreply@lems.shop' : $request->email; // default email while user naot filled email
+
+        
 
         $this->validate($request, [
             'first_name'      => 'required|string|max:255',
