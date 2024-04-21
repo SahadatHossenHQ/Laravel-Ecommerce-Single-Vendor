@@ -162,118 +162,117 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="dis_type">Product Extra Message:</label>
+                        <label for="regular_price">Whole Sell Price:</label>
+                        <input type="number" name="whole_price" id="whole_price" placeholder="Enter product whole sell price" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}">
+                        @error('whole_price')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="prdct_extra_msg">Product Extra Message:</label>
                         <input type="text" name="prdct_extra_msg" id="prdct_extra_msg" placeholder="Express Delivery in Dhaka" class="form-control @error('prdct_extra_msg') is-invalid @enderror" value="{{ $product->prdct_extra_msg ?? "" }}">
+                        @error('prdct_extra_msg')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dis_type">Discount Type:</label>
+                        <select name="dis_type" id="dis_type" class="form-control @error('dis_type') is-invalid @enderror">
+                            <option value="0" @isset($product) {{$product->dis_type == '0' ? 'selected':''}} @endisset>None</option>
+                            <option value="1" @isset($product) {{$product->dis_type == '1' ? 'selected':''}} @endisset>Flat</option>
+                            <option value="2" @isset($product) {{$product->dis_type == '2' ? 'selected':''}} @endisset>Parcent %</option>
+                        </select>
                         @error('dis_type')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                        <div class="form-group col-md-6">
-                            <label for="dis_type">Select Type:</label>
-                            <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror">
-                                <option value="0" @isset($product) {{$product->dis_type == '0' ? 'selected':''}} @endisset>None</option>
-                                <option value="1" @isset($product) {{$product->dis_type == '1' ? 'selected':''}} @endisset>Flat</option>
-                                <option value="2" @isset($product) {{$product->dis_type == '2' ? 'selected':''}} @endisset>Parcent %</option>
-                            </select>
-                            @error('dis_type')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="regular_price">Whole Sell Price:</label>
-                            <input type="number" name="whole_price" id="whole_price" placeholder="Enter product whole sell price" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}">
-                            @error('whole_price')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        @isset($product) 
-                            @if($product->dis_type == '2')
-                                @php($discount_price=(($product->regular_price - $product->discount_price) / ($product->regular_price ))*100)
-                            @else
-                                @php($discount_price=$product->regular_price-$product->discount_price)
-                            @endif
-                        @endisset
-                        <div class="form-group col-md-6">
-                            <label for="discount_price">Discount:</label>
-                            <input type="number" name="discount_price" id="discount_price" placeholder="Enter product discount price" class="form-control @error('discount_price') is-invalid @enderror" value="{{ $discount_price ?? old('discount_price') }}" >
-                            @error('discount_price')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    @isset($product) 
+                        @if($product->dis_type == '2')
+                            @php($discount_price=(($product->regular_price - $product->discount_price) / ($product->regular_price ))*100)
+                        @else
+                            @php($discount_price=$product->regular_price-$product->discount_price)
+                        @endif
+                    @endisset
+                    <div class="form-group col-md-6">
+                        <label for="discount_price">Discount:</label>
+                        <input type="number" name="discount_price" id="discount_price" placeholder="Enter product discount price" class="form-control @error('discount_price') is-invalid @enderror" value="{{ $discount_price ?? old('discount_price') }}" >
+                        @error('discount_price')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="quantity">Quantity <span class="text-danger">(*)</span>:</label>
+                        <input type="number" name="quantity" id="quantity" placeholder="Enter product quantity" class="form-control @error('quantity') is-invalid @enderror" value="{{ $product->quantity ?? old('quantity') }}" required>
+                        @error('quantity')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="quantity">Quantity <span class="text-danger">(*)</span>:</label>
-                            <input type="number" name="quantity" id="quantity" placeholder="Enter product quantity" class="form-control @error('quantity') is-invalid @enderror" value="{{ $product->quantity ?? old('quantity') }}" required>
-                            @error('quantity')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="brand">Select Brand:</label>
+                        <select name="brand" id="brand" data-placeholder="Select Brand" class="form-control select2 @error('brand') is-invalid @enderror">
+                            <option value="0">Select Brand</option>
+                            @foreach ($brands as $brand)
+                                <option value="{{$brand->id}}" @isset($product) {{$brand->id == $product->brand_id ? 'selected':''}} @endisset>{{$brand->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('brand')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="brand">Select Brand:</label>
-                            <select name="brand" id="brand" data-placeholder="Select Brand" class="form-control select2 @error('brand') is-invalid @enderror">
-                                <option value="0">Select Brand</option>
-                                @foreach ($brands as $brand)
-                                    <option value="{{$brand->id}}" @isset($product) {{$brand->id == $product->brand_id ? 'selected':''}} @endisset>{{$brand->name}}</option>
+                    <div class="form-group col-md-6">
+                        <label for="category">Select Category <span class="text-danger">(*)</span>:</label>
+                        <select name="categories[]" id="category" multiple data-placeholder="Select Category" class="category form-control select2 @error('categories') is-invalid @enderror" required>
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}" @isset($product) @foreach($product->categories as $pro_category) {{$category->id == $pro_category->id ? 'selected':''}} @endforeach @endisset>{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('categories')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="sub_category">Select Sub Category:</label>
+                        <select name="sub_categories[]" id="sub_category" data-placeholder="Select Sub Category" class="sub_category form-control {{isset($product) ? 'select2':''}} @error('sub_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
+                            @isset($product)
+                                @foreach ($product->sub_categories as $sub_category)
+                                    <option value="{{$sub_category->id}}" selected>{{$sub_category->name}}</option>
                                 @endforeach
-                            </select>
-                            @error('brand')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="category">Select Category <span class="text-danger">(*)</span>:</label>
-                            <select name="categories[]" id="category" multiple data-placeholder="Select Category" class="category form-control select2 @error('categories') is-invalid @enderror" required>
-                                <option value="">Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{$category->id}}" @isset($product) @foreach($product->categories as $pro_category) {{$category->id == $pro_category->id ? 'selected':''}} @endforeach @endisset>{{$category->name}}</option>
+                            @endisset
+                        </select>
+                        @error('sub_categories')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="mini_category">Select Mini Category:</label>
+                        <select name="mini_categories[]" id="mini_category" data-placeholder="Select Mini Category" class="mini_category form-control {{isset($product) ? 'select2':''}} @error('mini_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
+                            @isset($product)
+                                @foreach ($product->mini_categories as $mini_category)
+                                    <option value="{{$mini_category->id}}" selected>{{$mini_category->name}}</option>
                                 @endforeach
-                            </select>
-                            @error('categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="sub_category">Select Sub Category:</label>
-                            <select name="sub_categories[]" id="sub_category" data-placeholder="Select Sub Category" class="sub_category form-control {{isset($product) ? 'select2':''}} @error('sub_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
-                                @isset($product)
-                                    @foreach ($product->sub_categories as $sub_category)
-                                        <option value="{{$sub_category->id}}" selected>{{$sub_category->name}}</option>
-                                    @endforeach
-                                @endisset
-                            </select>
-                            @error('sub_categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="mini_category">Select Mini Category:</label>
-                            <select name="mini_categories[]" id="mini_category" data-placeholder="Select Mini Category" class="mini_category form-control {{isset($product) ? 'select2':''}} @error('mini_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
-                                @isset($product)
-                                    @foreach ($product->mini_categories as $mini_category)
-                                        <option value="{{$mini_category->id}}" selected>{{$mini_category->name}}</option>
-                                    @endforeach
-                                @endisset
-                            </select>
-                            @error('mini_categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="extra_categories">Select Extra Category:</label>
-                            <select name="extra_categories[]" id="extra_category" data-placeholder="Select Mini Category" class="extra_categories form-control {{isset($product) ? 'select2':''}} @error('mini_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
-                                @isset($product)
-                                    @foreach ($product->extra_categories as $extra_category)
-                                        <option value="{{$extra_category->id}}" selected>{{$extra_category->name}}</option>
-                                    @endforeach
-                                @endisset
-                            </select>
-                            @error('extra_categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            @endisset
+                        </select>
+                        @error('mini_categories')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="extra_categories">Select Extra Category:</label>
+                        <select name="extra_categories[]" id="extra_category" data-placeholder="Select Mini Category" class="extra_categories form-control {{isset($product) ? 'select2':''}} @error('mini_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
+                            @isset($product)
+                                @foreach ($product->extra_categories as $extra_category)
+                                    <option value="{{$extra_category->id}}" selected>{{$extra_category->name}}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                        @error('extra_categories')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="form-group col-md-6">
                                 <label for="tag">Select Tag:</label>
@@ -984,7 +983,7 @@
         </script>
         @else
         <script>
-                  $(document).on('change', '#category', function() {
+                $(document).on('change', '#category', function() {
                 
                 var options = document.getElementById('category').selectedOptions;
                 var values = Array.from(options).map(({ value }) => value);
@@ -1001,6 +1000,20 @@
                         $('#sho_attributes').html(response);
                     }
                 });
+            });
+
+
+
+            // Dicount required while change discount type
+            $(document).on('change', '#dis_type', function(e) {
+                // Check if the selected value is not equal to 0
+                if ($(this).val() != "0") {
+                    // Make discount_price input required
+                    $('#discount_price').prop('required', true);
+                } else {
+                    // Make discount_price input not required
+                    $('#discount_price').prop('required', false);
+                }
             });
         </script>
     @endisset

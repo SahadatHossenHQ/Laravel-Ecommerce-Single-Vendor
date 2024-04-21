@@ -195,16 +195,16 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="dis_type">Product Extra Message:</label>
+                            <label for="prdct_extra_msg">Product Extra Message:</label>
                             <input type="text" name="prdct_extra_msg" id="prdct_extra_msg" placeholder="Express Delivery in Dhaka" class="form-control @error('prdct_extra_msg') is-invalid @enderror" value="{{ $product->prdct_extra_msg ?? "" }}">
-                            @error('dis_type')
+                            @error('prdct_extra_msg')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="dis_type">Discount Type:</label>
-                            <select name="dis_type"  class="form-control @error('dis_type') is-invalid @enderror">
+                            <select name="dis_type" id="dis_type" class="form-control @error('dis_type') is-invalid @enderror">
                                 <option value="0" @isset($product) {{$product->dis_type == '0' ? 'selected':''}} @endisset>None</option>
                                 <option value="1" @isset($product) {{$product->dis_type == '1' ? 'selected':''}} @endisset>Flat</option>
                                 <option value="2" @isset($product) {{$product->dis_type == '2' ? 'selected':''}} @endisset>Parcent %</option>
@@ -1119,5 +1119,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
 <script>
     $('#ncolor').colorpicker();
+
+
+    // Dicount required while change discount type
+    $(document).on('change', '#dis_type', function(e) {
+        // Check if the selected value is not equal to 0
+        if ($(this).val() != "0") {
+            // Make discount_price input required
+            $('#discount_price').prop('required', true);
+        } else {
+            // Make discount_price input not required
+            $('#discount_price').prop('required', false);
+        }
+    });
 </script>
 @endpush

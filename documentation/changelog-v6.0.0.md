@@ -1,5 +1,9 @@
 ### Version 6.0.0
 
+
+#### 21.04.2024
+Fature: Discount type if change then the required of discount price value
+
 #### 15-18.04.2024
 - Fix: Checkut form uddaktapay api
 - Fix: Main Order List
