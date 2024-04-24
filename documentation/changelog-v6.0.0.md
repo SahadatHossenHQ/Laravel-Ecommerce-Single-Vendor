@@ -1,5 +1,7 @@
 ### Version 6.0.0
 
+#### 24.04.204
+- Fix: Filter issue for new lems v6 and product was v4.2 to v5.4, now thoses products are working filter at v6.0
 
 #### 21.04.2024
 Fature: Discount type if change then the required of discount price value
