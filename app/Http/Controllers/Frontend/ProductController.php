@@ -478,6 +478,9 @@ class ProductController extends Controller
             $min = 0;
             $max = 9999999999999999999999999;
         }
+
+        // $min = 1;
+        // $max = 9999999999999999999999999;
         
         // dd($max);
 
