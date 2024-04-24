@@ -412,7 +412,7 @@
                     @endisset
                     {{-- <p>
                     Point : {{$product->point}}
-                </p> --}}
+                    </p> --}}
                     @isset($product->brand->name)
                         <p>Brand: <a style="font-size:14px"
                                 href="{{ route('brand.product', ['slug' => $product->brand->slug]) }}">{{ $product->brand->name }}</a>
@@ -443,7 +443,9 @@
                             <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span
                                     id="dynamic_price">{{ $product->regular_price }}</span></span>
                         @endif
-
+                        @if ($product->whole_price > 0)
+                        <p class="item_price">Whole Sell: {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $product->whole_price }}</p>
+                        @endif
                     </p>
 
                     <p style="font-size: 13px">
@@ -454,9 +456,6 @@
                     <p style="margin:0;font-size: 11px;margin-left: 21px;margin-top: 4px;">@if(setting('COUNTRY_SERVE') == 'Bangladesh')* স্টক আউট হওয়ার আগেই অর্ডার করুন@else * Order before finish the stock @endif</p>
                     </p>
 
-                    <!-- @if ($product->whole_price > 0)
-                    <p class="item_price">Whole Sell :Tk.{{ $product->whole_price }}</p>
-                    @endif -->
                     @if ($product->colors->count() != 0)
                         <div class="row ml-1">
                             <div class="col-12 pl-0 mb-2">
