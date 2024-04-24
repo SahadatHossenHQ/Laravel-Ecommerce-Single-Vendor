@@ -462,7 +462,7 @@ class ProductController extends Controller
 
         // return $request;
         $unr = $request->unr;
-        
+        // $request->amount = null;
         // Pricing level string to int
         if(isset($request->amount)){
             if (setting('CURRENCY_CODE_MIN')) {
@@ -479,6 +479,7 @@ class ProductController extends Controller
             $max = 9999999999999999999999999;
         }
         
+        // dd($max);
 
         // check category
             if ($request->extra_category != '') {

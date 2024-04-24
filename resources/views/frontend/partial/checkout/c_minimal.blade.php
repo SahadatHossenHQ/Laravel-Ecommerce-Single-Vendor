@@ -338,7 +338,7 @@
                                                         </label>
                                                         @endif
 
-
+                                                        @auth                                                            
                                                         @if(setting('g_wallate')=='true')
                                                         <label for="wallate">
                                                             <input type="radio" name="payment_method"
@@ -348,6 +348,7 @@
                                                             <p>{{auth()->user()->wallate}}</p>
                                                         </label>
                                                         @endif
+                                                        @endauth
 
                                                         @if(setting('g_bkash')=='true')
                                                         <label for="Bkash">
