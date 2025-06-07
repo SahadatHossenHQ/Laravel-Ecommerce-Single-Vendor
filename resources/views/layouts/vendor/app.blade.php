@@ -53,7 +53,7 @@
             <!-- /.control-sidebar -->
         </div>
         <!-- ./wrapper -->
-        <p style="text-align:center;margin: 0;padding: 5px 0px;">Laravel Ecommerce system by: Finva Soft Limited</p>
+        <p style="text-align:center;margin: 0;padding: 5px 0px;">Laravel Ecommerce system by: Elite Design</p>
 
         <!-- jQuery -->
         <script src="/assets/plugins/jquery/jquery.min.js"></script>

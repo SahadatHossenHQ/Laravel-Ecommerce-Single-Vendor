@@ -23,7 +23,8 @@
                     </div>
                     <div class="widget3 col-md-7">
                         <h4 class="form-title"><span>1</span> Billing Info </h4>
-                        <div class="card">
+                        <p>অর্ডারটি কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার, লিখে অর্ডার বাটনে ক্লিক করুন</p>
+                        <div class="card" style="background:transparent;">
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Full Name <sup style="color: red;"></sup>*</label>
@@ -202,6 +203,7 @@
                                 .payment_method {
                                     position: absolute;
                                     z-index: -9;
+                                    opacity: 0;
                                 }
                             </style>
                             <div class="widget-3 col-md-12">
@@ -211,7 +213,7 @@
                                         <input type="hidden" value="{{ $request->dynamic_price }}" name="dynamic_prices">
                                         <div class="form-row">
                                             <div id="accordion" class="col-12">
-                                                <div class="card">
+                                                <div class="card" style="background:transparent;">
                                                     <div id="collapseTwo" class="collapse show"
                                                         aria-labelledby="headingTwo" data-parent="#accordion">
                                                         <div class="card-body">
@@ -274,13 +276,13 @@
                                                                     <input type="radio" name="payment_method"
                                                                         class="payment_method" value="Bank"
                                                                         id="Bank">
-                                                                    <img src="{{ asset('/') }}icon/bank.png">
+                                                                    <img src="{{ asset('/') }}icon/bank.png">Bank
                                                                 </label>
                                                             @endif
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card">
+                                                <div class="card" style="background:transparent;">
                                                     <div class="card-header" id="headingThree">
                                                     </div>
                                                     <div id="collapseThree" class="collapse"
@@ -304,7 +306,7 @@
                             </div>
                         </div>
                         <h4 class="form-title"><span>3</span>Order Summary </h4>
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                             <?php
                             if ($request->qty >= 6 && $product->whole_price > 0) {
                                 $sub_total = $product->whole_price * $request->qty;
@@ -599,7 +601,8 @@
                     html += '</div>'
                 } else {
 
-                    html = 'Onlne Payment Selectd, Place order and pay online';
+                    // html = 'Onlne Payment Selected, Place order and pay online';
+                    html = '';
 
                 }
                 $('#payment-details').html(html);

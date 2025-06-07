@@ -1,5 +1,5 @@
 
-<div class="customer-wrapper" style="box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) !important;">
+<div class="customer-wrapper" style="">
 <h5 style="margin-top: 20px;"><b><i>Hello {{auth()->user()->name}}</i></b></h5>
                 <ul class="mt-2">
                    

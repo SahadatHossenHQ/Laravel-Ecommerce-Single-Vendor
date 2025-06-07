@@ -20,7 +20,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
     <style>
         .spec{
-            background: gainsboro;
+            padding: 30px;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow:  5px 5px 10px #d0d0d0,
+                        -5px -5px 10px #f0f0f0;
         }
         .dropify-wrapper .dropify-message p {
             font-size: initial;
@@ -61,7 +65,7 @@
                     @isset($product)
                         Edit Product 
                     @else 
-                        Add Product
+                        Add New Product
                     @endisset
                 </h1>
             </div>
@@ -87,7 +91,7 @@
     @if($errors->any())
     {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
     @endif
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             
             <div class="row">
@@ -120,7 +124,7 @@
             }
         </style>
         <div class="row">
-            <form class="col-sm-8" action="{{ isset($product) ? routeHelper('product/'.$product->id) : routeHelper('product') }}" method="POST" enctype="multipart/form-data">
+            <form class="col-lg-8 col-sm-12 border" action="{{ isset($product) ? routeHelper('product/'.$product->id) : routeHelper('product') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @isset($product)
                     <input type="hidden" value="{{$product->id}}" id="id">
@@ -129,78 +133,84 @@
                 <input type="hidden" value="{{$type??''}}" name="ptypen">
 
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="title">Product name <span class="text-danger">(*)</span>:</label>
-                        <input type="text" name="title" id="title" placeholder="Write product title" class="form-control @error('title') is-invalid @enderror" value="{{ $product->title ?? old('title') }}" >
-                        @error('title')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="title">Product name <span class="text-danger">(*)</span>:</label>
+                            <input type="text" name="title" id="title" placeholder="" class="form-control @error('title') is-invalid @enderror" value="{{ $product->title ?? old('title') }}" >
+                            @error('title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="title">Product Code (SKU):</label>
+                            <input type="text" name="sku" id="sku" placeholder="" class="form-control @error('title') is-invalid @enderror" value="{{ $product->sku ?? old('sku') }}" >
+                            @error('title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="title">Product Code (SKU):</label>
-                        <input type="text" name="sku" id="sku" placeholder="Product Code/SKU" class="form-control @error('title') is-invalid @enderror" value="{{ $product->sku ?? old('sku') }}" >
-                        @error('title')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
+                    
                     <div class="form-group">
                         <label for="short_description">Short Description:</label>
-                        <textarea name="short_description" id="short_description" rows="3" placeholder="Write product short description" class="form-control @error('short_description') is-invalid @enderror" >{{ $product->short_description ?? old('short_description') }}</textarea>
+                        <textarea name="short_description" id="short_description" rows="3" placeholder="" class="form-control @error('short_description') is-invalid @enderror" >{{ $product->short_description ?? old('short_description') }}</textarea>
                         @error('short_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="full_description">Select Vendor:</label>
-                        <select class="form-control" name="vendor">
-                            <option value="">Select Vendor Optional</option>
-                            @foreach(App\Models\ShopInfo::get(['name','user_id']) as $vend)
-                            <option @isset($product->user_id)@if($product->user_id==$vend->user_id)selected @endif
-                                @endisset value="{{$vend->user_id}}">{{$vend->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    
 
                     <div class="form-group">
                         <label for="full_description">Full Description <span class="text-danger">(*)</span>:</label>
-                        <textarea name="full_description" id="full_description" class="form-control">{{$product->full_description??old('full_description')}}</textarea>
+                        <textarea  rows="50" name="full_description" id="full_description" class="form-control">{{$product->full_description??old('full_description')}}</textarea>
                         @error('full_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row">                        
                         <div class="form-group col-md-6">
+                            <label for="full_description">Select Vendor <span class="text-danger">(*):</label>
+                            <select class="form-control" name="vendor">
+                                <option value="">Select Vendor</option>
+                                @foreach(App\Models\ShopInfo::get(['name','user_id']) as $vend)
+                                <option @isset($product->user_id)@if($product->user_id==$vend->user_id)selected @endif
+                                    @endisset value="{{$vend->user_id}}">{{$vend->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="quantity">Quantity <span class="text-danger">(*)</span>:</label>
+                            <input type="number" name="quantity" id="quantity" placeholder="" class="form-control @error('quantity') is-invalid @enderror" value="{{ $product->quantity ?? old('quantity') }}" required>
+                            @error('quantity')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
                             <label for="buying_price">Buying Price:</label>
-                            <input step="0.01" type="number" name="buying_price" id="buying_price" placeholder="Enter product buying price" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}">
+                            <input step="0.01" type="number" name="buying_price" id="buying_price" placeholder="" class="form-control @error('buying_price') is-invalid @enderror" value="{{ $product->buying_price ?? old('buying_price') }}">
                             @error('buying_price')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="regular_price">Whole Sell Price:</label>
-                            <input step="0.01" type="number" name="whole_price" id="whole_price" placeholder="Enter product whole sell price" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}">
+                            <input step="0.01" type="number" name="whole_price" id="whole_price" placeholder="" class="form-control @error('whole_price') is-invalid @enderror" value="{{ $product->whole_price ?? old('whole_price') }}">
                             @error('whole_price')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="regular_price">Regular Price <span class="text-danger">(*)</span>:</label>
-                            <input step="0.01" type="number" name="regular_price" id="regular_price" placeholder="Enter product regular price" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price ?? old('regular_price') }}" required>
+                            <input step="0.01" type="number" name="regular_price" id="regular_price" placeholder="" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price ?? old('regular_price') }}" required>
                             @error('regular_price')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="prdct_extra_msg">Product Extra Message:</label>
-                            <input type="text" name="prdct_extra_msg" id="prdct_extra_msg" placeholder="Express Delivery in Dhaka" class="form-control @error('prdct_extra_msg') is-invalid @enderror" value="{{ $product->prdct_extra_msg ?? "" }}">
-                            @error('prdct_extra_msg')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        
 
                         <div class="form-group col-md-6">
                             <label for="dis_type">Discount Type:</label>
@@ -226,29 +236,14 @@
                         @endisset
                         <div class="form-group col-md-6">
                             <label for="discount_price">Discount:</label>
-                            <input step="0.01" type="number" name="discount_price" id="discount_price" placeholder="Enter product discount price" class="form-control @error('discount_price') is-invalid @enderror" value="{{ $discount_price ?? old('discount_price') }}" >
+                            <input step="0.01" type="number" name="discount_price" id="discount_price" placeholder="" class="form-control @error('discount_price') is-invalid @enderror" value="{{ $discount_price ?? old('discount_price') }}" >
                             @error('discount_price')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="quantity">Point:</label>
-                            <input type="number" name="point" id="point" placeholder="Enter product point" class="form-control @error('point') is-invalid @enderror" value="{{ $product->point ?? old('point') }}" >
-                            @error('point')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
+                       
                     
-
-                        <div class="form-group col-md-6">
-                            <label for="quantity">Quantity <span class="text-danger">(*)</span>:</label>
-                            <input type="number" name="quantity" id="quantity" placeholder="Enter product quantity" class="form-control @error('quantity') is-invalid @enderror" value="{{ $product->quantity ?? old('quantity') }}" required>
-                            @error('quantity')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
+                        
                         <div class="form-group col-md-6">
                             <label for="brand">Select Brand <span class="text-danger">(*)</span>:</label>
                             <select name="brand" id="brand" data-placeholder="Select Brand" class="form-control select2 @error('brand') is-invalid @enderror">
@@ -261,18 +256,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="category">Select Campaing:</label>
-                            <select name="campaigns[]" id="campaign" multiple data-placeholder="Select Campaing" class="category form-control select2 @error('campaigns') is-invalid @enderror" >
-                                <option value="">Select Campaing</option>
-                                @foreach ($campaigns as $campaign)
-                                    <option value="{{$campaign->id}}" @isset($product) {{$campaign->id == $product->brand_id ? 'selected':''}} @endisset>{{$campaign->name}}</option>
-                                @endforeach
-                            </select>
-                            @error('campaigns')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        
 
                         <div class="form-group col-md-6">
                             <label for="category">Select Category <span class="text-danger">(*)</span>:</label>
@@ -289,7 +273,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="sub_category">Select Sub Category:</label>
-                            <select name="sub_categories[]" id="sub_category" data-placeholder="Select Sub Category" class="sub_category form-control {{isset($product) ? 'select2':''}} @error('sub_categories') is-invalid @enderror"  {{isset($product) ? 'multiple':''}}>
+                            <select name="sub_categories[]" id="sub_category" multiple data-placeholder="Select Sub Category" class="sub_category form-control select2 @error('sub_categories') is-invalid @enderror">
                                 @isset($product)
                                     @foreach ($product->sub_categories as $sub_category)
                                         <option value="{{$sub_category->id}}" selected>{{$sub_category->name}}</option>
@@ -327,6 +311,21 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
+                            <label for="category">Select Campaing:</label>
+                            <select name="campaigns[]" id="campaign" multiple data-placeholder="Select Campaing" class="category form-control select2 @error('campaigns') is-invalid @enderror" >
+                                <option value="">Select Campaing</option>
+                                @foreach ($campaigns as $campaign)
+                                    <option value="{{$campaign->id}}" @isset($product) {{$campaign->id == $product->brand_id ? 'selected':''}} @endisset>{{$campaign->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('campaigns')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        
+                        
+                        
+                        <div class="form-group col-md-8">
                             <label for="tag">Select Tag:</label>
                             <select name="tags[]" id="tag" multiple data-placeholder="Select Tag" class="form-control select2 @error('tags') is-invalid @enderror" >
                                 <option value="">Select Tag</option>
@@ -339,34 +338,18 @@
                             @enderror
                         </div>
 
-                        <!-- <div class="form-group col-md-6">
-                            <label for="size">Select Size:</label>
-                            <select name="sizes[]" id="size" multiple data-placeholder="Select Size" class="form-control select2 @error('sizes') is-invalid @enderror" >
-                                <option value="">Select Size</option>
-                                @foreach ($sizes as $size)
-                                    <option value="{{$size->id}}" @isset($product) @foreach($product->sizes as $pro_size) {{$size->id == $pro_size->id ? 'selected':''}} @endforeach @endisset>{{$size->name}}</option>
-                                @endforeach
-                            </select>
-                            @error('sizes')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="form-group col-md-4">
+                            <label for="quantity">Point:</label>
+                            <input type="number" name="point" id="point" placeholder="" class="form-control @error('point') is-invalid @enderror" value="{{ $product->point ?? old('point') }}" >
+                            @error('point')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
-                        </div> -->
-                        <input type='hidden' name="shipping_charge" value="1">
-                        <!-- <div class="form-group col-md-6">
-                            <label for="tag">Shipping Charge:</label>
-                            <select name="shipping_charge" id="shipping_charge" class="form-control @error('shipping_charge') is-invalid @enderror" required>
-                                <option value="1">Paid</option>
-                                <option value="0">Free</option>
-                            </select>
-                            @error('shipping_charge')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> -->
+                        </div>
 
                         <div class="form-group col-md-12">
-                            <div style="background: #eeeeee;padding: 10px;border-radius: 5px;">
+                            <div style="background: transparent;padding: 10px;border-radius: 5px;border:1px solid gainsboro;">
                                 <div class="row">
-                                    <div class="form-group col-md-12" style="margin-bottom: 5px;border:1px solid gainsboro;">
+                                    <div class="form-group col-md-12" style="margin-bottom: 5px; padding:10px;">
                                     <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button" data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false" aria-controls="collapseExampleColor">Select Color:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button></label>
                                     <div class="collapse" id="collapseExampleColor">
                                         <div style="display: flex;" class="input-group ">
@@ -408,13 +391,58 @@
                                 </div>
                                 <div id="sho_attributes" class="row">
                                       
-                                  </div>
+                                </div>
                             </div>
                         </div>
-  <h4 class="col-12"> <button style="width: 100%;text-align:left;" type="button" data-toggle="collapse" data-target="#BookOpen" aria-expanded="false" aria-controls="BookOpen">Specification for book:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button></h4>
+
+                        <div class="form-group col-md-12">
+                            <label for="prdct_extra_msg">Product Extra Message:</label>
+                            <input type="text" name="prdct_extra_msg" id="prdct_extra_msg" placeholder="Ex: Fast Delivery Available in Dhaka" class="form-control @error('prdct_extra_msg') is-invalid @enderror" value="{{ $product->prdct_extra_msg ?? "" }}">
+                            @error('prdct_extra_msg')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        
+
+                        <!-- <div class="form-group col-md-6">
+                            <label for="size">Select Size:</label>
+                            <select name="sizes[]" id="size" multiple data-placeholder="Select Size" class="form-control select2 @error('sizes') is-invalid @enderror" >
+                                <option value="">Select Size</option>
+                                @foreach ($sizes as $size)
+                                    <option value="{{$size->id}}" @isset($product) @foreach($product->sizes as $pro_size) {{$size->id == $pro_size->id ? 'selected':''}} @endforeach @endisset>{{$size->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('sizes')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div> -->
+                        <input type='hidden' name="shipping_charge" value="1">
+                        <!-- <div class="form-group col-md-6">
+                            <label for="tag">Shipping Charge:</label>
+                            <select name="shipping_charge" id="shipping_charge" class="form-control @error('shipping_charge') is-invalid @enderror" required>
+                                <option value="1">Paid</option>
+                                <option value="0">Free</option>
+                            </select>
+                            @error('shipping_charge')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div> -->
+
+                        
+
+
+                        <h4 class="col-12">
+                            <button style="width: 100%; border-radius:5px; text-align:left; padding: 15px; border: .5px solid #d2d6dc;  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+" 
+                            type="button" data-toggle="collapse" 
+                            data-target="#BookOpen" 
+                            aria-expanded="false" 
+                            aria-controls="BookOpen">Specification for book:<i style="float: right;top: 8px;position: relative;" class="fas fa-arrow-down"></i> </button>
+                        </h4>
                            
                         
-                        <div class="form-row col-md-12 spec collapse" id="BookOpen">
+                        <div class="form-row col-md-12 spec collapse mb-4" id="BookOpen">
                             
                            <div class="form-group col-md-6">
                                  <label for="full_description">Select Author:</label>
@@ -465,33 +493,46 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group col-md-12">
-                        @isset($product)
-                            <div><a target="_blank" href="{{asset('uploads/product/video/'.$product->video)}}">Click View Video</a>
-                            <br>
-                            <a target="_blank" href="{{asset('uploads/product/video/'.$product->video_thumb)}}">Click View Video Thumbnail</a></div>
-                        @endisset
-                            <label for="video">Product Video:</label>
-                            <input type="file" name="video" class="form-control @error('video') is-invalid @enderror" >
-                            <label for="video">OR Youtbe Video:</label>
-                            <input {{ $product->yvideo ?? old('yvideo') }} type="text" name="yvideo" class="form-control @error('yvideo') is-invalid @enderror" >
-                            <label for="video_thumb">Product Video Thumbnail:</label>
-                            <input type="file" name="video_thumb" class="form-control @error('video_thumb') is-invalid @enderror" >
-                            @error('video')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
+                        <div class="form-group col-md-12 mb-5">
+                            @isset($product)
+                                <div><a target="_blank" href="{{asset('uploads/product/video/'.$product->video)}}">Click View Video</a>
+                                <br>
+                                <a target="_blank" href="{{asset('uploads/product/video/'.$product->video_thumb)}}">Click View Video Thumbnail</a></div>
+                            @endisset
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="image">Product Thumbnail Image <span class="text-danger">(*)</span>: <a target="_blank" href="https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="video">Upload Video:</label>
+                                <input type="file" name="video" class="form-control @error('video') is-invalid @enderror" >
+                                <br>
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label for="video">OR Past Youtbe Video:</label>
+                                <input {{ $product->yvideo ?? old('yvideo') }} type="text" name="yvideo" class="form-control @error('yvideo') is-invalid @enderror" >
+                                <br>
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label for="video_thumb">Upload Video Thumbnail:</label>
+                                <input type="file" name="video_thumb" class="form-control @error('video_thumb') is-invalid @enderror" >
+                                @error('video')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="image">Product Thumbnail Image <span class="text-danger">(*)</span>: </label>
                             <input type="file" name="image" id="image" accept="image/*" class="form-control dropify @error('image') is-invalid @enderror" data-default-file="@isset($product) /uploads/product/{{$product->image}}@enderror">
                             @error('image')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                         
-                        <div class="form-group col-md-6">
-                            <label>Product Gallery Image <span class="text-danger">(*)</span>: <a target="_blank" href="https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
-                            <div class="input-group" id="increment">
+                        <div class="form-group col-md-8">
+                            <label>Product Gallery Image <span class="text-danger">(*)</span>:</label>
+                            <div class="input-group" id="increment" style=" border: .5px solid #d2d6dc; border-radius:5px;">
                                 <input type="file" class="form-control" accept="image/*" id="images" name="images[]"  @isset($product) @else required @endisset  >
                                 <select name="imagesc[]" id="imagesc">
                                     <option value="">Select Color</option>
@@ -716,19 +757,30 @@
                     
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="mt-1 btn btn-primary">
-                        @isset($product)
-                            <i class="fas fa-arrow-circle-up"></i>
-                            Update
-                        @else
-                            <i class="fas fa-plus-circle"></i>
-                            Submit
-                        @endisset
-                    </button>
-                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" name="action" value="exit" class="btn btn-lg btn-primary d-block w-100">
+                                @isset($product)
+                                    <i class="fas fa-arrow-circle-up"></i>
+                                    Update
+                                @else
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Submit and Exit
+                                @endisset
+                            </button>
+                        </div>
+                        @if(!isset($product))
+                        <div class="col-md-6">
+                            <button type="submit" name="action" value="create_another" class="btn btn-lg btn-success d-block w-100">
+                                <i class="fas fa-plus-circle"></i>
+                                Submit and Create Another
+                            </button>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </form>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-sm-12">
                 @include('components.product-sidebar')
             </div>
         </div>
@@ -739,7 +791,7 @@
 
     
     @if(isset($product->downloads) && $product->downloads->count() > 0)
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Update Product Download File</h3>
         </div>
@@ -951,7 +1003,6 @@
           
 
             $(document).on('change', '#category', function() {
-                
                 var options = document.getElementById('category').selectedOptions;
                 var values = Array.from(options).map(({ value }) => value);
                 
@@ -964,19 +1015,17 @@
                     },
                     dataType: "JSON",
                     success: function (response) {
-                        
-                        let data = '<option value="">Select Sub Category</option>';
+                        $('#sub_category').empty();
+                        $('#sub_category').append('<option value="">Select Sub Category</option>');
                         $.each(response, function (key, val) { 
-                            data += '<option value="'+val.id+'">'+val.name+'</option>';
-                            
+                            $('#sub_category').append('<option value="'+val.id+'">'+val.name+'</option>');
                         });
-                        $('#sub_category').html(data).attr('multiple', true).select2();
+                        $('#sub_category').trigger('change');
                     }
                 });
             });
-        
-             $(document).on('change', '#sub_category', function() {
-                
+
+            $(document).on('change', '#sub_category', function() {
                 var options = document.getElementById('sub_category').selectedOptions;
                 var values = Array.from(options).map(({ value }) => value);
                 
@@ -989,37 +1038,12 @@
                     },
                     dataType: "JSON",
                     success: function (response) {
-                        
-                        let data = '<option value="">Select Mini Category</option>';
+                        $('#mini_category').empty();
+                        $('#mini_category').append('<option value="">Select Mini Category</option>');
                         $.each(response, function (key, val) { 
-                            data += '<option value="'+val.id+'">'+val.name+'</option>';
-                            
+                            $('#mini_category').append('<option value="'+val.id+'">'+val.name+'</option>');
                         });
-                        $('#mini_category').html(data).attr('multiple', true).select2();
-                    }
-                });
-            });
-             $(document).on('change', '#mini_category', function() {
-                
-                var options = document.getElementById('mini_category').selectedOptions;
-                var values = Array.from(options).map(({ value }) => value);
-                
-                $.ajax({
-                    type: 'POST',
-                    url: '/admin/get/extra-categories',
-                    data: {
-                        'ids': values,
-                        '_token': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    dataType: "JSON",
-                    success: function (response) {
-                        
-                        let data = '<option value="">Select Mini Category</option>';
-                        $.each(response, function (key, val) { 
-                            data += '<option value="'+val.id+'">'+val.name+'</option>';
-                            
-                        });
-                        $('#extra_category').html(data).attr('multiple', true).select2();
+                        $('#mini_category').trigger('change');
                     }
                 });
             });

@@ -45,7 +45,7 @@
     @if($errors->any())
         {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
     @endif
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             
             <div class="row">

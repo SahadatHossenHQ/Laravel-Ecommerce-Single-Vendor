@@ -71,7 +71,7 @@
         .p_title {
             word-spacing: 3px;
             font-weight: 300;
-            margin-bottom: 14px;
+            margin-bottom: 5px;
             color: #333;
         }
 
@@ -82,7 +82,17 @@
         }
 
         .new_r {
-            background: #f3f3f3;
+            background: rgba(255, 255, 255, 0.36);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8.7px);
+            -webkit-backdrop-filter: blur(8.7px);
+            border: 1px solid rgba(255, 255, 255, 1);background: rgba(255, 255, 255, 0.36);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.7px);
+-webkit-backdrop-filter: blur(8.7px);
+border: 1px solid rgba(255, 255, 255, 1);
             margin-top: -20px;
             padding-top: 18px;
             position: relative;
@@ -93,8 +103,7 @@
             margin: 0;
         }
 
-        .s_d,
-        .rating1 {
+        .s_d {
             margin-top: 10px;
         }
 
@@ -109,10 +118,15 @@
             flex-direction: column;
             min-width: 0;
             word-wrap: break-word;
-            background-color: #fff;
+            background: rgba(255, 255, 255, 0.36);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8.7px);
+            -webkit-backdrop-filter: blur(8.7px);
+            border: 1px solid rgba(255, 255, 255, 1);
             background-clip: border-box;
-            border: none;
-            box-shadow: none;
+
+
         }
 
         .media img {
@@ -237,7 +251,15 @@
 
         .single-right-left p {
             color: #54595F;
-            font-size: 18px;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.3em;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        .single-right-left p a {
+            color: var(--primary_color);
+            font-size: 14px;
             font-weight: 300;
             line-height: 1.3em;
             margin-top: 10px;
@@ -254,7 +276,7 @@
 
             <!-- //tittle heading -->
             <div class="row"
-                style="background: white;margin-top: 20px;padding: 20px 10px;box-shadow: 0px 4px 6px -3px #9c9c9c;">
+                style="background: ; margin-top: 20px;padding: 20px 10px;box-shadow: 0px 4px 6px -3px #9c9c9c;">
 
                 <div class="col-md-4 single-right-left ">
                     <div class="grid images_3_of_2">
@@ -323,9 +345,7 @@
                 </div>
                 <div class="col-md-5 single-right-left simpleCart_shelfItem">
                     <h1 class="p_title">{{ $product->title }}</h1>
-                    <div class="s_d">
-                        <p>{!! $product->short_description !!}</p>
-                    </div>
+                    
                     <div class="rating1" style="text-align:left !important;">
                         @php
                             if ($product->reviews->count() > 0) {
@@ -399,8 +419,39 @@
                             <span style="color: #333;">{{ $average_rating }} Rating of
                                 {{ $product->orderDetails->count() }} orders</span>
                         </div>
-
                     </div>
+                    <?php if (isset($campaigns_product)) {
+                            $product->discount_price = $campaigns_product->price;
+                        } ?>
+                        @if ($product->discount_price > 0)
+                            <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span
+                                    id="dynamic_price">{{ $product->discount_price }}</span></span>
+                        
+                            <span><del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $product->regular_price }}</del></span>
+
+                            
+                            @php
+                                $per = $product->regular_price / 100;
+                                $amc = $product->regular_price - $product->discount_price;
+                            @endphp
+                            <span style="font-size:13px">Save
+                                {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $amc }}
+                                ({{ round($amc / $per) }}%)</span>
+                        @else
+                            <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span
+                                    id="dynamic_price">{{ $product->regular_price }}</span></span>
+                        @endif
+                        @if ($product->whole_price > 0)
+                        <p class="item_price">Whole Sell: {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $product->whole_price }}</p>
+                        @endif
+                    </p>
+                    <div class="s_d">
+                        <p>{!! $product->short_description !!}</p>
+                    </div>
+                    
+
+                    
+                    
                     @if ($product->sku)
                         <p>Product Code (SKU): <b><i>{{ $product->sku }}</i></b></p>
                     @endif
@@ -424,40 +475,17 @@
                         </p>
                     @endif
                     <p>
-                        <?php if (isset($campaigns_product)) {
-                            $product->discount_price = $campaigns_product->price;
-                        } ?>
-                        @if ($product->discount_price > 0)
-                            <span><del>{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $product->regular_price }}</del></span>
-
-                            <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span
-                                    id="dynamic_price">{{ $product->discount_price }}</span></span>
-                            @php
-                                $per = $product->regular_price / 100;
-                                $amc = $product->regular_price - $product->discount_price;
-                            @endphp
-                            <span style="font-size:13px">You Save
-                                {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $amc }}
-                                ({{ round($amc / $per) }}%)</span>
-                        @else
-                            <span class="item_price">{{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.<span
-                                    id="dynamic_price">{{ $product->regular_price }}</span></span>
-                        @endif
-                        @if ($product->whole_price > 0)
-                        <p class="item_price">Whole Sell: {{ setting('CURRENCY_CODE_MIN') ?? 'TK' }}.{{ $product->whole_price }}</p>
-                        @endif
-                    </p>
-
-                    <p style="font-size: 13px">
-                        <span
-                            style="background: green;color: white;border-radius: 50%;width: 20px;height: 20px;display: inline-block;font-size: 13px;line-height: 20px;text-align: center;"><i
-                                class="icofont icofont-tick-mark"></i></span> In Stock ({{ $product->quantity }} copies
-                        available)
-                    <p style="margin:0;font-size: 11px;margin-left: 21px;margin-top: 4px;">@if(setting('COUNTRY_SERVE') == 'Bangladesh')* স্টক আউট হওয়ার আগেই অর্ডার করুন@else * Order before finish the stock @endif</p>
-                    </p>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
                     @if ($product->colors->count() != 0)
-                        <div class="row ml-1">
+                        <div class="row ml-2 mb-2">
                             <div class="col-12 pl-0 mb-2">
                                 <p><strong>Select Color:</strong></p>
                             </div>
@@ -465,7 +493,7 @@
                             <div class="btn-group btn-group-toggle btn-color-group d-block mt-n2 ml-n2"
                                 data-toggle="buttons">
                                 @foreach ($colors_product as $color)
-                                    <label class="btn   p-3 m-1 color {{ $product->colors->count() == 1 ? 'active' : '' }}"
+                                    <label class="btn rounded-circle  p-3 m-1 color {{ $product->colors->count() == 1 ? 'active' : '' }}"
                                         style="background: {{ $color->code }}">
                                         @if ($product->images)
                                             @foreach ($product->images as $image)
@@ -532,6 +560,7 @@
                     @if ($product->book != 1 && $product->download_able != 1)
                         <td class="invert">
                             <div class="quantity">
+                                
                                 <div class="quantity-select">
                                     <div class="entry value-minus">&nbsp;</div>
                                     <input type="text" class="entry value" value="1">
@@ -544,6 +573,13 @@
                                         @endif
                                     </span>
                                 </div>
+                                <p style="font-size: 13px">
+                        <span
+                            style="background: green;color: white;border-radius: 50%;width: 20px;height: 20px;display: inline-block;font-size: 13px;line-height: 20px;text-align: center;"><i
+                                class="icofont icofont-tick-mark"></i></span> In Stock ({{ $product->quantity }} copies
+                        available)
+                    <p style="margin:0;font-size: 11px;margin-left: 21px;margin-top: 4px;">@if(setting('COUNTRY_SERVE') == 'Bangladesh')* স্টক আউট হওয়ার আগেই অর্ডার করুন@else * Order before finish the stock @endif</p>
+                    </p>
                             </div>
                         </td>
                     @endif
@@ -599,8 +635,9 @@
                         @if ($product->quantity <= '0')
                             <div class="gcg">
                             @else
-                                <div class="occasion-cart gcg" style="width:140px">
+                                <div class="occasion-cart gcg col-md-6 col-12 pl-0" >
                         @endif
+                        
                         <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                             <form action="{{ route('add.cart') }}" method="post" id="addToCart">
                                 @csrf
@@ -638,7 +675,7 @@
                                     @if ($product->quantity <= '0')
                                     @else
                                         @if ($product->sheba != 1)
-                                            <button style="width:140px;margin-top: 10px;background:#ff9900;color:white"
+                                            <button style="margin-top: 10px;background:#ff9900;color:white"
                                                 type="submit" name="submit" class="redirect"><i
                                                     class="fal fa-shopping-cart"></i> Add To Cart</button>
                                         @endif
@@ -649,7 +686,7 @@
                     </div>
 
                     @if ($product->book != 1)
-                        <div class="occasion-cart col-1s" style="width:140px">
+                        <div class="occasion-cart col-md-6 col-12 pl-0 pr-0" >
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="{{ route('buy.product') }}" method="GET">
                                     <?php if(isset($campaigns_product)){?>
@@ -701,18 +738,25 @@
                                             <input type="hidden" name="pr" value="1">
                                             <!--<input style="width:140px;margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);" type="submit" value="Pre Order" class="button">-->
                                             <p
-                                                style="width:140px;margin-top: 10px;background: #ec1d1d;color: white;border-color: var(--primary_color);text-align: center;padding: 10px;border-radius: 5px;">
+                                                style="margin-top: 10px;background: #ec1d1d;color: white;border-color: var(--primary_color);text-align: center;padding: 10px;border-radius: 5px;">
                                                 Out Of Stock</p>
                                         @else
                                             <input
-                                                style="width:140px;margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);"
+                                                style="margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);"
                                                 type="submit" value="Buy Now" class="button">
                                         @endif
+                                        
+                                        
                                     </fieldset>
                                 </form>
                             </div>
                         </div>
                     @endif
+                    <div class="col-md-12 px-0 pt-2">
+                        @if(!empty(setting('whatsapp')))
+                        <a href="https://api.whatsapp.com/send?phone= {{setting('whatsapp')}} &amp;text=হ্যালো, আমি আপনার ওয়েবসাইটে এই {{ $product->title }} দেখেছি এবং আমি এটি কিনতে চাই {{route('product.details', $product->slug)}}" target="_blank" title="Order From Whatsapp" class=""><button type="button" class="whatsapp_order_btn d-flex justify-content-center align-items-center"><svg fill="#FFF" width="25px" height="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="padding-right: 5px; "><path d="m15.271 13.21c.578.185 1.078.416 1.543.7l-.031-.018c.529.235.986.51 1.403.833l-.015-.011c.02.061.032.13.032.203 0 .011 0 .021-.001.032v-.001c-.015.429-.11.832-.271 1.199l.008-.021c-.231.463-.616.82-1.087 1.01l-.014.005c-.459.243-1.001.393-1.576.411h-.006c-1.1-.146-2.094-.484-2.988-.982l.043.022c-1.022-.468-1.895-1.083-2.636-1.829l-.001-.001c-.824-.857-1.579-1.795-2.248-2.794l-.047-.074c-.636-.829-1.041-1.866-1.1-2.995l-.001-.013v-.124c.032-.975.468-1.843 1.144-2.447l.003-.003c.207-.206.491-.335.805-.341h.001c.101.003.198.011.292.025l-.013-.002c.087.013.188.021.292.023h.003c.019-.002.04-.003.062-.003.13 0 .251.039.352.105l-.002-.001c.107.118.189.261.238.418l.002.008q.124.31.512 1.364c.135.314.267.701.373 1.099l.014.063c-.076.361-.268.668-.533.889l-.003.002q-.535.566-.535.72c.004.088.034.168.081.234l-.001-.001c.405.829.936 1.533 1.576 2.119l.005.005c.675.609 1.446 1.132 2.282 1.54l.059.026c.097.063.213.103.339.109h.002q.233 0 .838-.752t.804-.752zm-3.147 8.216h.022c1.357 0 2.647-.285 3.814-.799l-.061.024c2.356-.994 4.193-2.831 5.163-5.124l.024-.063c.49-1.113.775-2.411.775-3.775s-.285-2.662-.799-3.837l.024.062c-.994-2.356-2.831-4.193-5.124-5.163l-.063-.024c-1.113-.49-2.411-.775-3.775-.775s-2.662.285-3.837.799l.062-.024c-2.356.994-4.193 2.831-5.163 5.124l-.024.063c-.49 1.117-.775 2.419-.775 3.787 0 2.141.698 4.12 1.879 5.72l-.019-.026-1.225 3.613 3.752-1.194c1.49 1.01 3.327 1.612 5.305 1.612h.047zm0-21.426h.033c1.628 0 3.176.342 4.575.959l-.073-.029c2.825 1.197 5.028 3.4 6.196 6.149l.029.076c.588 1.337.93 2.896.93 4.535s-.342 3.198-.959 4.609l.029-.074c-1.197 2.825-3.4 5.028-6.149 6.196l-.076.029c-1.327.588-2.875.93-4.503.93-.011 0-.023 0-.034 0h.002c-.016 0-.034 0-.053 0-2.059 0-3.992-.541-5.664-1.488l.057.03-6.465 2.078 2.109-6.279c-1.051-1.714-1.674-3.789-1.674-6.01 0-1.646.342-3.212.959-4.631l-.029.075c1.197-2.825 3.4-5.028 6.149-6.196l.076-.029c1.327-.588 2.875-.93 4.503-.93h.033-.002z"/></svg>Order on Whatsapp</button></a>
+                        @endif
+                    </div>
                 </div>
                 <style>
                     .share-groups span {
@@ -883,7 +927,7 @@
                 </div>
             </div>
             <div class="col-md-3 new_r">
-                <h3 class="p_title" style="font-size:20px">Related Product</h3>
+                <h3 class="p_title" style="font-size:20px; padding-bottom: 10px;">Related Product</h3>
                 <?php
                 foreach ($product->categories as $s) {
                     $ppis = $s->id;
@@ -900,7 +944,7 @@
             </div>
         </div>
         <br>
-        <div class="row" style="background: white; box-shadow: 0px 4px 6px -3px #9c9c9c;">
+        <div class="row" style="box-shadow: 0px 4px 6px -3px #9c9c9c;">
             <div id="accordion" style="width: 100%;">
                 <h4 style="font-size: 20px;padding: 20px;padding-bottom: 10px;">Product Specification & Summary</h4>
                 <div class="lc-4">
@@ -1333,7 +1377,7 @@
 
         <br>
         <div class="products related row"
-            style="background: white;box-shadow: 0px 4px 6px -3px #9c9c9c;margin-right: -15px;;margin-left: -15px;">
+            style="margin-right: -15px;;margin-left: -15px;">
             <div class="container">
                 <h3 class="p_title" style="font-size:20px;padding-top: 20px;">Similar Category Best</h3>
                 <?php
@@ -1345,14 +1389,15 @@
                 $products = App\Models\Product::whereIn('id', $productIds)->where('status', true)->inRandomOrder()->take(18)->get();
                 ?>
 
-                <div class="row autoplay">
+                <div class="row">
                     @forelse ($products as $product)
-                        <x-product-grid-view :product="$product" classes="" />
+                        <x-product-grid-view :product="$product" classes="col-lg-3 col-md-4 col-sm-6 col-6" />
                     @empty
                         <x-product-empty-component />
                     @endforelse
 
                 </div>
+                
             </div>
         </div>
         <div class="clearfix"> </div>

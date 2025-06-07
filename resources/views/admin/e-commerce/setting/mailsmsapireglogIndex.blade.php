@@ -21,7 +21,7 @@
 
 {{-- LOGIN / REG - OPTION --}}
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">LOGIN REGISTRATION OPTION CHOOSE</h3>
         </div>
@@ -90,7 +90,7 @@
 
 {{-- Mail config --}}
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Mail Configuration</h3>
         </div>
@@ -178,7 +178,7 @@
 
 {{-- SMS Config --}}
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">SMS Configuration</h3>
         </div>

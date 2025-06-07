@@ -525,7 +525,7 @@
                     <div class="">
                         <div class=" justify-content-center">
                             <div class=" chat">
-                                <div class="card">
+                                <div class="card" style="background:transparent;">
                                     <div class="card-body msg_card_body"></div>
 
                                     <div class="card-footer">

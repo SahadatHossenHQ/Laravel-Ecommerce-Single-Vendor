@@ -44,7 +44,7 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Application Settings</h3>
         </div>
@@ -82,8 +82,8 @@
 
                         <hr>
                         <div class="card-body getway form-row">
-                            <div class="form-group col-md-6 col-12 bg-gray py-4 px-3">
-                                <label><input type="checkbox" name="bank" @if(setting('g_bank')=='true' ) checked
+                            <div class="form-group col-md-6 col-12  py-4 px-3">
+                                <label style=" padding:15px 0px; border-radius:5px;"><input type="checkbox" name="bank" @if(setting('g_bank')=='true' ) checked
                                         @endif> Bank</label>
                                 <label for="bank_name" class="text-capitalize">Bank Name</label>
                                 <input class="form-control" type="text" name="bank_name" id="bank_name"
@@ -103,8 +103,8 @@
                                     value="{{ setting('routing') ?? 'BDBL000' }}">
                             </div>
 
-                            <div class="form-group col-md-6 col-12 bg-gray py-4 px-3">
-                                <label><input type="checkbox" name="cod" @if(setting('g_cod')=='true' ) checked
+                            <div class="form-group col-md-6 col-12  py-4 px-3">
+                                <label style=" padding:15px 0px; border-radius:5px;"><input type="checkbox" name="cod" @if(setting('g_cod')=='true' ) checked
                                     @endif> COD&nbsp;<small>(Cash On Delivery)</small></label>
                                     <hr>
                                 <p class="text-warning">All Charges are not related with COD, it will effect also all payment getway</p>
@@ -124,7 +124,7 @@
 
                         <hr>
                         <div class="card-body row getway form-row">
-                            <div class="col-sm-6" style="background:#45b03c80">
+                            <div class="col-sm-6" style="background:transparent;">
                                 <h1 class="col-md-12 title">Online Pay- aamarPay</h1>
                                 <div class="form-group">
                                     <label>StoreID</label>
@@ -147,7 +147,7 @@
                                             checked @endif> is active</label>
                                 </div>
                             </div>
-                            <div class="col-sm-6" style="background:#80b8ea6e">
+                            <div class="col-sm-6" style="background:transparent;">
                                 <h1 class="col-md-12 title" style="background:#2f84d0">Online Pay- UddoktaPay</h1>
                                 <div class="form-group">
                                     <label>API Key</label>

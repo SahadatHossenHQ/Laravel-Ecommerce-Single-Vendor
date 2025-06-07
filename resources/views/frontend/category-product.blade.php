@@ -76,22 +76,27 @@
                 <div class="row" style="margin-bottom: 10px;">
                     <x-filter-component />
                 </div>
-                <div class="row " id="grid-view">
-                    @forelse ($category->products as $product)
+                <div class="row" id="grid-view">
+                    @forelse ($products as $product)
                         <x-product-grid-view :product="$product" />
                     @empty
                         <x-product-empty-component />
                     @endforelse
-                    
                 </div>
-                  <div class="row " id="list-view" style="display: none;">
-                    @forelse ($category->products as $product)
+                <div class="row " id="list-view" style="display: none;">
+                    @forelse ($products as $product)
                         <x-product-list-view :product="$product" />
                     @empty
                         <x-product-empty-component />
                     @endforelse
                 </div>
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center">
+                    {!! $products->links() !!}  <!-- Pagination links for products -->
+                </div>
+
             </div>
+
         </div>
         <!--================product  Area End=================-->
 
@@ -209,43 +214,38 @@
     </script>
     <script>
    var site_url = "{{ url('/') }}";   
-   var page = 1;
-   
-   load_more(page);
+var page = 1;
+
+load_more(page);
+
+function load_more(page) {
+    var slug = '{!! $slug !!}';
+    var _totalCurrentResult = $(".product").length;
+    $.ajax({
+        url: site_url + "/category/" + slug + "?page=" + page,
+        type: "get",
+        datatype: "html",
+        data: {
+            skip: _totalCurrentResult
+        },
+        beforeSend: function() {
+            $('.ajax-loading').show();
+        },
+        success: function(response) {
+            var result = $.parseJSON(response);
+            $('.ajax-loading').hide();
+            $("#grid-view").append(result[0]);
+            $("#list-view").append(result[1]);
+
+            // If new products are available, continue pagination
+            if (result[0].length > 0) {
+                page++;
+                load_more(page);
+            }
+        },
+    });
+}
 
 
-    function load_more(page){
-        var slug = '{!! $slug !!}';
-        var _totalCurrentResult=$(".product").length;
-        $.ajax({
-            url: site_url + "/category/"+slug+"?page=" + page,
-            type: "get",
-            datatype: "html",
-            data:{
-                        skip:_totalCurrentResult
-                },
-            beforeSend: function()
-            {
-                $('.ajax-loading').show();
-            },
-            success: function(response) {
-                var result = $.parseJSON(response);
-                $('.ajax-loading').hide();
-                $("#grid-view").append(result[0]);
-                $("#list-view").append(result[1]);
-                if(result[0].length==0){
-                }else{
-                   
-                    setTimeout(function() {
-                        page++;
-                        load_more(page);
-                    }, 3000);
-                }
-            },
-            
-        })
-        
-       
-    }
 </script>
 @endpush

@@ -714,6 +714,7 @@ class Connection implements ConnectionInterface
             );
         }
     }
+	
 
     /**
      * Log a query in the connection's query log.

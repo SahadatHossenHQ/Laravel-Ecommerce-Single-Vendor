@@ -32,7 +32,7 @@
                 </ul>
             </div>
             <div class="col-md-9">
-                <div class="card" style="padding: 20px;margin-top: 20px;">
+                <div class="card" style="background:transparent;" style="padding: 20px;margin-top: 20px;">
                     <form action="{{route('setup.vendor')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form form2">

@@ -13,6 +13,7 @@ use App\Models\DeviceId;
 use App\Models\Slider;
 use App\Models\ShopInfo;
 use App\Models\Order;
+use App\Models\FbReview; // Import the FbReview model
 use View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,13 +46,15 @@ class HomeController extends Controller
         $i = 1;
 
         $productIds  = DB::table('category_product')->where('category_id', '!=', ['13', '9'])->get()->pluck('product_id');
-        $products    = Product::whereIn('id', $productIds)->where('status', true)->latest('id')->take(12)->get();
+        // $products    = Product::whereIn('id', $productIds)->where('status', true)->latest('id')->take(12)->get();
+        $products = Product::whereIn('id', $productIds)->where('status', true)->latest('id')->paginate(12); // Show 12 products per page
         $randomProducts = Product::with('brand')->where('status', true)->where('reach', '>', '0')->orderBy('reach', 'DESC')->take('6')->get();
 
         $unproducts = Unproduct::where('status', 1)->inRandomOrder()->take(6)->get();
 
         $collections    = Collection::where('status', true)->latest('id')->get();
-
+        // Fetch all Facebook reviews from the database
+        $fbReviews = FbReview::all();
         return view('frontend.index', compact(
             'sliders',
             'unproducts',
@@ -61,7 +64,8 @@ class HomeController extends Controller
             'shops',
             'products',
             'randomProducts',
-            'campaigns_product'
+            'campaigns_product',
+            'fbReviews'
         ));
     }
     
@@ -164,6 +168,14 @@ class HomeController extends Controller
 
         dd($response);
     }
-    
+    public function index()
+    {
+        // Fetch all Facebook reviews from the database
+        $fbReviews = FbReview::all();
+
+        // Return the main view and pass the reviews data
+        return view('frontend.index', compact('fbReviews'));
+    }
+
     
 }

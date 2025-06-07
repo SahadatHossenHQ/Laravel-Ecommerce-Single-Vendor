@@ -30,7 +30,7 @@
 
     @media(max-width:576px) {
         .oc.shop-category .cat-row a:nth-last-child(2) {
-            display: none
+            display: block;
         }
     }
 

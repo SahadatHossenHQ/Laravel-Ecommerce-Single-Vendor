@@ -1,0 +1,70 @@
+.form-control, .note-editor.note-airframe, .note-editor.note-frame {
+    box-shadow: 0 2px 4px rgba(59, 59, 59, 0.15);
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 3px 6px rgba(59, 59, 59, 0.2);
+    border-color: var(--primary_color);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.btn-primary {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+    color: #393939;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    height: auto;
+    padding: 0.625rem 0.875rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.card-footer {
+    background-color: transparent;
+    padding: 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.nc {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.nc h5 {
+    color: #2c2c2c;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+}
+
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23555' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+

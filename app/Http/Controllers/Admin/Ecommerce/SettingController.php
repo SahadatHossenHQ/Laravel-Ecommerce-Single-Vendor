@@ -91,6 +91,7 @@ class SettingController extends Controller
         elseif ($request->type == 4) {
             
             Setting::updateOrCreate(['name' => 'PRIMARY_COLOR'], ['value' => $request->get('PRIMARY_COLOR')]);
+            Setting::updateOrCreate(['name' => 'PRIMARY_BG_COLOR'], ['value' => $request->get('PRIMARY_BG_COLOR')]);
             Setting::updateOrCreate(['name' => 'PRIMARY_BG_TEXT_COLOR'], ['value' => $request->get('PRIMARY_BG_TEXT_COLOR')]);
             Setting::updateOrCreate(['name' => 'SECONDARY_COLOR'], ['value' => $request->get('SECONDARY_COLOR')]);
             Setting::updateOrCreate(['name' => 'OPTIONAL_COLOR'], ['value' => $request->get('OPTIONAL_COLOR')]);
@@ -566,6 +567,9 @@ class SettingController extends Controller
 
         $get_PRIMARY_COLOR = Setting::where('name', 'PRIMARY_COLOR')->first();
         $PRIMARY_COLOR = (!$get_PRIMARY_COLOR) ? (object)['value' => '#108b3a'] : $get_PRIMARY_COLOR;
+        
+        $get_PRIMARY_BG_COLOR = Setting::where('name', 'PRIMARY_BG_COLOR')->first();
+        $PRIMARY_BG_COLOR = (!$get_PRIMARY_BG_COLOR) ? (object)['value' => '#f3feff'] : $get_PRIMARY_BG_COLOR;
 
         $get_PRIMARY_BG_TEXT_COLOR = Setting::where('name', 'PRIMARY_BG_TEXT_COLOR')->first();
         $PRIMARY_BG_TEXT_COLOR = (!$get_PRIMARY_BG_TEXT_COLOR) ? (object)['value' => '#ffffff'] : $get_PRIMARY_BG_TEXT_COLOR;
@@ -589,6 +593,7 @@ class SettingController extends Controller
 
         return view('admin.e-commerce.setting.colorIndex', compact(
             'PRIMARY_COLOR', 
+            'PRIMARY_BG_COLOR',
             'PRIMARY_BG_TEXT_COLOR',
             'SECONDARY_COLOR',
             'OPTIONAL_COLOR',
@@ -682,7 +687,7 @@ class SettingController extends Controller
         // $get_SMS_API_KEY = Setting::where('name', 'SMS_API_KEY')->first();
         // $SMS_API_KEY = (!$get_SMS_API_KEY) ? (object)['value' => 'sms api key' ] : $get_SMS_API_KEY;
         // $get_SMS_API_SENDER_ID = Setting::where('name', 'SMS_API_SENDER_ID')->first();
-        // $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801721600688' ] : $get_SMS_API_SENDER_ID;
+        // $SMS_API_SENDER_ID = (!$get_SMS_API_SENDER_ID) ? (object)['value' => '8801*********' ] : $get_SMS_API_SENDER_ID;
 
 
         return view('admin.e-commerce.setting.mailsmsapireglogIndex');

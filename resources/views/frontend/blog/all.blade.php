@@ -90,7 +90,7 @@ margin: 10px 0px;}
                         <div class="row posts">
                     
                         @foreach($blogs as $blog)
-                            <div class="blog-4 col-md-4 col-sm-6">
+                            <div class="blog-4 col-md-4 col-sm-6 col-6">
                                 <a href="{{route('blog.show',['blog'=>$blog->id])}}">
                                     <div class="post">
                                 <div class="nc">

@@ -13,7 +13,7 @@ class ProductGridView extends Component
      *
      * @return void
      */
-    public function __construct($product, $classes = 'col-lg-3 col-md-3 col-sm-4 col-4')
+    public function __construct($product, $classes = 'col-lg-4 col-md-4 col-sm-6 col-6')
     {
         $this->product = $product;
         $this->classes = $classes;

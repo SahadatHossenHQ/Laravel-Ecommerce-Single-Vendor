@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- Default box -->
-            <div class="card">
+            <div class="card" style="background:transparent;">
                 <div class="card-header">
                     
                     <div class="row">
@@ -48,7 +48,7 @@
                     @csrf
                     <div class="card-body">
 
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                             <div class="card-header bg-success">
                                 <h2 class="card-title">Billing Info</h2>
                             </div>
@@ -129,7 +129,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                             <div class="card-header bg-success">
                                 <h2 class="card-title">Shipping Method</h2>
                             </div>
@@ -165,7 +165,7 @@
                             </div>
                         </div>
                         
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                             <div class="card-header bg-success">
                                 <h2 class="card-title">Order Summary</h2>
                             </div>

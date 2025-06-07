@@ -24,6 +24,7 @@
 
         <!-- Theme style -->
         <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="/assets/dist/css/custom.css">
         <style>
             div.fixed.inset-0.flex.items-end.justify-center {z-index: 999999;}
         </style>

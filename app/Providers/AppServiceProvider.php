@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\miniCategory;
+use Illuminate\Pagination\Paginator;
 use View;
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +28,11 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
+    
     {
+        {
+            Paginator::useBootstrap();
+        }
         Builder::macro('filter', function($key, $column = null, $compareWith = null, $filterIf = true) {
             if(($value = request($key, null)) !== null && $filterIf) {
                 return $this->where($column ?? $key, $compareWith ?? '=', $value);

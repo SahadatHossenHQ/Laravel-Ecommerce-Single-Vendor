@@ -26,7 +26,7 @@
 @else
 <style>
     .products .product .thumbnail {
-        height: 190px !important;
+        /* height: 190px !important; */
     }
     #list-view .product .thumbnail img {
         width: 200px;
@@ -136,7 +136,7 @@
                         @endif
                         @if (!empty(setting('messanger')))                            
                         <li class="nav-item">
-                            <a target="_blank" class="nav-link" href="{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
+                            <a target="_blank" class="nav-link" href="https://m.me/{{ setting('messanger') }}"><i class="fab fa-facebook-messenger"></i></a>
                         </li>
                         @endif
                         </ul>
@@ -277,10 +277,8 @@
 
                     {{-- <li><a href="{{route('wishlist')}}"> <i style="position:relative;" class="fal fa-heart" aria-hidden="true"></i><span style="position:absolute;top:-3px;right:-10px;font-size:0.8rem;padding:0.2rem;border-radius:9999px;background:var(--optional_bg_color_text);color:var(--optional_color);" id="total-cart-amount">{{App\Models\wishlist::where('user_id',auth()->id())->count()}}</span></a></li> --}}
                     {{-- <li><a href="{{route('cart')}}"><i style="position:relative;" class="fal fa-shopping-basket"><span style="position:absolute;top:-3px;right:-10px;font-size:0.8rem;padding:0.2rem;border-radius:9999px;background:var(--optional_bg_color_text);color:var(--optional_color);" id="total-cart-amount">{{Cart::count()}}</span></i></a>Cart</li> --}}
-                    <li><div id="google_translate_element" onclick="foo();"> </div></li>
-                    <style>
-                        #google_translate_element>div>div>span>a>span{color:var(--secondary_color);}
-                    </style>
+                    
+                    
                     <li>{{ Cart::total() }} {{ setting('CURRENCY_CODE') }}</li>
                 </ul>
                     

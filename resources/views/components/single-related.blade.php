@@ -6,11 +6,11 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-8" style="padding:0">
+                        <div class="col-md-8" style="">
                             <a  href="{{route('product.details', $product->slug)}}">
 
                                 <p style="color: #333;font-size: 14px;">
-                                    {{$product->title}}
+                                    {{implode(' ', array_slice(explode(' ', $product->title), 0, 6))}}...
                                 </p>
                             </a> 
                             <p style="color: #333;font-size: 14px;">

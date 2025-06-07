@@ -31,7 +31,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="card">
+        <div class="card" style="background:transparent;">
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-6">
@@ -144,80 +144,60 @@
                     </tfoot>
                 </table>
 
-                {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }} results
-                {{-- {{ $products->total() }} --}}
-                <nav aria-label="Page navigation example">
-                    {{-- <ul class="pagination">
-                        @if ($products->previousPageUrl())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
-                                    <span aria-hidden="true">Prev</span>
-                                </a>
-                            </li>
-                        @endif
-                
-                        @if ($products->nextPageUrl())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
-                                    <span aria-hidden="true">Next</span>
-                                </a>
-                            </li>
-                        @endif
-                    </ul> --}}
-                    <ul class="pagination">
-                        {{-- First Page Button --}}
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $products->url(1) }}">First</a>
-                        </li>
-                
-                        {{-- Page Numbers --}}
-                        @php
-                            $totalPages = ceil($products->total() / $products->perPage());
-                            $currentPage = $products->currentPage();
-                            $middlePage = floor($totalPages / 2);
-                        @endphp
-                
-                        @if ($totalPages > 3)
-                            {{-- Immediate two pages before the first page --}}
-                            @for ($i = max($currentPage - 2, 2); $i < $currentPage; $i++)
-                                <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-                
-                            {{-- Current Page --}}
-                            <li class="page-item active">
-                                <a class="page-link" href="#">{{ $currentPage }}</a>
-                            </li>
-                
-                            {{-- Immediate two pages after the last page --}}
-                            @for ($i = $currentPage + 1; $i <= min($currentPage + 2, $totalPages - 1); $i++)
-                                <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-                
-                            {{-- Last Page Button --}}
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $products->url($totalPages) }}">Last</a>
-                            </li>
-                        @else
-                            {{-- Page Numbers if total pages are less than or equal to 3 --}}
-                            @for ($i = 2; $i < $totalPages; $i++)
-                                <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-                        @endif
-                        @if ($products->nextPageUrl())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
-                                    <span aria-hidden="true">Next</span>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </nav>
+                @if($products instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="pagination-info">
+                            Showing {{ $products->firstItem() ?? 0 }} - {{ $products->lastItem() ?? 0 }} of {{ $products->total() }} results
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                @php
+                                    $totalPages = ceil($products->total() / $products->perPage());
+                                    $currentPage = $products->currentPage();
+                                @endphp
+
+                                {{-- Previous --}}
+                                @if ($currentPage > 1)
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $products->url($currentPage - 1) }}">Previous</a>
+                                    </li>
+                                @endif
+                                {{-- First page --}}
+                                {{-- @if ($currentPage > 1)
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $products->url(1) }}">First</a>
+                                    </li>
+                                @endif --}}
+
+                                {{-- Page numbers --}}
+                                @for ($i = 1; $i <= $totalPages; $i++)
+                                    <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+
+                                {{-- Last page --}}
+                                {{-- @if ($currentPage < $totalPages)
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $products->url($totalPages) }}">Last</a>
+                                    </li>
+                                @endif --}}
+                                {{-- Next --}}
+                                @if ($currentPage < $totalPages)
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $products->url($currentPage + 1) }}">Next</a>
+                                    </li>
+                                @endif
+                            </ul>
+
+                        </nav>
+                    </div>
+                </div>
+                @endif
                 
                 
                 
@@ -254,7 +234,7 @@
                 // "lengthChange": false,
                 "paging": false, // Disable pagination
                 "info": false, // Hide information element
-                "searching": false, // Hide search input
+                // "searching": false, // Hide search input
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

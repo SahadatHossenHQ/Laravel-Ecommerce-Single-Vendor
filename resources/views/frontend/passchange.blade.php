@@ -12,12 +12,12 @@
                   @include('layouts.frontend.partials.userside')
             </div>
             <div class="col-md-9">
-                <div class="card" style="padding: 20px;margin-top: 20px;">
+                <div class="card" style="background:transparent;" style="padding: 20px;margin-top: 20px;">
                    <section class="content">
 
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="card">
+            <div class="card" style="background:transparent;">
                
                 <form action="{{route('password.update')}}" method="POST">
                     @csrf

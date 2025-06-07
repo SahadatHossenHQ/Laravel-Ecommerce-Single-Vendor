@@ -7,7 +7,7 @@
             <div class="login-logo">
                 <img src="/uploads/setting/{{setting('auth_logo')}}" alt="Logo" width="200px" height="75px">
             </div>
-            <div class="card">
+            <div class="card" style="background:transparent;">
                 <div class="card-header">{{ __('Confirm Password') }}</div>
 
                 <div class="card-body">

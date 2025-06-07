@@ -30,7 +30,7 @@
 
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="card">
+            <div class="card" style="background:transparent;">
                 <div class="card-header">
                     <h3 class="card-title">Change Password</h3>
         

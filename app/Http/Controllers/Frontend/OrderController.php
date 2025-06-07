@@ -1107,7 +1107,7 @@ class OrderController extends Controller
 
         $phoneMinDigits = empty(setting('phone_min_dgt')) ? 11 : setting('phone_min_dgt');
         $phoneMaxDigits = empty(setting('phone_max_dgt')) ? 11 : setting('phone_max_dgt');
-        $request->email =  empty($request->email) ? 'noreply@lems.shop' : $request->email; // default email while user naot filled email
+        $request->email =  empty($request->email) ? 'noreply@mail.com' : $request->email; // default email while user not filled email
 
         
 
@@ -1256,6 +1256,30 @@ class OrderController extends Controller
         }
         
         $vendor = User::find($product->user_id);
+        
+        \Log::info('Product: ' . json_encode($product));
+
+// Or more detailed debugging
+if ($product === null) {
+    \Log::error('Product is null');
+    return response()->json(['error' => 'Product not found'], 404);
+}
+\Log::info('Product User ID: ' . ($product->user_id ?? 'null'));
+        
+        // Add this line for debugging
+\Log::info('Product User ID: ' . ($product->user_id ?? 'null'));
+
+// Check if vendor is null
+if ($vendor === null) {
+    // Log an error for missing vendor
+    \Log::error('Vendor not found for User ID: ' . $product->user_id);
+
+    // Handle the case where no vendor is found
+    return response()->json(['error' => 'Vendor not found'], 404);
+}
+        
+        
+        
             $vp=$price*$request->qty;
             if ($vendor->role_id == 1) {
                 $gt = $vp;
@@ -1276,11 +1300,11 @@ class OrderController extends Controller
             'size'        => $request->size,
             'qty'         => $request->qty,
             'price'       => $price,
-            'total_price' =>  $total ?? $subtotal+$shipping_charge,
+            'total_price' =>  $total ?? $subtotal,
             'g_total'   =>$gt
         ]);
         DB::table('multi_order')->insert(
-            ['vendor_id' => $product->user_id, 'order_id' => $order->id,'partial_pay'=>0,'status'=>0,'total'=>$subtotal+$shipping_charge]
+            ['vendor_id' => $product->user_id, 'order_id' => $order->id,'partial_pay'=>0,'status'=>0,'total'=>$subtotal]
         );
         if($request->payment_method=='wallate'){
             $order->update([
@@ -1600,11 +1624,11 @@ class OrderController extends Controller
             'size'        => $request->size,
             'qty'         => $request->qty,
             'price'       => $price,
-            'total_price' =>  $total ?? $subtotal+$shipping_charge,
+            'total_price' =>  $total ?? $subtotal,
             'g_total'   =>$gt
         ]);
         DB::table('multi_order')->insert(
-            ['vendor_id' => $product->user_id, 'order_id' => $order->id,'partial_pay'=>0,'status'=>0,'total'=>$subtotal+$shipping_charge]
+            ['vendor_id' => $product->user_id, 'order_id' => $order->id,'partial_pay'=>0,'status'=>0,'total'=>$subtotal]
         );
         if($request->payment_method=='wallate'){
             $order->update([
@@ -1925,11 +1949,11 @@ class OrderController extends Controller
             'size'        => $request->size,
             'qty'         => $request->qty,
             'price'       => $price,
-            'total_price' =>  $total ?? $subtotal+$shipping_charge,
+            'total_price' =>  $total ?? $subtotal,
              'g_total'=>$gt
         ]);
           DB::table('multi_order')->insert(
-                ['vendor_id' => $product->user_id, 'order_id' => $order->id,'partial_pay'=>0,'status'=>0,'total'=>$subtotal+$shipping_charge]
+                ['vendor_id' => $product->user_id, 'order_id' => $order->id,'partial_pay'=>0,'status'=>0,'total'=>$subtotal]
             );
         if($request->payment_method=='wallate'){
             $order->update([

@@ -19,7 +19,7 @@
     }
 </style>
 <div class="vendor-profile ">
-    <div class="card">
+    <div class="card" style="background:transparent;">
           <div class="container">
                <div class="vendor">
                     <div class="vendor-cover">
@@ -90,21 +90,21 @@
     }
 </style>
 <div class="products product-page-vendor">
-    <div class="container ">
+    <div class="container mt-5">
         <h3 class="title">Top Product</h3>
             <div class="row" style="margin-bottom: 10px;">
                 <x-filter-component />
             </div>
             <div class="row" id="grid-view">
                 @forelse ($products as $product)
-                    <x-product-grid-view :product="$product"  classes="product col-lg-2 col-md-3 col-sm-4 col-4"/>
+                    <x-product-grid-view :product="$product"  classes="product col-lg-3 col-md-4 col-sm-6 col-6"/>
                 @empty
                     <x-product-empty-component />
                 @endforelse
             </div>
            <div class="row " id="list-view" style="display: none;">
                 @forelse ($products as $product)
-                    <x-product-list-view :product="$product"  classes="product col-lg-2 col-md-3 col-sm-4 col-4"/>
+                    <x-product-list-view :product="$product"  classes="product col-lg-3 col-md-1 col-sm-6 col-6"/>
                 @empty
                     <x-product-empty-component />
                 @endforelse

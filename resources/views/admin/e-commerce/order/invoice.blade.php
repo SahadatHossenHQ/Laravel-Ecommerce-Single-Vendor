@@ -1,3 +1,8 @@
+<?php
+use App\Models\ShopInfo;
+$shop = ShopInfo::where('user_id',auth()->id())->first();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +25,8 @@ body{
   background: #E0E0E0;
   font-family: 'Roboto', sans-serif;
 }
-::selection {background: #f31544; color: #FFF;}
-::moz-selection {background: #f31544; color: #FFF;}
+::selection {background: #ff9501; color: #FFF;}
+::moz-selection {background: #ff9501; color: #FFF;}
 .clearfix::after {
     content: "";
     clear: both;
@@ -37,10 +42,10 @@ h1{
   font-size: 1.5em;
   color: #444;
 }
-h2{font-size: .9em;}
+h2{font-size: 1.2em;}
 h3{
-  font-size: 1.2em;
-  font-weight: 300;
+  font-size: .9em;
+  font-weight: 400;
   line-height: 2em;
 }
 p{
@@ -56,12 +61,12 @@ a {
 #invoiceholder{
   width:100%;
   height: 100%;
-  padding: 50px 0;
+  padding:0;
 }
 #invoice{
   position: relative;
   margin: 0 auto;
-  width: 700px;
+  width: 803px;
   background: #FFF;
 }
 
@@ -70,9 +75,9 @@ a {
   padding: 20px;
 }
 
-#invoice-top{border-bottom: 2px solid #7a0f96}
-#invoice-mid{min-height: 110px;}
-#invoice-bot{ min-height: 240px;}
+#invoice-top{min-height: 150px;border-bottom: 2px solid #999fb7}
+#invoice-mid{min-height: 150px;}
+#invoice-bot{ min-height: 200px;}
 
 .logo{
     display: inline-block;
@@ -99,10 +104,10 @@ a {
     vertical-align: middle;
 }
 .title{
-  float: right;
+  padding:25px 10px;
 }
-.title p{text-align: right;}
-#message{margin-bottom: 30px; display: block;}
+.title p{text-align: right; padding-top:3px; font-size:.8em;}
+
 h2 {
     margin-bottom: 5px;
     color: #444;
@@ -188,9 +193,7 @@ footer {
     #invoice {
         width: 100%;
     }
-    #message {
-        margin-bottom: 20px;
-    }
+
     [id*='invoice-'] {
         padding: 20px 10px;
     }
@@ -282,123 +285,65 @@ footer {
   <div id="invoice" class="">
     
     <div id="invoice-top">
-      <div class="logo"><img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Logo" /></div>
-      <div class="titl">
-            <div class="col company-details">
-                       <div>Shop Address: {{setting('SITE_INFO_ADDRESS')}}</div>
-                        <div>Mobile: {{setting('SITE_INFO_PHONE')}}</div>
-                        <div>Email: {{setting('SITE_INFO_SUPPORT_MAIL')}}</div>
-                    </div>
+      <div class="col-left logo"><img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Logo" /></div>
+      <div class="col-right title">
+            <div class="company-details">
+                <h2>{{$shop->name ?? "YoungStars IT"}}</h2>
+                <p>{{setting('SITE_INFO_ADDRESS')}}</p>
+                <p>{{setting('SITE_INFO_PHONE')}}</p>
+                <p>{{setting('SITE_INFO_SUPPORT_MAIL')}}</p>
+            </div>
           
-        </p>
+
       </div><!--End Title-->
     </div><!--End InvoiceTop-->
 
 
     
     <div id="invoice-mid">   
-      <div id="message">
-        <h2>Hello {{$order->first_name}},</h2>
-        <p>An invoice with invoice number <span id="invoice_num">{{$order->invoice}}</span>.</p>
-      </div>
-       
+    
+    <div class="part-1" style="padding-bottom:30px;">
+        
         <div class="clearfix">
             <div class="col-left">
                 <div class="clientinfo">
                      <div class="text-gray-light"></div>
                       
                         
-                    <h2 id="supplier">INVOICE TO:.</h2>
-                    
+                    <h3 id="supplier">INVOICE TO: </h3>
+                    <h2 id="address">{{$order->first_name}}</h2>
                     <p style="line-height: 20px;font-size: 0.75em;">
                         
-                       Name: <span id="address">{{$order->first_name}}</span>
+                         <span id="city">{{$order->address}}</span>
+                         
+                        @if($order->town!==null)
+                           <br>
+                           City: <span id="city">{{$order->town}}, District: {{$order->district}}, Thana: {{$order->thana}}</span>
+                        @endif
+                        
+                        @if($order->email!== "noreply@mail.com")
+                         <br>
+                         <span id="email">{{$order->email}}</span>
+                        @endif
+                        
                         <br>
-                         Address: <span id="city">{{$order->town}},{{$order->district}},{{$order->thana}}</span>
-                        <br>
-                        Street: <span id="city">{{$order->address}}</span>
-                        <br>
-                        Email: <span id="country">{{$order->email}}</span><br>
-                        Phone: <span id="country">{{$order->phone}}</span><br></p>
+                       
+                        <span id="country">{{$order->phone}}</span></p>
                 </div>
             </div>
             <div class="col-right">
-                <table class="table"> 
-                    <tbody>
-                     
-                         <tr>
-                            <td colspan="2">Invoice  </td>
-                            <td> {{$order->invoice}}</td>
-                        </tr>  
-                         <tr>
-                            <td colspan="2">Invoice Date</td>
-                            <td>{{date('d M Y', strtotime($order->created_at))}}</td>
-                        </tr>
-                         <tr>
-                            <td colspan="2">Payment Method</td>
-                            <td>{{$order->payment_method}}</td>
-                        </tr>
-                        
-                        
-                        <tr>
-                            <td colspan="2">Sub Total</td>
-                            <td>{{number_format($order->subtotal, 2, '.', ',')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Shipping Charge</td>
-                            <td>+{{number_format($order->shipping_charge, 2, '.', ',')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Coupon ({{$order->coupon_code}}) </td>
-                            <td>-{{number_format($order->discount, 2, '.', ',')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Grand Total</td>
-                            <td>{{number_format($order->total, 2, '.', ',')}}</td>
-                        </tr>
-                         <tr>
-                            <td colspan="2">Partial Payment</td>
-                            <td>
-                                 @php
-                                $part=App\Models\PartialPayment::where('order_id',$order->id)->where('status',1)->sum('amount');
-                                @endphp
-                                {{$part}} 
-                            </td>
-                        </tr>
-                          <tr>
-                            <td colspan="2">Due</td>
-                            <td>{{$order->total-$part}}</td>
-                        </tr>
-                        <tr>
-                           
-                           
-                        @if($order->pay_staus==null)
-                           
-                              <td colspan="2">Payment Status  </td>
-                            <td>Unpaid</td>
-                        @else
-                             <td colspan="2">Payment Status  </td>
-                            <td>Paid</td>
-                        @endif
-                        </tr>
-                        <tr>
-                             @if($order->pay_staus!=null)
-                            
-                            <td colspan="2">Payment Date  </td>
-                            <td>{{$order->pay_date}}</td>
-                        @endif
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="">
+                <h2>INVOICE: {{$order->invoice}}</h2>
+                <p>Invoice Date: <span id="">{{date('d M Y', strtotime($order->created_at))}}</span>.</p>
+              </div>
             </div>
-        </div>       
-    </div><!--End Invoice Mid-->
+        </div>   
+    </div>
     
-    <div id="invoice-bot">
-      
-      <div id="table">
+    <div class="part-2">
+        <div id="table">
         <table class="table-main">
-         <thead>
+         <thead style="background:#f1f1f5;">
                         <tr>
                             <th>SL</th>
                             <th>Product</th>
@@ -406,7 +351,7 @@ footer {
                             <th>Color</th>
                             <th>Qty</th>
                             <th>Price</th>
-                            <th>Subtotal</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
         
@@ -446,9 +391,94 @@ footer {
                     
         </table>
       </div><!--End Table-->
+    </div>
+    
       
+           
+        
+    </div><!--End Invoice Mid-->
+    
+    <div id="invoice-bot" style="padding-bottom:10px;">
+      
+      <div class="clearfix">
+            <div class="col-left">
+                
+            </div>
+            <div class="col-right">
+                <table class="table"> 
+                    <tbody>
+                     
+                         
+                         
+                        
+                        <tr>
+                            <td colspan="2">Sub Total:</td>
+                            <td>{{number_format($order->subtotal, 2, '.', ',')}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Shipping Charge:</td>
+                            <td>+{{number_format($order->shipping_charge, 2, '.', ',')}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Coupon ({{$order->coupon_code}}): </td>
+                            <td>-{{number_format($order->discount, 2, '.', ',')}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Grand Total:</td>
+                            <td>{{number_format($order->total, 2, '.', ',')}}</td>
+                        </tr>
+                         <tr>
+                            <td colspan="2">Partial Payment:</td>
+                            <td style="color:#008000">
+                                 @php
+                                $part=App\Models\PartialPayment::where('order_id',$order->id)->where('status',1)->sum('amount');
+                                @endphp
+                                {{$part}} 
+                            </td>
+                        </tr>
+                          <tr  style="font-weight:bold">
+                            <td colspan="2">Due:</td>
+                            <td>{{$order->total-$part}}</td>
+                        </tr>
+                        <tr>
+                           
+                           
+                        @if($order->pay_staus==null)
+                           
+                              <td colspan="2">Payment Status:  </td>
+                            <td style="color:#C41E3A">Unpaid</td>
+                        @else
+                             <td colspan="2">Payment Status:  </td>
+                            <td style="color:#008000">Paid</td>
+                        @endif
+                        </tr>
+                        <tr>
+                             @if($order->pay_staus!=null)
+                            
+                            <td colspan="2">Payment Date:  </td>
+                            <td>{{$order->pay_date}}</td>
+                        @endif
+                        <tr>
+                            <td colspan="2">Payment Method:</td>
+                            <td>{{$order->payment_method}}</td>
+                        </tr>
+                        
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>     
+       
+       <div class="message" style="padding:25px 0px; text-align:center;">
+        <h2 style="color: #228B22; font-weight: 300;">Thank You! &#128522;</h2>
+    </div>
       
     </div><!--End InvoiceBot-->
+    <div class="invoice-footer" style="border-top: 2px solid #999fb7;">
+        <div class="message" style="padding:20px 0 40px 0; text-align:center;">
+        <p style="padding: 5px 0px; font-weight: 300;">Powered by <a href="https://www.youngstarsit.com/" target="_blank" style="color:#ff9501; display:inline-block;">YoungStars IT</a></p>
+    </div>
+    </div>
   
   </div><!--End Invoice-->
 </div><!-- End Invoice Holder-->

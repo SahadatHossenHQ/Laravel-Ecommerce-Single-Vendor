@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card" style="background:transparent;">
                     <div class="card-body">
                         {!! html_entity_decode($page->body) !!}
                     </div>

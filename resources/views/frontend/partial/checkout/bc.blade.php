@@ -23,7 +23,8 @@
                 <div class="widget3 col-md-7">
         
                     <h4 class="form-title"><span>1</span> Billing Info </h4>
-                    <div class="card">
+                    <p>অর্ডারটি কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার, লিখে অর্ডার বাটনে ক্লিক করুন</p>
+                    <div class="card" style="background:transparent;">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="first_name">Full Name <sup style="color: red;"></sup>*</label>
@@ -142,7 +143,7 @@
                 <div class="row">
                         <!-- <div class="widget3 col-md-12">
                             <h4 class="form-title"><span>2</span>Shipping Method </h4>
-                            <div class="card">
+                            <div class="card" style="background:transparent;">
                                 <div class="form-group ofl">
                                     <input name="shipping_method" value="Free"  style="margin-right: 5px;position: relative;top: 0px;" type="radio">
                                     <label for="free">Free</label>
@@ -191,7 +192,9 @@ cursor: pointer;
 }
                             .payment_method{
                                 position: absolute;
-z-index: -9;
+                                z-index: -9;
+                                z-index: -9;
+                                opacity: 0;
                             }
 
                         </style>
@@ -204,7 +207,7 @@ z-index: -9;
                                     <div class="form-row">
                                        
                                          <div id="accordion" class="col-12">
-  <div class="card">
+  <div class="card" style="background:transparent;">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
         <div class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -241,7 +244,7 @@ z-index: -9;
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card" style="background:transparent;">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <div class=" collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -289,7 +292,7 @@ z-index: -9;
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card" style="background:transparent;">
     <div class="card-header" id="headingThree">
       
     </div>
@@ -316,7 +319,7 @@ z-index: -9;
                     </div>
 
                     <h4 class="form-title"><span>4</span>Order Summary </h4>
-                    <div class="card">
+                    <div class="card" style="background:transparent;">
                            <?php 
                                 
                                     if($request->qty>=6 && $product->whole_price > 0){

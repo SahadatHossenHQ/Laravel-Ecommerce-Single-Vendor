@@ -34,13 +34,21 @@ class ProductController extends Controller
     public function index()
     {
         // $products = Product::with('brand')->latest('id')->get();
-        $products = Product::with('brand')->latest('id')->paginate(10);
+        $products = Product::with('brand')->latest('id')->paginate();
         return view('admin.e-commerce.product.index', compact('products'));
     }
-    public function lowProduct(){
-        $products=\App\Models\Product::where('quantity','<','6')->where('user_id',auth()->id())->get();
-        return view('admin.e-commerce.product.index', compact('products'));
-    }
+    // public function lowProduct(){
+    //     $products=\App\Models\Product::where('quantity','<','6')->where('user_id',auth()->id())->get();
+    //     return view('admin.e-commerce.product.index', compact('products'));
+    // }
+    
+    public function lowProduct() {
+    $products = \App\Models\Product::where('quantity', '<', 6)
+                                   ->where('user_id', auth()->id())
+                                   ->paginate(5); // Adjust the number per page as needed
+    return view('admin.e-commerce.product.index', compact('products'));
+}
+
     public function commetn_delte($id){
         $comment=Comment::find($id);
         if($comment->replies){
@@ -499,6 +507,9 @@ public function upload($book){
         }
 
         notify()->success("Product successfully added", "Added");
+        if ($request->action === 'create_another') {
+            return redirect()->to(routeHelper('product/create'));
+        }
         return redirect()->to(routeHelper('product'));
     }
 

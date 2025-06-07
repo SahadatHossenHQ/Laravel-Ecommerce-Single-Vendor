@@ -2,6 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 <script src="{{ asset('/') }}assets/frontend/js/bootstrap.min.js"></script>
 <script src="{{ asset('/') }}assets/frontend/js/slick.js"></script>
+<script src="{{ asset('/') }}assets/frontend/js/swiper-bundle.js"></script>
 <script src="{{ asset('/') }}assets/frontend/js/moment.js"></script>
 <script src="{{ asset('/') }}assets/frontend/js/toast.min.js"></script>
 <script src="{{ asset('/') }}assets/frontend/js/Font-Awesome.js"></script>
@@ -12,20 +13,7 @@
 <script src="{{ asset('/') }}assets/frontend/js/main.js"></script>
 <input type="hidden" value="{{ route('product.advance-search') }}" id="aurl" name="">
 <script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            includedLanguages: 'en,bn',
-            autoDisplay: false,
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-    }
-
-    function foo() {
-        $("option[value='en']").text("عربى (Arabic)");
-        $("option[value='fr']").text("Français (French)");
-        //.... so on
-    }
+    
     const texts = [
         "{!! setting('placeholder_one') !!}', '{!! setting('placeholder_two') !!}', '{!! setting('placeholder_three') !!}', '{!! setting('placeholder_four') !!}"
     ];

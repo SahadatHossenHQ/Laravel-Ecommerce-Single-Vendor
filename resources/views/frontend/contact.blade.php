@@ -534,11 +534,11 @@
           </div>
         </div>
             </div>
-            <div class="col-md-6">
-                <div class="card" style="padding: 20px;margin-top: 20px;">
+            <div class="col-md-6" style="padding: 20px; margin-top: 20px;">
+                <div class="" style="background:transparent;" style="padding: 20px; margin-top: 20px;">
                     <form action="{{route('contact.store')}}" method="post" id="submit" enctype="multipart/form-data">
                         @csrf
-                        <div class="form form2 row">
+                        <div class="form form2 row py-3">
                             <div class="form-group col-md-12">
                                 <input type="text" name="name" id="name" class="form-control" placeholder="enter your name">
                                 <small class="form-text text-danger name"></small>
@@ -588,7 +588,10 @@
                                 <textarea name="message" id="message" rows="3" class="form-control" placeholder="Please explain your problem here."></textarea>
                                 <small class="form-text text-danger message"></small>
                             </div>
+                            <div class="col-md-12">
                             <button style="background: var(--primary_color);padding: 10px;border-radius: 10px;" type="submit" class="mt-1 btn btn-primary btn-block">Submit</button>
+
+                            </div>
                         </div>
                         
                     </form>

@@ -20,7 +20,7 @@
         }
 </style>
 <div class="vendor-profile">
-    <div class="card">
+    <div class="card" style="background:transparent;">
           <div class="container">
                <div class="vendor">
                     <div class="vendor-cover">

@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="card">
+        <div class="card" style="background:transparent;">
             
             <div class="card-body">
                  <img src="{{asset('uploads/setting/'.setting('logo'))}}" width="75px">

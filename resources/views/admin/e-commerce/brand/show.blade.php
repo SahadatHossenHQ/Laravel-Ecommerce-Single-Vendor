@@ -25,7 +25,7 @@
 <section class="content">
 
     <!-- Default box -->
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             
             <div class="row">

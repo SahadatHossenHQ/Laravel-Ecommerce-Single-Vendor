@@ -82,15 +82,11 @@
 
                 <div class="row " id="grid-view">
                     @forelse ($products as $product)
-
                         <x-product-grid-view :product="$product" />
-
                     @empty
                         <x-product-empty-component />
                     @endforelse
-      
                 </div>
-               
 
                 <div class="row " id="list-view" style="display: none;">
                     @forelse ($products as $product)
@@ -99,6 +95,13 @@
                         <x-product-empty-component />
                     @endforelse
                 </div>
+
+                {{-- pagination --}}
+                <div class="row justify-content-center mt-4">
+                    {{ $products->links() }}
+                </div>
+
+
                 <div class="row">
                     <div class="load ajax-loading col-lg-3 col-md-3 col-sm-6 col-6" style="display: none;">
                         <div class="covera skeletona">

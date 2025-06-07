@@ -1,15 +1,15 @@
 Licenses
 ==============================================
 Regular License: Use in a single domain. (you can’t use one of our Regular Licenses on multiple domains)
-License Issued: Finva Soft Limited.
+License Issued: Elite Design.
 
 Notes
 ==============================================
 1. If you are not a developer then don't go to the source code and edit anything.
-2. This application is managed by Finva Soft Limited Company.
+2. This application is managed by Elite Design Company.
 3. The source code cannot be uploaded to any other site in any way.
 4. No attempt can be made to bypass the source's installation code in any way.
 
 For Technical Support:
-+88 01925 015919, +88 01718 996269
-www.finvasoft.com
++88 01775457008
+www.elitedesign.com.bd

@@ -51,7 +51,7 @@
 </div>
 <p class="login-box-msg pb-2" style="font-weight: normal; font-size:20px; text-align: center;">Reset Password</p>
 <!-- /.login-logo -->
-<div class="card">
+<div class="card" style="background:transparent;">
 
     @if (session('status'))
     <div class="card-header">

@@ -23,40 +23,79 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     // show products by category
-    public function showProductByCategory($slug,Request $request)
+    // public function showProductByCategory($slug,Request $request)
+    // {
+    //     $i=1;
+    //     if ($request->ajax()) {
+    //         $skip=$request->skip/2;
+    //     }else{
+    //         $skip=0;
+    //     }
+
+    //     $category = Category::with(['products' => function($query) use ($skip) {
+    //         return $query->where('status', true)->latest('id')->take(15)->skip($skip);
+    //     }])
+    //     ->where('slug', $slug)
+    //     ->where('status', true)
+    //     ->firstOrFail();
+
+    //         $products=$category;
+    //         $data = '';
+    //         $data2 = '';
+       
+    //     if ($request->ajax()) {
+    //         if($category->products->count() > 0){
+    //         foreach ($category->products as $product) {
+    //             $data .= View::make("components.product-grid-view")
+    //             ->with("product", $product)
+    //             ->render();
+    //             $data2 .= View::make("components.product-list-view")
+    //             ->with("product", $product)
+    //             ->render();
+    //         }}
+    //         return json_encode(array($data, $data2));;
+    //     }
+    //     return view('frontend.category-product', compact('category','slug'));
+    // }
+    public function showProductByCategory($slug, Request $request)
     {
-        $i=1;
+        // Fetch the category with products and paginate the products
+        $category = Category::where('slug', $slug)
+            ->where('status', true)
+            ->firstOrFail();
+
+        // Paginate the products for this category
+        $products = $category->products()->where('status', true)->latest('id')->paginate(9);
+
+        // If the request is an AJAX request, return paginated data
         if ($request->ajax()) {
-            $skip=$request->skip/2;
-        }else{
-            $skip=0;
-        }
-
-        $category = Category::with(['products' => function($query) use ($skip) {
-            return $query->where('status', true)->latest('id')->take(15)->skip($skip);
-        }])
-        ->where('slug', $slug)
-        ->where('status', true)
-        ->firstOrFail();
-
-            $products=$category;
             $data = '';
             $data2 = '';
-       
-        if ($request->ajax()) {
-            if($category->products->count() > 0){
-            foreach ($category->products as $product) {
-                $data .= View::make("components.product-grid-view")
-                ->with("product", $product)
-                ->render();
-                $data2 .= View::make("components.product-list-view")
-                ->with("product", $product)
-                ->render();
-            }}
-            return json_encode(array($data, $data2));;
+
+            // Loop through the paginated products and prepare grid and list views
+            if ($products->count() > 0) {
+                foreach ($products as $product) {
+                    $data .= View::make("components.product-grid-view")
+                        ->with("product", $product)
+                        ->render();
+                    $data2 .= View::make("components.product-list-view")
+                        ->with("product", $product)
+                        ->render();
+                }
+            }
+
+            // Return the rendered HTML views for grid and list views, and the next page URL for pagination
+            return response()->json([
+                'grid_view' => $data,
+                'list_view' => $data2,
+                'next_page_url' => $products->nextPageUrl(), // Provide the next page URL for AJAX pagination
+            ]);
         }
-        return view('frontend.category-product', compact('category','slug'));
+
+        // For non-AJAX requests, simply pass the category and paginated products to the view
+        return view('frontend.category-product', compact('category', 'slug', 'products'));
     }
+
      public function showProductByBrand($slug,Request $request)
     {
         $i=1;
@@ -67,8 +106,7 @@ class ProductController extends Controller
         }
         $brand=Brand::where('slug',$slug)->first();
         $products =  Product::where('status','1')->where('brand_id',$brand->id)
-        ->skip($skip)
-        ->take(16)->get();
+        ->paginate(16);
 
             $data = '';
             $data2 = '';
@@ -249,33 +287,26 @@ class ProductController extends Controller
 
     public function showAllProduct(Request $request)
     {
-        $i=1;
-        if ($request->ajax()) {
-            $skip=$request->skip/2;
-        }else{
-            $skip=0;
-        }
-        $products =  Product::where('status','1')
-        ->skip($skip)->orderBy('id', 'desc')
-        ->take(16)->get();
+        $products = Product::where('status', '1')
+            ->orderBy('id', 'desc')
+            ->paginate(12);
 
-
-        
-        $data = '';
-        $data2 = '';
         if ($request->ajax()) {
-            if($products->count() > 0){
+            $view = $request->get('view', 'grid');
+            $data = '';
             foreach ($products as $product) {
-                $data .= View::make("components.product-grid-view")
-                ->with("product", $product)
-                ->render();
-                $data2 .= View::make("components.product-list-view")
-                ->with("product", $product)
-                ->render();
-            }}
-            return json_encode(array($data, $data2));;
+                $data .= View::make("components.product-" . $view . "-view")
+                    ->with("product", $product)
+                    ->render();
+            }
+            return response()->json([
+                'html' => $data,
+                'hasMorePages' => $products->hasMorePages(),
+                'nextPageUrl' => $products->nextPageUrl()
+            ]);
         }
-        return view('frontend.product', compact('products')); 
+
+        return view('frontend.product', compact('products'));
     }
 
     public function productSearch(Request $request)

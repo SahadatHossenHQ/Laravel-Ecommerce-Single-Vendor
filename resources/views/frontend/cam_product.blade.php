@@ -84,7 +84,7 @@
                 <div class="row " id="grid-view">
                     @forelse ($products as $product)
 
-                        <div class="product col-lg-3 col-md-3 col-sm-4 col-4">
+                        <div class="product col-lg-4 col-md-6 col-sm-12 col-12">
     <?php 
        $typeid=$product->slug;
     ?>

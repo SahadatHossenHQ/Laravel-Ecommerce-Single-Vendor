@@ -34,14 +34,14 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Application Settings</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-4">
-                    <div class="card">
+                    <div class="card" style="background:transparent;">
                         <div class="card-header bg-success">
                             <h3 class="card-title">Application Images</h3>
                         </div>
@@ -91,8 +91,8 @@
                     <div class="card text-white bg-secondary mb-3">
                         <div class="card-header">Update Notice</div>
                         <div class="card-body">
-                            <h5 class="card-title">We are allways for there for support.</h5>
-                            <p class="card-text">We are coming with new innovation @Finvasoft</p>
+                            <h5 class="card-title">We are allways for there for support. Contact Us: +880 199555-8743</h5>
+                            <p class="card-text">We are coming with new innovation @YoungStars IT</p>
                         </div>
                     </div>
                 </div>

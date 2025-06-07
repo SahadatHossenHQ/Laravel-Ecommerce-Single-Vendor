@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="card">
+        <div class="card" style="background:transparent;">
             <img src="{{asset('uploads/setting/'.setting('logo'))}}" width="75px">
             <div class="card-header">
                 <h3 class="card-title">Have you forgotten your password?</h3>

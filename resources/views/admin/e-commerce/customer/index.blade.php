@@ -21,7 +21,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{routeHelper('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Product List</li>
+                    <li class="breadcrumb-item active">Customer List</li>
                 </ol>
             </div>
         </div>
@@ -31,7 +31,7 @@
 <!-- Main content -->
 <section class="content">
 
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-6">
@@ -131,7 +131,9 @@
     <script>
         $(function () { 
             $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         })

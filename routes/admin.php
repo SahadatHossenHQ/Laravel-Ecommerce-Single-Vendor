@@ -33,7 +33,7 @@ use App\Http\Controllers\Admin\Ecommerce\CustomerController;
 use App\Http\Controllers\Admin\Ecommerce\DashboardController;
 use App\Http\Controllers\Admin\Ecommerce\CollectionController;
 use App\Http\Controllers\Admin\Ecommerce\SubCategoryController;
-
+use App\Http\Controllers\Admin\Ecommerce\FbReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,7 +134,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('product/disable', [ProductController::class, 'disableProduct'])->name('product.disable');
     Route::get('product/approve/{id}', [ProductController::class, 'approveProduct'])->name('product.approved');
     Route::get('product/unaproved', [ProductController::class, 'unaprovedProduct'])->name('product.unaproved');
-    Route::get('low/product', [ProductController::class, 'lowProduct'])->name('low.product');
+
     Route::get('product/reached', [ProductController::class, 'reachedProduct'])->name('product.reached');
     Route::post('get/sub-categories', [ProductController::class, 'subCategory']);
     Route::post('get/mini-categories', [ProductController::class, 'miniCategory']);
@@ -142,7 +142,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('delete/product/download/{id}', [ProductController::class, 'deleteDownloadFile']);
     Route::post('update/product/download', [ProductController::class, 'updateDownloadFile']);
     Route::get('product/type', [ProductController::class, 'type'])->name('product.type');
-    Route::get('product/inhouse', [ProductController::class, 'inhouseProduct'])->name('product.inhouse.index');
     Route::get('product/inhouse/create', [ProductController::class, 'inhouseCreate'])->name('product.inhouse.create');
 
     Route::get('admin/product/color/{cc}/{pp}', [ProductController::class, 'nColorDelete'])->name('color.delete.n2');
@@ -293,4 +292,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('setting/getway', [SettingController::class, 'setting_g'])->name('setting_g');
     Route::get('setting/docs', [SettingController::class, 'docs'])->name('setting.docs');
     Route::get('setting/home', [SettingController::class, 'home'])->name('setting.home');
+    
+    // Route::get('product/type', [ProductController::class, 'type'])->name('product.type');
+    Route::get('fb-review/index', [FbReviewController::class, 'index'])->name('fb-review.index');
+    Route::get('fb-review/create', [FbReviewController::class, 'create'])->name('fb-review.create');
+    Route::post('fb-review/store', [FbReviewController::class, 'store'])->name('fb-review.store');
+    Route::delete('fb-review/{fbReview}/delete', [FbReviewController::class, 'destroy'])->name('fb-review.destroy');
+
+    // Route::prefix('fb-review')->name('admin.fb-review.')->group(function () {
+    //     Route::get('/', [FbReviewController::class, 'index'])->name('index'); // Route for listing reviews
+    //     Route::get('/create', [FbReviewController::class, 'create'])->name('create'); // Route for adding new review
+    //     Route::post('/store', [FbReviewController::class, 'store'])->name('store'); // Route for storing new review
+    //     Route::delete('/{fbReview}/delete', [FbReviewController::class, 'destroy'])->name('destroy'); // Route for deleting review
+    // });
+
 });

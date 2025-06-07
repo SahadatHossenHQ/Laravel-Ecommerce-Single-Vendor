@@ -1,6 +1,10 @@
 <style>@font-face{font-family:muli;src:url('{{asset("/")}}assets/frontend/font/Muli/Muli-VariableFont_wght.ttf');}header .main-menu{z-index:999999;}@media(max-width:750px){.sear_wrapper, #search-view{width:100% !important;}}.goog-te-gadget img {display:none;}.goog-te-banner-frame {display:none;}.VIpgJd-ZVi9od-ORHb-OEVmcd {display:none !important;}</style>
 @if(!Request::is('/'))
-<style>.products .product .thumbnail {height: 190px !important;}#list-view .product .thumbnail img {width: 200px;}@media(max-width:767px) {#list-view .product .thumbnail img {width: inherit;}#list-view .product h4 {font-size: 17px;font-weight: 1;margin-top: 10px;}#list-view .product .details {margin-left: 15px;}#list-view .product .details .dis-label {display: none;}}</style>
+<style>
+/* .products .product .thumbnail {height: 190px !important;} */
+#list-view .product .thumbnail img {width: 200px;}@media(max-width:767px) {
+    #list-view .product .thumbnail img {width: inherit;}
+    #list-view .product h4 {font-size: 17px;font-weight: 1;margin-top: 10px;}#list-view .product .details {margin-left: 15px;}#list-view .product .details .dis-label {display: none;}}</style>
 @endif
 <header class="not-home">
 <div class="upper-header" style="">
@@ -34,15 +38,18 @@
                         <li><a style="border: 1px solid black;padding: 3px 10px;border-radius: 10px;"
                                 href="{{route('vendorJoin')}}">Seller</a></li>
                         @endif
-                        <li>
-                            <div id="google_translate_element" onclick="foo();"> </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="top-header header_area" style="background:#f3f3f3">
+    <div class="top-header header_area" style="background: rgba(255, 255, 255, 0.36);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.7px);
+-webkit-backdrop-filter: blur(8.7px);
+border: 1px solid rgba(255, 255, 255, 1);">
         <div class="container containe">
             <div class="mobile-menu-openar">
                 <div class="bars">

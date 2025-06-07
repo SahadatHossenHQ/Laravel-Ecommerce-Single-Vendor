@@ -55,7 +55,7 @@ Add Category
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <!-- Default box -->
-            <div class="card">
+            <div class="card" style="background:transparent;">
                 <div class="card-header">
 
                     <div class="row">

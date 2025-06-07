@@ -24,7 +24,7 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Application Settings</h3>
         </div>
@@ -51,6 +51,15 @@
                                             <input type="color" id="PRIMARY_COLOR_CHOOSER" value="{{ $PRIMARY_COLOR->value }}">
                                             <input type="text" id="PRIMARY_COLOR" name="PRIMARY_COLOR" value="{{ $PRIMARY_COLOR->value }}">
                                         </li>
+                                        
+                                        
+                                        <li>
+                                            <label for="PRIMARY_BG_COLOR" class="text-capitalize">Primary Background Color: </label>
+                                            <input type="color" id="PRIMARY_BG_COLOR_CHOOSER" value="{{ $PRIMARY_BG_COLOR->value }}">
+                                            <input type="text" id="PRIMARY_BG_COLOR" name="PRIMARY_BG_COLOR" value="{{ $PRIMARY_BG_COLOR->value }}">
+                                        </li>
+                                        
+                                        
                                         <li>
                                             <label for="PRIMARY_BG_TEXT_COLOR" class="text-capitalize">Primary Background Text Color: </label>
                                             <input type="color" id="PRIMARY_BG_TEXT_COLOR_CHOOSER" value="{{ $PRIMARY_BG_TEXT_COLOR->value }}">
@@ -116,6 +125,13 @@
         });
         $("#PRIMARY_COLOR").on("keyup", function () {
             $("#PRIMARY_COLOR_CHOOSER").val($(this).val());
+        });
+        
+        $("#PRIMARY_BG_COLOR_CHOOSER").on("input", function () {
+            $("#PRIMARY_BG_COLOR").val($(this).val());
+        });
+        $("#PRIMARY_BG_COLOR").on("keyup", function () {
+            $("#PRIMARY_BG_COLOR_CHOOSER").val($(this).val());
         });
 
         $("#PRIMARY_BG_TEXT_COLOR_CHOOSER").on("input", function () {

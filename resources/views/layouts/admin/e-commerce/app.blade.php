@@ -24,6 +24,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/assets/dist/css/custom.css">
     <style>
         div.fixed.inset-0.flex.items-end.justify-center {
             z-index: 999999;
@@ -31,7 +32,7 @@
     </style>
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" style="background:var(--primary_bg_color)">
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -44,7 +45,7 @@
         <!-- /.main sidebar container -->
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="background: transparent;">
 
             @yield('content')
 
@@ -62,7 +63,8 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-    <p style="text-align:center;margin: 0;padding: 5px 0px;">Lems v6.0.0 - Developed by: Finva Soft Ltd</p>
+
+    <p style="text-align:center;margin: 0;padding: 5px 0px;">Design and Development by <a href="https://www.youngstarsit.com/" target="_blank" style="color:#1f1f1f; display:inline-block;">YoungStars IT</a></p>
 
     <!-- jQuery -->
     <script src="/assets/plugins/jquery/jquery.min.js"></script>

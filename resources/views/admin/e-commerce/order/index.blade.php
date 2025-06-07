@@ -31,7 +31,7 @@
 <!-- Main content -->
 <section class="content">
 
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-6">
@@ -63,7 +63,9 @@
                             <td>{{$key + 1}}</td>
                             <td>{{$data->invoice}}</td>
                             <td>{{$data->first_name}}</td>
-                            <td>{{$data->phone}}</td>
+                            <td> <a title="WhatsApp" href="https://api.whatsapp.com/send?phone=88{{$data->phone}}&amp;text=সম্মানিত গ্রাহক, আপনার অর্ডার নিশ্চিত করা হয়েছে। আপনার যদি আরও প্রশ্ন থাকে তাহলে নির্দ্বিধায় আমাদের সাথে যোগাযোগ করুন। ধন্যবাদ। " target="_blank" style="" class="btn btn-success btn-sm">
+                                        <i class="fab fa-whatsapp"></i> {{$data->phone}}
+                                    </a></td>
                             <td>{{$data->payment_method}}</td>
                             <td>{{$data->subtotal}}</td>
                             <td>{{$data->discount}}</td>
@@ -94,12 +96,15 @@
                             </td>
                             <td>
                                 <div class="btn btn-group">
-                                    <a title="Invoice" href="{{route('admin.order.invoice', $data->id)}}" class="btn btn-warning btn-sm" target="_blank">
-                                        <i class="fas fa-print"></i>
-                                    </a>
+                                    
                                     <a title="Show Information" href="{{routeHelper('order/'. $data->id)}}" class="btn btn-info btn-sm">
                                         <i class="fas fa-eye"></i>
                                     </a>
+                                    
+                                    <a title="Invoice" href="{{route('admin.order.invoice', $data->id)}}" class="btn btn-warning btn-sm" target="_blank">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                    
                                     <!-- @if ($data->status == 0)
                                     <a title="Done" href="{{routeHelper('order/status/processing/'. $data->id)}}" id="btnStatus" onclick="return confirm('Are you sure change this order status?')" class="btn btn-primary btn-sm">
                                         <i class="fas fa-check"></i>

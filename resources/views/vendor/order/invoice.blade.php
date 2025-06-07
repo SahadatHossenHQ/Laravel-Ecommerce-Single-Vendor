@@ -1,3 +1,8 @@
+<?php
+use App\Models\ShopInfo;
+$shop = ShopInfo::where('user_id',auth()->id())->first();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +45,7 @@ h1{
 h2{font-size: .9em;}
 h3{
   font-size: 1.2em;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 2em;
 }
 p{
@@ -70,7 +75,7 @@ a {
   padding: 20px;
 }
 
-#invoice-top{border-bottom: 2px solid #7a0f96}
+#invoice-top{min-height: 150px;border-bottom: 2px solid #7a0f96}
 #invoice-mid{min-height: 110px;}
 #invoice-bot{ min-height: 240px;}
 
@@ -99,9 +104,9 @@ a {
     vertical-align: middle;
 }
 .title{
-  float: right;
+  padding:25px 10px;
 }
-.title p{text-align: right;}
+.title p{text-align: right;padding-top:3px; font-size:.8em;}
 #message{margin-bottom: 30px; display: block;}
 h2 {
     margin-bottom: 5px;
@@ -282,16 +287,16 @@ footer {
   <div id="invoice" class="">
     
     <div id="invoice-top">
-  <div class="logo"><img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Logo" /></div>
-      <div class="titl">
-            <div class="col company-details">
-                       
-                       <div>Shop Address: {{setting('SITE_INFO_ADDRESS')}}</div>
-                        <div>{{setting('SITE_INFO_PHONE')}}</div>
-                        <div> {{setting('SITE_INFO_SUPPORT_MAIL')}}</div>
-                    </div>
+  <div class="col-left logo"><img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Logo" /></div>
+      <div class="col-right title">
+            <div class="company-details">
+                <h2>{{$shop->name ?? "YoungStars IT"}}</h2>
+                <p>{{setting('SITE_INFO_ADDRESS')}}</p>
+                <p>{{setting('SITE_INFO_PHONE')}}</p>
+                <p>{{setting('SITE_INFO_SUPPORT_MAIL')}}</p>
+            </div>
           
-        </p>
+
       </div><!--End Title-->
     </div><!--End InvoiceTop-->
 
@@ -309,7 +314,7 @@ footer {
                      <div class="text-gray-light"></div>
                       
                         
-                    <h2 id="supplier">INVOICE TO:.</h2>
+                    <h3 id="supplier">INVOICE TO: </h3>
                      <p style="line-height: 20px;font-size: 0.75em;">
                         
                        Name: <span id="address">{{$order->first_name}}</span>

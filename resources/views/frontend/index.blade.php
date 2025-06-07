@@ -32,21 +32,35 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 
 @if (setting('NOTICE_STATUS') != 0 || setting('NOTICE_STATUS') == "")
 <!--================ CUSTOM NOTICE =================-->
-<br>
-<section class="container">
-<div class="row">
-<div class="col-12">
-    <div class="card">
-        <div class="card-header">
-            New Updates
-        </div>
-        <div class="card-body">
-            @php
+
+<section class="container-fluid">
+<!--<div class="row">-->
+<!--<div class="col-12">-->
+<!--    <div class="card" style="background:transparent;">-->
+<!--        <div class="card-header">-->
+<!--            New Updates-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            @php-->
+<!--            echo setting('CUSTOM_NOTICE');-->
+<!--            @endphp-->
+<!--        </div>-->
+<!--    </div> -->
+<!--</div>-->
+<table class="parentmar">
+    <tr>
+      <td class="childmar">
+        Updates <!-- 4 Letter Only -->
+      </td>
+      <td>
+        <marquee>
+          @php
             echo setting('CUSTOM_NOTICE');
             @endphp
-        </div>
-    </div> 
-</div>
+        </marquee>
+      </td>
+    </tr>
+  </table>
 </div>
 </section>
 <br>
@@ -66,7 +80,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
         {{-- @if (setting('TOP_CAT')) --}}
             <h3 class="title  col-md-12 text-left pt-3"><span>{{ setting('TOP_CAT') ?? 'Top Categories' }}</span> <button id="cat_row_more">View All</button></h3>
         {{-- @endif --}}
-        <div id="cat_row" class="cat-row cat_row_hide">
+        <div id="cat_row" class="cat-row">
             @foreach ($categories_f as $category)
                 <a href="{{route('category.product',$category->slug)}}" class="cat-item">
                     <div class="">
@@ -129,7 +143,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
                 }
 
                 .hero-2{
-                    padding-bottom: 60px;
+                    padding-bottom: 20px;
                 }
             </style>
         @endpush
@@ -566,17 +580,21 @@ echo setting('BELOW_SLIDER_HTML_CODE');
         <h3 class="title"><span>Latest Products</span> <a href="{{route('product')}}">View All</a></h3>
         <div class="row  ">
             @forelse ($products as $product)
-            <x-product-grid-view :product="$product" classes="product col-lg-2 col-md-3 col-sm-4 col-4" />
+            <x-product-grid-view :product="$product" classes="product col-lg-3 col-md-4 col-sm-6 col-6" />
             @empty
             <x-product-empty-component />
             @endforelse
+        </div>
+        {{-- pagination --}}
+        <div class="row justify-content-center mt-4">
+            {{ $products->links() }}
         </div>
     </div>
 </div>
 <!--================ / Latest product Area =================-->
 @endif
 
-@if (setting('FEATURE_PRODUCT_STATUS') != 0 || setting('FEATURE_PRODUCT_STATUS') == "")
+{{--@if (setting('FEATURE_PRODUCT_STATUS') != 0 || setting('FEATURE_PRODUCT_STATUS') == "")
 <!--================ Feature product Area =================-->
 <div class="products">
     <div class="container">
@@ -591,7 +609,7 @@ echo setting('BELOW_SLIDER_HTML_CODE');
     </div>
 </div>
 <!--================ / Feature product Area =================-->
-@endif
+@endif--}}
 
 
 @if (setting('HERO_SLIDER_2') != 0 || setting('HERO_SLIDER_2') == "")
@@ -599,50 +617,30 @@ echo setting('BELOW_SLIDER_HTML_CODE');
     .clss.products .slick-list {
         padding-bottom: 20px !important;
     }
-    .hc img {
-        margin-bottom: 22px;
-        padding: 0 !important;
-    }
+    
 </style>
-<section class="hero-2 hc">
+<section class="hero-2 mt-5 mb-2">
     <div class="">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    @foreach (App\Models\Slider::where('status',1)->where('is_sub',1)->take(2)->get() as $key =>
-                    $slider)
-                    <div class="">
-                        <a href="{{$slider->url}}">
-                            <img width="100%" src="{{asset('uploads/slider/'.$slider->image)}}" alt="">
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="col-md-6">
-                    @foreach (App\Models\Slider::where('status',1)->where('is_sub',1)->skip(2)->take(1)->get() as $key
+                
+                <div class="col-md-12">
+                    @foreach (App\Models\Slider::where('status',1)->where('is_sub',1)->take(1)->get() as $key
                     => $slider)
                     <div class="">
                         <a href="{{$slider->url}}">
-                            <img width="100%" src="{{asset('uploads/slider/'.$slider->image)}}" alt="">
+                            <img src="{{asset('uploads/slider/'.$slider->image)}}" alt="" width="100%">
                         </a>
                     </div>
                     @endforeach
                 </div>
-                <div class="col-md-3">
-                    @foreach (App\Models\Slider::where('status',1)->where('is_sub',1)->skip(3)->take(2)->get() as $key
-                    => $slider)
-                    <div class="">
-                        <a href="{{$slider->url}}">
-                            <img width="100%" src="{{asset('uploads/slider/'.$slider->image)}}" alt="">
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
+                
             </div>
         </div>
     </div>
 </section>
 @endif
+
 
 
 @if (setting('CLASSIFIED_SELL_STATUS') != 0 || setting('CLASSIFIED_SELL_STATUS') == "")
@@ -676,6 +674,50 @@ echo setting('BELOW_SLIDER_HTML_CODE');
 </div>
 @endif
 @endif
+
+@if (setting('HERO_SLIDER_2') != 0 || setting('HERO_SLIDER_2') == "")
+<style>
+    .clss.products .slick-list {
+        padding-bottom: 20px !important;
+    }
+    
+    .hc img {
+        margin-bottom: 18px;
+        padding: 0 !important;
+    }
+</style>
+<section class="hero-2 hc">
+    <div class="">
+        <div class="container">
+            <div class="row">
+               
+                <div class="col-md-3">
+                    @foreach (App\Models\Slider::where('status',1)->where('is_sub',1)->skip(1)->take(2)->get() as $key =>
+                    $slider)
+                    <div class="">
+                        <a href="{{$slider->url}}">
+                            <img width="100%" src="{{asset('uploads/slider/'.$slider->image)}}" alt="">
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+                
+                <div class="col-md-3">
+                    @foreach (App\Models\Slider::where('status',1)->where('is_sub',1)->skip(3)->take(2)->get() as $key
+                    => $slider)
+                    <div class="">
+                        <a href="{{$slider->url}}">
+                            <img width="100%" src="{{asset('uploads/slider/'.$slider->image)}}" alt="">
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+{{-- slider 2 --}}
 
 @if (setting('MEGA_CAT_PRODUCT_STATUS') != 0 || setting('MEGA_CAT_PRODUCT_STATUS') == "")
 @if(!empty(setting('mega_cat')))
@@ -799,28 +841,13 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
 @endif
 
 
-@if (setting('BRAND_STATUS') != 0 || setting('BRAND_STATUS') == "")
-<!--================product  Area start=================-->
-<div class="shop-category shop-brand" style="padding-bottom: 20px;text-align: center;">
-    <div class="container">
-        <h3 class="title" style="margin-bottom: 0 !important;"><span>Shop By Brands</span> <a href="/brands/list">view
-                all</a></h3>
-        <div class="cat-row" style="display:block;">
-            @foreach (App\Models\Brand::where('status',1)->take(7)->get() as $brand)
-            <a href="{{route('brand.product',['slug'=>$brand->slug])}}" class="cat-item">
-                <div class="">
-                    <div class="thumbnail">
-                        <img src="{{asset('uploads/brand/'.$brand->cover_photo)}}" alt="">
-                    </div>
-                </div>
-            </a>
 
-            @endforeach
-        </div>
-    </div>
-</div>
-<!--================product  Area End=================-->
-@endif
+
+<!--================Banner  Area start=================-->
+
+@include('frontend.partial.fb_review', ['fbReviews' => $fbReviews])
+
+<!--================Banner  Area End=================-->
 
 @if (setting('CATEGORY_SMALL_SUMMERY') != 0 || setting('CATEGORY_SMALL_SUMMERY') == "")
 <div class="category-thumbanial" style="padding-bottom: 40px;">
@@ -895,6 +922,30 @@ $products = \App\Models\Product::whereIn('id', $productIds)->where('status',1)->
     </div>
 </div>
 @endif
+
+@if (setting('BRAND_STATUS') != 0 || setting('BRAND_STATUS') == "")
+<!--================product  Area start=================-->
+<div class="shop-brand" style="padding-bottom: 20px;text-align: center;">
+    <div class="container">
+        <h3 class="title" style="margin-bottom: 0 !important;"><span>Shop By Brands</span> <a href="/brands/list">view
+                all</a></h3>
+        <div class="cat-row" style="display:block;">
+            @foreach (App\Models\Brand::where('status',1)->take(7)->get() as $brand)
+            <a href="{{route('brand.product',['slug'=>$brand->slug])}}" class="cat-item">
+                <div class="">
+                    <div class="thumbnail">
+                        <img src="{{asset('uploads/brand/'.$brand->cover_photo)}}" alt="">
+                    </div>
+                </div>
+            </a>
+
+            @endforeach
+        </div>
+    </div>
+</div>
+<!--================product  Area End=================-->
+@endif
+
 
 <x-add-cart-modal />
 @include('components.cart-modal-attri')

@@ -25,7 +25,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="background:transparent;">
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-6">
@@ -198,7 +198,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" style="background:transparent;">
             <div class="card-header">
                 <h2 class="card-title">Order Products</h2>
             </div>

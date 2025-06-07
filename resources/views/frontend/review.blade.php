@@ -98,7 +98,7 @@
         <div class="row my-4">
             @foreach ($order->orderDetails as $item)
             <div class="col-md-6 mb-3">
-                <div class="card">
+                <div class="card" style="background:transparent;">
                     <div class="card-body">
                         <div class="media">
                             <img class="mr-3" src="{{asset('uploads/product/'.$item->product->image)}}" alt="Product Image" width="150px">

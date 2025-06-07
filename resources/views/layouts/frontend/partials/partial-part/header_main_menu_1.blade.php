@@ -13,7 +13,7 @@
                     <span><i class="icofont icofont-navigation-menu"></i></span>
                     Categories
                     <span class="arrow"></span>
-                    <section class="hero-area" style="display: {{Request::is('/') ? 'block':''}}">
+                    <section class="hero-area" style="display: {{Request::is('/') ? '':''}}">
                         <div class="container">
                             <div class="row" id="superCat">
                             </div>
@@ -34,9 +34,9 @@
                     <li><a href="{{route('home')}}" class="{{Request::is('/') ? 'active':''}}">Home</a></li>
                     <li><a href="{{route('product')}}" class="{{Request::is('product*') ? 'active':''}}">All
                             Products</a></li>
-                    <li class="submenu" style="position:relative !important">
-                        <a href="{{route('blogs')}}">Updates</a>
-                    </li>
+                    <!--<li class="submenu" style="position:relative !important">-->
+                    <!--    <a href="{{route('blogs')}}">Updates</a>-->
+                    <!--</li>-->
                     <li><a href="{{route('track')}}" class="{{Request::is('track*') ? 'active':''}}">Order Track</a>
                     </li>
                     <!-- <li><a href="{{route('category')}}" class="{{Request::is('category*') ? 'active':''}}">All Category</a></li> -->

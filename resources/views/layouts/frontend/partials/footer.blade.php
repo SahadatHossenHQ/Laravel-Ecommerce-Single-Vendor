@@ -14,8 +14,8 @@
         z-index: 999;
     }
 
-    .footer-item .title,
-    .footer-item .title span {
+    .footer-item .footer_title,
+    .footer-item .footer_title span {
         background: transparent;
         color: black;
         margin: 0 !important;
@@ -26,7 +26,7 @@
 @if (setting('FLOAT_LIVE_CHAT') != 1 || setting('FLOAT_LIVE_CHAT') == "")
     @if(!empty(setting('whatsapp')))
     <li class="fixed_what"><a href="https://wa.me/{{setting('whatsapp')}}"
-            style="color:var(--primary_bg_color_text);background:var(--primary_color);border-radius: 50%;width: 45px;display: block;height: 45px;text-align: center;line-height: 45px;font-size: 25px;position: fixed;right: 10px;bottom: 80px;z-index: 999999;box-shadow: 0px 0px 10px gainsboro;"><i
+            style="color:var(--primary_bg_color_text);background:#25d366;border-radius: 50%;width: 45px;display: block;height: 45px;text-align: center;line-height: 45px;font-size: 25px;position: fixed;right: 10px;bottom: 80px;z-index: 999999;box-shadow: 0px 0px 10px gainsboro;"><i
                 class="icofont icofont-social-whatsapp"></i></a></li>
     @endif
 @else
@@ -41,27 +41,26 @@
 <div class="footer-menu">
     <div class="container">
         <ul>
-            <li><a href="{{route('home')}}"><span><i class="fas fa-home" aria-hidden="true"></i></span> Home</a></li>
-            <li><a href="{{route('cart')}}"><span><i class="fas fa-shopping-bag" aria-hidden="true"></i></span> Cart</a>
-                <sup style="top: -50px;left: 15px;"> (<span id="total-cart-{{-- amount --}}">{{Cart::count()}}</span>)</sup></li>
+            <li><a href="{{route('home')}}"><span><i class="fas fa-home" aria-hidden="true"></i></span></a></li>
+            <li><a href="{{route('cart')}}"><span><i class="fas fa-shopping-bag" aria-hidden="true"></i></span></a>
+                <sup style="top: -38px;left: 25px; font-size:16px;"> (<span id="total-cart-{{-- amount --}}">{{Cart::count()}}</span>)</sup></li>
 
             <!-- <li><a href="{{route('cart')}}"><img src="https://t4.ftcdn.net/jpg/01/36/29/27/240_F_136292799_kapdXE2Vhrk0ndKsZk8nyEvg3VwBuwwU.jpg" alt=""></a></li> -->
             <li class="mobile-menu-openar"><a href="#" class="bars"><span><i class="fas fa-bars"
-                            aria-hidden="true"></i></span> Category</a></li>
+                            aria-hidden="true"></i></span> </a></li>
 
             @guest
-            <li><a href="{{route('login')}}"><span><i class="fas fa-user" aria-hidden="true"></i></span> Login</a></li>
+            <li><a href="{{route('login')}}"><span><i class="fas fa-user" aria-hidden="true"></i></span> </a></li>
             @else
 
             @if (auth()->check() && auth()->user()->role_id != 1)
 
-            <li><a href="{{route('dashboard')}}"><span><i class="fas fa-user" aria-hidden="true"></i></span> My
-                    Account</a></li>
+            <li><a href="{{route('dashboard')}}"><span><i class="fas fa-user" aria-hidden="true"></i></span> </a></li>
             @endif
 
             @if (auth()->check() && auth()->user()->role_id == 1)
             <li><a href="{{route('admin.dashboard')}}"><span><i class="fas fa-user" aria-hidden="true"></i></span>
-                    Dash</a></li>
+                    </a></li>
             @endif
 
 
@@ -74,22 +73,26 @@
     </div>
 </div>
 <footer>
-    <div class="container">
+    <div class="container pb-5">
         <div class="row">
             <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
                 <li id="nav_menu-2" class="widget widget_nav_menu"> 
                     <div style="margin-bottom: 20px;" class="apps footer-logo">
                     <a href="{{route('home')}}">
-                    <img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Application Logo" style="width: 150px">
+                    <img src="{{asset('uploads/setting/'.setting('logo'))}}" alt="Application Logo" style="width: 120px">
                 </a>
                 </div>
-                    <div class="item-content ic2">
+                    <div class="item-content ic2" style="display: block;">
                         <div class="menu-main-container">
                             <ul id="menu-main-18" class="menu">
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76">
                                     {{setting('footer_description')}}
                                 </li>
+								
                             </ul>
+						
+
+                    
                         </div>
                     </div>
                     
@@ -97,7 +100,7 @@
             </div>
             <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
                 <li id="nav_menu-2" class="widget widget_nav_menu">
-                    <div class="title t1">
+                    <div class="footer_title t1">
                         <span>Info</span>
                         <span class="footer-sub-icon"><i class="icofont icofont-simple-right"></i></span>
                     </div>
@@ -130,7 +133,7 @@
             </style>
             <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
                 <li id="nav_menu-2" class="widget widget_nav_menu">
-                    <div class="title t3">
+                    <div class="footer_title t3">
                         <span>Menu</span>
                         <span class="footer-sub-icon"><i class="icofont icofont-simple-right"></i></span>
                     </div>
@@ -171,40 +174,21 @@
 
             <div class="footer-item  col-lg-3 col-md-3 col-sm-12">
                 <li id="nav_menu-2" class="widget widget_nav_menu">
-                    <div class="title t2">
+                    <div class="footer_title t2">
                         <span>Conatct US</span>
                         <span class="footer-sub-icon"><i class="icofont icofont-simple-right"></i></span>
                     </div>
-                    <div class="item-content ic2">
+                    <div class="item-content ic2" style="display: block;">
                         <div class="menu-main-container">
                             <ul style="opacity: 0.8;" id="menu-main-18" class="menu">
                                 <li style="line-height: 22px;">{{setting('SITE_INFO_ADDRESS')}}</li>
                                 <li>Email: {{setting('SITE_INFO_SUPPORT_MAIL')}}</li>
                                 <li>Contact No: {{setting('SITE_INFO_PHONE')}}</li>
-                                <li><a style="font-weight: 700;border-radius: 5px;padding: 5px 15px;display: inline-block;background: var(--primary_color);color:var(--primary_bg_color_text);font-size: 16px;"
-                                        href="{{route('connection.live.chat')}}"
-                                        class="{{Request::is('connection') ? 'active':''}}"> Live Chat</a></li>
                             </ul>
-                        </div>
-                    </div>
-
-                </li>
-            {{-- </div>
-            <div class="footer-item  col-lg-3 col-md-3 col-sm-12"> --}}
-                <style>
-                    #nav_menu-2 .aroow2 {
-                        display: none;
-                    }
-                </style>
-                <li id="nav_menu-2" class="widget widget_nav_menu pt-3">
-                    <div class="title t4">
-                        <span>Get In Touch</span>
-                        <span class="footer-sub-icon"><i class="icofont icofont-simple-right"></i></span>
-                    </div>
-
-                    <ul style="margin-top: 0;" class="item-content  ic4">
+                            <br>
+                            <ul style="margin-top: 0;" class=" ic4">
                         @if(!empty(setting('facebook')))
-                        <li class="s-l-i-3"><a href="{{setting('facebook')}}"><i style="background:#3b5997 ;"
+                        <li class="s-l-i-3"><a href="{{setting('facebook')}}"><i style="background:#1751c7 ;"
                                     class="icofont icofont-social-facebook"></i></a></li>
                         @endif
                         @if(!empty(setting('instagram')))
@@ -212,7 +196,7 @@
                                     class="fab fa-instagram"></i></a></li>
                         @endif
                         @if(!empty(setting('messanger')))
-                        <li class="s-l-i-3"><a href="{{setting('messanger')}}"><i style="background:#3b5997 ;"
+                        <li class="s-l-i-3"><a href="https://m.me/{{setting('messanger')}}"><i style="height:auto; padding-top:10px; padding-bottom:10px; background: radial-gradient(circle at 25% 98%, rgb(0, 120, 255) 5%, rgb(75, 105, 255) 25%, rgb(175, 55, 240) 55%, rgb(255, 85, 125) 78%, rgb(250, 105, 110) 83%);"
                                     class="fab fa-facebook-messenger"></i></a></li>
                         @endif
                         @if(!empty(setting('youtube')))
@@ -221,7 +205,7 @@
                         @endif
 
                         @if(!empty(setting('whatsapp')))
-                        <li class="s-l-i-3"><a href="https://wa.me/{{setting('whatsapp')}}"><i style="background:#439665 ;"
+                        <li class="s-l-i-3"><a href="https://wa.me/{{setting('whatsapp')}}"><i style="background:#25d366 ;"
                                     class="icofont icofont-social-whatsapp"></i></a></li>
                         @endif
                         @if(!empty(setting('twitter')))
@@ -233,9 +217,21 @@
                                     class="icofont icofont-social-linkedin"></i></a></li>
                         @endif
                     </ul>
+                        </div>
+                    </div>
+
+                </li>
+            {{-- </div>
+            <div class="footer-item  col-lg-3 col-md-3 col-sm-12"> --}}
+                <style>
+                    #nav_menu-2 .aroow2 {
+                        display: none;
+                    }
+                </style>
+
                     @if(setting('android_app'))
                     <div class="platform item-content  ic4" style="margin-top: 20px;">
-                        <div class="title t1" style="margin-bottom: 8px !important">
+                        <div class="footer_title t1" style="margin-bottom: 8px !important">
                             <span>Download Now!</span>
                         </div>
                         <ul style="margin-top: 0;">
@@ -259,7 +255,7 @@
     <div class="copy " style="background: var(--primary_color);padding: 10px;text-align: center;">
         <div class="container">
             <div class="copy-rihgt-1 row">
-                <p class="col-md-12" style="margin: 0 0px;color: white;">{{setting('copy_right_text')}}</p>
+                <p class="col-md-12" style="margin: 0 0px;color: white;">{{setting('copy_right_text')}} | Design and Development by <a href="https://www.youngstarsit.com/" target="_blank" style="color:#ff9501; display:inline-block;">YoungStars IT</a> | Management by <a href="https://www.facebook.com/share/cqS4xHwqo491Hw67/?mibextid=wwXIfr" target="_blank" style="color:#3fc3d9; display:inline-block;">Techcelerate Hub</a> </p>
             </div>
         </div>
     </div>

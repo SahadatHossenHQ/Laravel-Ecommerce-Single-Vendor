@@ -2,7 +2,9 @@
 
     $color_var = ':root{';
         // Start Color Variable
+        
         $color_var .='--primary_color:' . (empty(setting("PRIMARY_COLOR")) ? "#108b3a" : setting("PRIMARY_COLOR")) .';';
+        $color_var .='--primary_bg_color:' . (empty(setting("PRIMARY_BG_COLOR")) ? "#f3feff" : setting("PRIMARY_BG_COLOR")) .';';
         $color_var .='--primary_bg_color_text:' . (empty(setting("PRIMARY_BG_TEXT_COLOR")) ? "#ffffff" : setting("PRIMARY_BG_TEXT_COLOR")) .';';
         $color_var .='--secondary_color:' . (empty(setting("SECONDARY_COLOR")) ? "#000000" : setting("SECONDARY_COLOR")) .';';
         $color_var .='--optional_color:' . (empty(setting("OPTIONAL_COLOR")) ? "#00aa3a" : setting("OPTIONAL_COLOR")) .';';

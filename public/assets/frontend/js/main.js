@@ -95,7 +95,7 @@
         
       
         $('.autoplay').slick({
-            slidesToShow: 6,
+            slidesToShow: 4,
             slidesToScroll: 1,
             autoplaySpeed: 2000,
                speed: 500,
@@ -108,13 +108,13 @@
                 {
                     breakpoint:1000,
                     settings:{
-                        slidesToShow: 4,
+                        slidesToShow: 3,
                     }
                 },
                 {
                     breakpoint:767,
                     settings:{
-                        slidesToShow: 3,
+                        slidesToShow: 2,
                     }
                 },
                 {
@@ -168,6 +168,32 @@
             })
             
             $('#someTab').tab('show')
+
+            var mySwiper3 = new Swiper('.swiper-banner-container', {
+
+                loop: true,
+                speed: 1000,
+                autoplay: {
+                    delay: 1400,
+                    disableOnInteraction: false,
+                },
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                coverflowEffect: {
+                    rotate: 10,
+                    stretch: 70,
+                    depth: 100,
+                    modifier: -1,
+                    slideShadows: true,
+                },
+                // Pagination
+                pagination: {
+                  el: '.swiper-banner-pagination',
+                  clickable: true,
+                },
+              })
 
     });
    

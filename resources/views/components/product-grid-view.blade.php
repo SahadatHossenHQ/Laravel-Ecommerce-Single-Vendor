@@ -1,11 +1,11 @@
-<?php if(!isset($classes)){$classes='col-lg-3 col-md-3 col-sm-4 col-4';}?>
+<?php if(!isset($classes)){$classes='col-lg-4 col-md-6 col-sm-6 col-6';}?>
 
 <div class="product {{$classes}} pxc">
     <?php 
        $typeid=$product->slug;
     ?>
 
-    <div class="product-wrapper"  style="height: 366px;" >
+    <div class="product-wrapper"  style="height: auto;" >
     <style>
         .product-wrapper{
             overflow: hidden;
@@ -109,6 +109,88 @@
                 <a href="{{route('product.details', $product->slug)}}">
                     <h5>{{implode(' ', array_slice(explode(' ', $product->title), 0, 10))}}...</h5>
                 </a>
+                
+                
+                
+                                <div class="home-add2">
+                                    
+            
+           <div class="cbtn">
+               <form action="{{ route('buy.product') }}" method="GET">
+                    <?php if(isset($campaigns_product)){?>
+                    <input type="hidden" name="camp" id="camp"
+                        value="{{ $campaigns_product->id }}">
+                    <?php }?>
+                    <fieldset>
+                        <?php if (isset($campaigns_product)) {
+                            $product->discount_price = $campaigns_product->price;
+                        } ?>
+                        @if (!empty($product->discount_price))
+                            <input type="hidden" name="just" id="just"
+                                value="{{ $product->discount_price }}">
+                            <input type="hidden" name="dynamic_price" class="dynamic_price"
+                                value="{{ $product->discount_price }}">
+                        @else
+                            <input type="hidden" name="just" id="just"
+                                value="{{ $product->regular_price }}">
+                            <input type="hidden" name="dynamic_price" class="dynamic_price"
+                                value="{{ $product->regular_price }}">
+                        @endif
+                        <input type="hidden" name="id" id="id"
+                            value="{{ $product->id }}">
+                        <input type="hidden" name="qty" id="qty" value="1">
+                        <input type="hidden" name="color" id="color" value="blank">
+                        @foreach ($attributes as $attribute)
+                            <?php
+                            $attribute_prouct = DB::table('attribute_product')
+                                ->select('*')
+                                ->join('attribute_values', 'attribute_values.id', '=', 'attribute_product.attribute_value_id')
+                                ->addselect('attribute_values.name as vName')
+                                ->addselect('attribute_values.id as vid')
+                                ->join('attributes', 'attributes.id', '=', 'attribute_values.attributes_id')
+                                ->where('attribute_product.product_id', $product->id)
+                                ->where('attributes.id', $attribute->id)
+                                ->get();
+                            ?>
+                            @if ($attribute_prouct->count() > 0)
+                                @foreach ($attribute_prouct as $attr)
+                                    <?php $vid = $attr->vid; ?>
+                                @endforeach
+
+                                <input type="hidden" name="{{ $attribute->slug }}"
+                                    id="{{ $attribute->slug }}"
+                                    value="{{ $attribute_prouct->count() == 1 ? $vid : 'blank' }}">
+                            @endif
+                        @endforeach
+                        @if ($product->quantity <= '0')
+                            <input type="hidden" name="pr" value="1">
+                            <!--<input style="width:140px;margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);" type="submit" value="Pre Order" class="button">-->
+                            <p
+                                style="width:auto;margin-top: 10px;background: #ec1d1d;color: white;border-color: var(--primary_color);text-align: center;padding: 6px;border-radius: 5px;">
+                                Out Of Stock</p>
+                        @else
+                            <input
+                                style="width:auto; padding-left: 30px; padding-right: 30px; margin-top: 10px;background: var(--primary_color);color: white;border-color: var(--primary_color);"
+                                type="submit" value="Buy Now" class="button">
+                        @endif
+                    </fieldset>
+                    
+                </form>
+
+            @if($product->quantity <= '0')
+             <a  href="{{route('product.details', $product->slug)}}" class="redirect d-inline" style="margin-top: 10px;margin-right:5px;background: red;color: white;border-color: red;" >Pre  </a>
+            @else
+             @if($product->sheba!=1)
+                <button type="submit" class="redirect" style="margin-top: 10px;" data-url="{{route('product.info', $product->slug)}}" id="productInfo" type="submit" title="Add To Cart"><i class="fal fa-shopping-cart" aria-hidden="true"></i> </button>
+                @endif
+                @endif
+                <form action="{{route('wishlist.add')}}" method="post" id="submit_payment_form{{$typeid}}">
+                @csrf
+                    <input type="hidden" name="product_id" value="{{$product->slug}}"> 
+                    <button style="margin-top: 5px;background:{{$color}}" class="redirect" type="submit" title="Wishlist"><i class="fal fa-heart" aria-hidden="true"></i> </button>
+                </form>
+           </div>
+        </div>
             
             @if($product->discount_price>0)
                 <span style="color: #ea6721;">
@@ -126,29 +208,14 @@
                 </span>
                 @endif
             </div>
-            <h6 class="px-2 py-1" style="line-height:.9rem;font-size:.9rem;">@if ($product->prdct_extra_msg)<small>{{ $product->prdct_extra_msg }}</small>@endif</h6>
+            <h6 class="px-3 py-1" style="line-height:.9rem;font-size:1.2rem;">@if ($product->prdct_extra_msg)<small><marquee>{{ $product->prdct_extra_msg }}</marquee></small>@endif</h6>
             <div class="quick-view"> <a href="{{route('product.details', $product->slug)}}"><i class="icofont icofont-search"></i> Quick View</a></div>
        </div>
 
-        <div class="home-add2">
-            
-           <div class="cbtn bg-white">
-            @if($product->quantity <= '0')
-             <a  href="{{route('product.details', $product->slug)}}" class="redirect" style="margin-top: 10px;background: red;color: white;border-color: red;" >Pre  </a>
-            @else
-             @if($product->sheba!=1)
-                <button type="submit" class="redirect" style="margin-top: 10px;" data-url="{{route('product.info', $product->slug)}}" id="productInfo" type="submit" title="Add To Cart"><i class="fal fa-shopping-cart" aria-hidden="true"></i> </button>
-                @endif
-                @endif
-                <form action="{{route('wishlist.add')}}" method="post" id="submit_payment_form{{$typeid}}">
-                @csrf
-                    <input type="hidden" name="product_id" value="{{$product->slug}}"> 
-                    <button style="margin-top: 5px;background:{{$color}}" class="redirect" type="submit" title="Wishlist"><i class="fal fa-heart" aria-hidden="true"></i> </button>
-                </form>
-           </div>
-        </div>
+        
     </div>
 </div>
+
 @push('js')
 <script>
     // form submit 

@@ -32,7 +32,7 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Application Update</h3>
         </div>

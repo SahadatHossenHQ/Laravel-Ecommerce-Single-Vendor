@@ -30,7 +30,7 @@
 <!-- Main content -->
 <section class="content">
 
-    <div class="card">
+    <div class="card" style="background:transparent;">
        
         <!-- /.card-header -->
         <div class="card-body">

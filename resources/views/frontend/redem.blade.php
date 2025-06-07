@@ -12,12 +12,12 @@
                   @include('layouts.frontend.partials.userside')
             </div>
             <div class="col-md-9">
-                <div class="card" style="padding: 20px;margin-top: 20px;">
+                <div class="card" style="background:transparent;" style="padding: 20px;margin-top: 20px;">
                    <section class="content">
 
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="card">
+            <div class="card" style="background:transparent;">
               <span class="btn-success p-2 text-center"> Point Rate is {{setting('Point_rate')}} {{ setting('CURRENCY_CODE') }}</span>
                <span class="btn-primary p-2 text-center">You have {{auth()->user()->point}} point</span>
                 <form action="{{route('redem.convert')}}" method="POST">

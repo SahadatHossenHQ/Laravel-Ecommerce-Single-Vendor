@@ -85,7 +85,7 @@
     @if($errors->any())
     {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
     @endif
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             
             <div class="row">
@@ -288,9 +288,9 @@
                         </div>
                         <input type='hidden' name="shipping_charge" value="1">
                         <div class="form-group col-md-12">
-                            <div style="background: #eeeeee;padding: 10px;border-radius: 5px;">
+                            <div style="background: transparent;padding: 10px;border-radius: 5px;">
                                 <div class="row">
-                                    <div class="form-group col-md-12" style="margin-bottom: 5px;border:1px solid gainsboro;">
+                                    <div class="form-group col-md-12" style="margin-bottom: 5px;padding:10px; border:1px solid gainsboro;">
                                         <label style="display: block;" for="color"> <button style="width: 100%;text-align:left;" type="button"
                                                 data-toggle="collapse" data-target="#collapseExampleColor" aria-expanded="false"
                                                 aria-controls="collapseExampleColor">Select Color:<i
@@ -338,7 +338,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="image">Product Image <span class="text-danger">(*)</span>: <a target="_blank" href="https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
+                            <label for="image">Product Image <span class="text-danger">(*)</span>: <a target="_blank" href="#">How to Optimize Image</a></label>
                             <input type="file" name="image" id="image" accept="image/*" class="form-control dropify @error('image') is-invalid @enderror" data-default-file="@isset($product) /uploads/product/{{$product->image}}@enderror">
                             @error('image')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -346,7 +346,7 @@
                         </div>
                         @isset($product)                     
                             <div class="form-group col-md-6">
-                                <label>Product Gallery Image <span class="text-danger">(*)</span>: <a target="_blank" href="https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
+                                <label>Product Gallery Image <span class="text-danger">(*)</span>: <a target="_blank" href="#https://youtu.be/JsZc-I_Wygk">How to Optimize Image</a></label>
                                 <div class="input-group" id="increment">
                                     <input type="file" class="form-control" accept="image/*" id="images" name="images[]"
                                         @isset($product) @else required @endisset>
@@ -575,7 +575,7 @@
     <!-- /.card -->
     
     {{-- @isset($product)
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Update Product Gallery Images</h3>
         </div>
@@ -635,7 +635,7 @@
     @endisset --}}
 
     @if(isset($product->downloads) && $product->downloads->count() > 0)
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Update Product Download File</h3>
         </div>

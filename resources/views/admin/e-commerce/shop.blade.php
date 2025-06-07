@@ -32,7 +32,7 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Shop Details</h3>
         </div>

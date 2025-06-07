@@ -21,7 +21,7 @@
 
 {{-- LOGIN / REG - OPTION --}}
 <section class="content">
-    <div class="card">
+    <div class="card" style="background:transparent;">
         <div class="card-header">
             <h3 class="card-title">Shop Information</h3>
         </div>
@@ -62,7 +62,7 @@
                                         <li class="col-12 col-md-12">
                                             <label for="footer_description" class="text-capitalize">Footer Descripttion <span class="text-red">(*)</span></label>
                                             <textarea name="footer_description" id="footer_description" rows="4"
-                                                class="form-control" required>{{setting('footer_description') ?? 'Footer Description, Example: This is Lems by Finvasoft'}}</textarea>
+                                                class="form-control" required>{{setting('footer_description') ?? 'Footer Description, Example: This is Website Develop By YoungStars IT'}}</textarea>
                                         </li>
                                     </ul>
 
@@ -70,11 +70,11 @@
                                     <ul class="form-row">
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="email" class="text-capitalize">E-mail <span class="text-red">(*)</span></label>
-                                            <input class="form-control" type="email" name="email" id="email" placeholder="info@finvasoft.com" value="{{ setting('email') ?? 'hello@asifulmamun.info.bd' }}" required>
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="info@elitedesign.com.bd" value="{{ setting('email') ?? 'hello@asifulmamun.info.bd' }}" required>
                                         </li>
                                         <li class="col-12 col-md-6 form-group">
                                             <label for="whatsapp" class="text-capitalize">WhatsApp</label>
-                                            <input class="form-control" type="number" name="whatsapp" id="whatsapp" placeholder="8801721600688" value="{{ setting('whatsapp') ?? '01721*****88' }}">
+                                            <input class="form-control" type="number" name="whatsapp" id="whatsapp" placeholder="8801*********" value="{{ setting('whatsapp') ?? '01**********' }}">
                                             <small class="text-red">With Country Code (Without + sign)</small>
                                         </li>
                                         <li class="col-12 col-md-6 form-group">

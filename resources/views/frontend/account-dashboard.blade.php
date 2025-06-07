@@ -55,14 +55,14 @@
             <div class="col-md-9 dasboard" style="padding:0">
                 <div class="cr row" style="padding: 20px;">
                    <!--  <div class="col-lg-6 col-md-6 col-sm-6 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              
                             Refer Code
                              <p style="background: gainsboro;text-transform:initial !important;border-radius: 5px;">{{auth()->user()->username}}</p>
                         </div>
                     </div>
                      <div class="col-lg-6 col-md-6 col-sm-6 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              
                             Refer buy link
                             <div class="">
@@ -74,70 +74,70 @@
                     </div> -->
                     
                     <!--<div class="col-lg-4 col-md-4 col-sm-4 col-6 item">-->
-                    <!--    <div class="card">-->
+                    <!--    <div class="card" style="background:transparent;">-->
                     <!--         <p><i class="fas fa-coins"></i></p>-->
                     <!--         Pending Point-->
                     <!--         <p>{{auth()->user()->pen_point}}</p>-->
                     <!--    </div>-->
                     <!--</div>-->
                     <!--<div class="col-lg-4 col-md-4 col-sm-4 col-6 item">-->
-                    <!--    <div class="card">-->
+                    <!--    <div class="card" style="background:transparent;">-->
                     <!--         <p><i class="fas fa-coins"></i></p>-->
                     <!--         Total Point-->
                     <!--         <p>{{auth()->user()->point}}</p>-->
                     <!--    </div>-->
                     <!--</div>-->
                     <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">-->
-                    <!--    <div class="card">-->
+                    <!--    <div class="card" style="background:transparent;">-->
                     <!--         <p><i class="fas fa-money-bill"></i></p>-->
                     <!--         My Wallate-->
                     <!--         <p>{{auth()->user()->wallate}}</p>-->
                     <!--    </div>-->
                     <!--</div>-->
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fas fa-newspaper"></i></p>
                              Total Blogs
                              <p>{{$blog}}</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fas fa-box"></i></p>
                              Total Order
                               <p>{{$order}}</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fas fa-balance-scale"></i></p>
                              Pending Order
                              <p>{{$pending}}</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fas fa-hourglass-start"></i></p>
                              Processing Order
                              <p>{{$processing}}</p>
                         </div>
                     </div>
                      <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fas fa-plane"></i></p>
                              Shipping Order
                              <p>{{$shipping}}</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fas fa-thumbs-up"></i></p>
                              Pickuped Order
                              <p>{{$delevery}}</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
-                        <div class="card">
+                        <div class="card" style="background:transparent;">
                              <p><i class="fa fa-window-close  color-white shadow-l timeline-icon"></i></p>
                              Cancel Order
                              <p>{{$cancel}}</p>

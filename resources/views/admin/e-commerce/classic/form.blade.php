@@ -29,7 +29,7 @@
           
             <div class="col-md-12" style="margin-top: 20px">
                 <div class="custmer-right ">
-                <form style="background: white;border-radius: 5px;" action="{{ isset($product) ? route('admin.product.clasified.update') :route('admin.product.clasified.create') }}" method="POST" enctype="multipart/form-data">
+                <form style="border: .5px solid #d2d6dc;border-radius: 5px;" action="{{ isset($product) ? route('admin.product.clasified.update') :route('admin.product.clasified.create') }}" method="POST" enctype="multipart/form-data">
                     
                     @csrf
                     @if(isset($product))
