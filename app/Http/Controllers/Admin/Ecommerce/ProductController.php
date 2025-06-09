@@ -33,8 +33,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = Product::with('brand')->latest('id')->get();
-        $products = Product::with('brand')->latest('id')->paginate();
+        $products = Product::with('brand')->latest('id')->get();
+        // $products = Product::with('brand')->latest('id')->paginate(100);
         return view('admin.e-commerce.product.index', compact('products'));
     }
     // public function lowProduct(){

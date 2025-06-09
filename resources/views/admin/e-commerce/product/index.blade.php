@@ -145,7 +145,7 @@
                 </table>
 
                 @if($products instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                <div class="row">
+                <div class="row d-none">
                     <div class="col-md-5">
                         <div class="pagination-info">
                             Showing {{ $products->firstItem() ?? 0 }} - {{ $products->lastItem() ?? 0 }} of {{ $products->total() }} results
@@ -231,11 +231,12 @@
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
-                // "lengthChange": false,
-                "paging": false, // Disable pagination
-                "info": false, // Hide information element
-                // "searching": false, // Hide search input
+                "lengthChange": true,
                 "autoWidth": false,
+                // "paging": false, // Disable pagination
+                // "info": false, // Hide information element
+                // "searching": false, // Hide search input
+                
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         })

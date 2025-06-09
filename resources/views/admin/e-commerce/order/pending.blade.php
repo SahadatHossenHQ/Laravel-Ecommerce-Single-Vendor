@@ -45,6 +45,7 @@
                 <thead>
                     <tr>
                         <th>SL</th>
+                        <th>Invoice</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Payment</th>
@@ -59,13 +60,14 @@
                     @foreach ($orders as $key => $data)
                         <tr>
                             <td>{{$key + 1}}</td>
+                            <td>{{$data->invoice}}</td>
                             <td>{{$data->first_name}}</td>
                             <td>{{$data->phone}}</td>
                             <td>{{$data->payment_method}}</td>
                             <td>{{$data->subtotal}}</td>
                             <td>{{$data->discount}}</td>
                             <td>{{$data->total}}</td>
-                            <td>{{date('d M Y', strtotime($data->created_at))}}</td>
+                            <td>{{ date('d M Y h:i A', strtotime($data->created_at)) }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a title="Invoice" href="{{route('admin.order.invoice', $data->id)}}" class="btn btn-warning btn-sm" target="_blank">

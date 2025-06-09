@@ -70,7 +70,7 @@
                             <td>{{$data->subtotal}}</td>
                             <td>{{$data->discount}}</td>
                             <td>{{$data->total}}</td>
-                            <td>{{date('d M Y', strtotime($data->created_at))}}</td>
+                            <td>{{ date('d M Y h:i A', strtotime($data->created_at)) }}</td>
                             <td>
                                 @if ($data->status == 0)
                                     <span class="badge badge-warning">Pending</span>
